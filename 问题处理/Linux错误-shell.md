@@ -139,18 +139,3 @@ whoami
 ```
 
 原因是, 第2个`!`前后不能有空格, 当然也不能有其他任何字符.
-
-
-## 6. scp传输文件夹出错
-
-```
-scp: /home/Download/wap: not a regular file
-```
-
-问题分析: scp传输目录与单个文件不一样
-
-解决方法: 加上`-r`参数, 即
-
-```
-$ scp -r 用户名@IP地址:/home/Download/wap  ./
-```
