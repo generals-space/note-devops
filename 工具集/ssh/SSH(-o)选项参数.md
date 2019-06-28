@@ -6,9 +6,7 @@
 
 2. [通过 ControlMaster 对 OpenSSH 进行加速，减少系统资源消耗](https://www.ibm.com/developerworks/community/blogs/IBMzOS/entry/20150502?lang=en)
 
-`-o`选项有很多特性可以选用, 其基本语法为
-
-`ssh -o '选项 值' -o '选项 值' user@ip`
+`-o`选项有很多特性可以选用, 其基本语法为`ssh -o '选项 值' -o '选项 值' user@ip`
 
 可以通过指定多个`-o`选项设置多个特性, 更多可用选项可以用`man`查看.
 
