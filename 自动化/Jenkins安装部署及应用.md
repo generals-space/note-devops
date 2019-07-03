@@ -1,12 +1,12 @@
 # Jenkins 安装部署
 
-[官方文档](https://wiki.jenkins-ci.org)
-
-### 1. 修改admin用户密码
-
 参考文章
 
-[Jenkins进阶系列之——11修改Jenkins用户的密码](http://blog.csdn.net/wangmuming/article/details/22925931)
+1. [官方文档](https://wiki.jenkins-ci.org)
+
+2. [Jenkins进阶系列之——11修改Jenkins用户的密码](http://blog.csdn.net/wangmuming/article/details/22925931)
+
+### 1. 修改admin用户密码
 
 有时忘记admin用户的密码, 或者在安装后Jenkins直接以admin权限执行并未创建新用户, 但重启Jenkins后会提示输入某用户的账号密码. 此时需要手动修改.
 
