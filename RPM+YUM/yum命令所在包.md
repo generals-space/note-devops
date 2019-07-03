@@ -1,4 +1,4 @@
-# 命令所在包
+# yum命令所在包
 
 CentOS
 
@@ -34,4 +34,7 @@ bind-utils: [
 crontabs: [
     crontab
 ],
+man-pages: [
+    man手册bash命令, 系统调用等内容(不包括man命令本身, man命令需要额外安装)
+]
 ```
