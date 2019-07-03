@@ -3,11 +3,8 @@
 ## 1. 环境准备
 
 - 系统平台: Docker CentOS6镜像
-
 - JDK: 1.8.0
-
 - Tomcat: 8.5.4
-
 - Jenkins版本: 2.7.1 war包版
 
 首先配置JDK环境变量, 部署Jenkins到`tomcat/webapps`, 启动tomcat. **不建议使用root用启动**, 因为实验中root用户下运行的tomcat, jenkins响应特别慢, 下载插件也经常超时.
@@ -146,17 +143,17 @@ docs  examples  host-manager  item2  item2.war  manager  ROOT
 
 ## 注意
 
-`SSH plugin`插件需要系统中安装有`sshd`服务; `git plugin`连接git需要系统中安装`git`; 连接svn需要系统中安装`subversion`, 这些需要在安装插件之前安装.
-
+1. `SSH plugin`插件需要系统中安装有`sshd`服务; 
+2. `git plugin`连接git需要系统中安装`git`; 
+3. 连接svn需要系统中安装`subversion`
+ 
+> 这些需要在安装插件之前安装, docker
 
 ## 推荐插件列表
 
 - SSH Credentials Plugin:
-
 - Subversion Plug-in: 提供连接SVN源码管理服务器的功能.
-
 - Git plugin: Git源码管理
-
 - SSH plugin: 提供SSH连接目标主机的方式
 
 > 注意: 安装插件不需要重启Jenkins, 即时生效.
