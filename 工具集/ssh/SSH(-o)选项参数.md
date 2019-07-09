@@ -65,6 +65,8 @@ Last login: Sat Dec 30 20:39:42 2017 from 192.168.101.65
 
 > `StrictHostKeyChecking`选项不是不检查, 而是默认接受对方公钥. 但如果存储的公钥与目标公钥不一致时, 虽然也能正常登录, 但不会更新新的公钥(旧的公钥依然存在).
 
+> 注意: 这一操作是写`/etc/ssh/ssh_config`而不是`/etc/ssh/sshd_config`文件.
+
 ## 2. ControlMaster与ControlPersist - 连接复用, 无需重复输入密码.
 
 参考文章

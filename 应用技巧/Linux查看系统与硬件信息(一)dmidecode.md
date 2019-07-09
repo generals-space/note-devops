@@ -1,16 +1,14 @@
-# Linux查看系统/硬件信息
-
-## 1. dmidecode应用
+# Linux查看系统与硬件信息(一)dmidecode
 
 Dmidecode 这款软件允许你在 Linux 系统下获取有关硬件方面的信息。Dmidecode 遵循 SMBIOS/DMI 标准，其输出的信息包括 BIOS、系统、主板、处理器、内存、缓存等等。
 
-### 1.1 简介
+## 1. 简介
 
 DMI (Desktop Management Interface, DMI)就是帮助收集电脑系统信息的管理系统，DMI信息的收集必须在严格遵照SMBIOS规范的前提下进行。 SMBIOS(System Management BIOS)是主板或系统制造者以标准格式显示产品管理信息所需遵循的统一规范。SMBIOS和DMI是由行业指导机构Desktop Management Task Force (DMTF)起草的开放性的技术标准，其中DMI设计适用于任何的平台和操作系统。
 
 　　DMI充当了管理工具和系统层之间接口的角色。它建立了标准的可管理系统更加方便了电脑厂商和用户对系统的了解。DMI的主要组成部分是Management Information Format (MIF)数据库。这个数据库包括了所有有关电脑系统和配件的信息。通过DMI，用户可以获取序列号、电脑厂商、串口信息以及其它系统配件信息。
 
-### 1.2 使用方法
+## 2. 使用方法
 
 dmidecode的输出格式一般如下：
 
@@ -35,7 +33,7 @@ Serial Number: INCY92700942
 
 4. decoded values: 记录值可以是多行的，比如上例显示了主板的制造商(manufacturer)、model、version以及serial Number。
 
-### 1.3 查看内存信息
+## 3. 查看内存信息
 
 `-t memory`可以查看所有内存相关信息, 包含了`-t 16`和`-t 17`两种, 前者是看内存插槽本身的信息, 后者是查看每个插槽对应的内存条的信息.
 
@@ -57,7 +55,7 @@ Physical Memory Array                    ## 物理内存设备, 一个这东西�
 ------
 
 ```
-$dmidecode -t 17
+$ dmidecode -t 17
 # dmidecode 2.12-dmifs
 SMBIOS 2.6 present.
 
@@ -84,7 +82,7 @@ Memory Device
 ...
 ```
 
-### 1.4 CPU信息
+## 4. CPU信息
 
 ```
 $ dmidecode -t processor
@@ -147,60 +145,4 @@ Processor Information
 	Characteristics:
 		64-bit capable
 
-```
-
-## 2. `/proc/`目录
-
-### 2.1 CPU信息
-
-`cat /proc/cpuinfo`中的信息
-
-- processor       逻辑处理器的id。
-
-- physical id    物理封装的处理器的id。
-
-- core id        每个核心的id。
-
-- cpu cores      位于相同物理封装的处理器中的内核数量。
-
-- siblings       位于相同物理封装的处理器中的逻辑处理器的数量。
-
-```
-## 1 查看物理CPU的个数
-$ cat /proc/cpuinfo | grep "physical id"| sort | uniq| wc –l
-## 2 查看逻辑CPU的个数
-$ cat /proc/cpuinfo | grep "processor"| wc –l
-## 3 查看CPU是几核
-$ cat /proc/cpuinfo | grep "cores"| uniq
-## 4 查看CPU的主频
-$ cat /proc/cpuinfo | grep MHz| uniq 
-```
-
-## 3. hostnamectl
-
-这个是CentOS7中的命令, 可以查看hostname值, 系统类型, 内核版本等信息. 它是systemd机制中`systemd-hostnamed.service`服务的客户端操作工具.
-
-```
-$ hostnamectl status
-   Static hostname: localhost.localdomain
-         Icon name: computer-vm
-           Chassis: vm
-        Machine ID: 7bc63b73c29c49a8b16c98b90102dd38
-           Boot ID: fb1752d30adc4260a71f2799d2b9ce92
-    Virtualization: vmware
-  Operating System: CentOS Linux 7 (Core)
-       CPE OS Name: cpe:/o:centos:centos:7
-            Kernel: Linux 3.10.0-327.28.3.el7.x86_64
-      Architecture: x86-64
-```
-
-## 4. 其他命令
-
-```
-## 查看内核版本, CPU架构
-$ uname -a
-## 查看内核版本, 编译内核的GCC版本
-$ cat /proc/version
-## 查看发行版版本
-$ cat /etc/issue
 ```
