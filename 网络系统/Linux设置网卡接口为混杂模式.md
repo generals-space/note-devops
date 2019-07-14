@@ -11,13 +11,13 @@
 设置enp0s5为混杂模式
 
 ```
-$ ip link set enp0s5  promisc on
+$ ip link set enp0s5 promisc on
 ```
 
 取消enp0s5的混杂模式
 
 ```
-$ ip link set enp0s5  promisc off
+$ ip link set enp0s5 promisc off
 ```
 
 ## 通过ifconfig指令
