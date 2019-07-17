@@ -6,33 +6,19 @@
 
 设置混杂模式可以通过`ip`或`ifconfig`指令实现。
 
-## 通过ip指令
+## ip命令
 
-设置enp0s5为混杂模式
+设置: `ip link set enp0s5 promisc on`
 
-```
-$ ip link set enp0s5 promisc on
-```
+取消: `ip link set enp0s5 promisc off`
 
-取消enp0s5的混杂模式
+## ifconfig命令
 
-```
-$ ip link set enp0s5 promisc off
-```
+设置: `ifconfig enp0s5 promisc`
 
-## 通过ifconfig指令
+取消: `ifconfig enp0s5 -promisc`
 
-设置enp0s5为混杂模式
-
-```
-$ ifconfig enp0s5 promisc
-```
-
-取消enp0s5的混杂模式
-
-```
-$ ifconfig enp0s5 -promisc
-```
+## 验证
 
 验证网卡混杂模式是否设置成功
 
@@ -48,4 +34,4 @@ enp0s5    Link encap:Ethernet  HWaddr 00:1c:42:97:53:2a
           RX bytes:785317867 (785.3 MB)  TX bytes:1039141 (1.0 MB)
 ```
 
-其中`UP BROADCAST RUNNING PROMISC MULTICAST`的PROMISC说明网卡enp0s5已经设置成混杂模式(主要还是`PROMISC`标识).
+其中`UP BROADCAST RUNNING PROMISC MULTICAST`的`PROMISC`说明网卡enp0s5已经设置成混杂模式.

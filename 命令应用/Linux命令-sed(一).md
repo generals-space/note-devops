@@ -62,7 +62,7 @@ $ sed -i '2i\<!DOCTYPE>' ./index.html
 
 然后`index.html`会被修改成
 
-```
+```html
 <!DOCTYPE>
 <html>
 <head>

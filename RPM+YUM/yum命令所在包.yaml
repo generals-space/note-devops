@@ -1,9 +1,8 @@
 yum:
-    expect:
-        - mkpasswd
     iproute:
         - ss
         - ip
+        - tc(流量控制器TC(Traffic Control))
     iputils:
         - ping
     net-tools:
@@ -11,12 +10,13 @@ yum:
         - netstat
     bridge-utils:
         - brctl
+    bind-utils:
+        - dig
     mlocate:
         - updatedb
         - locate
-    bind-utils:
-        - dig
+    expect:
+        - mkpasswd
     crontabs:
         - crontab
     man-pages: man手册中bash命令, 系统调用的内容信息(不包括man命令本身, man命令需要事先安装)
-
