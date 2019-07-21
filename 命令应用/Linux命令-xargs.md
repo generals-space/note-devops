@@ -25,21 +25,30 @@ $ find /sbin/ -name 'l*' | xargs ls -l
 
 - `-0`: 当sdtin含有特殊字符时候, 将其当成一般字符, 像斜线`/`, 单引号`'`, 空格` `等.
 
-因为是以空白字符作为分隔, 所以, 如果有一些文件名或者是其他意义的名词内含有空白字符的时候, `xargs`可能就会误判了.
+因为是以空白字符作为分隔, 所以, 如果有一些文件名或者是其他意义的名词内含有空白字符的时候, `xargs`可能就会误判了. 比如
+
+有两个包含空格的文件
 
 ```
-## 有两个包含空格的文件
 $ ll
 total 0
 -rw-r--r--. 1 root root 0 Jan  6 12:52 hello kitty
 -rw-r--r--. 1 root root 0 Jan  6 12:52 hello world
-## 不太好压缩
+```
+
+不太好压缩
+
+```
 $ ls | xargs gzip
 gzip: hello: No such file or directory
 gzip: kitty: No such file or directory
 gzip: hello: No such file or directory
 gzip: world: No such file or directory
-## 单纯使用`-0`参数也不太好使
+```
+
+单纯使用`-0`参数也不太好使
+
+```
 $ ls | xargs -0 gzip
 gzip: hello kitty
 hello world
@@ -56,6 +65,8 @@ hello kitty.gz  hello world.gz
 ```
 
 `-print0`子选项让`find`每找到一个文件, 不再输出换行符, 而是输出NULL, 然后`xargs`的`-0`就可以将文件名中的空格当成普通字符, 又忽略find结果中的换行符的影响...
+
+> 注意: `-print0`要在目标目录`./`后面, 否则会出错.
 
 ### 2.2 从文件读入内容
 
