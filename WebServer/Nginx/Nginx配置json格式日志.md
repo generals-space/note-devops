@@ -9,17 +9,17 @@ http {
     log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
                       '$status $body_bytes_sent "$http_referer" '
                       '"$http_user_agent" "$http_x_forwarded_for"';
-    log_format json '{"@timestamp":"$time_iso8601",'
-                     '"@version":"1",'
-                     '"client":"$remote_addr",'
-                     '"url":"$uri",'
-                     '"status":"$status",'
-                     '"domain":"$host",'
-                     '"host":"$server_addr",'
-                     '"size":$body_bytes_sent,'
-                     '"responsetime":$request_time,'
-                     '"referer": "$http_referer",'
-                     '"ua": "$http_user_agent"'
+    log_format json '{'
+                        '"timestamp": "$time_iso8601",'
+                        '"client": "$remote_addr",'
+                        '"url": "$uri",'
+                        '"status": "$status",'
+                        '"domain": "$host",'
+                        '"host": "$server_addr",'
+                        '"size": $body_bytes_sent,'
+                        '"responsetime": $request_time,'
+                        '"referer": "$http_referer",'
+                        '"ua": "$http_user_agent"'
                     '}';
     ...
 
