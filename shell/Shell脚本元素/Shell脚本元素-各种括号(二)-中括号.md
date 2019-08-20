@@ -60,23 +60,35 @@ yes
 $ a='abc'
 $ if [[ $a == 'abc' ]]; then echo yes; else echo no; fi
 yes
-## >=和<=不太好用
+```
+
+> 20190820添加: 双小括号用于数值比较, 双中括号用于字符串比较, 因为双小括号对于比较双方存在空字符串时会有问题.
+
+### `>=`和`<=`不太好用
+
+```
 $ if [[ 1 >= 1 ]]; then echo yes; else echo no; fi
 -bash: syntax error in conditional expression
 -bash: syntax error near `1'
+```
 
-## 通配符模式, ?匹配任意单一字符, *匹配任意个任意字符, 右边为模式, 不可以用引号包裹
+### 通配符模式
 
+`?`匹配任意单一字符, `*`匹配任意个任意字符, 右边为模式, 不可以用引号包裹
+
+```
 $ if [[ "hashes" == "hash??" ]]; then echo yes; else echo no; fi
 no
 $ if [[ "hashes" == hash?? ]]; then echo yes; else echo no; fi
 yes
 $ if [[ "hashes" == hash* ]]; then echo yes; else echo no; fi
 yes
+```
 
-## 正则模式, 要使用`=~`符号
+### 正则模式, 要使用`=~`符号
 
-### 这第一行好像有点正则和通配符混用的感觉啊?
+```
+## 这第一行好像有点正则和通配符混用的感觉啊?
 $ if [[ "hashes" =~ hash?? ]]; then echo yes; else echo no; fi
 yes
 $ if [[ "hashes" =~ hash[ed]s ]]; then echo yes; else echo no; fi
