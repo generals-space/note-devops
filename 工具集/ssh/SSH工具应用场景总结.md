@@ -1,52 +1,5 @@
 # SSH工具应用场景总结
 
-## 1. 创建密钥
-
-使用`ssh-keygen`命令创建`rsa`方式认证的密钥.
-
-```
-[general@general ~]$ ssh-keygen -t rsa
-Generating public/private rsa key pair.
-Enter file in which to save the key (/home/general/.ssh/id_rsa):
-Enter passphrase (empty for no passphrase):
-Enter same passphrase again:
-Your identification has been saved in /home/general/.ssh/id_rsa.
-Your public key has been saved in /home/general/.ssh/id_rsa.pub.
-The key fingerprint is:
-81:0e:76:d3:bc:b0:2b:7f:cf:99:ce:32:84:0c:41:41 general@general
-The key's randomart image is:
-+--[ RSA 2048]----+
-|   oE.           |
-|    .  +         |
-|    o.= +        |
-|   ..+ + o       |
-|     oo.S        |
-|      o..        |
-|    . ..         |
-|     o  +o o     |
-|      .. =B      |
-
-```
-
-这样, 就会在`~/.ssh`目录下创建`id_rsa(私钥)`与`id_rsa.pub(公钥)`两个文件.
-
-### 1.1 选项详解
-
-`-f`选项可以生成指定名称的密钥文件
-
-```
-$ ssh-keygen -t rsa -f general.pem
-...
-$ ls
-general.pem general.pem.pub
-```
-
-`-C`选项可以生成指定注释(就是公钥尾部那串`general@general`)的密钥文件, 可以随便填写的, 不过最好填有意义, 易识别的名称, 方便在远程服务器上查看各有哪些用户导入了公钥.
-
-```
-ssh-keygen -t rsa -C '任意名称@任意IP'
-```
-
 ## 2. 快捷登录
 
 ### 2.1 别名
@@ -82,48 +35,6 @@ $ ssh general
 $ ssh general
 Bad owner or permissions on /home/general/.ssh/config
 ```
-
-### 2.2 无密码登录
-
-
-## 3. 去除私钥密码
-
-参考文章
-
-[SSH私钥取消密码](http://www.au92.com/archives/remove-passphrase-password-from-private-rsa-key.html)
-
-如果在创建密钥时, 在`Enter passphrase (empty for no passphrase):`与`Enter same passphrase again:`两句处输入了密码, 那就算使用了密钥登录方式, 交换公钥到对方主机, 使用`ssh`登录该主机时, 还要输入你自己的私钥密码.
-
-```[general@general .ssh]$ ssh root@192.168.166.220
-Enter passphrase for key '/app/general/.ssh/id_rsa':
-Last login: Sat Jul 23 17:58:27 2016 from 10.96.0.71
-```
-
-如果将此密钥对应的公钥拷贝到了很多主机上, 又需要经常登录大量主机, 每次登录时需要输入密码, 可能会觉得麻烦.  希望使用没有密码的密钥. 但是不能任性地再次生成新密钥, 否则之前拷贝到其他主机上的公钥认证就无效了. 解决方法是, 去除当前私钥上的密码. 这样原有的公钥认证 **依然有效**, 可以在其他之前的主机的时候不再输入私钥密码. 操作如下.
-
-```
-## 使用openssl命令去掉私钥的密码
-$ openssl rsa -in ~/.ssh/id_rsa -out ~/.ssh/id_rsa_new
-## 备份旧私钥
-$ mv ~/.ssh/id_rsa ~/.ssh/id_rsa.backup
-## 使用新私钥
-$ mv ~/.ssh/id_rsa_new ~/.ssh/id_rsa
-## 设置权限
-$ chomd 600 ~/.ssh/id_rsa
-```
-
-再次使用`ssh`登录, 将不再需要密钥密码.
-
-> 同理也可去除dsa加密的密钥密码.
-
-## 4. 目录结构
-
-在使用`ssh`的过程中, 会生成`known_hosts`与`authorized_keys`等文件, 它们的作用分别是
-
-- known_hosts: ssh第一次登录其他主机时, 保存下对方的公钥, 作为缓存存储在这里.
-
-- authorized_keys:
-
 
 ## 5. pem文件概述
 
@@ -307,9 +218,6 @@ Fri Sep  9 11:41:56 CST 2016
 
 ssh登陆某些服务器,会发生需要等到十来秒才提示输入密码下现象,其实这个是sshd做的一个配置上的修改引起的.
 
-取消DNS反向解析
-------
-
-使用的Linux用户可能觉得用SSH登陆时为什么反映这么慢，有的可能要几十秒才能登陆进系统。其实这是由于默认sshd服务开启了DNS反向解析，如果你的sshd没有使用域名等来作为限定时，可以取消此功能。
+使用的Linux用户可能觉得用SSH登陆时为什么反映这么慢, 有的可能要几十秒才能登陆进系统. 其实这是由于默认sshd服务开启了DNS反向解析, 如果你的sshd没有使用域名等来作为限定时, 可以取消此功能. 
 
 编辑`/etc/ssh/sshd_config`文件, 将 `# UseDNS yes`改为`UseDNS no`(没有的话自行添加)然后重启sshd服务即可.

@@ -32,11 +32,11 @@ ssh -R 2222:127.0.0.1:22 root@中转服务器IP "vmstat 30"
 
 有些时候隧道会因为一些原因通信不畅而卡死, 例如：由于传输数据量太大, 被路由器带入stalled状态. 
 
-这种时候, 往往SSH客户端并不退出,  而是卡死在那里. 
+这种时候, 往往SSH客户端并不退出, 而是卡死在那里. 
 
 一种应对方法是, 使用SSH客户端的`ServerAliveInterval`和`ServerAliveCountMax`选项.  
 
-- `ServerAliveInterval`会在隧道无通信后的一段设置好的时间后发送一个请求给服务器要求服务器响应. 如果服务器在 `ServerAliveCountMax`次请求后都没能响应, 那么SSH客户端就自动断开连接并退出, 将控制权交给你的监控程序. 
+`ServerAliveInterval`会在隧道无通信后的一段设置好的时间后发送一个请求给服务器要求服务器响应. 如果服务器在 `ServerAliveCountMax`次请求后都没能响应, 那么SSH客户端就自动断开连接并退出, 将控制权交给你的监控程序. 
 
 这两个选项的设置方法分别是在ssh时加入`-o ServerAliveInterval=m`和`-o ServerAliveCountMax=n`. 其中m, n可以自行定义. 
 
@@ -47,11 +47,21 @@ ssh -R 2222:127.0.0.1:22 root@中转服务器IP "vmstat 30"
 我们可以把这个映射的端口绑定在`0.0.0.0`的接口上, 方法是加上参数`-b 0.0.0.0`. 如下
 
 ```
-ssh -N -f -L 8080:目标服务器IP:80 -b 0.0.0.0 root@中转服务器IP
+ssh -N -f -L 2222:目标服务器IP:22 -b 0.0.0.0 root@中转服务器IP
 ssh -N -f -D 1080 -b 0.0.0.0 root@中转服务器IP
 ```
 
-同时还需要打开SSH服务器端的一个选项`GatewayPorts`. 默认情况下它应当是被打开的. 如果被关闭的话, 可以在`/etc /sshd_config`中修改`GatewayPorts no`为`GatewayPorts yes`来打开它.
+同时还需要打开SSH服务器端的一个选项`GatewayPorts`. 默认情况下它应当是被打开的. 如果被关闭的话, 可以在`/etc/sshd_config`中修改`GatewayPorts no`为`GatewayPorts yes`来打开它.
+
+这样在中转服务端就有了在`0.0.0.0`接口上的监听
+
+```
+netstat -nlp | grep 2222
+tcp        0      0 127.0.0.1:2222          0.0.0.0:*               LISTEN      32241/sshd: root
+tcp6       0      0 :::2222                 :::*                    LISTEN      787/sshd: root
+```
+
+> 实际上我发现只要打开服务端的`GatewayPorts`字段而不需要ssh的`-b`选项就可以了.
 
 ## 5. socks代理与autossh
 
