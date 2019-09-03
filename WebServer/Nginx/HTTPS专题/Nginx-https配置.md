@@ -62,7 +62,7 @@ An optional company name []:                            ## 可不写
 第三条指令是代替CA机构给自己的csr文件签名, 生成的crt文件就是可用证书.
 
 ```
-[root@iZ28xsa51i1Z]# openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+[root@iZ28xsa51i1Z]# openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
 Signature ok
 subject=/C=XX/L=Default City/O=Default Company Ltd/CN=generals.space
 Getting Private key
