@@ -4,7 +4,7 @@
 
 1. [centos7下NFS使用与配置](https://www.cnblogs.com/jkko123/p/6361476.html)
 
-NFS服务端需要安装两个包: `rpcbind`, `nfs-utils`.
+NFS服务端需要安装两个包: `rpcbind`, `nfs-utils`(安装`nfs-utils`会自动安装`rpcbind`).
 
 NFS客户端需要安装一个包: `nfs-utils`.
 
@@ -18,6 +18,7 @@ NFS客户端需要安装一个包: `nfs-utils`.
 
 ```
 /mnt/nfsfold 192.168.1.*(rw,sync,no_all_squash)
+/mnt/nfsfold 192.168.1.0/24(rw,sync,no_all_squash)
 ```
 
 格式可规定为: `共享路径 目标网段(权限配置) [目标网段2(权限配置)]`
@@ -27,6 +28,12 @@ NFS客户端需要安装一个包: `nfs-utils`.
 2. 目标网段格式可以为`192.168.1.*`, 也可以为`192.168.1.0/24`, 两种格式.
 
 3. 括号内权限选项以逗号分隔, 不要加空格.
+
+貌似通配符格式容易出问题, 服务端出现过如下错误, 建议使用掩码形式
+
+```
+rpc.mountd[29722]: refused mount request from 192.168.7.51 for /mnt/nfsharbor/mysql (/mnt/nfsharbor/mysql): unmatched host
+```
 
 `rw`和`ro`, `sync`和`async`的区别很容易, `XXX_squash`应该是与客户端挂载后创建文件/目录的属主有关, 日后再研究.
 
