@@ -57,7 +57,7 @@ NIC: Network Interface Card 网络接口卡, 即网卡, 一般指物理网卡.<?
 
 但是linux提供的bridge与硬件交换机不同的是, ta可以拥有IP地址...
 
-Veth 设备成对存在, 相当于连接 Bridge 的网线.
+Veth 设备成对存在, 相当于连接 Bridge 的网线...but这种设备tm也可以有ip.
 
 `net.ipv4.ip_forward` 设置为 1 也相当于 node1 同时充当了一个路由器（路由器的实质就是一个具有多个网卡的机器, 因为它的多网卡同时具有这些不同网段的 IP 地址, 所以它能将一个网络的流量路由转发到另一个网络）. 
 
