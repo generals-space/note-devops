@@ -4,11 +4,13 @@
 
 参考文章
 
-[[Shell]文件描述符](http://www.dutor.net/index.php/2010/03/shell-file-descriptor/)
+1. [[Shell]文件描述符](http://www.dutor.net/index.php/2010/03/shell-file-descriptor/)
 
-[shell脚本之exec操作文件描述符 + 示例](http://blog.csdn.net/donghanhang/article/details/51005972)
+2. [shell脚本之exec操作文件描述符 + 示例](http://blog.csdn.net/donghanhang/article/details/51005972)
 
-[Linux exec与文件描述符](http://www.cnblogs.com/lizhaoxian/p/5294158.html)
+3. [Linux exec与文件描述符](http://www.cnblogs.com/lizhaoxian/p/5294158.html)
+
+4. [linux shell 脚本实现tcp/upd协议通讯（重定向应用）](https://www.cnblogs.com/chengmo/archive/2010/10/22/1858302.html)
 
 Linux系统中, 每当进程打开一个文件时, 系统就为其分配一个 **唯一**的整型文件描述符, 用来标识这个文件. 大家知道, 在C语言中, **每个进程**默认打开的有三个文件, 标准输入、标准输出、标准错误输出, 分别用一个FILE结构的指针来标示, 即stdin、stdout、stderr, 这三个结构中分别维护着三个文件描述符0、1、2. Shell中, 0、1、2也是默认可用的三个文件描述符. 
 
@@ -48,19 +50,33 @@ ping www.baidu.com &
 
 `ping`命令的输出都写到`/tmp/ping_log`中了. 同样, `ping www.baidu.com > /tmp/ping_log`也更为常见...
 
+------
+
+那么, 不指定描述符数值的`<>`呢? `exec <>a.txt`会发生什么?
+
+```
+[root@7-13 tmp]# cat a.txt
+1 2 3 4 5 6
+[root@7-13 tmp]# exec <>a.txt
+[root@7-13 tmp]# 1 2 3 4 5 6
+-bash: 1: 未找到命令
+[root@7-13 tmp]# 登出
+Connection to 192.168.7.13 closed.
+```
+
+...看起来是先读出, 再写入, 而且最后由于遇到文件末尾, 直接exit了. 
+
+我尝试了下在`a.txt`里写了几句shell命令, 可以顺利执行, 但是最终仍然会exit.
+
 ## 2. 复制文件描述符
 
 符号`<&`可以复制一个输入文件描述符, 符号`>&`可以复制一个输出描述符. 
 
 不过, 与其说**复制**, 不如说是**剪切**更贴切一些. 因为, 剪切之后, 原来的文件描述符就废了...其他语言里使用`dup`函数拷贝了文件描述符后还需要将原来的关掉, shell里就不用, 直接就替换了...
 
-```
-## 将描述符m表示的文件绑定到描述符n, 两者应该都是表示输入的文件描述符
-$ exec n<&m
+`exec n<&m`: 将描述符m表示的文件绑定到描述符n, 两者应该都是表示输入的文件描述符
 
-## 将描述符n表示的文件绑定到描述符m, 此时, 两者应该都是表示输出的文件描述符
-$ exec n>&m
-```
+`exec n>&m`: 将描述符n表示的文件绑定到描述符m, 此时, 两者应该都是表示输出的文件描述符
 
 > ~~注意: 拷贝文件描述符时, 描述符的输入输出属性不能搞错. 比如, 如果对标准输出的复制使用了`exec 1<&4`, 就会出现如下错误.~~ 好吧错了, 只是因为描述符4不存在而已.
 
@@ -125,7 +141,9 @@ cat /tmp/numbers
 
 ## 5. 选择可用的文件描述符
 
-对于高级编程语言, 有`fstat`系统调用可使用, 方法可以见man手册, 这里不详细介绍. 在shell中, 则可以通过查看`/proc/self/fd`来查看当前进程(及子进程)打开的文件描述符, 只要是不出现在这里面的数值, 都可以使用, 当然, 不能超过操作系统的limit限制.
+对于高级编程语言, 有`fstat`系统调用可使用, 方法可以见man手册, 这里不详细介绍. 
+
+在shell中, 则可以通过查看`/proc/self/fd`来查看当前进程(及子进程)打开的文件描述符, 只要是不出现在这里面的数值, 都可以使用, 当然, 不能超过操作系统的limit限制.
 
 如下是在当前终端获取的描述符信息.()
 
