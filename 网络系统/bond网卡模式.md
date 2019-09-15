@@ -8,3 +8,5 @@
 2. [Linux双网卡绑定bond详解](https://blog.51cto.com/lixin15/1769338)
     - vmware中的bond测试实例
 
+bond不属于虚拟化的技术, 只是linux的网络系统机制.
+
