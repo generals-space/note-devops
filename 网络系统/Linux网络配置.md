@@ -23,11 +23,11 @@ BROADCAST="172.32.100.255"
 
 解释:
 
-- DEVICE为描述网卡对应的设备别名, 例如ifcfg-eth0的文件中它为eth0
+- `DEVICE`为描述网卡对应的设备别名, 例如ifcfg-eth0的文件中它为eth0
 
-- BOOTPROTO设置网卡获得ip地址的方式, 可能的选项为`static`, `dhcp`或`bootp`, 分别对应静态指定的 ip, 通过dhcp协议获得的ip, 通过bootp协议获得的ip
+- `BOOTPROTO`设置网卡获得ip地址的方式, 可能的选项为`static`, `dhcp`或`bootp`, 分别对应静态指定的 ip, 通过dhcp协议获得的ip, 通过bootp协议获得的ip
 
-- HWADDR=00:07:E9:05:E8:B4 #对应的网卡物理地址
+- `HWADDR=00:07:E9:05:E8:B4` #对应的网卡物理地址
 
 如果配置的是VMware虚拟机的NAT网卡, 这样就足够了. 不需要配置网关, 重启虚拟后会自动配置好的. 不过如果是多网卡情况下, 还是需要设置一下的, 免得访问不了外网. 默认网关的配置文件在`/etc/sysconfig/network`, 格式为`GATEWAY=x.x.x.x`即可.
 

@@ -5,7 +5,6 @@
 1. [[svc]通过bridge连接单机的多个网络namespace](https://www.cnblogs.com/iiiiher/p/8057922.html)
     - netns 基本操作
     - veth 设备连接两个 netns
-    - bridge 设备连接多个 netns
 2. [linux 网络虚拟化： network namespace 简介](https://cizixs.com/2017/02/10/network-virtualization-network-namespace/)
     - 应该是参考文章1的来源, 参考文章1对此添加了一些图片.
 
