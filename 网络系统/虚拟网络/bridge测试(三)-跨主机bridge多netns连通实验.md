@@ -41,3 +41,11 @@ ip netns exec netns2 ip link set veth21 up
 ip netns exec netns2 ip addr add 20.1.1.2/24 dev veth21
 ip netns exec netns2 ip route add default via 20.1.1.1 dev veth21
 ```
+
+失败.
+
+尝试把hosts上netns及bridge的修改成`10.1.1.0/24`的IP, 仍然不成功.
+
+仔细想想, 以物理网络为基础, 构建不同独立网段的子网, 这不就是overlay么? 应该借助隧道机制来实现吧.
+
+另外我又尝试在两个bridge上添加服务器网段的IP, 但是仍然没能互相ping通.
