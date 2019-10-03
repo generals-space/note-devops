@@ -163,20 +163,16 @@ $ echo $(( a ? abc : def ))
 
 八进制转十进制
 
-```
-$ ((num = 020)); echo $num
-16
-$ ((num = 8#20)); echo $num
-16
+```bash
+((num = 020)); echo $num    ## 16
+((num = 8#20)); echo $num   ## 16
 ```
 
 十六进制转十进制
 
-```
-$ ((num = 0xff));echo $num
-255
-$ ((num = 16#ff));echo $num;
-255
+```bash
+((num = 0xff)); echo $num     ## 255
+((num = 16#ff)); echo $num    ## 255
 ```
 
 这里只是其他进制转十进制的方法, 至于其他进制互转的方法, 可以使用`bc`命令.
