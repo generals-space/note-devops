@@ -20,3 +20,5 @@ yum:
     crontabs:
         - crontab
     man-pages: man手册中bash命令, 系统调用的内容信息(不包括man命令本身, man命令需要事先安装)
+    p7zip:
+        - 7za(7z格式解压命令)
