@@ -71,3 +71,7 @@ NTP synchronized: no
 ```
 
 其中有一个选项`set-local-rtc`, 它是一个布尔值(0或1就可以), 它的作用是将硬件时钟调整为与本地当前时钟一致. 0表示设置为UTC时间. 这个硬件时间应该是主板上的时间, 可能会有程序去读这个时间, 不过还没见过.
+
+```
+timedatectl set-timezone Asia/Shanghai
+```
