@@ -1,4 +1,4 @@
-# iptables-删除指定规则
+# iptables链操作-删除指定规则
 
 参考文章
 
@@ -9,7 +9,7 @@
 首先要查看规则, 获取其行号
 
 ```
-$ iptables [-t nat] -vnL --line-number
+$ iptables [-t nat] -vnL --line-number [链名, 如POSTROUTING]
 ```
 
 - `-t`: 选择table类型, 默认显示filter, 可以显示其他如nat类型的
