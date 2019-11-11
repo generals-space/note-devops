@@ -3,10 +3,10 @@
 参考文章
 
 1. [Comparison of BRCTL and BRIDGE commands](https://sgros-students.blogspot.com/2013/11/comparison-of-brctl-and-bridge-commands.html)
-    - 分别介绍了`brctl`与`bridge`对虚拟网桥设备的操作, 对FDB及STP的概念有简单介绍.
+    - 分别介绍了`brctl`与`bridge`对虚拟网桥设备的操作, 对FDB(转发DB `Forwarding Database`)及STP(生成树协议 `Spanning Tree Protocol`)的概念有简单介绍.
     - 以表格形式展示两者的交叉与互补
 
-`brctl`属于`bridge-utils`软件包, 而`bridge`属于`iproute2`软件包.
+`bridge`属于`iproute2`软件包, 而`brctl`属于`bridge-utils`软件包. 
 
 ## BRIDGE MANAGEMENT
 
@@ -21,8 +21,8 @@
 
 | ACTION                              | brctl                                  | bridge                                                 |
 | :---------------------------------- | :------------------------------------- | :----------------------------------------------------- |
-| Shows a list of MACs in FDB         | `brctl showmacs <bridge>`              | bridge fdb show                                        |
-| Sets FDB entries ageing time        | `brctl setageingtime  <bridge> <time>` |                                                        |
+| Shows a list of MACs in FDB         | `brctl showmacs <bridge>`              | `bridge fdb show [dev 设备名]`                          |
+| Sets FDB entries ageing time        | `brctl setageingtime <bridge> <time>` |                                                        |
 | Sets FDB garbage collector interval | `brctl setgcint <brname> <time>`       |                                                        |
 | Adds FDB entry                      |                                        | `bridge fdb add dev <interface> [dst, vni, port, via]` |
 | Appends FDB entry                   |                                        | `bridge fdb append (parameters same as for fdb add)`   |

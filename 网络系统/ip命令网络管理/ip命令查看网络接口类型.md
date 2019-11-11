@@ -26,19 +26,19 @@ TYPES=(bond bond_slave bridge dummy gre gretap ifb ip6gre ip6gretap ip6tnl ipip 
 iface="$1"
 
 for type in "${TYPES[@]}"; do
-  ip link show type "${type}" | grep -E '^[0-9]+:' | cut -d ':' -f 2 | sed 's|^[[:space:]]*||' | while read _if; do
-    echo "${_if}:${type}"
-  done | grep "^${iface}"
+    ip link show type "${type}" | grep -E '^[0-9]+:' | cut -d ':' -f 2 | sed 's|^[[:space:]]*||' | while read _if; do
+        echo "${_if}:${type}"
+    done | grep "^${iface}"
 done
 ```
 
 ```console
-[root@k8s-worker-7-17 ~]# ./ipt.sh docker0
+[root@k8s-worker-7-17 ~]# ./dev_type.sh docker0
 docker0:bridge
 [root@k8s-worker-7-17 ~]# ip link show type bridge
 6: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT
     link/ether 02:42:60:96:51:90 brd ff:ff:ff:ff:ff:ff
-[root@k8s-worker-7-17 ~]# ./ipt.sh bond1
+[root@k8s-worker-7-17 ~]# ./dev_type.sh bond1
 bond1:bond
 ```
 
