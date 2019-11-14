@@ -22,7 +22,7 @@ function check_ssh_proc()
     local alive=$(ps -ef | grep ssh | grep $map_option | grep -v grep | wc -l)
     if (( alive == 0 )); then
         log_warn 'try to reconnect ssh channel...' >> $log_file
-        ssh -y -N -f -R $map_option $remote_user@$remote_addr
+        ssh -y -NTf -R $map_option $remote_user@$remote_addr
     else
         log_info 'ssh channel is still alive...' >> $log_file
     fi
