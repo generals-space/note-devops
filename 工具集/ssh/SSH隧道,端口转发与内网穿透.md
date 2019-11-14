@@ -2,7 +2,9 @@
 
 参考文章
 
-[SSH隧道技术简介](http://blog.sina.com.cn/s/blog_6ca2bddf0100rljn.html)
+1. [SSH隧道技术简介](http://blog.sina.com.cn/s/blog_6ca2bddf0100rljn.html)
+2. [SSH的三种端口转发](https://jeremyxu2010.github.io/2018/12/ssh%E7%9A%84%E4%B8%89%E7%A7%8D%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/)
+    - 端口转发时的一些注意事项
 
 有如下情境:
 
@@ -62,7 +64,7 @@
 ssh -N -f -L 8080:目标服务器IP:80 root@中转服务器IP
 ```
 
-- -N 告诉SSH客户端, 这个连接不需要执行任何命令. 仅仅做端口转发
+- -N 告诉SSH客户端, 这个连接不需要执行任何命令, 仅仅做端口转发.
 - -f 告诉SSH客户端在后台运行
 - -L 做本地映射端口. 之后的`8080:目标服务器IP:80`, 8080是本地ssh监听端口, `目标服务器:80`就是我们在公司内网本来无法访问的那些服务器. 不只是http协议, 还可以是比较底层的TCP协议, 所以对mysql的3306端口的请求也是可以转发的.
 
