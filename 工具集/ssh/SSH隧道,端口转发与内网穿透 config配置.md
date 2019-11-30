@@ -1,4 +1,4 @@
-# ssh-config配置隧道穿透
+# SSH隧道,端口转发与内网穿透 config配置
 
 ```
 Host forward
@@ -37,4 +37,20 @@ Host forward
     ## 不开启tty, 与ssh的`-T`选项作用相同
     RequestTTY no
     RemoteForward 0.0.0.0:2222 127.0.0.1:22
+```
+
+------
+
+```
+Host forward-ssh
+    HostName 192.168.7.13
+    Port 22
+    User root
+    ServerAliveInterval 60
+    RequestTTY no
+    ExitOnForwardFailure yes
+    BindAddress 0.0.0.0
+    RemoteForward 0.0.0.0:2222 127.0.0.1:22
+    ServerAliveInterval 10
+    ServerAliveCountMax 6
 ```

@@ -25,3 +25,6 @@ yum:
     unrar:
         - https://www.rarlab.com/rar/rarlinux-x64-5.5.0.tar.gz
         - 拷贝二进制文件到PATH即可
+    redhat-lsb:
+        - lsb_release (查看centos发行版信息)
+
