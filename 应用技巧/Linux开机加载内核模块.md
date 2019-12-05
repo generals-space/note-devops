@@ -6,7 +6,7 @@
 
 不建议使用`rc.local`
 
-```
+```bash
 cat <<EOF > /etc/sysconfig/modules/k8s.modules
 modprobe ip_vs
 modprobe ip_vs_rr
