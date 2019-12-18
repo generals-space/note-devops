@@ -14,9 +14,7 @@ nmap貌似默认只扫描1000以内的端口
 
 ### 1.2 扫描方式
 
-`-sS` (TCP SYN scan)
-
-隐身扫描, 默认扫描方式.
+`-sS` (TCP SYN scan): 隐身扫描, 默认扫描方式.
 
 `-sT` (TCP connect scan)
 
@@ -24,21 +22,13 @@ nmap貌似默认只扫描1000以内的端口
 
 > 可以看出, 第一个小写的`s`表示`scan`(扫描), 后面紧跟的`S`, `T`, `U`等, 为扫描方式. 
 
-`-sP` (No port scan)
+`-sP` (No port scan): 又叫`-sn`, 只完成主机发现任务, 不进行端口扫描. 最适合用来检测目标主机存活状态.
 
-又叫`-sn`, 只完成主机发现任务, 不进行端口扫描. 最适合用来检测目标主机存活状态.
-
-`-sV` (Version detection)
-
-也叫`-sR`, 对目标主机的开放端口进入服务和版本扫描.
+`-sV` (Version detection): 也叫`-sR`, 对目标主机的开放端口进入服务和版本扫描.
 
 ------
 
-`-Pn` (No ping)
-
-也叫`-P0`/`-PN`
-
-有些防火墙禁ping, 会让nmap认为目标主机未启动. 这个选项可以让nmap直接跳过主机发现这个阶段, 直接进入到端口检测部分. 十分有用.
+`-Pn` (No ping): 也叫`-P0`/`-PN`, 有些防火墙禁ping, 会让nmap认为目标主机未启动. 这个选项可以让nmap直接跳过主机发现这个阶段, 直接进入到端口检测部分. 十分有用.
 
 ### 1.3 功能选项
 
@@ -51,25 +41,17 @@ nmap貌似默认只扫描1000以内的端口
 
 在nmap的man手册中, **PORT SCANNING BASICS**节有目标端口的状态与解释.
 
-1. open（开放的）
-
-2. closed（关闭的）
-
-3. filtered（被过滤的）不确定开放还是关闭
-
-4. unfiltered （未被过滤的）
-
-5. openfiltered （开放或者被过滤的）
-
-6. closedfiltered （关闭或者未被过滤的）
+1. open:            开放的
+2. closed:          关闭的
+3. filtered:        被过滤的, 不确定开放还是关闭
+4. unfiltered:      未被过滤的
+5. openfiltered:    开放或者被过滤的
+6. closedfiltered:  关闭或者未被过滤的
 
 ### 结果输出
 
-`-oN 文件名` (normal output)
-
-普通输出
-
-`-oX 文件名` (XML output)
+- `-oN 文件名` (normal output): 普通输出
+- `-oX 文件名` (XML output)
 
 ### 扫描实例
 
