@@ -1,17 +1,17 @@
-# 引言
-
 参考文章
 
 1. [OpenSSL 的使用详解](http://www.178linux.com/48764)
+2. [Linux如何使用OpenSSL命令行](http://www.xitongzhijia.net/xtjc/20150327/43137_all.html)
+    - base64编码/解码
+    - 摘要算法校验文件的一致性
+    - 文件加密/解密
 
 ## 1. 明确概念
 
 OpenSSL是一个开源项目，其组成主要包括一下三个组件：
 
 1. openssl: 多用途的命令行工具
-
 2. libcrypto: 加密算法库, 包括md5, sha1等
-
 3. libssl: 加密模块应用库，实现了ssl及tls协议
 
 openssl命令行工具可以实现: 秘钥证书管理、对称加密和非对称加密(或解密)以及一些其他常用功能(比如生成随机字符串).
