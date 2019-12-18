@@ -1,4 +1,4 @@
-# openssl生成公钥私钥
+# openssl生成密钥对, 验证及应用
 
 参考文章
 
@@ -14,23 +14,18 @@
 
 ## 1. 基本步骤
 
-1. 首先生成RSA私钥
+首先生成RSA私钥
 
 ```
 $ openssl genrsa -out private.key 2048
-Generating RSA private key, 2048 bit long modulus
-......................+++
-.....+++
-e is 65537 (0x10001)
 ```
 
 这会在当前目录生成一个`private.key`文件, 这就是私钥文件.
 
-2. 然后生成与此私钥对应的公钥文件
+然后生成与此私钥对应的公钥文件
 
 ```
 $ openssl rsa -in private.key -pubout -out public.key
-writing RSA key
 ```
 
 这一步会得到`public.key`文件, 正是我们需要的公钥文件.

@@ -1,4 +1,4 @@
-# openssl获取https证书
+# openssl获取网站https证书
 
 参考文章
 
