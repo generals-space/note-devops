@@ -1,10 +1,10 @@
-# Vim编码设置
+# vim编码设置
 
 参考文章
 
-[vim字符编码设置](http://www.cnblogs.com/freewater/archive/2011/08/26/2154602.html)
+1. [vim字符编码设置](http://www.cnblogs.com/freewater/archive/2011/08/26/2154602.html)
 
-和所有的流行文本编辑器一样, Vim 可以很好的编辑各种字符编码的文件, 这当然包括`UCS-2`、`UTF-8` 等流行的 Unicode 编码方式在. 然而不幸的是, 和很多来自 Linux 世界的软件一样, 这需要你自己动手设置在.  
+和所有的流行文本编辑器一样, Vim 可以很好的编辑各种字符编码的文件, 这当然包括`UCS-2`、`UTF-8` 等流行的 Unicode 编码方式在. 然而不幸的是, 和很多来自 Linux 世界的软件一样, 这需要你自己动手设置在. 
 
 Vim 有四个跟字符编码方式有关的选项, `encoding`、`fileencoding`、`fileencodings`、`termencoding` (这些选项可能的取值请参考 Vim 在线帮助 `:help encoding-names`), 它们的意义如下: 
 

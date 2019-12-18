@@ -8,6 +8,7 @@ yum:
     net-tools:
         - ifconfig
         - netstat
+        - arp
     bridge-utils:
         - brctl
     bind-utils:
