@@ -39,6 +39,6 @@ ssh -R 2222:127.0.0.1:22 root@中转服务器IP "vmstat 30"
 
 一种应对方法是, 使用SSH客户端的`ServerAliveInterval`和`ServerAliveCountMax`选项.  
 
-`ServerAliveInterval`会在隧道无通信后的一段设置好的时间后发送一个请求给服务器要求服务器响应. 如果服务器在 `ServerAliveCountMax`次请求后都没能响应, 那么SSH客户端就自动断开连接并退出, 将控制权交给你的监控程序. 
+`ServerAliveInterval`会在隧道无通信后的一段设置好的时间后发送一个请求给服务器要求服务器响应(单位为秒). 如果服务器在 `ServerAliveCountMax`次请求后都没能响应, 那么SSH客户端就自动断开连接并退出, 将控制权交给你的监控程序. 
 
 这两个选项的设置方法分别是在ssh时加入`-o ServerAliveInterval=m`和`-o ServerAliveCountMax=n`. 其中m, n可以自行定义. 
