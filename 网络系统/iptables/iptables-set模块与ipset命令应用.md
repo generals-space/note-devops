@@ -5,10 +5,14 @@
 1. [利用 ipset 封禁大量 IP](https://fixatom.com/block-ip-with-ipset/)
     - ipset命令使用示例
     - ipset的
+2. [Advanced Firewall Configurations with ipset](https://www.linuxjournal.com/content/advanced-firewall-configurations-ipset)
+    - `ipset`是iptables的扩展, 可以说是更强大的匹配器(应该是对比于iptables原本的`dst`, `src`, `iprange`等吧)
 
-`ipset`命令可以看作是iptables某种形式上的便携应用, 需要iptables指定`set`模块.
+`ipset`命令可以看作是iptables某种形式上的便携应用, 需要iptables指定`set`模块, 一般用于实现一个长长列表的黑名单屏蔽.
 
-以下命令实现了一个iptables的黑名单机制, 借助ipset而不是长长的iptables命令.
+> 实际上`ipset`是`iptables`的扩展, 可以通过`man iptables-extensions`查看`--match-set`的使用方法.
+
+以下命令实现了一个黑名单, 借助ipset而不是长长的iptables命令.
 
 1. `ipset create myset hash:ip`: 创建一个集合set.
 2. `iptables -I INPUT -m set --match-set myset src -j DROP`: 使用iptables的set模块创建一个默认为DROP的规则.
@@ -49,3 +53,15 @@ Members:
 除了IP地址, 还可以是网络段, 端口号（支持指定 TCP/UDP 协议）, mac 地址, 网络接口名称, 或者上述各种类型的组合. 
 
 `man ipset`手册可以查看不同存储类型的名称及添加示例.
+
+
+## 删除指定ipset集合
+
+如果`myset`已经通过iptables挂载(上面的第2条命令), 那么在删除时会出现如下报错.
+
+```
+$ ipset destroy myset
+ipset v7.1: Set cannot be destroyed: it is in use by a kernel component
+```
+
+需要先把iptables中使用该集合的规则移除才可以.
