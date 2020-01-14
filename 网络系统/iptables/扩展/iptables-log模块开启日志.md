@@ -1,4 +1,4 @@
-# iptables-开启日志
+# iptables-log模块开启日志
 
 参考文章
 
