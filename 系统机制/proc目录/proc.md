@@ -1,0 +1,1 @@
+`/proc/swap`: 其中的内容为`/etc/fstab`中类型为`swap`的部分(使用`swapoff -a`禁用所有swap分区后, 该文件也将被清空). 
