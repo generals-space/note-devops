@@ -69,6 +69,10 @@ TUN则是tunnel, 模拟第三层网络层设备, 操作IP数据包. 用于路由
 
 > TAP/TUN貌似是编程接口, 用于用户空间的程序向内核网络栈收发数据??? 这是ta们与bridge和iptable的区别吗??? ...不对啊, ip命令也可以创建tap/tun设备的啊.
 
+------
+
+overlay/underlay的概念基本清楚, 但是具体的网络方案还不太明白究竟是哪一种. 比如vlan应该是underlay, vxlan应该是overlay了吧? 另外, calico使用的bgp协议, host gateway网络也属于overlay吧? 所有基于隧道技术的模型应该都是overlay网络吧?
+
 ## FAQ
 
 A: 为什么在虚拟化环境中要称为网桥而不是虚拟交换机? 

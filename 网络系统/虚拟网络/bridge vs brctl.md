@@ -3,7 +3,7 @@
 参考文章
 
 1. [Comparison of BRCTL and BRIDGE commands](https://sgros-students.blogspot.com/2013/11/comparison-of-brctl-and-bridge-commands.html)
-    - 分别介绍了`brctl`与`bridge`对虚拟网桥设备的操作, 对FDB(转发DB `Forwarding Database`)及STP(生成树协议 `Spanning Tree Protocol`)的概念有简单介绍.
+    - 分别介绍了`brctl`与`bridge`对虚拟网桥设备的操作, 对`FDB`(转发DB `Forwarding Database`)及`STP`(生成树协议 `Spanning Tree Protocol`)的概念有简单介绍.
     - 以表格形式展示两者的交叉与互补
 
 `bridge`属于`iproute2`软件包, 而`brctl`属于`bridge-utils`软件包. 
