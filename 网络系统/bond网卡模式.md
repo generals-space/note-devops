@@ -10,9 +10,16 @@
 3. [10.6. VLAN ON BOND AND BRIDGE USING IP COMMANDS](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-vlan_on_bond_and_bridge_using_ip_commands)
     - `bond`命令示例
 4. [阿里云官方文档 - 配置弹性网卡](https://help.aliyun.com/document_detail/56955.html)
+5. [Linux下Bond技术实现平衡负载](https://blog.51cto.com/10316297/2116352)
+    - 双网卡虚拟机配置bond负载均衡模式, `ifcfg`配置
 
+`bond`机制有7种模式, 常用只有3种:
 
-> 网卡bond是通过多张网卡绑定为一个逻辑网卡，实现本地网卡的冗余，带宽扩容和负载均衡(感觉很像LVM有木有?)
+1. `mode0` 平衡负载模式: 平时两块网卡工作, 且自动备援, 但需要在服务器本机网卡相连的交换机设备上进行端口聚合来支持绑定技术; 
+2. `mode1` 自动备援技术: 平时只有一块网卡工作, 在它故障后自动替换为另外的网卡; 
+3. `mode6` 平衡负载模式: 平时两块网卡均工作, 且自动备援, 无须交换机设备提供辅助支持; 
+
+> 网卡bond是通过多张网卡绑定为一个逻辑网卡, 实现本地网卡的冗余, 带宽扩容和负载均衡(感觉很像LVM有木有?)
 
 bond不属于虚拟化的技术, 只是linux的网络系统机制.
 
@@ -69,7 +76,7 @@ default via 172.16.159.253 dev eth1
 
 然后`curl cip.cc`时就可以看到不同的出口IP.
 
-一启动bond0, 就断网了, 远程连接无法ping通过外网(内网之间倒还好), 办公环境对两个EIP都ping不通.
+一启动`bond0`, 就断网了, 远程连接无法ping通过外网(内网之间倒还好), 办公环境对两个EIP都ping不通.
 
 ------
 

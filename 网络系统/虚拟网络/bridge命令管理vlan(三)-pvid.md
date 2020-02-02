@@ -7,4 +7,4 @@
 
 在bridge中, 带有`pvid`和`untagged`标记的端口叫作`access port`, 不带的叫`trunk port`.
 
-因为trunk口不会对进入和发出的数据包中的tag进行修改.
+trunk口不会对进入和发出的数据包中的tag进行修改, 类似于透传.
