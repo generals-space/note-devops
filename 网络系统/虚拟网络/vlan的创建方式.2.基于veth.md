@@ -1,4 +1,4 @@
-# bridge+vlan
+# vlan的创建方式.2.基于veth
 
 参考文章
 
@@ -16,7 +16,7 @@
     - [VIII](https://linux-blog.anracom.com/2018/01/05/fun-with-veth-devices-linux-bridges-and-vlans-in-unnamed-linux-network-namespaces-viii/)
     - 这一系列的文章从内容上来说非常棒, 但作者好像是个德国人, 英文句法看得人一脸萌b, 很多错别字, 阅读障碍相当不小...
 
-网上教程大都是基于eth0或是bond设备创建vlan, 并且用于接入bridge作子网划分的.
+网上教程大都是基于`eth0`或是`bond`设备创建vlan, 并且用于接入`bridge`作子网划分的.
 
 只有参考文章2这个系列...md原来还能从veth设备的一端创建vlan, 简直刷新了我的认知, 不知道映射到真实的物理设备能是哪种情况.
 

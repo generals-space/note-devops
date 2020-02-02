@@ -34,3 +34,12 @@ ip link set br0 vlan vlan_filtering 1
 但是, `ip link`基本上只提供各种设备最基础的, 通用的设置, 更多具体的, 或是独有的操作需要用专门的工具完成.
 
 比如对bridge的操作, `ip link`并不能提供管理vlan的操作(精确到端口), 以及对tag的管理.
+
+------
+
+## ip选项
+
+`ip -s link|addr`: 可以显示更详细的内容(一般是各接口设备收发或是出错的数据包数量汇总信息)
+
+`ip -d link`: 可以打印出vlan设备的id信息.
+
