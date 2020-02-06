@@ -4,7 +4,7 @@
 
 1. [Linux 网卡bond的七种模式](https://www.jianshu.com/p/b93027ae1e94)
     - 详细介绍了网卡bond的七种模式各自的特点及优缺点.
-    - 简单的配置实例
+    - 简单的配置实例(`ifcfg`配置, 但是配置文件太繁琐了, 很多无用的字段)
 2. [Linux双网卡绑定bond详解](https://blog.51cto.com/lixin15/1769338)
     - vmware中的bond测试实例
 3. [10.6. VLAN ON BOND AND BRIDGE USING IP COMMANDS](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/networking_guide/sec-vlan_on_bond_and_bridge_using_ip_commands)
@@ -22,20 +22,6 @@
 > 网卡bond是通过多张网卡绑定为一个逻辑网卡, 实现本地网卡的冗余, 带宽扩容和负载均衡(感觉很像LVM有木有?)
 
 bond不属于虚拟化的技术, 只是linux的网络系统机制.
-
-```console
-ip link add bond0 type bond
-## mode指定数值或是预设字符串应该都是可以的.
-## ip link set bond0 type bond miimon 100 mode 1
-ip link set bond0 type bond miimon 100 mode active-backup
-## 目标网卡要先停止才能绑定, 否则会报`Operation not permitted`
-ip link set eth0 down
-ip link set eth0 master bond0
-ip link set eth1 down
-ip link set eth1 master bond0
-## 启动bond设备的时候eth0与eth1也会随之启动
-ip link set bond0 up
-```
 
 bond的基本原理很简单, 难的是应用场景.
 
