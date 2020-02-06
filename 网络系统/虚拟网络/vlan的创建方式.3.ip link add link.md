@@ -12,3 +12,4 @@ ip link add link eth0 name eth0.100 type vlan id 100
 
 `eth0.100`明显是用于本机虚拟环境使用的, 所有被路由到此接口上的数据包, 都会被转发到`eth0`上并携带上vlan tag, 然后被`eth0`转发出去, 而转发出去的数据也需要对端设备可以接收`vlan`包才行, 否则这些数据包会被丢弃.
 
+eth0是网卡接口, 不属于`ip link`中`vlan`, `bridge`, `dummy`等各类型中的任何一类, 而且貌似`add link`

@@ -30,6 +30,7 @@ vlan, vxlan, macvlan.
     - 应用程序使用tap/tun的工作流程, 用户层程序通过tun设备只能读写IP数据包, 而通过tap设备能读写链路层数据包, 类似于普通socket和raw socket的差别一样, 处理数据包的格式不一样.
     - 一个C语言示例演示tap/tun编程应用
     - 后者介绍了bridge与veth在创建及配置过程中的网络架构, 十分清晰
+    - 将物理网卡添加到bridge(有图示), `ip link set eth0 master mybr0`.
     - bridge必须要配置IP吗?
     - bridge常用场景: 虚拟机, docker
 10. [KVM虚拟化的四种简单网络模型介绍及实现（一）](https://blog.51cto.com/jerry12356/2132221)

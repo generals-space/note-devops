@@ -11,3 +11,13 @@
 
 md刚刚差不多学会ip命令, CentOS 8又把network服务移除了.
 
+
+删除指定connection对象
+
+nmcli c delete 连接名称
+nmcli c delete uuid 连接UUID
+
+重新加载配置, 类似于`systemctl restart network`
+
+nmcli c load /etc/sysconfig/network-scripts/ifcfg-eth0 (重启指定接口)
+nmcli c reload (重启所有接口)

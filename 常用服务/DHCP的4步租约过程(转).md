@@ -4,6 +4,10 @@
 
 [图解DHCP的4步租约过程](https://blog.51cto.com/yuanbin/109574)
 
+参考文章
+
+1. [DHCP数据包捕获](https://blog.csdn.net/ancientmoondjay/article/details/70953559)
+
 DHCP租约过程就是DHCP客户机动态获取IP地址的过程. 
 
 DHCP租约过程分为4步：

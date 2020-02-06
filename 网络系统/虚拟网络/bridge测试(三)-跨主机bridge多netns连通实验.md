@@ -9,6 +9,7 @@
     - [x] 多主机通过bridge连接各自的 netns
 
 2. [阿里云vpc专有网云服务器 docker swarm overlay多机无法ping通](https://blog.csdn.net/a704397849/article/details/100054793)
+3. [【Docker网络原理分析三】直接路由实现bridge之间以及跨主机bridge之间通信](https://blog.csdn.net/u013355826/article/details/102801351)
 
 实验环境(阿里云上的实验失败)
 

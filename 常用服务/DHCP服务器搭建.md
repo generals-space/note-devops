@@ -86,23 +86,3 @@ group=root
 3.客户端主机有多个网卡, 都需要向DHCP发出请求会怎样?
 
 4.当2和3同时存在会怎样?
-
-
-
-
-
-
-http://blog.csdn.net/wangmuming/article/details/22925127/
-http://www.tuicool.com/articles/YfIfIrq
-http://blog.csdn.net/lee_decimal/article/details/5885406
-http://blog.sina.com.cn/s/blog_b5fe6b270102v7xi.html
-http://blog.csdn.net/jiangfuqiang/article/details/38497461
-http://sgq0085.iteye.com/blog/2201985
-http://blog.csdn.net/kaola_l/article/details/51766229
-http://blog.csdn.net/stevenhu_223/article/details/8269157
-http://stackoverflow.com/questions/37370927/jenkins-deploy-war-file-to-tomcat-8
-http://my.oschina.net/denglz/blog/524154
-http://www.cnblogs.com/Iqiaoxun/p/5350589.html
-http://www.tuicool.com/articles/ae2IZrz
-http://wxynxyo.iteye.com/blog/1909110
-http://my.oschina.net/zh119893/blog/276090
