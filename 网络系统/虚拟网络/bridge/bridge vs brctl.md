@@ -46,7 +46,6 @@
 
 ## VLAN MANAGEMENT
 
-
 | ACTION                         | brctl | bridge                                                           |
 | :----------------------------- | :---- | :--------------------------------------------------------------- |
 | Creating new VLAN filter entry |       | `bridge vlan add dev <dev> [vid, pvid, untagged, self, master]`  |
