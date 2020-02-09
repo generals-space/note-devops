@@ -1,6 +1,12 @@
 # bridge命令管理vlan(一)-bridge vlan vs ip link set xxx master
 
-本文里只是确认一下`ip link`与`bridge`操作在逻辑上的关系...
+参考文章
+
+1. [Difference between ip link add … vlan and bridge vlan add vid…?](https://unix.stackexchange.com/questions/398623/difference-between-ip-link-add-vlan-and-bridge-vlan-add-vid)
+    - `bridge vlan add vid 100 dev veth1`
+    - `ip link add link veth1 name veth1.100 type vlan id 100`
+
+本文里只是确认一下`ip link`与`bridge vlan`操作在逻辑上的关系...
 
 创建两个`netns`, 用一个`veth`将其连接起来
 
@@ -19,24 +25,20 @@ ip netns exec netns2 ip link set veth2 up
 ```
 +--------------------------------------------+--------------------------------------------+
 |    netns1                                  |                                  netns2    |
-|                                            |                                            |
-|   +------------+        +--------------+   |   +--------------+                         |
-|   |  .1.1/24   |        | 10.1.1.11/24 |   |   | 10.1.1.12/24 |                         |
-|   +------------+        +--------------+   |   +--------------+        +------------+   |
-|   | veth11.100 | <----> |     veth1    |   |   |    veth2     | <----> |    mybr2   |   |
-|   +------------+  vlan  +--------------+   |   +--------------+        +------------+   |
-|                                 ↑          |           ↑                                |
-|                                 └----------------------┘                                |
-|                                            |                                            |
+|                                            |                             10.1.1.101/24  |
+|   +------------+        +--------------+   |   +--------------+     100 +-------------+ |
+|   |  .1.1/24   |        | 10.1.1.11/24 |   |   | 10.1.1.12/24 |   ┌─────┤  veth2.100  | |
+|   +------------+        +--------------+   |   +--------------+   |     +-------------+ |
+|   | veth11.100 | <----> |     veth1    |   |   |    veth2     ├---┤                     |
+|   +------------+  vlan  +--------------+   |   +--------------+   |     +-------------+ |
+|                                 ↑          |           ↑          └─────┤  veth2.200  | |
+|                                 └----------------------┘            200 +-------------+ |
+|                                            |                             10.1.1.201/24  |
 +--------------------------------------------+--------------------------------------------+
 ```
 
 
-```
-## 在netns2中创建bridge
-ip netns exec netns2 ip link add mybr2 type bridge
-ip netns exec netns2 ip link set mybr2 up
-
+```bash
 ## 在netns2从veth2接口创建两个vlan接口
 ip netns exec netns2 ip link add link veth2 name veth2.100 type vlan id 100
 ip netns exec netns2 ip link add link veth2 name veth2.200 type vlan id 200
@@ -50,41 +52,42 @@ ip netns exec netns2 ip link set veth2.200 up
 
 我们做如下测试.
 
+在`netns2`中创建网桥, 查看其初始状态.
+
+```console
+$ ip netns exec netns2 ip link add mybr2 type bridge
+$ ip netns exec netns2 ip link set mybr2 up
+$ bridge vlan show
+port	vlan ids
+mybr2	 1 PVID Egress Untagged
 ```
-## 创建网桥, 初始状态.
-## ip netns exec netns2 ip link add mybr2 type bridge
-$ bridge vlan show
-port	vlan ids
-mybr2	 1 PVID Egress Untagged
 
-## 将veth2设备接入网桥
-## ip netns exec netns2 ip link set veth2 master mybr2
-$ bridge vlan show
-port	vlan ids
-veth2	 1 PVID Egress Untagged
-mybr2	 1 PVID Egress Untagged
+将`veth2.100`子接口接入网桥
 
-## 将veth2.100子接口接入网桥
-## ip netns exec netns2 ip link set veth2.100 master mybr2
+```console
+$ ip netns exec netns2 ip link set veth2.100 master mybr2
 $ bridge vlan show
 port	vlan ids
-veth2	 1 PVID Egress Untagged
 veth2.100	 1 PVID Egress Untagged
 mybr2	 1 PVID Egress Untagged
 ```
 
-> 注意: `bridge vlan add`无法添加`dev`为`veth2.100`这种已经是vlan类型的设备.
+## 删除网桥上的接口
+
+使用`bridge`命令删除`veth2.100`在网桥上的接口
 
 ```console
-## 使用bridge删除veth2.100在网桥上的接口
 $ bridge vlan del dev veth2.100 vid 1
 $ bridge vlan show
 port	vlan ids
 veth2	 1 PVID Egress Untagged
 veth2.100	None
 mybr2	 1 PVID Egress Untagged
+```
 
-## `ip link`发现veth2.100仍然master mybr2, 好像并没有作用.
+`ip link`发现`veth2.100`仍然master mybr2, 好像并没有作用?
+
+```
 $ ip link ls
 1: lo: <LOOPBACK> mtu 65536 qdisc noop state DOWN mode DEFAULT qlen 1
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
@@ -96,16 +99,18 @@ $ ip link ls
     link/ether 3a:e9:67:d5:20:2d brd ff:ff:ff:ff:ff:ff
 674: veth2@if675: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master mybr2 state UP mode DEFAULT qlen 1000
     link/ether 3a:e9:67:d5:20:2d brd ff:ff:ff:ff:ff:ff link-netnsid 0
+```
 
-## ip link set的nomaster可以
+`ip link set`的`nomaster`操作可以.
+
+```
 $ ip link set veth2.100 nomaster
 $ bridge vlan show
 port	vlan ids
-veth2	 1 PVID Egress Untagged
 mybr2	 1 PVID Egress Untagged
 ```
 
-`bridge vlan`的操作可以看到是对`bridge`设备的`vlan`条目的管理, 而`ip link set <dev> master|nomaster`则可以看作是对物理接口的插拔.
+**`bridge vlan`的操作可以看到是对`bridge`设备的`vlan`条目的管理, 而`ip link set <dev> master|nomaster`则可以看作是对物理接口的插拔.**
 
 如下, 使用`bridge vlan add`前必须使用`ip link set ... master`将物理接口连接上, 否则会出错.
 
@@ -121,6 +126,10 @@ veth2	 1 PVID Egress Untagged
 mybr2	 1 PVID Egress Untagged
 ```
 
+> 注意: `bridge vlan add`无法添加`dev`为`veth2.100`这种已经是vlan类型的设备.
+
+------
+
 使用`ip link set <dev> master <bridge>`命令将设备接入网桥, 你会发现在`bridge vlan show`中接入的设备存在一些默认值, 如`vlan id`为1, 并且拥有`PVID`和`Egress Untagged`标签.
 
-然而使用`bridge vlan add`添加vlan条目, 除了`vid`字段是必须指定的, `PVID`与`Egress Untagged`只能通过`pvid`与`untagged`两个选项显式指定, 否则将为空.
+而使用`bridge vlan add`添加vlan条目, 除了`vid`字段是必须指定的, `PVID`与`Egress Untagged`只能通过`pvid`与`untagged`两个选项显式指定, 否则将为空.
