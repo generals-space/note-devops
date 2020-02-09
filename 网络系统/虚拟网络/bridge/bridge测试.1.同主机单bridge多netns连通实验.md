@@ -49,3 +49,6 @@ PING 10.1.1.2 (10.1.1.2) 56(84) bytes of data.
 2 packets transmitted, 2 received, 0% packet loss, time 1001ms
 rtt min/avg/max/mdev = 0.051/0.055/0.060/0.008 ms
 ```
+
+> 各设备(veth, bridge)都需要启动, 否则无法连通. 对于一个已经拥有IP地址的设备, 启动时会自动添加对应的路由.
+
