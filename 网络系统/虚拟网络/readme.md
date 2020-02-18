@@ -51,6 +51,8 @@ vlan, vxlan, macvlan.
     - 核心交换机与汇聚交换机概念区别(有时也分别称为一级, 二级等交换机, 还有接入交换机), 只是在网络架构上的区别, 并不是型号或功能不同.
 17. [Linux下单网卡配置属于不同vlan的ip(vlan子接口)](https://www.bladewan.com/2017/05/23/linux_vconfig/)
     - eth0:0, eth0:1 与 eth0.171, eth0.173的区别: 子网卡与虚拟vlan网卡
+18. [Linux 上的基础网络设备详解](https://www.ibm.com/developerworks/cn/linux/1310_xiawc_networkdevice/index.html)
+    - 不知道怎么归类, 不明觉厉.
 
 NIC: Network Interface Card 网络接口卡, 即网卡, 一般指物理网卡.<???>
 
