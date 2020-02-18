@@ -52,15 +52,15 @@ ipvsadm command [protocol] service-address <-r server-address> [packet-forwardin
 - real server: 192.168.0.104/105
 - VIP: 192.168.0.200/32
 
-本例使用的是DR转发模式, 关于DR模式的讲解可以见参考文章1, 十分详细. 配合下面的示例代码, 更容易理解.
+本例使用的是`DR`转发模式, 关于`DR`模式的讲解可以见参考文章1, 十分详细. 配合下面的示例代码, 更容易理解.
 
-在LB server上执行
+**在LB Server上执行**
 
-```console
-$ ip addr add 192.168.0.200/24 dev eth0
-$ ipvsadm -A -t 192.168.0.200:10000 -s rr
-$ ipvsadm -a -t 192.168.0.200:10000 -r 192.168.0.104:10000 -g
-$ ipvsadm -a -t 192.168.0.200:10000 -r 192.168.0.105:10000 -g
+```bash
+ip addr add 192.168.0.200/24 dev eth0
+ipvsadm -A -t 192.168.0.200:10000 -s rr
+ipvsadm -a -t 192.168.0.200:10000 -r 192.168.0.104:10000 -g
+ipvsadm -a -t 192.168.0.200:10000 -r 192.168.0.105:10000 -g
 ```
 
 - `-A`用于创建VS虚拟服务器
@@ -72,10 +72,10 @@ $ ipvsadm -a -t 192.168.0.200:10000 -r 192.168.0.105:10000 -g
 
 ...不过事实上好像两者并没有什么区别.
 
-在real server上执行
+**在Real Server上执行**
 
-```console
-$ ip addr add 192.168.0.200/32 broadcast 192.168.0.200 dev lo
+```bash
+ip addr add 192.168.0.200/32 broadcast 192.168.0.200 dev lo
 ```
 
 RS的VIP并不用于通信, 所以可以设置掩码位为32.
@@ -84,11 +84,11 @@ RS的VIP并不用于通信, 所以可以设置掩码位为32.
 
 但此时局域网环境内进行arp请求, 检测VIP在哪台服务器时, LB与RS都会应答(RS会把lo网卡的mac地址返回). 那么在局域网其他机器上访问VIP时可能会直接定位到RS, 不走LB转发. 这样是不行的. 所以需要禁用real server的ARP请求
 
-```console
-$ echo "1" >/proc/sys/net/ipv4/conf/lo/arp_ignore
-$ echo "1" >/proc/sys/net/ipv4/conf/all/arp_ignore
-$ echo "2" >/proc/sys/net/ipv4/conf/lo/arp_announce
-$ echo "2" >/proc/sys/net/ipv4/conf/all/arp_announce
+```bash
+echo "1" >/proc/sys/net/ipv4/conf/lo/arp_ignore
+echo "1" >/proc/sys/net/ipv4/conf/all/arp_ignore
+echo "2" >/proc/sys/net/ipv4/conf/lo/arp_announce
+echo "2" >/proc/sys/net/ipv4/conf/all/arp_announce
 ```
 
 然后在局域网中任一服务器上访问`192.168.0.200:10000`, 就可以访问到real server的10000端口.
