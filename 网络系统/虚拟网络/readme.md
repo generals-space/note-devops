@@ -1,7 +1,3 @@
-虚拟网卡, 网桥bridge, 虚拟IP, NAT的区别
-
-vlan, vxlan, macvlan.
-
 参考文章
 
 1. [Linux 上虚拟网络与真实网络的映射](https://www.ibm.com/developerworks/cn/linux/1312_xiawc_linuxvirtnet/index.html)
@@ -53,6 +49,10 @@ vlan, vxlan, macvlan.
     - eth0:0, eth0:1 与 eth0.171, eth0.173的区别: 子网卡与虚拟vlan网卡
 18. [Linux 上的基础网络设备详解](https://www.ibm.com/developerworks/cn/linux/1310_xiawc_networkdevice/index.html)
     - 不知道怎么归类, 不明觉厉.
+
+虚拟网卡, 网桥bridge, 虚拟IP, NAT的区别
+
+vlan, vxlan, macvlan.
 
 NIC: Network Interface Card 网络接口卡, 即网卡, 一般指物理网卡.<???>
 

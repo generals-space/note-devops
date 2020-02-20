@@ -17,14 +17,20 @@
 开启转发
 
 ```
-$ echo 'net.ipv4.ip_forward = 1' >> /etc/sysctl.conf
-$ sysctl -p
+echo 'net.ipv4.ip_forward = 1' >> /etc/sysctl.conf
+sysctl -p
 ```
 
 设置SNAT
 
 ```
-$ iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+```
+
+同时允许FORWARD转发
+
+```
+iptables -A FORWARD -j ACCEPT
 ```
 
 其他服务器设置GATEWAY为该网关服务器即可.
