@@ -57,8 +57,7 @@ root:x:0:0:root:/root:/bin/bash
 
 这是`pattern`的使用示例, 匹配了`pattern`(这里是root)的行才会执行action(此处未指定action, 默认输出每行的内容). 
 
-pattern支持正则. 
-
+> `pattern`部分支持正则. 
 
 ### 2.3 `awk '{/pattern/ action}'`
 
