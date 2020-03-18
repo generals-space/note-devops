@@ -32,25 +32,18 @@ categories: general
 
 ACL实现权限控制的命令有3个
 
-- setfacl: 设置文件/目录的ACL配置项
-
-- getfacl: 取得文件/目录的ACL配置项
-
-- chacl: 改变文件/目录的ACL配置项
+- `setfacl`: 设置文件/目录的ACL配置项
+- `getfacl`: 取得文件/目录的ACL配置项
+- `chacl`: 改变文件/目录的ACL配置项
 
 setfacl规则
 
-- -m: 设置后续acl规则 
-
-- -x: 删除后续acl规则  
-
-- -b: 删除全部的acl规则
-
-- -k: 删除默认的acl规则
-
-- -R: 递归设置acl，包括子目录
-
-- -d: 设置默认acl
+- `-m`: 设置后续acl规则 
+- `-x`: 删除后续acl规则 
+- `-b`: 删除全部的acl规则
+- `-k`: 删除默认的acl规则
+- `-R`: 递归设置acl，包括子目录
+- `-d`: 设置默认acl
 
 `getfacl`就没那么多讲究了, 一般就是`getfacl 目标文件/目录`而已, 想要更高深的用法请查看man手册.
 

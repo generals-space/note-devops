@@ -2,7 +2,11 @@
 
 ## Permission denied
 
-如果权限选项是`no_all_squash`和`root_squash`, 可能是因为在服务端`nfsnobody`用户没有指定目录的写入权限.
+如果权限选项是`no_all_squash`和`root_squash`, 可能是因为在服务端`nfsnobody`用户没有指定目录的写入权限(一般是目录由root用户创建, 且默认权限为755).
+
+可以考虑在服务端将共享目录权限设置为777, 或者允许`nfsnobody`用户可写(比如用`setfacl`).
+
+此时客户端可成功写入, 且在此目录创建的新文件/目录的属主为`nfsnobody`(不管是在客户端还是服务端看都是`nfsnobody`).
 
 ## Read-only file system
 

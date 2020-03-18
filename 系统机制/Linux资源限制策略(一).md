@@ -41,11 +41,8 @@ file locks                      (-x) unlimited
 ```
 
 - domain: 一般是用户名或组名, 表示对这些用户/用户组的限制规则
-
 - type: 一般取`soft|hard`, hard类型的value值一般大于等于同选项的soft类型的值, 超过soft设置的值后系统会发出警告(应该是在/var/log/message文件中), 但是仍然可以继续运行进程,  如果超过hard设置的值...呃, 好吧, hard设置的上限绝对不可能超过.
-
 - item: 被限制的选项, 如: `core`(核心转储文件), `nproc`(用户最大进程数), `nofile`(最大打开文件数)等, 详细列表与介绍见`/etc/security/limit.conf`.
-
 - value: 被限制的选项的值, 一般是数字, 表示具体的值, 也可以是`unlimited`, 表示无限制.
 
 示例:

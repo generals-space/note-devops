@@ -13,17 +13,12 @@
 能对系统hostname进行操作的配置或命令:
 
 1. `hostname`命令
-
 2. `/proc/sys/kernel/hostname`文件(由于`/proc`是系统启动时创建的虚拟文件系统, 所以这里并不将其本身当做可配置项, 但的确可以通过读写操作修改其值).
-
 3. `sysctl kernel.hostname`的值
-
 4. `/etc/hosts`文件
-
 5. `/etc/hostname`文件
-
 6. `/etc/sysconfig/network`文件
-...
+7. ...
 
 ------
 

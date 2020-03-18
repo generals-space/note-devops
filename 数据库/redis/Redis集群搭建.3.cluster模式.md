@@ -1,5 +1,9 @@
 # redis集群搭建
 
+参考文章
+
+1. [Redis-Cluster集群](https://www.jianshu.com/p/813a79ddf932)
+
 redis3.0之前没有集群化的解决方案, 至多只有哨兵的存在. 3.0之后redis原生带有cluster的支持. 现在部署redis集群大多推荐使用cluster模式.
 
 redis官网对[cluster模式](http://redis.io/topics/cluster-tutorial)做了基础但详细的介绍, 可以参考. 下面是一点自己的理解.
@@ -10,4 +14,41 @@ cluster集群作为一个整体对外服务, 集群将所有请求分成16384份
 
 cluster的建立流程, 先讲述3主节点的情况.
 
-<待续...>
+```bash
+redis-trib create --replicas 1 \
+192.168.0.101:6379 \
+192.168.0.102:6379 \
+192.168.0.103:6379 \
+192.168.0.104:6379 \
+192.168.0.105:6379 \
+192.168.0.106:6379
+```
+
+> `--replicas 1`: 创建的集群中为每个主节点分配一个从节点, 上面的6个节点可以达到3主3从.
+
+使用`redis-cli`到任意节点上都可以执行命令, 以下是一些比较常用的命令.
+
+- `cluster info`: 查看集群信息, 包括集群状态(ok, fail), 节点数量等.
+- `cluster nodes`: 查看集群中节点列表, 包含各节点角色(master/slave).
+- `role`: 查看当前节点的角色, IP地址和端口信息, 以及在集群中的Id值
+
+但是在写入数据的时候可能会出现如下错误
+
+```
+127.0.0.1:6379> keys *
+(empty list or set)
+127.0.0.1:6379> set key1 val1
+(error) MOVED 9189 10.254.2.10:6379
+```
+
+...好吧, 在写入操作时需要启动cluster模式, 在`redis-cli`命令中加上`-c`选项才行.
+
+```
+127.0.0.1:6379> set key1 val1
+-> Redirected to slot [9189] located at 10.254.2.10:6379
+OK
+10.254.2.10:6379> keys *
+1) "key1"
+```
+
+可以了.
