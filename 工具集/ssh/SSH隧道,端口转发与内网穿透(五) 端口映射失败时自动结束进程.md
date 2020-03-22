@@ -15,6 +15,8 @@ Host forward-ssh
     User general
     ServerAliveInterval 60
     ## 不开启tty, 与ssh的`-T`选项作用相同
+    ## 如果开启, ssh forward的时候会进入到服务端主机的bash命令行,
+    ## 不开启则只是单纯的阻塞.
     RequestTTY no
     RemoteForward 0.0.0.0:2222 127.0.0.1:22
 ```
@@ -40,6 +42,8 @@ Host forward-ssh
     User general
     ServerAliveInterval 60
     ## 不开启tty, 与ssh的`-T`选项作用相同
+    ## 如果开启, ssh forward的时候会进入到服务端主机的bash命令行,
+    ## 不开启则只是单纯的阻塞.
     RequestTTY no
     ExitOnForwardFailure yes
     BindAddress 0.0.0.0
