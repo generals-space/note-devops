@@ -3,11 +3,8 @@
 参考文章
 
 1. [linux下在某行的前一行或后一行添加内容](http://www.361way.com/sed-process-lines/2263.html)
-
 2. [老段带我学sed的笔记](http://foolishfish.blog.51cto.com/3822001/1376171)
-
 3. [sed学习笔记](http://www.cnblogs.com/jcli/p/4088514.html)
-
 4. [sed 匹配两行之间的行](http://blog.chinaunix.net/uid-10697776-id-2935704.html)
 
 ## 1. 追加append与插入insert

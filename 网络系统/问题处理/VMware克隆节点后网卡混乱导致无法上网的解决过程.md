@@ -1,16 +1,18 @@
 # VMware克隆节点后网卡混乱导致无法上网的解决过程
 
+<!key!>: {36911564-BF1D-4854-8A91-7E117C4F8509}
+
 参考文章
 
 1. [CentOS 7 下网络管理之命令行工具nmcli](https://www.jianshu.com/p/5d5560e9e26a)
 2. [解决Centos网卡IP和配置文件不符的问题]（http://icestrawberryxjw.me/2019/03/06/ip-conf-file-inconsistency/)
 3. [在 RHEL8 配置静态 IP 地址的不同方法](https://juejin.im/post/5d8cde1151882509662c5b9b)
 
-宿主机: Win 10
-VMware: 15.5.0
-虚拟机: CentOS 7
+- 宿主机: Win 10
+- VMware: 15.5.0
+- 虚拟机: CentOS 7
 
-场景描述
+## 场景描述
 
 为了测试linux overlay虚拟网络在vmware集群中的表现, 尝试搭建一个双节点的局域网. 
 
