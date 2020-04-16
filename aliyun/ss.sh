@@ -1,6 +1,3 @@
-# ss服务搭建
-
-```sh
 ## 安装服务端程序
 curl -o /etc/yum.repos.d/librehat-shadowsocks-epel-7.repo  https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/repo/epel-7/librehat-shadowsocks-epel-7.repo
 yum install -y shadowsocks-libev
@@ -19,5 +16,3 @@ EOF
 ## 启动服务
 systemctl enable shadowsocks-libev
 systemctl start shadowsocks-libev
-
-```
