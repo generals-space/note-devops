@@ -31,7 +31,7 @@ python3 setup.py install
 
 但是需要做一些修改, 由于不同系统记录ssh行为的文件不相同(ubuntu下是`/var/log/auth.log`, centos是`/var/log/secure`), 默认配置为Ubuntu, 这样启动时会由于找不到记录文件而失败退出. 我当前正在配置见本文件同目录的`denyhosts.conf`
 
-`service`服务脚本也在源码目录中, 不过systemctl启动会失败, 查看message有如下日志
+`service`服务脚本也在源码目录中, 不过`systemctl start denyhosts`启动会失败, 查看message有如下日志
 
 ```
 Dec  8 21:29:02 wuhou systemd: Starting SSH log watcher...
