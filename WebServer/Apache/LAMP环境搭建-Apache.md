@@ -1,12 +1,12 @@
-#LAMP环境搭建-Apache#
+# LAMP环境搭建-Apache
 
 很好的参考文档, 两者其实是同一篇. 这里只写安装思路与过程, 下面两篇还讲述了apache的运行原理与配置详解.
 
-[http://sweetpotato.blog.51cto.com/533893/1662934?utm_source=tuicool&utm_medium=referral]()
+[http://sweetpotato.blog.51cto.com/533893/1662934]()
 
 [http://www.tuicool.com/articles/3a2QF3]()
 
-##1. 写在前面##
+## 1. 引言
 
 系统环境：CentOS 6.4-x86_64
 Apache: 2.2 (apache官网只提供最新包, 无法下载旧版的源码包, 2.2各版本之间应该不会有较大区别).
@@ -104,17 +104,17 @@ Apache安装目录结构
 
 ```
 
-###一些善后工作###
+### 一些善后工作
 
 以前从来没有考虑过这个, 参考文章给了我很大提醒. 除了修改配置文件中的pid/log路径, 修改PATH变量还有这几个步骤.
 
-####导出头文件####
+#### 导出头文件
 
 ```shell
 ln -sv /usr/local/apache/include /usr/local/include/httpd
 ```
 
-####导出man手册####
+#### 导出man手册
 
 编辑/etc/man.config, 添加入:
 
@@ -122,7 +122,7 @@ ln -sv /usr/local/apache/include /usr/local/include/httpd
 MANPATH /usr/local/apache/man
 ```
 
-####编写服务脚本####
+#### 编写服务脚本
 
 因为是编译安装, 不会自动生成服务脚本(`service httpd start`的那个`httpd`), 另外还要给其添加执行权限
 
