@@ -11,6 +11,23 @@
 
 md刚刚差不多学会ip命令, CentOS 8又把network服务移除了.
 
+重命名 connection 对象
+
+```console
+$ nmcli c
+NAME                    UUID                                                TYPE      DEVICE
+Wired Connection 1      9115e4b3-75a0-3512-98b6-f82e6b15bb5d                ethernet  ens34
+virbr0                  faf25db2-318a-46eb-8943-6082ffb7358a                bridge    virbr0
+$ nmcli c mod Wired\ Connection\ 1 connection.id ens34
+$ # 或者用 uuid 代替连接名称也可以
+$ # nmcli c mod 9115e4b3-75a0-3512-98b6-f82e6b15bb5d connection.id ens34
+$ nmcli c
+NAME    UUID                                  TYPE      DEVICE
+ens34   9115e4b3-75a0-3512-98b6-f82e6b15bb5d  ethernet  ens34
+virbr0  faf25db2-318a-46eb-8943-6082ffb7358a  bridge    virbr0
+```
+
+> 貌似这样重命名一下就会生成`/etc/sysconfig/network-scripts/ifcfg-ens34`文件
 
 删除指定connection对象
 
@@ -21,3 +38,13 @@ nmcli c delete uuid 连接UUID
 
 nmcli c load /etc/sysconfig/network-scripts/ifcfg-eth0 (重启指定接口)
 nmcli c reload (重启所有接口)
+
+设置静态IP并导出网络配置(如果已经存在, 则在执行如下命令时会实时修改该文件)
+
+```
+nmcli con mod ens33 ipv4.addresses 192.168.0.201/24
+nmcli con mod ens33 ipv4.gateway 192.168.0.1
+nmcli con mod ens33 ipv4.dns 192.168.0.1
+nmcli con mod ens33 ipv4.method static
+nmcli con up ens33 ## 保存并重新加载
+```
