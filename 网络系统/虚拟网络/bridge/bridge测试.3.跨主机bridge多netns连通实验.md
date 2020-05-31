@@ -53,7 +53,7 @@ VMWare 15.5.0
 
 host1
 
-```
+```bash
 ## 双方都要开启
 sysctl -w net.ipv4.ip_forward=1
 
@@ -76,7 +76,7 @@ ip route add 20.1.1.0/24 via 172.32.0.12 dev ens34
 
 host2
 
-```
+```bash
 ## 双方都要开启
 sysctl -w net.ipv4.ip_forward=1
 
