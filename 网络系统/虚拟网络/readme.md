@@ -4,9 +4,6 @@
     - 将现实网络中的元素, 虚拟化环境中的网络元素及Linux系统提供的网络设备模型做了对应, 十分清晰.
     - 列举多个示例在(linux提供的)虚拟化网络模拟现实中的网络拓扑, 还同时提供了最精确与精简后的对比, 很有意义.
     - 经典, 值得收藏
-2. [Macvlan介绍及应用实践(一)和(二)](https://www.yangcs.net/categories/network/)
-    - Macvlan 的实现原理及其工作模式
-    - 通过实验来验证 Macvlan Bridge 模式的连通性
 3. [网络虚拟化技术（一）: Linux网络虚拟化](https://blog.kghost.info/2013/03/01/linux-network-emulator/)
     - `ip netns`网络命名空间创建和veth设备连接测试实验
 4. [网络虚拟化技术（二）: TUN/TAP MACVLAN MACVTAP](https://blog.kghost.info/2013/03/27/linux-network-tun/)
