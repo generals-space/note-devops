@@ -1,0 +1,1 @@
+## 见[note-cloud]()仓库中的 bashrc.sh 脚本吧
