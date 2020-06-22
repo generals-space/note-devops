@@ -33,12 +33,12 @@ done
 ```
 
 ```console
-[root@k8s-worker-7-17 ~]# ./dev_type.sh docker0
+[root@k8s-worker-7-17 ~]# ./iftype.sh docker0
 docker0:bridge
 [root@k8s-worker-7-17 ~]# ip link show type bridge
 6: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT
     link/ether 02:42:60:96:51:90 brd ff:ff:ff:ff:ff:ff
-[root@k8s-worker-7-17 ~]# ./dev_type.sh bond1
+[root@k8s-worker-7-17 ~]# ./iftype.sh bond1
 bond1:bond
 ```
 

@@ -4,7 +4,7 @@
 
 1. [sshd re-exec requires execution with an absolute path](https://blog.csdn.net/zgmzyr/article/details/6846070)
 
-环境是centos7的docker容器, 安装完openssh-server后, 由于使用`systemctl start sshd`会出现错误, 如下
+环境是 centos7 的 docker 镜像, 安装完`openssh-server`后, 由于使用`systemctl start sshd`会出现错误, 如下
 
 ```
 $ systemctl start sshd
@@ -23,3 +23,5 @@ sshd re-exec requires execution with an absolute path
 ```
 /sbin/sshd
 ```
+
+如果想要以服务形式启动, 可以使用`/sbin/sshd -D`.
