@@ -1,4 +1,4 @@
-# es安全认证
+# es安全认证.1.单机
 
 参考文章
 
@@ -74,8 +74,3 @@ ERROR: Failed to verify bootstrap password
 ```
 
 那么我们就只能使用`curl`, 通过`/_xpack/security`接口为每个用户单独设置密码了.
-
-## 关于密文密码
-
-
-
