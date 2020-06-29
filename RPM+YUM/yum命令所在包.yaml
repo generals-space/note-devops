@@ -1,3 +1,7 @@
+## 参考文章
+## [查询Linux某命令来自哪个包](https://blog.csdn.net/qq_26507799/article/details/78998439)
+## yum provides *bin/ifconfig
+## yum provides *bin/less
 yum:
     iproute:
         - ss
@@ -17,7 +21,7 @@ yum:
         - updatedb
         - locate
     expect:
-        - mkpasswd
+        - mkpasswdyumdownloader
     crontabs:
         - crontab
     man-pages: man手册中bash命令, 系统调用的内容信息(不包括man命令本身, man命令需要事先安装)

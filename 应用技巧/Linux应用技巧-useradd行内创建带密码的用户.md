@@ -3,6 +3,8 @@
 参考文章
 
 1. [linux下创建带密码的用户](http://blog.csdn.net/dliyuedong/article/details/24228599)
+2. [如何使用不同的方式更改 Linux 用户密码](https://zhuanlan.zhihu.com/p/56313895)
+    - 命令行修改密码: `echo "new_password" | passwd --stdin root`
 
 主要是为了在脚本中完成创建用户的操作, 同时不需要进入交互模式去为新用户设置密码.
 
