@@ -3,8 +3,9 @@
 参考文章
 
 1. [Centos7使用YUM进行install或update出现KeyboardInterrupt错误](http://www.merlinchinta.com/201604/21659.html)
-
 2. [Centos7使用YUM进行install或update出现KeyboardInterrupt错误](https://www.aliyun.com/jiaocheng/467768.html)
+
+OS: CentOS 7
 
 在`首都在线`的云服务器上执行`yum update -y`, 结果4台中有2台出现如下错误(另外两台正常)
 
