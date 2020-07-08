@@ -94,3 +94,5 @@ ssh -i general.pem ec2-user@EC2的公网IP
 ![](https://gitee.com/generals-space/gitimg/raw/master/9658563C7D009E5BD157B3D98AF6FA46.png)
 
 EC2 分配的公网 IPv4 地址在命令行是查看不到的, 但是分配的公网 IPv6 是有的.
+
+`ec2-user`普通用户 -> `root`: 执行`sudo -s`即可, 无需输入密码.
