@@ -2,9 +2,9 @@
 
 参考文章
 
-[Getting the Current/Present working directory of a Bash script from within the script](http://stackoverflow.com/questions/59895/getting-the-current-present-working-directory-of-a-bash-script-from-within-the-s)
-
-[获取shell脚本自身所在目录的Shell脚本分享](http://www.jb51.net/article/59949.htm)
+1. [Getting the Current/Present working directory of a Bash script from within the script](http://stackoverflow.com/questions/59895/getting-the-current-present-working-directory-of-a-bash-script-from-within-the-s)
+2. [获取shell脚本自身所在目录的Shell脚本分享](http://www.jb51.net/article/59949.htm)
+3. [How to get the source directory of a Bash script from within the script itself](https://stackoverflow.com/questions/59895/how-to-get-the-source-directory-of-a-bash-script-from-within-the-script-itself)
 
 ## 1. 情景描述
 
@@ -76,3 +76,13 @@ $ ./test/main.sh
 DIR=$(cd $(dirname $0) && pwd)
 echo $DIR
 ```
+
+## 扩展: 获取执行命令时所在目录
+
+假如脚本为`/usr/local/bin/test.sh`, 由于是在PATH路径中, 用户可以直接`test.sh`进行执行, 那么如何获得用户执行该命令时所在目录呢?
+
+这种需求的一种场景是, 需要这个脚本输出一些东西到用户当前所在目录. 在python或其他高级语言中, 有`cwd()`函数, 用于获取工作目录, 那么在shell中呢?
+
+...答案是...`pwd`!
+
+我为什么要纠结这么久写这个问题...
