@@ -5,6 +5,7 @@
 参考文章
 
 1. [Linux 下的dd命令使用详解](https://linux.cn/article-1429-1.html)
+2. [linux下显示dd命令的进度](https://blog.csdn.net/xyz846/article/details/7367962)
 
 ## 1. 参数解释
 
