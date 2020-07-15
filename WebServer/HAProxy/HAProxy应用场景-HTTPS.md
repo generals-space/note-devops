@@ -2,18 +2,18 @@
 
 参考文章
 
-[haproxy ssl 配置方式](http://www.tuicool.com/articles/iAjMra)
+1. [haproxy ssl 配置方式](http://www.tuicool.com/articles/iAjMra)
 
 ## 1. 基本配置-haproxy加载证书
 
 haproxy的编译/安装方法
 
 ```
-$ make PREFIX=/usr/local/haproxy TARGET=linux26 USE_PCRE=1 USE_OPENSSL=1 ADDLIB=-lz
-$ make install PREFIX=/usr/local/haproxy
+make PREFIX=/usr/local/haproxy TARGET=linux26 USE_PCRE=1 USE_OPENSSL=1 ADDLIB=-lz
+make install PREFIX=/usr/local/haproxy
 ```
 
-```
+```conf
 global
 ...
     ## tune.ssl.default-dh-param 2048因为我们的SSL密钥使用的是2048bit加密，所以在此进行声明。
@@ -38,7 +38,7 @@ backend website_pool
 其中`pem`文件是`crt`文件与`key`文件合并得到的. 合并方法为
 
 ```
-$ cat servername.crt servername.key |tee servername.pem
+cat servername.crt servername.key | tee servername.pem
 ```
 
 关于`tune.ssl.default-dh-param 2048`, 我并不知道我的密钥是多少位加密, 只是如果不加这一句, haproxy启动时会报如下WARNING, 还是加上吧. 另外, 这一句只能加到`global`块中, 加在`defaults`块中会报错的.
@@ -51,7 +51,7 @@ $ cat servername.crt servername.key |tee servername.pem
 
 访问`http://www.test.com`时, 强制跳转到`http://www.test.com`
 
-```
+```conf
 global
 ...
     ## tune.ssl.default-dh-param 2048因为我们的SSL密钥使用的是2048bit加密，所以在此进行声明。
