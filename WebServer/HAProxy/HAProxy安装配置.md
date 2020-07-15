@@ -2,9 +2,8 @@
 
 参考文章
 
-[haproxy配置文件解释(三)](http://noodle.blog.51cto.com/2925423/1795449)
-
-[Haproxy安装及配置](http://johnsz.blog.51cto.com/525379/715922/)
+1. [haproxy配置文件解释(三)](http://noodle.blog.51cto.com/2925423/1795449)
+2. [Haproxy安装及配置](http://johnsz.blog.51cto.com/525379/715922/)
 
 HAProxy版本: 1.6.8
 
@@ -21,27 +20,27 @@ HAProxy与Nginx类似, 安装简单, 配置复杂且灵活, 所以文档大部�
 其中`pcre-devel`是为了使用正则匹配功能, `openssl-devel`是为了支持https的功能
 
 ```
-$ yum install -y pcre-devel openssl-devel
+yum install -y pcre-devel openssl-devel
 ```
 
 **编译**
 
 HAProxy的源码编译没有`configure`的过程, 源码目录下直接就有`Makefile`文件, 一些配置项是通过在使用`make`命令时设置的.
 
-```
-$ tar -zxf haproxy-1.6.8.tar.gz
-$ cd haproxy-1.6.8
+```console
+tar -zxf haproxy-1.6.8.tar.gz
+cd haproxy-1.6.8
 ## 这里指定了安装目录, 开启pcre及ssl支持. 更多配置项可以参考源码包内的`README`文件
-$ make PREFIX=/usr/local/haproxy TARGET=linux26 USE_PCRE=1 USE_OPENSSL=1 ADDLIB=-lz
+make PREFIX=/usr/local/haproxy TARGET=linux26 USE_PCRE=1 USE_OPENSSL=1 ADDLIB=-lz
 ## 将haproxy安装到指定位置
-$ make install PREFIX=/usr/local/haproxy
+make install PREFIX=/usr/local/haproxy
 ```
 
 ## 2. 配置
 
 这个版本的HAProxy没有提供一个默认的配置文件, 初次安装可能会不知道从何处入手. 这里提供一个最简的模板文件, 等到熟悉之后, 其余的配置项可以通过参考官方文档自行定义.
 
-```
+```conf
 defaults
     # 默认的模式mode { tcp|http|health }，tcp是4层，http是7层，health只会返回OK
     mode tcp
@@ -184,194 +183,28 @@ frontend front_server1
 
 `backend backend_pool`类似于nginx的`upstream 名称`, 定义后端服务器池的名称. 可以为后端服务器设置权重及检测存活状态.
 
-清楚了吧?
+## 3. 常用操作
+
+启动服务
 
 ```
-## 启动服务
-$ /usr/local/haproxy/sbin/haproxy -f /usr/local/haproxy/haproxy.cfg
-## 重启服务(没有换行)
-$ /usr/local/haproxy/sbin/haproxy -f /usr/local/haproxy/etc/haproxy.cfg -st `cat /usr/local/haproxy/var/run/haproxy.pid`
-## 重新加载(平滑重启, 注意haproxy没有主进程, pid文件中可能是多个进程号, 所以cat命令还是十分有必要的)
-$ /usr/local/haproxy/sbin/haproxy -f /usr/local/haproxy/etc/haproxy.cfg -sf `cat /usr/local/haproxy/var/run/haproxy.pid`  
-## 停止服务
-$ killall haproxy
+/usr/local/haproxy/sbin/haproxy -f /usr/local/haproxy/haproxy.cfg
 ```
 
-## 3. 高级应用
-
-### 3.1 服务脚本
-
-将其保存为`/etc/init.d/haproxy`文件, 并赋予可执行权限. 适用于`CentOS 6.8-`的系统(CentOS7也能凑合用...).
+重启服务(没有换行)
 
 ```
-#!/bin/sh
-#
-# chkconfig: - 85 15 ## 运行级别、启动优先级、关闭优先级
-# description: HA-Proxy is a TCP/HTTP reverse proxy which is particularly suited \
-#              for high availability environments.
-# processname: haproxy
-# config: /usr/local/haproxy/etc/haproxy.cfg
-# pidfile: /usr/local/haproxy/var/run/haproxy.pid
-
-# Source function library.
-if [ -f /etc/init.d/functions ]; then
-  . /etc/init.d/functions
-elif [ -f /etc/rc.d/init.d/functions ]; then
-  . /etc/rc.d/init.d/functions
-else
-  exit 0
-fi
-
-# Source networking configuration.
-. /etc/sysconfig/network
-
-# Check that networking is up.
-[ ${NETWORKING} = "no" ] && exit 0
-
-# 服务脚本名称
-BASENAME=`basename $0`
-if [ -L $0 ]; then
-  BASENAME=`find $0 -name $BASENAME -printf %l`
-  BASENAME=`basename $BASENAME`
-fi
-
-BIN=/usr/local/haproxy/sbin/$BASENAME
-
-CFG=/usr/local/haproxy/etc/$BASENAME.cfg
-[ -f $CFG ] || exit 1
-
-PIDFILE=/usr/local/haproxy/var/run/$BASENAME.pid
-LOCKFILE=/var/lock/subsys/$BASENAME
-
-RETVAL=0
-
-start() {
-  quiet_check
-  if [ $? -ne 0 ]; then
-    echo "Errors found in configuration file, check it with '$BASENAME check'."
-    return 1
-  fi
-
-  echo -n "Starting $BASENAME: "
-  daemon $BIN -D -f $CFG -p $PIDFILE
-  RETVAL=$?
-  echo
-  [ $RETVAL -eq 0 ] && touch $LOCKFILE
-  return $RETVAL
-}
-
-stop() {
-  echo -n "Shutting down $BASENAME: "
-  killproc $BASENAME -USR1
-  RETVAL=$?
-  echo
-  [ $RETVAL -eq 0 ] && rm -f $LOCKFILE
-  [ $RETVAL -eq 0 ] && rm -f $PIDFILE
-  return $RETVAL
-}
-
-restart() {
-  quiet_check
-  if [ $? -ne 0 ]; then
-    echo "Errors found in configuration file, check it with '$BASENAME check'."
-    return 1
-  fi
-  stop
-  start
-}
-
-reload() {
-  if ! [ -s $PIDFILE ]; then
-    return 0
-  fi
-
-  quiet_check
-  if [ $? -ne 0 ]; then
-    echo "Errors found in configuration file, check it with '$BASENAME check'."
-    return 1
-  fi
-  $BIN -D -f $CFG -p $PIDFILE -sf $(cat $PIDFILE)
-}
-
-check() {
-  $BIN -c -q -V -f $CFG
-}
-
-quiet_check() {
-  $BIN -c -q -f $CFG
-}
-
-rhstatus() {
-  status $BASENAME
-}
-
-condrestart() {
-  [ -e $LOCKFILE ] && restart || :
-}
-
-# 可用方法
-case "$1" in
-  start)
-    start
-    ;;
-  stop)
-    stop
-    ;;
-  restart)
-    restart
-    ;;
-  reload)
-    reload
-    ;;
-  condrestart)
-    condrestart
-    ;;
-  status)
-    rhstatus
-    ;;
-  check)
-    check
-    ;;
-  *)
-    echo "Usage: $BASENAME {start|stop|restart|reload|condrestart|status|check}"
-    exit 1
-esac
-
-exit $?
+/usr/local/haproxy/sbin/haproxy -f /usr/local/haproxy/etc/haproxy.cfg -st `cat /usr/local/haproxy/var/run/haproxy.pid`
 ```
 
-### 3.2 开启日志
-
-假设日志服务为`syslog`或`rsyslog`(后者是前者的增强版, 作用, 配置文件几乎相同), 这里以`rsyslog`为例. `HAProxy`不像`Nginx`与`Apache`, 没有办法自行创建并写入日志文件. 它需要调用`rsyslog`服务, 将日志信息发送给`rsyslog`, 并由`rsyslog`管理其日志.
-
-我们需要做的, 首先, 在`HAProxy`本身的配置文件`haproxy.cft`中添加
+重新加载(平滑重启, 注意haproxy没有主进程, pid文件中可能是多个进程号, 所以cat命令还是十分有必要的)
 
 ```
-defaults
-    # 采用http日志格式
-    option httplog
-...
-global
-   log 127.0.0.1 local0 info
-...
-frontend front_server1
-    # 应用全局的日志配置
-    log global
+/usr/local/haproxy/sbin/haproxy -f /usr/local/haproxy/etc/haproxy.cfg -sf `cat /usr/local/haproxy/var/run/haproxy.pid`  
 ```
 
-其中`option`指令指定日志格式, 有`tcplog`,`httplog`等; `log`指令指定日志级别, `local0`是`rsyslog`服务开放给自定义服务的日志类型, 包括`local0`-`local7`8种类型, `info`是记录的日志级别.
-
-然后编辑`/etc/rsyslog.conf`文件, 修改成如下:
+停止服务
 
 ```
-# Provides UDP syslog reception
-## 解开以下行的注释, 不然日志文件会创建但没有日志输出
-$ModLoad imudp
-$UDPServerRun 514
-...
-
-## 这里的local0与haproxy中的`local0`相对应.
-local0.*        /var/log/haproxy.log
+killall haproxy
 ```
-
-因为UDP 514是Linux系统默认的`syslog`使用的端口(在`/etc/service`中可查看), 重启`rsyslog`与`haproxy`服务, 可以看到有日志产生.

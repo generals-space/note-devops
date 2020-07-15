@@ -1,6 +1,5 @@
 # HAProxy性能调优
 
-
 ```
 global
     ...
