@@ -1,29 +1,15 @@
 # Linux命令-curl
 
-<!tags!>: <!代理!>
-
 参考文章
 
 1. [Linux curl命令参数详解](http://www.aiezu.com/system/linux/linux_curl_syntax.html)
-
 2. [在linux下使用curl访问 多参数url GET参数问题](http://blog.csdn.net/sunbiao0526/article/details/6831327)
-
 3. [shell curl 数据中含有空格 如何提交](https://blog.csdn.net/qq_25279717/article/details/71577313)
-
-4. [curl 模拟 GET\POST 请求, 以及 curl post 上传文件](https://blog.csdn.net/fungleo/article/details/80703365)
-
-5. [Can I make cURL fail with an exitCode different than 0 if the HTTP status code is not 200?](https://superuser.com/questions/590099/can-i-make-curl-fail-with-an-exitcode-different-than-0-if-the-http-status-code-i)
-6. [Curl to return http status code along with the response](https://stackoverflow.com/questions/38906626/curl-to-return-http-status-code-along-with-the-response)
-7. [Getting curl to output HTTP status code?](https://stackoverflow.com/questions/38906626/curl-to-return-http-status-code-along-with-the-response)
-8. [curl 如何传递多参数并进行urlencode](https://segmentfault.com/q/1010000008630196)
-9. [shell 下 urlencode/urldecode 编码/解码的几种方法](https://blog.csdn.net/carlostyq/article/details/7928610)
-    - shell实现的encode方案
-10. [github gist urlencode/urldecode](https://gist.github.com/cdown/1163649)
 
 ## 1. 常用选项
 
 ```
-$ curl -H "Content-Type: application/json" -X POST -d '{"name":"general","password":"123456"}' -k http://localhost/login
+curl -H "Content-Type: application/json" -X POST -d '{"name":"general","password":"123456"}' -k http://localhost/login
 ```
 
 `-H '请求头'`: 添加请求头信息
@@ -73,105 +59,3 @@ curl: (6) Could not resolve host: _ga=GA1.2.1337029376.1526882292;
 ```
 
 通过变量传入的字符串会被以空格分隔开, 所以会出错...不过直接将这么长的字符串写在行内也真够low的.
-
-## 3. 上传文件
-
-```
-$ curl localhost:8000/api/upload -F "file=@/Users/general/Downloads/logo.png"
-```
-
-`file`字段即是在前端form组中`<input type="file" name="file">`的`name`属性, 后端可以通过这个`name`名称获得文件流. 
-
-`@路径`: 其中路径可以是相对路径.
-
-不需要指定`-X POST`, `-F`的作用和ta是平级且互斥的.
-
-## 4. 代理设置
-
-```
-## 普通的http代理
-$ curl -x 127.0.0.1:3128 www.google.com
-
-## socks5代理
-$ curl --socks5 127.0.0.1:1080 www.google.com
-```
-
-使用wget达到同样的效果
-
-```
-$ wget -Y on -e 'http_proxy=http://10.10.10.10:10' 'www.google.com'
-```
-
-- `-Y`: 是否使用代理; 
-- `-e`执行命令;
-
-> `wget`只有http代理, 不能直接使用`socks`代理.
-
-## 5. `-w`选项指定输出格式
-
-curl命令内置了许多输出, 如状态码, 抓取速度, 总时间等, 可通过`-w`选项选择性输出.
-
-```shell
-## 输出抓取百度首页的平均速度
-$ curl -s -o /dev/null -w '%{speed_download}\n' www.baidu.com
-61669.000
-## 平均速度与总时间
-$ curl -s -o /dev/null -w '--%{speed_download}--%{time_total}--\n' www.baidu.com
---96451.000--0.025--
-```
-
-其他可使用的字段可以参见curl命令的man手册.
-
-## 6. `-f`选项将4xx, 5xx响应都视为错误
-
-在http协议中, 响应码只是响应头的一部分, 并不能代表响应体的状态, 尤其是当给出响应体内容的程序与生成响应码的反向代理服务器分离的时候.
-
-有时候对于一个指定的uri, 我们只期望curl能够返回正确的200响应, 其他403, 404, 500, 502, 504等全都视为错误, 尤其是该uri用作健康检查接口的时候.
-
-参考文章5, 6, 7的问答中给出了很多思路.
-
-第一种最简单, 使用`-f`/`--fail`选项, ta会直接把4xx, 5xx的响应码都视作错误, exit退出码指定为22.
-
-```
-$ curl -f localhost:9090
-ok
-$ curl -f localhost:9090
-curl: (22) The requested URL returned error: 404
-$ curl --fail localhost:9090
-curl: (22) The requested URL returned error: 404
-$ curl --fail localhost:9090
-curl: (22) The requested URL returned error: 403
-$ curl -f localhost:9090
-curl: (22) The requested URL returned error: 500
-$ echo $?
-22
-```
-
-第二种就是使用`-w`选项打印指定响应头字段
-
-```
-curl -o /dev/null -s -w "%{http_code}" localhost:9090
-```
-
-第三种是使用`-I`打印所有响应头, 之后用grep等命令二次处理.
-
-...我选第一种!
-
-## 7. urlencode
-
-`curl`有`--data-urlencode`选项, 可以编码get请求的query string(post请求时会有些许不同)
-
-下面两个命令等价
-
-```
-curl www.baidu.com/s?wd=手机
-curl --get --data-urlencode 'wd=手机' www.baidu.com/s
-```
-
-但ta对于url中的path路径是没有办法的.
-
-某些http服务器不接受中文路径, `curl http://www.test.com/手机.html`无法找到目标网页, 还是需要手动将中文字符进行编码.
-
-js中有`encodeURI()`, python3有`urllib.parse.quote()`, 都可以实现编码的功能. 但是shell中是没有的, 所以需要手动编码.
-
-shell的实现可以见参考文章9和10.
