@@ -147,7 +147,7 @@ cat /tmp/numbers
 
 如下是在当前终端获取的描述符信息.()
 
-```
+```console
 general@ubuntu:/tmp$ ls /proc/self/fd
 0  1  2  3
 general@ubuntu:/tmp$ exec 4< /tmp/numbers 

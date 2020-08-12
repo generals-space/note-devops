@@ -40,9 +40,9 @@ jobs
 
 在多进程的代码实现中, 很多时候我们需要等待某个子进程执行完毕后再决定之后的流程走向, 这就需要用到`wait`命令.
 
-wait的使用方法这里不再详述, 这里来一个多进程实现的示例.
+`wait`的使用方法这里不再详述, 这里来一个多进程实现的示例.
 
-```
+```bash
 #!/bin/bash
 
 ping -c 20 www.baidu.com > /tmp/ping_baidu &
@@ -58,7 +58,7 @@ wait $subpid1 ; echo '百度已ping完'
 
 执行它, 得到如下输出
 
-```
+```console
 general@ubuntu:/tmp$ bash multiproc.sh 
 6951 6952
 [1]-  Running                 ping -c 20 www.baidu.com > /tmp/ping_baidu &
@@ -72,7 +72,7 @@ general@ubuntu:/tmp$ bash multiproc.sh
 
 多进程编程里, 最重要的是就是锁的设计和使用了. 下面的代码中使用了`fifo`表示锁, 使用`read`与`echo`来获取与解除锁, 很巧妙. 
 
-```shell
+```bash
 #!/bin/bash
 
 #创建一个fifo文件
@@ -149,7 +149,7 @@ www.amazon.com
 
 以下是单进程的脚本, `single.sh`
 
-```shell
+```bash
 #!/bin/bash
 filename=pinglist
 echo '' > /tmp/ping_result
@@ -164,7 +164,7 @@ done
 
 执行结果是
 
-```
+```console
 general@ubuntu:/tmp$ time bash single.sh 
 www.baidu.com finished
 www.taobao.com finished
@@ -190,7 +190,7 @@ sys	0m0.394s
 
 下面是使用了多进程的脚本, `multi.sh`
 
-```shell
+```bash
 #!/bin/bash
 
 #创建一个fifo文件
@@ -234,7 +234,7 @@ exec 6>&-
 
 执行它, 得到
 
-```
+```console
 general@ubuntu:/tmp$ time bash multiproc.sh 
 www.baidu.com finished
 www.taobao.com finished
