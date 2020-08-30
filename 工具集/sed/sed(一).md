@@ -97,7 +97,7 @@ $ sed -i '4,10s/\(.*\)/#\1/' ./www.conf
 
 ### 匹配两行之间
 
-按行号匹配: `sed -n '3,5p' ./example.txt`
+按行号匹配: `sed -n '3,5p' ./example.txt`, 删除到最后一行`sed -n '3,$p' ./example.txt`
 
 按包含内容匹配(一般是时间段), 贪心: `sed -n '/2017-03-06 04:00/,/2017-03-06 04:15/p' ./example.txt`
 
