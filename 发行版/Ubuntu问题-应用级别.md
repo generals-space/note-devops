@@ -10,7 +10,6 @@
 
 如果是后者, 也是使用`sudo apt update && sudo apt -f install`, 完成后即可正常启动.
 
-
 ## 2. `nautilus` 进程占用内存过高
 
 问题描述: `Ubuntu14.04`下, 每次启动之后没有打开任何进程时 `nautilus`文件管理器就占用99%以上的内存和CPU.
