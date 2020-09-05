@@ -2,9 +2,9 @@
 
 参考文章
 
-[shell 中的 eval](http://www.cnblogs.com/huzhiwei/archive/2012/03/14/2395956.html)
-
-[shell eval命令使用](http://blog.csdn.net/w_ww_w/article/details/7075867)
+1. [shell 中的 eval](http://www.cnblogs.com/huzhiwei/archive/2012/03/14/2395956.html)
+2. [shell eval命令使用](http://blog.csdn.net/w_ww_w/article/details/7075867)
+3. [shell模板变量替换](https://www.cnblogs.com/woshimrf/p/shell-template-variable.html)
 
 ## 1. 基本认识
 
@@ -25,7 +25,7 @@ hello world
 
 如下
 
-```
+```console
 ## eval是把'ls -al'当成命令执行的.
 $ eval 'ls -al'
 -rw-r--r--  1 root root         0 Dec  9 15:09 tmpfile
@@ -39,7 +39,7 @@ $ eval $ab
 
 前面两组示例中, 第一组中`eval`后的参数`touch tmpfile`中不存在变量, `eval`将其全部执行; 第二组中`eval`会尝试将后面的变量`$ab`解析成字符串`ls -al`, 也就是完成变量的替换, 然后将其作为命令执行.
 
-把这两者结合起来, 就是`eval`真正的工作流程: `eval`会把其后面的所有参数当作一条shell命令去执行, 但是在执行之前会把其中存在的变量解析出来. 
+把这两者结合起来, 就是`eval`真正的工作流程: **`eval`会把其后面的所有参数当作一条shell命令去执行, 但是在执行之前会把其中存在的变量解析出来.**
 
 如下示例
 
@@ -122,3 +122,38 @@ eval "${key}=${val}"
 done < 文件名
 echo "$name $age $sex"
 ```
+
+### 2.3 模板渲染
+
+```bash
+eval "cat <<EOF
+$(< 模板文件路径)
+EOF
+" > 结果文件路径
+```
+
+我从来没用过`<`重定向, 这一次算是长见识了. 其实就是从目标文件中读取数据, 与`>`相反.
+
+如果直接执行`< 文件`, 什么也不会显示.
+
+```console
+$ cat requirements.txt
+requests==2.24.0
+$ < requirements.txt ## 这里什么也没有.
+```
+
+为了获取到这个文件的内容, 可以使用反引号或双小括号
+
+```console
+$ cnt=$(< requirements.txt)
+/tmp
+$ echo $cnt
+requests==2.24.0
+
+$ cnt2=`< requirements.txt`
+$ echo $cnt2
+requests==2.24.0
+```
+
+> 按行读取文件时可能会用到, `while read line do echo $line; done < 待读取的文件`.
+
