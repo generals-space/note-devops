@@ -27,7 +27,7 @@ $ ssh-copy-id -i id_rsa.pub root@192.168.169.115
 
 ## 2. 
 
-```shell
+```console
 $ ssh 用户名@ip地址
 ssh_exchange_identification: read: Connection reset by peer
 ```
