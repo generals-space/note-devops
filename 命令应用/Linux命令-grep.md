@@ -13,18 +13,9 @@
 
 ------
 
-- -A num: after, 显示目标匹配行的后num行
-- -B num: before, 显示目标匹配行的前num行
-- -C num: 显示目标匹配行的前num行与后num行
-
-```shell
-## 显示string及前5行
-grep -B 5 string file
-## 显示string及后5行
-grep -A 5 string file
-## 显示file文件里匹配string字串那行及其上下5行
-grep -C 5 string file
-```
+- `-A num`: `after`, 显示目标匹配行的后`num`行
+- `-B num`: `before`, 显示目标匹配行的前`num`行
+- `-C num`: 显示目标匹配行的前`num`行与后`num`行
 
 ## `-P`贪心匹配
 

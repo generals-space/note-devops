@@ -1,0 +1,152 @@
+# restful api索引操作
+
+参考文章
+
+1. [ElasticStack系列，第一章](https://blog.csdn.net/LeeDemoOne/article/details/103165610)
+2. [ElasticSearch第6节 Kibana 的Dev Tool 增删改查ES](https://www.jianshu.com/p/21007d1011ad)
+    - 从 ES 7.0.0 开始, 移除**文档类型(type)**这个概念, 在 restful api 中, type 这个位置将使用固定`_doc`代替.
+
+ES: 7.2.0
+
+由于 ES 中本来就有系统级索引存在, 所以可以不依赖上一篇创建的步骤.
+
+## 查询所有
+
+~~GET /class/_doc/_search~~
+
+7.0.0 之后不再支持文档类型, 创建文档记录的操作需要指定`/索引名/_doc/{id}`, 但是查询时不能加`_doc`了. 将得到如下结果, 没有查到任何信息.
+
+```
+#! Deprecation: [types removal] Specifying types in search requests is deprecated.
+{
+  "took" : 4,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 2,
+    "successful" : 2,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 0,
+      "relation" : "eq"
+    },
+    "max_score" : null,
+    "hits" : [ ]
+  }
+}
+```
+
+正确的做法是
+
+```
+GET /class/_search
+```
+
+响应如下
+
+```
+{
+  "took" : 8,
+  "timed_out" : false,
+  "_shards" : {
+    "total" : 2,
+    "successful" : 2,
+    "skipped" : 0,
+    "failed" : 0
+  },
+  "hits" : {
+    "total" : {
+      "value" : 2,
+      "relation" : "eq"
+    },
+    "max_score" : 1.0,
+    "hits" : [
+      {
+        "_index" : "class",
+        "_type" : "student",
+        "_id" : "1002",
+        "_score" : 1.0,
+        "_source" : {
+          "id" : 1002,
+          "name" : "jiangming",
+          "age" : 25,
+          "gender" : "男"
+        }
+      },
+      {
+        "_index" : "class",
+        "_type" : "student",
+        "_id" : "1001",
+        "_score" : 1.0,
+        "_source" : {
+          "id" : 1001,
+          "name" : "general",
+          "age" : 24,
+          "gender" : "男"
+        }
+      }
+    ]
+  }
+}
+
+```
+
+## 根据id查询
+
+```
+GET /class/_doc/1001
+```
+
+响应
+
+```json
+{
+  "_index" : "class",
+  "_type" : "_doc",
+  "_id" : "1001",
+  "_version" : 1,
+  "_seq_no" : 0,
+  "_primary_term" : 1,
+  "found" : true,
+  "_source" : {
+    "id" : 1001,
+    "name" : "general",
+    "age" : 24,
+    "gender" : "男"
+  }
+}
+
+```
+
+## 根据字段值搜索
+
+```
+
+```
+
+## 查看索引配置
+
+```
+GET /class/_settings
+```
+
+```json
+{
+  "class" : {
+    "settings" : {
+      "index" : {
+        "creation_date" : "1600148855642",
+        "number_of_shards" : "2",
+        "number_of_replicas" : "0",
+        "uuid" : "PeSdtBl0ROaNLZztxjRi2Q",
+        "version" : {
+          "created" : "7020099"
+        },
+        "provided_name" : "class"
+      }
+    }
+  }
+}
+```
