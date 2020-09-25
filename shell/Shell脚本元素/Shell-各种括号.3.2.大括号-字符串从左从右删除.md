@@ -2,10 +2,10 @@
 
 几种模式匹配替换结构:
 
-- `${var%pattern}`
-- `${var%%pattern}`
-- `${var#pattern}`
-- `${var##pattern}`
+- `${var%pattern}`: 从右到左删除
+- `${var%%pattern}`: 贪心
+- `${var#pattern}`: 从左到右删除
+- `${var##pattern}`: 贪心
 
 > `pattern`一般是显式字符串, 不能是变量???
 
@@ -30,7 +30,7 @@ echo ${var%xxx}         ## testcase
 
 ## 2. `${var%%pattern}`
 
-如果`var`变量以指定的模式`pattern`结尾, 就从命令行把var中的内容移除右边最长的匹配字符串(即贪心匹配), 否则直接输出原`var`的值.
+如果`var`变量以指定的模式`pattern`结尾, 就从命令行把var中的内容移除右边最长的匹配字符串(即**贪心匹配**), 否则直接输出原`var`的值.
 
 ```bash
 var=testcase
@@ -58,7 +58,7 @@ echo ${var#xxx}         ## testcase
 
 ## 4. `${var##pattern}`
 
-如果`var`变量以指定的模式`pattern`开始, 就从命令行把var中的内容移除左边最长的匹配字符串(即贪心匹配), 否则直接输出原`var`的值.
+如果`var`变量以指定的模式`pattern`开始, 就从命令行把var中的内容移除左边最长的匹配字符串(即**贪心匹配**), 否则直接输出原`var`的值.
 
 ```bash
 var=testcase
