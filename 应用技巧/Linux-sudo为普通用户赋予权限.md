@@ -4,11 +4,9 @@
 
 参考文章
 
-[linux中sudo的用法和sudoers配置详解](http://www.bianceng.cn/OS/Linux/201410/45603.htm)
-
-[linux下sudoers设置方法详解](http://www.ahlinux.com/start/cmd/457.html)
-
-[Linux 下以其他用户身份运行程序—— su、sudo、runuser](http://www.cnblogs.com/bodhitree/p/6018369.html)
+1. [linux中sudo的用法和sudoers配置详解](http://www.bianceng.cn/OS/Linux/201410/45603.htm)
+2. [linux下sudoers设置方法详解](http://www.ahlinux.com/start/cmd/457.html)
+3. [Linux 下以其他用户身份运行程序—— su、sudo、runuser](http://www.cnblogs.com/bodhitree/p/6018369.html)
 
 本文主要讲解如何通过配置`/etc/sudoers`文件, 让普通用户拥有部分root权限, 甚至拥有其他普通用户权限的方法.
 
@@ -145,9 +143,9 @@ Host_Alias 变量名=变量值
 Cmnd_Alias 变量名=变量值
 ```
 
-变量名必须要以大写字母开头，而且只能包含有大写字母，数字，下划线.
+变量名必须要以大写字母开头, 而且只能包含有大写字母, 数字, 下划线.
 
-而变量值是以逗号','分隔的数组，不过这四个别名表示的数组内容都会不同.
+而变量值是以逗号','分隔的数组, 不过这四个别名表示的数组内容都会不同.
 
 比如想要赋予普通用户general以网络配置相关的root级别命令, 可以添加如下行
 
@@ -161,71 +159,55 @@ Cmnd_Alias NETWORKING = /sbin/route, /sbin/ifconfig, /bin/ping, /sbin/dhclient, 
 general ALL=(root) NETWORKING
 ```
 
-这样, general就可以拥有root级别的, 执行`NETWORKING`定义的包括`route`, `ifconfig`...等一系列网络相关的命令, 是不是很方便?
+这样, general就可以拥有root级别的权限, 执行`NETWORKING`定义的包括`route`, `ifconfig`...等一系列网络相关的命令, 是不是很方便?
 
 ------
 
 然后我们看一下这四种类型的字段, 变量值可以取哪些值
 
 ```
-User：[!][username | #uid | %groupname | +netgroup | %:nonunix_group | User_Alias]
-Runas：[!][username| #uid | %groupname | +netgroup | Runas_Alias]
-Host：[!][hostname | ip_addr | network(/netmask)? |  netgroup | Host_Alias]
-Cmnd：[!][commandname| directory | "sudoedit" | Cmnd_Alias]
+User: [!][username | #uid | %groupname | +netgroup | %:nonunix_group | User_Alias]
+Runas: [!][username| #uid | %groupname | +netgroup | Runas_Alias]
+Host: [!][hostname | ip_addr | network(/netmask)? |  netgroup | Host_Alias]
+Cmnd: [!][commandname| directory | "sudoedit" | Cmnd_Alias]
 ```
 
 感叹号`!`表示取反, 比如不包括指定主机, 不包括指定用户, 禁止执行的命令等.
 
 ### 5.4 通配符(未验证)
 
-通配符只可以用在`主机名`、`文件路径`、`命令行的参数列表`中。下面是可用的通配符：
+通配符只可以用在`主机名`、`文件路径`、`命令行的参数列表`中. 下面是可用的通配符: 
 
-- *：匹配任意数量的字符
+- `*`: 匹配任意数量的字符
+- `?`: 匹配一个任意字符
+- `[...]`: 匹配在范围内的一个字符
+- `[!...]`: 匹配不在范围内的一个字符
+- `\x`: 用于转义特殊字符
 
-- ?：匹配一个任意字符
+在使用通配符时有以下的注意点: 
 
-- [...]：匹配在范围内的一个字符
-
-- [!...]：匹配不在范围内的一个字符
-
-- \x：用于转义特殊字符
-
-在使用通配符时有以下的注意点：
-
-1. 使用[:alpha:]等通配符时，要转义冒号':'，如：[\:alpha\:]
-
-2. 当通配符用于文件路径时，不能跨'/'匹配，如：/usr/bin/*能匹配/usr/bin/who但不能匹配/usr/bin/X11/xterm
-
-3. 如果指令的参数列表是""时，匹配不包含任何参数的指令。
-
-4. ALL这个关键字表示匹配所有情况。
+1. 使用[:alpha:]等通配符时, 要转义冒号':', 如: [\:alpha\:]
+2. 当通配符用于文件路径时, 不能跨'/'匹配, 如: /usr/bin/*能匹配/usr/bin/who但不能匹配/usr/bin/X11/xterm
+3. 如果指令的参数列表是""时, 匹配不包含任何参数的指令. 
+4. `ALL`这个关键字表示匹配所有情况. 
 
 ### 5.5 更深层的用户规则(未验证)
 
-用户规则定义的语法如下：
+用户规则定义的语法如下: 
 
 ```conf
 User_List Host_List=(Runas_List1:Runas_List2) SELinux_Spec Tag_Spec Cmnd_List,...
 ```
 
-下面对上面的语法进行说明一下：
+下面对上面的语法进行说明一下: 
 
-- `User_List`（必填项）：指的是该规则是针对哪些用户的。
+- `User_List`（必填项）: 指的是该规则是针对哪些用户的. 
+- `Host_List`（必填项）: 指的是该规则针对来自哪些主机的用户. 
+- `Runas_List1`（可选项）: 表示可以用sudo -u来切换的用户
+- `Runas_List2`（可选项）: 表示可以用sudo -g来切换的用户组
+- `SELinux_Spec`（可选项）: 表示SELinux相关的选项, 可选值为ROLE=role 或 TYPE=type. 本人对SELinux不太熟, 以后再补充这里吧. 
+- `Tag_Spec`（可选项）: 用于控制后面Cmnd_List的一些选项啦, 可选值有下面这些, 具体可以查阅man手册
+    - 可选值: 'NOPASSWD:' | 'PASSWD:' | 'NOEXEC:' | 'EXEC:' | 'SETENV:' | 'NOSETENV:' | 'LOG_INPUT:' | 'NOLOG_INPUT:' | 'LOG_OUTPUT:' | 'NOLOG_OUTPUT:'
+- `...`（可选项）: 表示可以有多个(`Runas_List1`:`Runas_List2`) `SELinux_Spec` `Tag_Spec` `Cmnd_List`段的意思. 
 
-- `Host_List`（必填项）：指的是该规则针对来自哪些主机的用户。
-
-- `Runas_List1`（可选项）：表示可以用sudo -u来切换的用户
-
-- `Runas_List2`（可选项）：表示可以用sudo -g来切换的用户组
-
-- `SELinux_Spec`（可选项）：表示SELinux相关的选项，可选值为ROLE=role 或 TYPE=type。本人对SELinux不太熟，以后再补充这里吧。
-
-- `Tag_Spec`（可选项）：用于控制后面Cmnd_List的一些选项啦，可选值有下面这些，具体可以查阅man手册
-
-```
-'NOPASSWD:' | 'PASSWD:' | 'NOEXEC:' | 'EXEC:' | 'SETENV:' | 'NOSETENV:' | 'LOG_INPUT:' | 'NOLOG_INPUT:' | 'LOG_OUTPUT:' | 'NOLOG_OUTPUT:'
-```
-
-- `...`（可选项）：表示可以有多个(`Runas_List1`:`Runas_List2`) `SELinux_Spec` `Tag_Spec` `Cmnd_List`段的意思。
-
-注意：如果`Runas_List1`和`Runas_List2`都没填的话，默认是以root用户执行
+注意: 如果`Runas_List1`和`Runas_List2`都没填的话, 默认是以root用户执行
