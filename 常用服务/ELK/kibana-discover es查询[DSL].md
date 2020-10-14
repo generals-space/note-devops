@@ -6,6 +6,7 @@
     - 官方提供的测试数据, 进行索引的各种操作, 以熟悉 es 与 kibana 的各种功能.
 2. [Visualizing Your Data](https://www.elastic.co/guide/en/kibana/5.5/tutorial-visualizing.html)
     - kibana 可视化配置, 聚合查询
+3. [Query DSL » Full text queries » Query String Query](https://www.elastic.co/guide/en/elasticsearch/reference/5.5/query-dsl-query-string-query.html#query-string-syntax)
 
 ES版本: 5.5.0
 
@@ -21,7 +22,7 @@ ES版本: 5.5.0
 
 现在再实验查询就清晰多了, 可以按照参考文章1中指定的步骤进行.
 
-## 1. 简单查询
+## 1. 简单查询 - 数值比较
 
 ```
 account_number: >900
@@ -40,3 +41,9 @@ account_number: >900
 ![](https://gitee.com/generals-space/gitimg/raw/master/9b4787ad309d3a60f5ed72115d7e1feb.png)
 
 > 很像 `kubectl get`使用的`jsonpath`, 或是SQL中的`select(id,name...) from 表名`.
+
+## 3. 简单查询 - 字符串过滤
+
+```
+
+```
