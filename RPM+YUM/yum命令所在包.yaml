@@ -1,7 +1,3 @@
-## 参考文章
-## [查询Linux某命令来自哪个包](https://blog.csdn.net/qq_26507799/article/details/78998439)
-## yum provides *bin/ifconfig
-## yum provides *bin/less
 yum:
     iproute:
         - ss
@@ -32,4 +28,9 @@ yum:
         - 拷贝二进制文件到PATH即可
     redhat-lsb:
         - lsb_release (查看centos发行版信息)
-
+    coreutils:
+        - nohup
+    util-linux:
+        - more
+    sysstat:
+        - iostat
