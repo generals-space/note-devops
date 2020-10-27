@@ -3,6 +3,7 @@
 参考文章
 
 1. [elasticsearch基本接口使用](https://www.cnblogs.com/lichunke/p/9836288.html)
+2. [Elasticsearch利用cat api快速查看集群状态、内存、磁盘使用情况](https://www.cnblogs.com/yangwenbo214/p/9832516.html)
 
 es版本: 7.2.0
 
@@ -98,4 +99,15 @@ $ curl -XGET 'es-cluster:9200/_cat/health?format=json&pretty=true&h=cluster,node
   },
   // ...省略
 ]
+```
+
+根据参考文章2, 其实默认的`_cat/nodes`的响应结果是不完整的, 我们可以通过`h`参数指定要显示的字段, 可选的字段有:
+
+```console
+$ localhost:9200/_cat/nodes?v&h=http,version,jdk,disk.total,disk.used,disk.avail,disk.used_percent,heap.current,heap.percent,heap.max,ram.current,ram.percent,ram.max,master 
+http          version jdk       disk.total disk.used disk.avail disk.used_percent heap.current heap.percent heap.max ram.current ram.percent ram.max master
+10.0.0.4:9200 6.3.1   1.8.0_181       29gb     3.3gb     25.6gb             11.72        254mb            7    3.3gb       6.2gb          92   6.8gb -
+10.0.0.5:9200 6.3.1   1.8.0_181       29gb     3.3gb     25.6gb             11.71      195.5mb            5    3.3gb       6.2gb          91   6.8gb -
+10.0.0.6:9200 6.3.1   1.8.0_181       29gb     3.4gb     25.6gb             11.74      293.6mb            8    3.3gb       6.2gb          92   6.8gb *
+
 ```
