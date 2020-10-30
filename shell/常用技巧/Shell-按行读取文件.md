@@ -89,3 +89,11 @@ for ((line_num = 1; line_num <= $line_sum; line_num=$((${line_num}+2))))
 ```
 
 这里用到了`$(())`运算符做简单运算, 每次增加2.
+
+------
+
+再引申, 对 line_num 进行定长格式化, 作为输出结果. 如 line_num 为 1 时, 可得到 0001, 为 100 时, 可得到 0100. 使用`printf`命令
+
+```bash
+formatted_num=$(printf '%03d\n' $line_num)
+```

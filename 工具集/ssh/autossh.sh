@@ -15,6 +15,7 @@ function get_forward_proc
 ## @note:       结果以 echo 形式返回
 function get_forward_port
 {
+    ## forwarder 中转机的配置名称, 需要能无密码登录
     ## 2>&1 的原因: 在普通用户下调用 netstat, 会出现如下警告
     ## (No info could be read for "-p": geteuid()=1001 but you should be root.)
     ssh forwarder "netstat -anp 2>&1 | grep -v grep | grep $1 | wc -l"
