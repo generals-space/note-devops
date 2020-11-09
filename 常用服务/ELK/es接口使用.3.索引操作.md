@@ -123,3 +123,17 @@ POST /class/_doc/1002
 
 ## 更新
 
+
+## 删除
+
+删除指定索引
+
+```
+curl -XDELETE 'es-cluster:9200/索引名'
+```
+
+删除所有索引
+
+```
+curl -XDELETE 'es-cluster:9200/*'
+```
