@@ -1,5 +1,12 @@
 # Linux资源限制策略(一)
 
+参考文章
+
+1. [给容器设置内核参数](https://tencentcloudcontainerteam.github.io/2018/11/19/kernel-parameters-and-container/)
+    - 每个进程都有若干操作系统资源的限制, 可以通过`/proc/$PID/limits`来查看.
+    - bash中有个`ulimit`内部命令, 可以查看**当前bash进程**的这些限制.
+    - 跟`ulimit`属性相关的配置文件是`/etc/security/limits.conf`. 具体配置项和语法可以通过`man limits.conf`命令查看. 
+
 <!tags!>: <!linux应用技巧!>
 
 ## 1. limit
@@ -40,8 +47,8 @@ file locks                      (-x) unlimited
 <domain>        <type>  <item>  <value>
 ```
 
-- domain: 一般是用户名或组名, 表示对这些用户/用户组的限制规则
-- type: 一般取`soft|hard`, hard类型的value值一般大于等于同选项的soft类型的值, 超过soft设置的值后系统会发出警告(应该是在/var/log/message文件中), 但是仍然可以继续运行进程,  如果超过hard设置的值...呃, 好吧, hard设置的上限绝对不可能超过.
+- domain: 一般是**用户名**或**组名**, 表示对这些用户/用户组的限制规则
+- type: 一般取`soft|hard`, hard类型的value值一般大于等于同选项的soft类型的值, 超过soft设置的值后系统会发出警告(应该是在`/var/log/message`文件中), 但是仍然可以继续运行进程,  如果超过hard设置的值...呃, 好吧, hard设置的上限绝对不可能超过.
 - item: 被限制的选项, 如: `core`(核心转储文件), `nproc`(用户最大进程数), `nofile`(最大打开文件数)等, 详细列表与介绍见`/etc/security/limit.conf`.
 - value: 被限制的选项的值, 一般是数字, 表示具体的值, 也可以是`unlimited`, 表示无限制.
 
@@ -60,3 +67,4 @@ root       soft    nproc     unlimited
 > 注意: 系统可能对`hard`的标准有默认限制, 自定义的设置如果单纯设置`soft`值将会无法越过默认值限制, 所以如果有需要, 可以同时设置`hard`标准.
 
 > **警告:** 对root所做的`hard`类型修改可能导致严重的结果, 但好在只有在新终端生效, 所以保持编辑终端不要退出, 有问题可以及时撤销.
+
