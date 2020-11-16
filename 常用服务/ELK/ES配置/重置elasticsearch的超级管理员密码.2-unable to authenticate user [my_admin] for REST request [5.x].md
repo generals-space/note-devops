@@ -14,6 +14,7 @@
 	- 7.x 版本的官方文档
 7. [Xpack File User is not authorized](https://discuss.elastic.co/t/xpack-file-user-is-not-authorized/75891)
 	- 最终的解决方案.
+  - `/_xpack/usage`查看各认证方式的开启情况
 
 ## 环境
 
@@ -109,7 +110,9 @@ CONF_DIR=/usr/share/elasticsearch/config ./bin/x-pack/users useradd my_admin -p 
 注意:
 
 1. `/usr/share/elasticsearch/config/x-pack`需要事先存在, 否则创建将失败
-2. 创建完成后立刻生效, 无需重启节点
+2. ~~创建完成后立刻生效, 无需重启节点~~ 应该是需要重启节点的(只重启一个就可以).
+    - 如果是在容器里, 需要通过 volume 将 `config/x-pack`映射出来.
+    - 如果是 k8s, 可以通过修改 command, 先启动容器, 创建用户后再启动`elasticsearch`进程, 然后再修改`elastic`用户的密码.
 3. 在单个节点上创建本地用户后就可使用, 不必在所有节点上创建.
 
 ## 另一个问题
@@ -121,3 +124,42 @@ action [cluster:monitor/health] is unauthorized for user [my_admin]
 ```
 
 这应该是用`passwd`修改密码不一致了, 将这个用户删除重建吧.
+
+## 回顾
+
+一般来说, 只要没有显式启用其他认证, 比如`ldap`等, 本地认证默认就是可用的. 如果你的集群还可用的话, 比如做实验的时候, 可以通过参考文章7提到的`/_xpack/usage`接口查看一下集群是否支持`file`类型的认证.
+
+```json
+$ curl localhost:9200/_xpack/usage
+{
+  "security": {
+    "available": true,
+    "enabled": true,
+    "realms": {
+      "file": {
+        "name": [
+          "default_file"
+        ],
+        "available": true,
+        "size": [
+          1
+        ],
+        "enabled": true,
+        "order": [
+          2147483647
+        ]
+      },
+      "ldap": {
+        "available": true,
+        "enabled": false
+      },
+    }
+  }
+}
+```
+
+------
+
+另外, 5.5.0 版本创建本地用户后需要重启`elasticsearch`进程, 需要拥有`x-pack/{users,users_roles}`文件的权限, 所以需要保证`elasticsearch`的启动用户与这两个文件的属主相同, 否则在启动时会报如下错误
+
+![](https://gitee.com/generals-space/gitimg/raw/master/4f86793d158a6dbacce13dd7e2316575.png)
