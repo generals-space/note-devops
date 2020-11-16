@@ -9,7 +9,10 @@
 
 ```
 curl -XPUT -u elastic:changeme -d '{ "password" : "your_passwd" }' 'http://localhost:9200/_xpack/security/user/elastic/_password' 
+curl -XPUT -u elastic:changeme -H 'Content-Type: application/json' -d '{ "password" : "your_passwd" }' 'http://localhost:9200/_xpack/security/user/elastic/_password' 
 ```
+
+> 5.x 版本可能需要加`Content-Type: application/json`
 
 ## 2. 忘记`elastic`用户密码
 

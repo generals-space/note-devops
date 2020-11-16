@@ -24,6 +24,8 @@ t.cn.			5	IN	A	203.107.55.116
 
 一般我们想要的就是`ANSWER SECTION`中的`A`记录, 其中也有可能会包含`CNAME`记录.
 
+如果输出中没有`ANSWER SECTION`, 只给出了个`AUTHORITY SECTION`(内容格式见下面的示例), 说明目标域名在没找到, 用了`AUTHORITY SECTION`中的 dns 服务器解析也没找到, 那估计就是不存在了.
+
 最下面一块`SERVER`, 显示了本次查询默认使用的 dns 服务器地址(相当于默认路由, 出口第一跳).
 
 ------
@@ -86,3 +88,6 @@ generals.space.		5	IN	SOA	dns9.hichina.com. hostmaster.hichina.com. 2016030109 3
 
 > `soa`貌似是主 dns 服务器, 可以使用`dig soa note.generals.space`命令确认
 
+## `+trace`
+
+还没用到过, 有点类似于`traceroute`路由追踪, 因为 dns 记录也是一级一级递归查询的.
