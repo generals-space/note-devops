@@ -9,12 +9,12 @@
 4. [Unable to authenticate user [*****] for REST request [/]](https://discuss.elastic.co/t/unable-to-authenticate-user-for-rest-request/197461)
     - 没什么用
 5. [File-based User Authentication](https://www.elastic.co/guide/en/x-pack/5.5/file-realm.html)
-	- 5.x 版本的官方文档
+   	- 5.x 版本的官方文档
 6. [File-based User Authentication](https://www.elastic.co/guide/en/elasticsearch/reference/7.x/file-realm.html)
-	- 7.x 版本的官方文档
+   	- 7.x 版本的官方文档
 7. [Xpack File User is not authorized](https://discuss.elastic.co/t/xpack-file-user-is-not-authorized/75891)
-	- 最终的解决方案.
-  - `/_xpack/usage`查看各认证方式的开启情况
+   	- 最终的解决方案.
+    - `/_xpack/usage`查看各认证方式的开启情况
 
 ## 环境
 
