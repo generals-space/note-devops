@@ -1,4 +1,6 @@
-# 重置elasticsearch的超级管理员密码.2-unable to authenticate user [my_admin] for REST request
+# 重置elasticsearch的超级管理员密码.2.[es xpack 5.x]
+
+<!key!>: {A2792681-C483-4D35-A3C4-4B6A4631082D}
 
 参考文章
 
@@ -16,9 +18,7 @@
    	- 最终的解决方案.
     - `/_xpack/usage`查看各认证方式的开启情况
 
-## 环境
-
-ES: elasticsearch:5.5.0
+ES版本: elasticsearch:5.5.0(镜像)
 
 ## 
 
@@ -114,8 +114,11 @@ CONF_DIR=/usr/share/elasticsearch/config ./bin/x-pack/users useradd my_admin -p 
     - 如果是在容器里, 需要通过 volume 将 `config/x-pack`映射出来.
     - 如果是 k8s, 可以通过修改 command, 先启动容器, 创建用户后再启动`elasticsearch`进程, 然后再修改`elastic`用户的密码.
 3. 在单个节点上创建本地用户后就可使用, 不必在所有节点上创建.
+4. `config/x-pack/{users,users_roles}`文件属主需要与`elasticsearch`进程的启动用户相同, 否则在`elasticsearch`启动时会报错.
 
-## 另一个问题
+## Q&A
+
+### 1. 
 
 ```
 $ curl -u my_admin:密码 localhost:9200/_cat/health
@@ -125,7 +128,7 @@ action [cluster:monitor/health] is unauthorized for user [my_admin]
 
 这应该是用`passwd`修改密码不一致了, 将这个用户删除重建吧.
 
-## 回顾
+### 2. 
 
 一般来说, 只要没有显式启用其他认证, 比如`ldap`等, 本地认证默认就是可用的. 如果你的集群还可用的话, 比如做实验的时候, 可以通过参考文章7提到的`/_xpack/usage`接口查看一下集群是否支持`file`类型的认证.
 
@@ -158,7 +161,7 @@ $ curl localhost:9200/_xpack/usage
 }
 ```
 
-------
+### 3. 
 
 另外, 5.5.0 版本创建本地用户后需要重启`elasticsearch`进程, 需要拥有`x-pack/{users,users_roles}`文件的权限, 所以需要保证`elasticsearch`的启动用户与这两个文件的属主相同, 否则在启动时会报如下错误
 
