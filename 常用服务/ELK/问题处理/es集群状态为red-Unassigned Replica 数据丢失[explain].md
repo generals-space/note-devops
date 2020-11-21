@@ -21,8 +21,8 @@ es: 5.5.0, 规格为 master * 3 + data * 3(master 也可做 data 用)
 GET /_cluster/allocation/explain
 {
     "index": "索引名",
-    "shard": 分片id, 整型数值
-    "primary": 是否为主分片, true/false
+    "shard": 分片id(整型数值),
+    "primary": 是否为主分片(true/false)
 }
 ```
 
