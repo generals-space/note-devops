@@ -9,6 +9,7 @@ yum:
         - ifconfig
         - netstat
         - arp
+        - route
     bridge-utils:
         - brctl
     bind-utils:
@@ -41,3 +42,14 @@ apt:
         - xz(解压命令)
     dnsutils:
         - dig
+    inetutils-ping:
+        - ping
+    net-tools:
+        - ifconfig
+        - netstat
+        - arp
+        - route
+    iproute2:
+        - ip
+        - ss
+        - tc
