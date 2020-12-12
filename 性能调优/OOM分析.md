@@ -4,7 +4,7 @@
 
 1. [oom killer理解和日志分析:知识储备](https://www.jianshu.com/p/ba1cdf92a602)
     - linux中物理内存结构: node > zone > page
-    - overcommit
+    - vm.overcommit_memory
 2. [oom killer理解和日志分析:日志分析](https://www.jianshu.com/p/8dd45fdd8f33)
     - 以一个完整的 OOM 日志为例, 分析其中各字段的含义.
 
