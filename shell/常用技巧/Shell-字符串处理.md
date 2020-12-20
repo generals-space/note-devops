@@ -71,16 +71,14 @@ e
 
 1. `echo 12345abcde | grep -Po '.'`
 
-2. `echo '12345abcde' | fold  -w1`
+2. `echo '12345abcde' | fold -w1`
 
 ## 3. expr命令字符串操作
 
 `expr`有3个子选项可以对字符串操作
 
 - `length string`: 返回字符串string的长度
-
 - `index string string2`: 返回string中包含string2中任意字符第一次出现在位置(从1开始)
-
 - `substr string pos len`: 返回string中从第pos个字符开始, 并且长度是len的字符串。
 
 **求长度**

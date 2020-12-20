@@ -24,6 +24,34 @@ tcprstat-0.3.1  tcprstat-0.3.1.tar.gz
 AUTHORS  bootstrap  ChangeLog  configure.ac  COPYING  libpcap  Makefile.am  NEWS  README  src  TODO
 ```
 
+> `libpcap`目录是`libpcap`库的源码.
+
 ## 编译
 
-这源码目录下没有`Makefile`, 需要使用
+这源码目录下没有`Makefile`, 也没有`configure`, 需要使用该目录下的`bootstrap`可执行文件先生成`configure`.
+
+不过`boostrap`脚本使用了`aclocal`命令(在`automake`包中), 在`configure`过程中还需要`bison`(同名包), `yacc`(`byacc`包), `flex`(同名包), `patch`(同名包).
+
+```
+yum install -y automake bison byacc flex patch
+bash ./bootstrap
+./configure
+make
+```
+
+`make`完成后就会在`src`目录下生成`tcprstat`, `tcprstat-static`两个文件. 后者可以看作类似于 golang 的编译结果, 单文件, 不依赖外部链接库.
+
+## 基本使用
+
+```
+## 监听3306端口，每1秒输出一次，共输出5次
+$ tcprstat -p 22 -t 1 -n 5
+timestamp	count	max	min	avg	med	stddev	95_max	95_avg	95_std	99_max	99_avg	99_std
+1608172431	0	0	0	0	0	0	0	0	0	0	0	0
+1608172432	1	600	600	600	600	0	0	0	0	0	0	0
+1608172433	3	1059	391	675	575	281	575	483	92	575	483	92
+1608172434	0	0	0	0	0	0	0	0	0	0	0	0
+1608172435	0	0	0	0	0	0	0	0	0	0	0	0
+```
+
+一旦通过 ssh 终端输入一些命令, 这个监听就会立刻显示出来.

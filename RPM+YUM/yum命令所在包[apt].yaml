@@ -37,6 +37,8 @@ yum:
         - iostat
     bind-utils:
         - dig
+    automake:
+        - aclocal
 apt:
     xz-utils:
         - xz(解压命令)
@@ -53,3 +55,8 @@ apt:
         - ip
         - ss
         - tc
+    zlib1g:
+        - zlib
+        - zlib1g-dev
+    software-properties-common:
+        - apt-add-repository
