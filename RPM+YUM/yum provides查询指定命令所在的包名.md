@@ -7,7 +7,9 @@ yum provides *bin/ifconfig
 yum provides *bin/less
 ```
 
-不知道为啥必须要加`*bin/`
+不知道为啥必须要加`*bin/`.
+
+> 注意: 本地未安装的(即任何`bin`目录都不存在的)命令也可以使用这种方法查找到所在包.
 
 ```
 [root@k8s-master-01 manifests]# yum provides *bin/ifconfig

@@ -137,4 +137,4 @@ green open .watcher-history-3-2020.11.02   Njh5tw2dSx65bDlagR3p_Q 1 1   646  0  
 
 1. `/索引名/_mapping`
 2. `/索引名/_settings`
-
+3. `/索引名/_search`: 查询目标索引中的所有数据.
