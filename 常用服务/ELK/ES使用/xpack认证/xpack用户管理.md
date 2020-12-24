@@ -13,7 +13,7 @@
 GET /_xpack/security/user
 ```
 
-查看指定用户
+查看指定用户信息
 
 ```
 GET /_xpack/security/user/my_user
