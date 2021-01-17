@@ -3,7 +3,6 @@
 参考文章
 
 1. [CentOS7修改时区的正确姿势](http://blog.csdn.net/yin138/article/details/52765089)
-
 2. [CentOS 7 修改时区](http://blog.csdn.net/robertsong2004/article/details/42268701)
 
 ```
@@ -26,19 +25,17 @@ ARC=false
 
 参考文章1中给出了解释.
 
-> 用`cp`命令修改时区, 通过`date`, `data -R`命令显示的时区都是正确的, 可是对于Java程序而言, 是错误的, 具体原因在于Java访问系统时区的方式上, 可参见文章: [Java TimeZone 和 Linux TimeZone问题](https://my.oschina.net/huawu/blog/4646).
+> 用`cp`命令修改时区, 通过`date`, `date -R`命令显示的时区都是正确的, 可是对于Java程序而言, 是错误的, 具体原因在于Java访问系统时区的方式上, 可参见文章: [Java TimeZone 和 Linux TimeZone问题](https://my.oschina.net/huawu/blog/4646).
 
-Java访问系统时区的方式:  
+Java访问系统时区的方式: 
 
 1. 如有环境变量TZ设置, 则用TZ中设置的时区 
-
 2. 在 `/etc/sysconfig/clock`文件中找`ZONE`的值.
-
 3. 如果2)都没, 就用`/etc/localtime` 和 `/usr/share/zoneinfo` 下的时区文件进行匹配, 如找到匹配的, 就返回对应的路径和文件名.
 
 如果使用cp命令来修改`/etc/localtime`文件, 那么可能就会导致修改的不是`/etc/localtime`文件, 而是原时区的文件内容. 即把原来软链接指向的文件给覆盖了, 原文件的文件名没变, 但内容成了`Shanghai`那个文件了. 
 
-`/etc/localtime`是通过符号链接链接`/usr/share/zoneinfo`下的文件, 而java是通过**文件名**来确认时区的, data命令是通过**文件内容**确认时区的, 这样就导致了data命令时区正确, 而java的时区是错误的. 
+`/etc/localtime`是通过符号链接链接`/usr/share/zoneinfo`下的文件, 而java是通过**文件名**来确认时区的, `date`命令是通过**文件内容**确认时区的, 这样就导致了`date`命令时区正确, 而java的时区是错误的. 
 
 > 实际实验时`TZ`环境变量的确有效, 比如`export TZ=Asia/Shanghai && java xxxx`时日志正常, 但是那个`clock`文件根本没用.
 

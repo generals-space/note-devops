@@ -6,6 +6,10 @@
     - 常用内置分词器功能介绍
     - `IK`中文分词器的分词机制, 安装及使用
     - 自定义分词"小脑斧"
+2. [Elasticsearch词库扩充实践](https://blog.csdn.net/ldllovegyh/article/details/82820653)
+    - `${es_home}/plugins/ik/config`路径, 与参考文章1不同
+3. [Elasticsearch配置IK分词器的远程词库](https://zhuanlan.zhihu.com/p/95873129)
+    - 远程词库
 
 ES: 5.5.0
 
