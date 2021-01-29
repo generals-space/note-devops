@@ -2,6 +2,8 @@
 
 1. [21.4. logstash 配置项](http://www.netkiller.cn/monitoring/elk/logstash.html)
     - 各种类型日志的捕获示例, stdin, redis, nginx, mysql 等.
+2. [logstash 官方文档 配置文件书写格式](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html#plugins-outputs-elasticsearch-options)
+    - `output.elasticsearch.hosts`数组的书写格式
 
 最简示例
 

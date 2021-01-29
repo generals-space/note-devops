@@ -23,7 +23,7 @@
 WebDriverException("An unknown server-side error occurred while processing the command. Original error: Error getting device API level. Original error: The actual output 'WARNING: linker: libset.so: unused DT entry: type 0x6fffffff arg 0x3\r\nWARNING: linker: libset.so: unused DT entry: type 0x6ffffffe arg 0x4518\r\nWARNING: linker: libset.so: unused DT entry: type 0x6fffffff arg 0x3\r\n22' cannot be converted to an integer", None, None)
 ```
 
-我试了下, 原来连接上这个手机手, `adb`命令除了`adb devices|disconnect`, 其他的基本都会出问题...
+我试了下, 原来连接上这个手机, `adb`命令除了`adb devices|disconnect`, 其他的基本都会出问题...
 
 ```
 root@79a8d22ee501:/app# adb shell getprop ro.build.version.release
@@ -42,7 +42,7 @@ WARNING: linker: libset.so: unused DT entry: type 0x6fffffff arg 0x3
 
 不过还是有结果的.
 
-后来对`adb`命令的改造失败, 只能想办法把这个问题规避掉, 毕竟结果是可以得到的, 只是 appium 库在解析的时候出了问题. 于是写了如下脚本
+后来对`adb`命令自身的改造(涉及到修改ELF程序格式)失败, 只能想办法把这个问题规避掉, 毕竟结果是可以得到的, 只是 appium 库在解析的时候出了问题. 于是写了如下脚本
 
 ```bash
 #!/bin/bash
@@ -73,7 +73,7 @@ $ echo $?
 
 但一般我们的目标是前半部分的结果, 按照参考文章1和4, 有如下几种方案可以选择
 
-```
+```bash
 echo 123 | grep -v 123; test ${PIPESTATUS[0]} -eq 0
 echo 123 | grep -v 123 && echo 0 || echo 1
 set -o pipefail
