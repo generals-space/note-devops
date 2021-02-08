@@ -15,6 +15,8 @@
     - 由`this._websocket = new WebSocket(uri, protocols);`
     - 改为`this._websocket = new WebSocket(uri, ['binary', 'base64']); //protocols);`
     - 实践有效.
+6. [ubuntu使用VNC运行基于docker的桌面系统](https://floodshao.github.io/2020/03/14/docker%E4%B8%8B%E4%BD%BF%E7%94%A8vnc%E5%88%9B%E5%BB%BA%E7%9B%B8%E5%BA%94%E7%89%88%E6%9C%AC%E7%9A%84ubuntu%E6%A1%8C%E9%9D%A2%E7%B3%BB%E7%BB%9F/)
+    - 原生的gnome桌面基本带不动vnc, 所以使用其他桌面
 
 ubuntu: 18.04.4 LTS (Bionic Beaver)
 
@@ -30,12 +32,14 @@ ubuntu: 18.04.4 LTS (Bionic Beaver)
 
 > 如果先安装并启动了 VNC server 与 noVNC, 再安装桌面环境, 则需要重启 VNC server 进程.
 
+本文安装第1种.
+
 ## 2. 安装启动VNC
 
 参考文章1提到了两种 VNC server, `tightvncserver`与`x11vnc`, 这里只选`tightvncserver`.
 
 ```
-apt-get install tightvncserver
+apt-get -y install tightvncserver
 ```
 
 在启动VNC之前, 需要创建vnc连接的密码, 使用客户端连接时需要这个密码.
