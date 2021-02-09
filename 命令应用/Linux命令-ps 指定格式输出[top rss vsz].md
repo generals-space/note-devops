@@ -57,3 +57,9 @@ jinchenghao,%cpu=abc,%mem
 ```
 ps -e -o pid,ppid,%cpu,start_time,command
 ```
+
+线程相关
+
+```
+ps -eT -o pid,ppid,tid,%cpu,start_time,command
+```
