@@ -48,6 +48,8 @@ apt-get install gnome-panel gnome-settings-daemon metacity nautilus gnome-termin
 为了能使 vnc server 加载 gnome 桌面, 需要修改`xstartup`文件内容如下
 
 ```bash
+#!/bin/sh
+
 xrdb $HOME/.Xresources
 xsetroot -solid grey
 #x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
