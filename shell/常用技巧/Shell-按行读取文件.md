@@ -16,6 +16,7 @@ done < filename(待读取的文件)
 
 > 注意: 这种读取方式需要文件末尾存在一个空行, 否则最后一行的数据无法被遍历到.
 
+`while read line do echo $line; done < filename(待读取的文件)`
 
 ## 2. 第二种
 

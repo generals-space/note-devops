@@ -63,3 +63,37 @@ vncserver :1 -geometry 1920x1080 -depth 24
 ```
 
 这种需要在实例启动时指定, 也可以写在`/etc/sysconfig/vncserver`中.
+
+## 4. 指定端口
+
+`vncserver --help`中一般不会有直接方式指定端口, 比如
+
+```
+root@e32a946a4618:~/.vnc# vncserver --help
+VNC4 server
+
+Usage: vncserver [<OPTIONS>] [:<DISPLAY#>]
+       vncserver -kill :<DISPLAY#>
+
+<OPTIONS> are Xvnc4 options, or:
+
+        -name <DESKTOP-NAME>
+        -depth <DEPTH>
+        -geometry <WIDTH>x<HEIGHT>
+        -httpport number
+        -basehttpport number
+        -alwaysshared
+        -nevershared
+        -pixelformat rgb<NNN>
+        -pixelformat bgr<NNN>
+        <Xvnc4-options>...
+
+See vnc4server and Xvnc4 manual pages for more information.
+```
+
+端口参数在`<Xvnc4-options>`中, 可以使用`Xvnc4 --help`查看.
+
+```
+vnc4server :1 --rfbport=8000
+```
+
