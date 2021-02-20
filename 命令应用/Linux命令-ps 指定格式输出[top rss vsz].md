@@ -55,11 +55,11 @@ jinchenghao,%cpu=abc,%mem
 ## 常用格式
 
 ```
-ps -e -o pid,ppid,%cpu,start_time,command
+ps -e -o pid,ppid,%cpu,%mem,start_time,command
 ```
 
 线程相关
 
 ```
-ps -eT -o pid,ppid,tid,%cpu,start_time,command
+ps -eT -o pid,ppid,tid,%cpu,%mem,start_time,command
 ```
