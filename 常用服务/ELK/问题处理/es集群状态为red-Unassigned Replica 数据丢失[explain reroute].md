@@ -74,8 +74,8 @@ POST /_cluster/reroute
         {
             "allocate_stale_primary" : {
                 "index" : "索引名", 
-                "shard" : 分片id, 整型数值,
-                "node" : "目标主机id hash字符串",
+                "shard" : 分片id, // 整型数值
+                "node" : "目标主机id",
                 "accept_data_loss": true
             }
         }
