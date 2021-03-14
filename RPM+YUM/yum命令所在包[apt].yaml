@@ -39,6 +39,8 @@ yum:
         - dig
     automake:
         - aclocal
+    promisc:
+        - pstree
 apt:
     xz-utils:
         - xz(解压命令)
@@ -60,3 +62,5 @@ apt:
         - zlib1g-dev
     software-properties-common:
         - apt-add-repository
+    psmisc:
+        - pstree
