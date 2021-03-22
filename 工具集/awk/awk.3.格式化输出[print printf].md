@@ -1,4 +1,4 @@
-# Linux命令-awk(三)格式化输出
+# awk.3.格式化输出[print printf]
 
 参考文章
 
@@ -17,7 +17,7 @@ FIN_WAIT1 2
 TIME_WAIT 3982
 ```
 
-普通`print`的输出
+## 普通`print`的输出
 
 ```
 $ awk '{print $1, $2}' awk.txt
@@ -27,7 +27,7 @@ FIN_WAIT1 2
 TIME_WAIT 3982
 ```
 
-`printf`实现左对齐输出
+## `printf`实现左对齐输出
 
 ```
 $ awk '{printf("status: %-15s sum: %d\n", $1, $2)}' awk.txt
