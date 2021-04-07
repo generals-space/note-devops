@@ -1,6 +1,4 @@
-# SSH服务配置
-
-## 1. 禁止某些用户远程登陆
+# sshd禁止某些用户远程登陆[sshd_config]
 
 根据需要在`/etc/ssh/sshd_config`添加
 

@@ -11,3 +11,5 @@
 加过`&`, 也试过`nohup`, 都不行.
 
 我觉得参考文章1中给出的猜想应该是正确的, 于是在`ssh forward`后加了一句远程命令`tail -f /etc/os-release`, 阻塞住ssh进程不被杀死, 有效.
+
+`flush_dns.sh`是MacOS下刷新`nat.generals.space`域名解析的脚本.
