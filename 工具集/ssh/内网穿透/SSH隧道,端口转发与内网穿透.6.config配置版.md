@@ -1,4 +1,4 @@
-# SSH隧道,端口转发与内网穿透 config配置
+# SSH隧道,端口转发与内网穿透.6.config配置版
 
 ```
 Host forward

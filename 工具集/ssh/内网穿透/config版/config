@@ -1,0 +1,36 @@
+Host nat
+    ## HostName可以是域名也可以是IP
+    HostName nat.generals.space
+    Port 22
+    User root
+    ServerAliveInterval 60
+    StrictHostKeyChecking no
+Host forwarder
+    ## HostName可以是域名也可以是IP
+    HostName nat.generals.space
+    Port 22
+    User root
+    ServerAliveInterval 60
+    StrictHostKeyChecking no
+    ConnectTimeout 10
+Host forward-ssh
+    HostName nat.generals.space
+    Port 22
+    User root
+    ServerAliveInterval 60
+    StrictHostKeyChecking no
+    ## 不开启tty, 与ssh的`-T`选项作用相同
+    RequestTTY no
+    ExitOnForwardFailure yes
+    RemoteForward 0.0.0.0:10004 127.0.0.1:22
+Host forward-vnc
+    HostName nat.generals.space
+    Port 22
+    User root
+    ServerAliveInterval 60
+    StrictHostKeyChecking no
+    ## 不开启tty, 与ssh的`-T`选项作用相同
+    RequestTTY no
+    ExitOnForwardFailure yes
+    ## RemoteForward 0.0.0.0:10001 127.0.0.1:22
+    RemoteForward 0.0.0.0:10005 127.0.0.1:5901

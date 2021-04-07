@@ -1,0 +1,5 @@
+* * * * * cd ~/.ssh; /bin/bash autorestart.sh
+
+如果是 MacOS, 可能需要在 root 用户的 crontab 中配置如下任务
+
+*/2 * * * * cd /Users/general/.ssh; /bin/bash flush_dns.sh
