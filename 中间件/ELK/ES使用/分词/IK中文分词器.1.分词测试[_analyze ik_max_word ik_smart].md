@@ -5,7 +5,7 @@
 1. [Elasticsearch之插件Ik分词器详细测试](https://blog.csdn.net/weixin_43871371/article/details/102973708)
     - `POST _analyze`接口进行分词测试
 
-本目录的 readme 文章已经演示了默认`standard`分词器的**分词**过程, 对于英文内容就是按空闲
+本目录的 readme 文章已经演示了默认`standard`分词器的**分词**过程, 对于英文内容就是按空格.
 
 ## 环境搭建
 
