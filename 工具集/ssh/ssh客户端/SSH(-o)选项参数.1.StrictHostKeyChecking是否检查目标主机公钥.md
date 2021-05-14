@@ -10,7 +10,7 @@
 
 在ssh连接目标服务器时, 如果在`~/.ssh/knows_hosts`文件中, 没有存储目标主机的公钥, ssh客户端会提示接受目标公钥. 
 
-```
+```console
 $ ssh root@192.168.166.220
 The authenticity of host '192.168.166.220 (192.168.166.220)' can't be established.
 RSA key fingerprint is 3c:67:0e:d5:1b:28:30:28:f4:62:15:e4:1d:ea:fb:76.
@@ -19,8 +19,8 @@ Are you sure you want to continue connecting (yes/no)?
 
 尤其是如果对方重装过系统, `known_hosts`文件存储的公钥与新公钥不一致时, 会报错而终止.
 
-```
-$ ssh  root@192.168.166.220
+```console
+$ ssh root@192.168.166.220
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -38,7 +38,7 @@ Host key verification failed.
 
 将StrictHostKeyChecking设置为`no`后就不会有这种情况.
 
-```
+```console
 $ ssh -o 'StrictHostKeyChecking no' root@192.168.166.220
 Warning: Permanently added '192.168.166.220' (RSA) to the list of known hosts.
 Last login: Sat Dec 30 20:39:42 2017 from 192.168.101.65
