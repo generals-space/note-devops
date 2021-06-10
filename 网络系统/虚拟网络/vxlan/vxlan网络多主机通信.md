@@ -1,3 +1,5 @@
+# vxlan网络多主机通信
+
 参考文章
 
 1. [什么是 VxLAN？](https://segmentfault.com/a/1190000019662412)
@@ -6,7 +8,7 @@
 2. [Linux 下实践 VxLAN](https://segmentfault.com/a/1190000019905778)
     - 系列文章2
     - 第一个点对点示例很清晰, 但是第二个docker容器示例不太具有一般性.
-    - 第二个示例中由于`remote`选项的使用, 无法实现多物理机场景入网.
+    - 第二个示例中由于`remote`选项的使用, 属于单对单通信, 无法实现多物理机场景入网.
 3. [[svc]linux上vxlan实战](https://www.cnblogs.com/iiiiher/p/8082779.html)
     - vxlan多播实现多台互通示例(`group 239.1.1.1`)
 
@@ -88,3 +90,7 @@ e6:0d:35:61:51:0f > Broadcast, ethertype ARP (0x0806), length 42: Ethernet (len 
     172.16.91.129.47666 > 172.16.91.128.4789: VXLAN, flags [I] (0x08), vni 42
 36:64:80:a2:4a:31 > e6:0d:35:61:51:0f, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Reply 10.0.0.2 is-at 36:64:80:a2:4a:31, length 28
 ```
+
+------
+
+上述场景是每台物理机上只创建一个vxlan设备的场景, flannel那种基于 vxlan 的网络模型是怎样的? 毕竟一台主机上有那么多容器呢, 共用同一个vxlan设备???

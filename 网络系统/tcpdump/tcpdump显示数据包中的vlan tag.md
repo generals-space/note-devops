@@ -19,3 +19,4 @@ tcpdump: listening on ens33, link-type EN10MB (Ethernet), capture size 262144 by
 	    DHCP-Message Option 53, length 1: Discover
 ```
 
+tcpdump -nev -i bond0 -p icmp

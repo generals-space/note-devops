@@ -4,7 +4,7 @@
 
 初始veth pair状态如下.
 
-```
+```console
 [root@k8s-worker-7-17 ~]# ip link add type veth
 [root@k8s-worker-7-17 ~]# ip a
 1: lo: <LOOPBACK> mtu 65536 qdisc noop state DOWN qlen 1
@@ -15,11 +15,11 @@
     link/ether 56:f6:13:ec:f3:78 brd ff:ff:ff:ff:ff:ff
 ```
 
-当veth pair被分别放到两个不同的netns后, 就会出现`link-netnsid`字段, 而这个字段与对端的netns相关.
+当veth pair被分别放到两个不同的`netns`后, 就会出现`link-netnsid`字段, 而这个字段与**对端**的`netns`相关.
 
-假设当前所在的netns为`tset`, 我们将veth1设备放到另一个`netns1`中后, 
+假设当前所在的netns为`test`, 我们将veth1设备放到另一个`netns1`中. 
 
-```
+```console
 [root@k8s-worker-7-17 ~]# ip netns ls
 test
 netns1
@@ -28,6 +28,11 @@ netns1
 [root@k8s-worker-7-17 ~]# ip netns ls
 test
 netns1
+```
+
+此时再查看原来的命名空间的设备列表.
+
+```console
 [root@k8s-worker-7-17 ~]# ip a
 1: lo: <LOOPBACK> mtu 65536 qdisc noop state DOWN qlen 1
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
@@ -40,4 +45,4 @@ netns1 (id: 0)
 
 `link-netnsid 0`正好对应着`netns1 (id: 0)`, 在`netns1`空间中可以看到相似的输出.
 
-不过这里的0是相对值, 对端`netns1`中看到的也是相对值, 不同netns下看到其他netns的id是不同的.
+注意这里的0是相对值, 对端`netns1`中看到的也是相对值, 不同netns下看到其他netns的id是不同的.
