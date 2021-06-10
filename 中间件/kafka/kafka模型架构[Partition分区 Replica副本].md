@@ -13,7 +13,7 @@
     - 设计思想(很不错)
     - 应用场景(不错)
     - Push 模式 vs Pull 模式(非常不错!)
-5. [kafka partition（分区）与 group](https://www.cnblogs.com/liuwei6/p/6900686.html)
+4. [kafka partition（分区）与 group](https://www.cnblogs.com/liuwei6/p/6900686.html)
     - 对于传统的message queue而言, 一般会删除已经被消费的消息, 而Kafka集群会保留所有的消息, 无论其被消费与否. 
     - 当然, 因为磁盘限制, 不可能永久保留所有数据（实际上也没必要）, 因此Kafka提供两种策略删除旧数据. 一是基于时间, 二是基于Partition文件大小. 
     - Kafka读取特定消息的时间复杂度为O(1), 即与文件大小无关, 所以这里删除过期文件与提高Kafka性能无关. 选择怎样的删除策略只与磁盘以及具体的需求有关
