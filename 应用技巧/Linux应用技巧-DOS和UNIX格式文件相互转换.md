@@ -2,15 +2,14 @@
 
 参考文章
 
-[DOS和UNIX文本文件之间相互转换的方法](http://blog.csdn.net/fan_hai_ping/article/details/8352087)
-
-[Shell中的IFS解惑](http://blog.csdn.net/whuslei/article/details/7187639)
+1. [DOS和UNIX文本文件之间相互转换的方法](http://blog.csdn.net/fan_hai_ping/article/details/8352087)
+2. [Shell中的IFS解惑](http://blog.csdn.net/whuslei/article/details/7187639)
 
 在Vim显示`^M`字符的原因: 在Windows下换行使用`CRLF`两个字符来表示, 其中CR为回车（ASCII=0x0D）, LF为换行（ASCII=0x0A）, 而在Linux下使用LF一个字符来表示. 在Linux下使用vi来查看一些Windows下创建的文本文件时, 有时会发现在每一行尾部有^M字符, 其实它是显示CR回车字符. 
 
 在windows下创建一个空文件, 就输入一个回车然后保存, 传到linxu系统中, 按照如下方式检测.
 
-```
+```console
 ## 这个回车也算是1行
 $ wc -l test
 1 ./test
@@ -24,7 +23,7 @@ $ cat ./test.sh | od -b
 
 在linux下把这个空行删除, 重新键入一个回车, 再次执行上面的操作.
 
-```
+```console
 $ wc -l test.sh 
 1 test.sh
 $ cat ./test.sh | od -b
@@ -133,5 +132,5 @@ $ python -c "importsys; map(sys.stdout.write, (l[:-1] + '\r\n' for l in sys.stdi
 ```
 
 ## 8. 总结
-         
+
 还有其它DOS和UNIX文本文件的转换方法, 个人推荐使用vim命令. 但是, 对于大型的文件, 推荐使用perl工具, 你也不会希望在vim或Emacs中打开几个G的文本文件. 
