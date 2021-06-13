@@ -10,23 +10,24 @@
 
 ## BRIDGE MANAGEMENT
 
-| ACTION                            | brctl                           | bridge |
-| :-------------------------------- | :------------------------------ | :----- |
-| creating bridge                   | `brctl addbr <bridge>`          |        |
-| deleting bridge                   | `brctl delbr <bridge>`          |        |
-| add interface (port) to bridge    | `brctl addif <bridge> <ifname>` |        |
-| delete interface (port) on bridge | `brctl delbr <bridge>`          |        |
+| ACTION                            | brctl                           | bridge | remark                 |
+| :-------------------------------- | :------------------------------ | :----- | :--------------------- |
+| creating bridge                   | `brctl addbr <bridge>`          |        | 创建网桥               |
+| deleting bridge                   | `brctl delbr <bridge>`          |        | 删除网桥               |
+| add interface (port) to bridge    | `brctl addif <bridge> <ifname>` |        | 向网桥中添加接口       |
+| delete interface (port) on bridge | `brctl delbr <bridge>`          |        | 从网桥中移除接口       |
+| delete interface (port) on bridge | `brctl show <bridge>`           |        | 查看网桥中已连接的接口 |
 
 ## FDB MANAGEMENT
 
-| ACTION                              | brctl                                  | bridge                                                 |
-| :---------------------------------- | :------------------------------------- | :----------------------------------------------------- |
-| Shows a list of MACs in FDB         | `brctl showmacs <bridge>`              | `bridge fdb show [dev 设备名]`                          |
+| ACTION                              | brctl                                 | bridge                                                 |
+| :---------------------------------- | :------------------------------------ | :----------------------------------------------------- |
+| Shows a list of MACs in FDB         | `brctl showmacs <bridge>`             | `bridge fdb show [dev 设备名]`                         |
 | Sets FDB entries ageing time        | `brctl setageingtime <bridge> <time>` |                                                        |
-| Sets FDB garbage collector interval | `brctl setgcint <brname> <time>`       |                                                        |
-| Adds FDB entry                      |                                        | `bridge fdb add dev <interface> [dst, vni, port, via]` |
-| Appends FDB entry                   |                                        | `bridge fdb append (parameters same as for fdb add)`   |
-| Deletes FDB entry                   |                                        | `bridge fdb delete (parameters same as for fdb add)`   |
+| Sets FDB garbage collector interval | `brctl setgcint <brname> <time>`      |                                                        |
+| Adds FDB entry                      |                                       | `bridge fdb add dev <interface> [dst, vni, port, via]` |
+| Appends FDB entry                   |                                       | `bridge fdb append (parameters same as for fdb add)`   |
+| Deletes FDB entry                   |                                       | `bridge fdb delete (parameters same as for fdb add)`   |
 
 ## STP MANAGEMENT
 
