@@ -40,10 +40,10 @@ Open tun/tap device: tun0 for reading...
 
 ## 启动 tun 设备
 
-使用`ip`命令为`tun0`设备赋予IP地址, 可随意指定, 一般是一个不存在的网络, 如`10.18.0.2/24`.
+使用`ip`命令为`tun0`设备赋予IP地址, 可随意指定, 一般是一个不存在的局域网络, 如`192.168.100.2/24`.
 
 ```
-ip addr add 10.18.0.2/24 dev tun0
+ip addr add 192.168.100.2/24 dev tun0
 ```
 
 上一步程序创建的`tun0`设备默认为`DOWN`的状态, 我们需要手动将其启动.
@@ -55,12 +55,12 @@ ip link set tun0 up
 启动后使用`ip r`, 可以看到路由表中多了如下表项
 
 ```
-10.18.0.0/24 dev tun0 proto kernel scope link src 10.18.0.2
+192.168.100.0/24 dev tun0 proto kernel scope link src 192.168.100.2
 ```
 
 ## ping
 
-ping这个`tun0`设备IP所在网段的其他IP(比如10.18.0.3), 这些包会根据上面新增的路由表流经`tun0`设备, 不过当然是ping不通的, 因为数据包到了`tun0`, 就被我们的程序读取到了, 于是我们的程序有如下输出.
+ping这个`tun0`设备IP所在网段的其他IP(比如192.168.100.3), 这些包会根据上面新增的路由表流经`tun0`设备, 不过当然是ping不通的, 因为数据包到了`tun0`, 就被我们的程序读取到了, 于是我们的程序有如下输出.
 
 ```
 Open tun/tap device: tun0 for reading...
