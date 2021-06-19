@@ -16,3 +16,46 @@
 
 简单来说, 就是在L2模式下相连的设备可以通信, 但走的是L2, 不会涉及路由. 如果ipvlan设备是工作在L3, 那么就会经过路由进行转发, 这种情况下会匹配到`iptables`中的`PREROUTING/POSTROUTING`阶段. 如果ipvlan设备工作在L3, 而各设备的IP又非同一子网, ta们之间是没有办法直接通信的, 除非在宿主机上添加各自的路由. 这个倒不难理解.
 
+------
+
+##
+
+```bash
+ip link add link ens34 ipvlan1 type ipvlan mode l3
+ip link add link ens34 ipvlan2 type ipvlan mode l3
+
+## 创建ns
+ip net add net01
+ip net add net02
+
+## 将 ipvlan 设备分为移入指定ns
+ip link set ipvlan1 netns net01
+ip link set ipvlan2 netns net02
+
+## 要先将 ipvlan 设备放入 ns, 然后设置IP, 否则移入后地址会被置空
+ip net exec net01 ip addr add 10.0.2.10/24 dev ipvlan1
+ip net exec net02 ip addr add 10.0.3.10/24 dev ipvlan2
+ip net exec net01 ip link set ipvlan1 up
+ip net exec net02 ip link set ipvlan2 up
+
+## 设置默认路由
+ip net exec net01 ip route add default dev ipvlan1
+ip net exec net02 ip route add default dev ipvlan2
+```
+
+```
+ip link add link ens34 ipvlan3 type ipvlan mode l3
+ip net exec net02 ip addr add 10.0.4.10/24 dev ipvlan3
+ip link set ipvlan3 up
+```
+
+------
+
+```
+$ ip link add link lo ipvlan1 type ipvlan mode l3
+RTNETLINK answers: Invalid argument
+```
+
+不能基于`lo`环回网卡创建ipvlan设备.
+
+另外, 基于`bridge`设备创建的`ipvlan`设备, 不能像ether设备那样互通.
