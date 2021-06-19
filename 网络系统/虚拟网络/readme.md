@@ -46,6 +46,8 @@
     - eth0:0, eth0:1 与 eth0.171, eth0.173的区别: 子网卡与虚拟vlan网卡
 18. [Linux 上的基础网络设备详解](https://www.ibm.com/developerworks/cn/linux/1310_xiawc_networkdevice/index.html)
     - 不知道怎么归类, 不明觉厉.
+19. [【译】Linux虚拟网络接口简介](https://xiaoz.co/2020/01/23/linux-interfaces-for-virtual-networking/)
+    - 这个文章把所有可能的虚拟网络设备都提到了, 并做了简洁的解释.
 
 虚拟网卡, 网桥bridge, 虚拟IP, NAT的区别
 

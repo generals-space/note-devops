@@ -2,7 +2,6 @@
 
 参考文章
 
-
 ```console
 $ ip link add flannel0 type bridge
 $ ip link del flannel0 type bridge

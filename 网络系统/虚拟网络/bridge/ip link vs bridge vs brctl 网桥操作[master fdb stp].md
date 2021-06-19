@@ -1,22 +1,36 @@
-# bridge vs brctl
+# ip link vs bridge vs brctl 网桥操作[master fdb stp]
 
 参考文章
 
 1. [Comparison of BRCTL and BRIDGE commands](https://sgros-students.blogspot.com/2013/11/comparison-of-brctl-and-bridge-commands.html)
     - 分别介绍了`brctl`与`bridge`对虚拟网桥设备的操作, 对`FDB`(转发DB `Forwarding Database`)及`STP`(生成树协议 `Spanning Tree Protocol`)的概念有简单介绍.
     - 以表格形式展示两者的交叉与互补
+2. [网络虚拟化技术（一）: Linux网络虚拟化](https://blog.kghost.info/2013/03/01/linux-network-emulator/)
+3. [Network bridge](https://wiki.archlinux.org/index.php/Network_bridge)
 
 `bridge`属于`iproute2`软件包, 而`brctl`属于`bridge-utils`软件包. 
 
+要允许系统对bridge设备的管理, 需要启动相关模块`modprobe br_netfilter`.
+
 ## BRIDGE MANAGEMENT
 
-| ACTION                            | brctl                           | bridge | remark                 |
-| :-------------------------------- | :------------------------------ | :----- | :--------------------- |
-| creating bridge                   | `brctl addbr <bridge>`          |        | 创建网桥               |
-| deleting bridge                   | `brctl delbr <bridge>`          |        | 删除网桥               |
-| add interface (port) to bridge    | `brctl addif <bridge> <ifname>` |        | 向网桥中添加接口       |
-| delete interface (port) on bridge | `brctl delbr <bridge>`          |        | 从网桥中移除接口       |
-| delete interface (port) on bridge | `brctl show <bridge>`           |        | 查看网桥中已连接的接口 |
+| ip link                          | brctl                      | bridge | remark                         |
+| :------------------------------- | :------------------------- | :----- | :----------------------------- |
+| ip link add br0 type bridge      | `brctl addbr br0`          |        | 创建网桥设备 br0               |
+| ip link del dev br0              | `brctl delbr br0`          |        | 删除网桥设备 br0               |
+| ip link set dev br0 up           |                            |        | 启动网桥设备 br0               |
+| ip link set dev veth0 master br0 | `brctl addif br0 <ifname>` |        | 向网桥中添加目标接口           |
+| ip link set dev veth0 nomaster   | `brctl delbr br0 <ifname>` |        | 从网桥中移除目标接口           |
+| ip link show type bridge         | `brctl show`               |        | 查看本机上的bridge设备列表     |
+| ip link show master br0          | `brctl show br0`           |        | 查看目标网桥中已接入的设备列表 |
+
+目前`<ifname>`只有veth设备, ether物理接口2种可以接入bridge, 其他还没有实验过.
+
+在使用`brctl delbr`删除一个bridge设备前, 需要使用`ip`命令将该设备设置为down的状态, 否则会出错.
+
+```
+bridge br0 is still up; can't delete it
+```
 
 ## FDB MANAGEMENT
 

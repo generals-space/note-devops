@@ -9,7 +9,6 @@
     - 多网卡主机创建两组bond的方法示例
 3. [【原创】CentOS8双网卡绑定](https://www.bbsmax.com/A/l1dypWO65e/)
 
-
 主要就是在`/etc/sysconfig/network-scripts`目录下创建`ifcfg-br0`并修改`ifcfg-ethX`等后, 需要使用`nmcli c reload`创建网络使之生效.
 
 另外, CentOS 8系统中, 修改后的`ethX`配置文件中的UUID不能变动, 否则会因为UUID与设备名称无法对应导致bond接口启动失败.
