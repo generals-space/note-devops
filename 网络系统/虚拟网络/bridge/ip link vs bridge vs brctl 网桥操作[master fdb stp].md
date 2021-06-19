@@ -7,6 +7,8 @@
     - 以表格形式展示两者的交叉与互补
 2. [网络虚拟化技术（一）: Linux网络虚拟化](https://blog.kghost.info/2013/03/01/linux-network-emulator/)
 3. [Network bridge](https://wiki.archlinux.org/index.php/Network_bridge)
+4. [Linux 虚拟网卡技术：Macvlan](https://juejin.cn/post/6844903810851143693)
+    - `echo 1 > /sys/class/net/br0/brif/eth0/hairpin_mode`开启`hairpin`模式
 
 `bridge`属于`iproute2`软件包, 而`brctl`属于`bridge-utils`软件包. 
 
@@ -14,15 +16,18 @@
 
 ## BRIDGE MANAGEMENT
 
-| ip link                          | brctl                      | bridge | remark                         |
-| :------------------------------- | :------------------------- | :----- | :----------------------------- |
-| ip link add br0 type bridge      | `brctl addbr br0`          |        | 创建网桥设备 br0               |
-| ip link del dev br0              | `brctl delbr br0`          |        | 删除网桥设备 br0               |
-| ip link set dev br0 up           |                            |        | 启动网桥设备 br0               |
-| ip link set dev veth0 master br0 | `brctl addif br0 <ifname>` |        | 向网桥中添加目标接口           |
-| ip link set dev veth0 nomaster   | `brctl delbr br0 <ifname>` |        | 从网桥中移除目标接口           |
-| ip link show type bridge         | `brctl show`               |        | 查看本机上的bridge设备列表     |
-| ip link show master br0          | `brctl show br0`           |        | 查看目标网桥中已接入的设备列表 |
+| ip link                            | brctl                           | bridge | remark                                                       |
+| :--------------------------------- | :------------------------------ | :----- | :----------------------------------------------------------- |
+| ip link add br0 type bridge        | `brctl addbr br0`               |        | 创建网桥设备 br0                                             |
+| ip link del dev br0                | `brctl delbr br0`               |        | 删除网桥设备 br0                                             |
+| ip link set dev br0 up             |                                 |        | 启动网桥设备 br0                                             |
+| ip link set dev veth0 master br0   | `brctl addif br0 <ifname>`      |        | 向网桥中添加目标接口                                         |
+| ip link set dev veth0 nomaster     | `brctl delbr br0 <ifname>`      |        | 从网桥中移除目标接口                                         |
+| ip link show type bridge           | `brctl show`                    |        | 查看本机上的bridge设备列表                                   |
+| ip link show master br0            | `brctl show br0`                |        | 查看目标网桥中已接入的设备列表                               |
+| bridge link set dev br0 hairpin on | `brctl hairpin br0 <ifname> on` |        | 开启目标网桥设备的`hairpin`模式,                             |
+|                                    |                                 |        | 看起来, `bridge link`看起来是让`br0`整个设备都开启`hairpin`, |
+|                                    |                                 |        | 而`brctl`则只是让`br0`连接`<ifname>`的那个端口开启`hairpin`  |
 
 目前`<ifname>`只有veth设备, ether物理接口2种可以接入bridge, 其他还没有实验过.
 
@@ -31,6 +36,8 @@
 ```
 bridge br0 is still up; can't delete it
 ```
+
+如果`bridge link`开启`hairpin`失败了, 报`RTNETLINK answers: Operation not supported`, 可以换用`brctl`试试, 也可以用参考文章4中的方法.
 
 ## FDB MANAGEMENT
 
