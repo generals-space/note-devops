@@ -14,3 +14,4 @@
 6. [图解几个与Linux网络虚拟化相关的虚拟网卡-VETH/MACVLAN/MACVTAP/IPVLAN](https://blog.csdn.net/dog250/article/details/45788279)
     - `vepa`的实现原理
 
+在做macvlan实验过程中, ns01与ns02是不会相互ping通过的, 理论上说这也算正常, 但是由于ns01和ns02都可以直接连接`172.16.91.2`, 所以手动将ns中的路由修改为下一跳指向`172.16.91.2`时, ns01和ns02就可以相互ping通了, 无论是private还是vepa模式...
