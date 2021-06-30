@@ -3,7 +3,6 @@
 参考文章
 
 1. [Xargs用法详解](http://blog.csdn.net/zhangfn2011/article/details/6776925)
-
 2. [linux find中的-print0和xargs中-0的奥妙](http://www.jb51.net/LINUXjishu/205761.html)
 
 ## 1. xargs简介
