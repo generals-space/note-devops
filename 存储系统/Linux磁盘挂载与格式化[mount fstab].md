@@ -18,9 +18,8 @@
 
 ### 2.1 Windows
 
-1. 右键"我的电脑"－>"管理"－>"磁盘管理"，然后会看到新分配的磁盘但没有分区
-
-2. 右键"新加卷"(未分区的磁盘)，选择"新建"，按照向导，一步步，选择硬盘分区模式、格式化硬盘即可使用.
+1. 右键"我的电脑"－>"管理"－>"磁盘管理", 然后会看到新分配的磁盘但没有分区.
+2. 右键"新加卷"(未分区的磁盘), 选择"新建", 按照向导, 一步步, 选择硬盘分区模式、格式化硬盘即可使用.
 
 ### 2.2 Linux
 
@@ -94,7 +93,7 @@ Syncing disks.
 
 再次使用 "fdisk -l"这个命令来查看会发现出现了`/dev/sdb1`(说明已经完成了分区工作)
 
-```
+```console
 $ fdisk -l
 
 Disk /dev/sda: 85.9 GB, 85899345920 bytes
@@ -125,7 +124,7 @@ Disk identifier: 0x4fe05028
 
 对新建的分区进行格式化: 格式化成ext4的文件系统即可
 
-```
+```console
 $ mkfs -t ext4 /dev/sdb1
 mke2fs 1.41.12 (17-May-2010)
 Filesystem label=
@@ -157,7 +156,7 @@ This filesystem will be automatically checked every 33 mounts or
 
 在挂载之前使用`df -h`查看系统所有可用分区
 
-```
+```console
 $ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/sda3        75G  6.4G   65G  10% /
@@ -167,13 +166,13 @@ tmpfs           238M  4.0K  238M   1% /dev/shm
 
 **手动挂载**
 
-使用`mount /dev/sdb1  /要挂载的目录(自定义)`, 然后`cd  /挂载的目录`, 即可对其进行存储和访问
+使用`mount /dev/sdb1 /要挂载的目录(自定义)`, 然后`cd /挂载的目录`, 即可对其进行存储和访问
 
 **自动挂载**
 
 修改`/etc/fstab`即可
 
-使用`vim /etc/fstab`打开配置的文件，然后将下面的一行文字添加即可. 这样每次系统启动时就会挂载此磁盘, 直接可以使用.
+使用`vim /etc/fstab`打开配置的文件, 然后将下面的一行文字添加即可. 这样每次系统启动时就会挂载此磁盘, 直接可以使用.
 
 ```
 /dev/sdb1       /media(这个挂载的目录你自己设置即可)      ext4    defaults       0       1
@@ -181,7 +180,7 @@ tmpfs           238M  4.0K  238M   1% /dev/shm
 
 挂载后, 再次用`df -h`查看
 
-```
+```console
 $ mount /dev/sdb1 /media
 $ df -h
 Filesystem      Size  Used Avail Use% Mounted on

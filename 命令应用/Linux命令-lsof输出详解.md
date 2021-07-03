@@ -12,7 +12,7 @@
 
 `lsof`: list open files(列出打开的文件). 由于在linux里, "一切皆文件", 所以lsof几乎可以完成所有信息的查看.
 
-```
+```console
 # lsof | head
 COMMAND  PID  TID USER   FD      TYPE DEVICE SIZE/OFF    NODE NAME
 bash       1      root  cwd       DIR  0,260     4096  143809 /root
