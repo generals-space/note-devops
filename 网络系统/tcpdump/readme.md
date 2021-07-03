@@ -15,3 +15,4 @@ tcpdump -nv -i eth0
 - 协议类型: `ip`, `arp`, `rarp`, `tcp`, `udp`等类型;
 - 逻辑运算: 取非运算`not(!)`, 与运算`and(&&)`, 或运算`or(||)`;
 - 其他重要的关键字如下：gateway, broadcast,less,greater
+
