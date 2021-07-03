@@ -18,7 +18,7 @@ windows平台下, 打开 `控制面板`-> `外观和个性化` -> `字体`, 然�
 
 然后建立字体缓存, 执行以下命令
 
-```shell
+```bash
 cd /usr/share/fonts/chinese/TrueType
 mkfontscale
 mkfontdir

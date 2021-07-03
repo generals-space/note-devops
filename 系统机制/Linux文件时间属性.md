@@ -2,34 +2,29 @@
 
 参考文章
 
-[linux文件的三种时间属性](http://blog.csdn.net/signjing/article/details/7723516)
-
-[Find命令搭配atime/ctime/mtime时的日期写法](http://golehuang.blog.51cto.com/7499/1108124/)
-
-[理解inode](http://www.ruanyifeng.com/blog/2011/12/inode.html)
-
-[linux文件的三个主要的修改时间,和修改时间的touch命令](http://blog.csdn.net/taolinke/article/details/5715971)
+1. [linux文件的三种时间属性](http://blog.csdn.net/signjing/article/details/7723516)
+2. [Find命令搭配atime/ctime/mtime时的日期写法](http://golehuang.blog.51cto.com/7499/1108124/)
+3. [理解inode](http://www.ruanyifeng.com/blog/2011/12/inode.html)
+4. [linux文件的三个主要的修改时间,和修改时间的touch命令](http://blog.csdn.net/taolinke/article/details/5715971)
 
 ## 1. 理论基础
 
-- atime：访问时间（access time）, 指的是文件最后被读取的时间, 可以使用touch命令更改为当前时间;
+- `atime`: 访问时间(access time), 指的是文件最后被读取的时间, 可以使用touch命令更改为当前时间;
+- `ctime`: 变更时间(change time), 指的是文件**本身(自身权限, 名称, 路径等属性)**最后被变更的时间, 变更动作包括`chmod`、`chgrp`、`mv`, `gzip`等等;
+    - 注意: `gzip 文件名`貌似不会创建新文件, 压缩文件实际上替代了原文件, 并且只改变了ctime, 另外两个时间属性与原文件相同);
+- `mtime`: 修改时间(modify time), 指的是文件**内容**最后被修改的时间, 修改动作可以使用`echo`重定向、`vim`等等;
 
-- ctime：变更时间（change time）, 指的是文件**本身(自身权限, 名称, 路径等属性)**最后被变更的时间, 变更动作包括`chmod`、`chgrp`、`mv`, `gzip`等等(注意: `gzip 文件名`貌似不会创建新文件, 压缩文件实际上替代了原文件, 并且只改变了ctime, 另外两个时间属性与原文件相同);
+查看一个文件的三种时间属性可以使用`ls`或`stat`命令.
 
-- mtime：修改时间（modify time）, 指的是文件**内容**最后被修改的时间, 修改动作可以使用`echo`重定向、`vim`等等;
-
-查看一个文件的三种时间属性可以使用`ls`或`stat`命令
-
-```
-## 列出文件的 ctime
-$ ls -lc 文件名 
-## 列出文件的 atime
-$ ls -lu 文件名 
-##   列出文件的 mtime
-$ ls  -l  文件名 
-```
+用`ls`分别列出文件的`ctime`, `atime`, `mtime`
 
 ```
+ls -lc 文件名 
+ls -lu 文件名 
+ls -l  文件名 
+```
+
+```console
 $ stat ./testA 
   File: `./testA'
   Size: 0         	Blocks: 0          IO Block: 4096   regular empty file
@@ -69,7 +64,7 @@ Change: 2012-01-01 00:02:28.635043041 -0800
 然后我们跳到2013年, 对其进行一些操作后再次观察. 
 
 ```
-$  date -s 2013/01/01
+$ date -s 2013/01/01
 Tue Jan  1 00:00:00 PST 2013
 ## 如果不对`testA`文件进行任何操作的话, 这三个时间是不会变化的
 ## cat一下它(还是空文件, 所以无输出), 注意到它的atime变了, 而mtime与ctime都没变
@@ -144,22 +139,19 @@ Change: 2013-01-01 01:34:57.612833441 -0800
 
 ## 4. touch命令修改文件时间
 
-文件的时间很重要, 因为如果误判文件时间, 可能会造成某些程序无法正常运行, 万一我们发现一个文件的时间是未来的时间（很多时候会有这个问题, 我们在安装 的时候提到的GMT时间就是那个意思）, 那么怎样才能让次时间变成现在的时间呢？我们只需要一个touch命令即可。
+文件的时间很重要, 因为如果误判文件时间, 可能会造成某些程序无法正常运行, 万一我们发现一个文件的时间是未来的时间(很多时候会有这个问题, 我们在安装 的时候提到的GMT时间就是那个意思), 那么怎样才能让次时间变成现在的时间呢？我们只需要一个touch命令即可。
 
-touch的用法为：
+touch的用法为: 
 
 ```
 touch [-actmd] 文件
 ```
-参数：
+参数: 
 
 - -a: 仅修改access time
-
 - -m: 仅修改mtime
-
 - -c: 仅修改时间而不建立文件
-
-- -t: 后面可以接时间, 格式为：[[CC]YY]MMDDhhmm[.ss]
+- -t: 后面可以接时间, 格式为: [[CC]YY]MMDDhhmm[.ss]
 
 ```
 $ stat ./testA/
