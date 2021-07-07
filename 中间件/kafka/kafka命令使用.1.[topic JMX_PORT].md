@@ -4,6 +4,8 @@
 
 1. [Kafka的简单部署与学习](https://blog.csdn.net/SartinL/article/details/108846275)
 2. [kafka HA（高可用搭建）](https://blog.csdn.net/weixin_42267009/article/details/80411215)
+3. [Kafka常用命令之kafka-console-producer.sh](https://blog.csdn.net/qq_29116427/article/details/105912397)
+
 
 ## topic 操作
 
@@ -40,6 +42,8 @@ bin/kafka-topics.sh --describe --zookeeper $ZK_ADDR --topic test
 ```
 bin/kafka-console-producer.sh --broker-list 127.0.0.1:9092 --topic test
 ```
+
+> 正常情况, 每次回车表示触发"发送"操作, 回车后可直接使用"ctrl + c"退出生产者控制台.
 
 消费
 
