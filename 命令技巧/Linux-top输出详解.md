@@ -44,7 +44,7 @@ Cpus CPU相关信息.
 2. `sy`: 内核空间占用CPU百分比, 例如: 8.4%sy,
 3. `ni`: 用户进程空间内改变过优先级的进程占用CPU百分比, 例如: 0.0%ni,
 4. `id`: 空闲CPU百分比, 例如: 77.1%id.
-5. `wa`: 等待输入输出的CPU时间百分比, 例如: 0.0%wa,
+5. `wa`: 等待IO的CPU时间百分比, 例如: 0.0%wa,
 6. `hi`: CPU服务于硬件中断所耗费的时间总额, 例如: 0.0%hi,
 7. `si`: CPU服务软中断所耗费的时间总额, 例如: 1.8%si,
 8. `st`: Steal time 虚拟机被hypervisor偷去的CPU时间(如果当前处于一个hypervisor下的vm, 实际上hypervisor也是要消耗一部分CPU处理时间的)
