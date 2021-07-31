@@ -3,13 +3,14 @@
 参考文章
 
 1. [Elasticsearch Pipeline 详解](https://my.oschina.net/u/4072296/blog/3073345)
-    - `ingest`预处理功能
-    - es 5.x 内置了部分 logstash 功能, 即 ingest. 通过`node.ingest: true`选项开启(默认为`true`)
-    - 在`es`中定义`pipeline`的方法
-    - `Simulate Pipeline API`调试接口
-    - ES 内置的`Process`类型及使用示例
+    - 已失效
 2. [Elasticsearch Pipeline 详解](https://blog.csdn.net/lijingjingchn/article/details/103068901)
     - 参考文章1的转载文章
+    - `ingest`预处理功能
+    - es 5.x 内置了部分 logstash 功能, 即 ingest. 通过`node.ingest: true`选项开启(默认为`true`)
+    - 在`es`中创建`pipeline`的方法
+    - `Simulate Pipeline API`调试接口
+    - ES 内置的`Process`类型及使用示例
 3. [如何在 Elasticsearch 中使用 pipeline API 来对事件进行处理](https://blog.csdn.net/UbuntuTouch/article/details/99702199)
 
 
@@ -21,4 +22,21 @@ GET /_ingest/pipeline/pipeline名称
 ```
 
 > ingest: 摄入;食入;咽下
+
+```
+PUT _ingest/pipeline/pipeline名称
+{
+    "description": "pipeline描述信息",
+    "processors" : [
+        {
+            "set" : {
+                "field": "foo",
+                "value": "bar"
+            }
+        }
+    ]
+}
+```
+
+## simulate
 
