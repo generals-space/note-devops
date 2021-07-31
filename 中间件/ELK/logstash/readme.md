@@ -1,38 +1,45 @@
-参考文章
+# logstash
 
-1. [21.4. logstash 配置项](http://www.netkiller.cn/monitoring/elk/logstash.html)
-    - 各种类型日志的捕获示例, stdin, redis, nginx, mysql 等.
-2. [logstash 官方文档 配置文件书写格式](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html#plugins-outputs-elasticsearch-options)
-    - `output.elasticsearch.hosts`数组的书写格式
+logstash的配置分为2部分, 一个是`logstash.yml`文件, 一个是`pipeline.conf`文件.
 
-最简示例
+其中前者定义了要加载的`pipeline`文件路径以及命名定义, 后者则是要处理的数据的信息了, 包括input数据源, filter处理规则, output输出目标.
 
-```
-172.19.0.1 - - [13/Oct/2020:10:55:05 +0000] "GET / HTTP/1.1" 200 612 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36 Edg/85.0.564.44"
-```
+logstash的主要配置还是在后者身上.
+
+input: 可以是本地文件(用于采集本地日志内容), kafka(可以指定kafka的IP与端口, topic);
+
+filter: 可以对输入的每行数据进行处理, 包括添加, 删除自定义字段, 修改已知字段的值等功能, 也可以做简单的逻辑判断, 比较像一种简单的编程语言;
+
+output: 可以是标准输出, 可以是本地文件(指定目标文件路径), 也可以是elasticsearch(指定IP, 端口, 用户名及密码, 以及索引名称);
+
+## 示例
+
+### 1. 
 
 ```conf
 input {
-    file {
-       path => "/var/log/nginx/access_json.log"
-       start_position => "beginning"
-       type => "nginx-log"
-    }
+    stdin {}
 }
-filter {
-    grok {
-        match => { 
-            "message" => "%{IP:client} - - \[%{HTTPDATE:timestamp}\] \"%{WORD:method} %{URIPATHPARAM:uri} HTTP/%{NUMBER:httpversion}\" %{NUMBER:status} %{NUMBER:bytes} \"-\" \"%{GREEDYDATA:agent}\"" 
-        }
+output {
+    stdout {}
+}
+```
+
+logstash启动完成后(前端启动, 不要用守护进程), 就在打印日志的终端中写内容然后回车, 就会输出响应.
+
+### 2.
+
+```
+input {
+    file {
+        path => "/etc/os-release"
     }
 }
 output {
-    if [type] == "nginx-log"{
-        elasticsearch {
-            hosts => "esc-master-0:9200"
-            index => "nginx-log-%{+YYYY.MM.dd}"
-        }
+    stdout {
+        codec => rubydebug
     }
 }
-
 ```
+
+读取一个文件的内容并打印到标准输出.

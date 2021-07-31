@@ -89,7 +89,7 @@ POST /class/student/1001
 #! Deprecation: [types removal] Specifying types in document index requests is deprecated, use the typeless endpoints instead (/{index}/_doc/{id}, /{index}/_doc, or /{index}/_create/{id}).
 ```
 
-版本 7 兼容了版本 6, 但是已经被弃用了, 文档类型虽然还能用, 但在版本 8 就完全删除了
+v7.x兼容了v6.x, 但是已经被弃用了, 文档类型虽然还能用, 但在v8.x就完全删除了.
 
 ## 索引中插入数据(新)
 
