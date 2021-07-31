@@ -8,6 +8,8 @@
 2. [ELK入门02—Logstash+Log4j2+ES](https://segmentfault.com/a/1190000016192394)
     - `log4j2`与logstash的udp模式
 3. [log4j2 + logstash](https://blog.csdn.net/weixin_34239592/article/details/89045689)
+4. [Udp input plugin](https://www.elastic.co/guide/en/logstash/7.x/plugins-inputs-udp.html)
+    - logstash官方文档
 
 除了使用filebeat采集主机上指定路径的日志文件, Java工程还可以主机将日志发送到logstash, 然后由该logstash将日志集中发送到ES.
 

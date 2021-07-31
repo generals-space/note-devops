@@ -7,6 +7,7 @@
 2. [Elastic报错：Fielddata is disabled on text fields by default](http://www.30daydo.com/article/366)
 3. [Elastic Fielddata is disabled on text fields by default](http://fidding.me/article/82)
     - 为解决这个问题提供了两个方案.
+4. [ElasticSearch排序引起的all shards failed异常原因分析](https://blog.csdn.net/xaio7biancheng/article/details/82657175)
 
 ES: 5.5.0
 
