@@ -3,9 +3,7 @@
 参考文章
 
 1. [IP路由查找的“最长匹配原则”](http://blog.csdn.net/ceelo_atom/article/details/47164943)
-
 2. [Linux 路由和多网卡网关的路由出口设置](http://www.cnblogs.com/fengyc/p/6533112.html)
-
 3. [route命令参数详解，linux添加删除路由命令](http://blog.csdn.net/hzhsan/article/details/44753533)
 
 ## 1. route命令应用
