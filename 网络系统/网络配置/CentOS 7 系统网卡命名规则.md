@@ -7,7 +7,6 @@
 参考文章
 
 1. [linux--centos7更改网卡名称eth0](http://blog.csdn.net/cmqwan/article/details/61250037)
-
 2. [Linux启动网卡时出现RTNETLINK answers: File exists错误解决方法](https://www.linuxidc.com/Linux/2014-01/95253.htm)
 
 网络设备传统的命名是`eth[0123…]`格式
@@ -19,22 +18,16 @@ Centos7提供了不同的命名规则，默认是基于固件、拓扑、位置�
 默认的，`systemd`将根据下面的策略来命名接口，应用到支持的命名规则。
 
 1. 对于板载设备命名合并固件或BIOS提供的索引号，如果来自固件或BIOS的信息可读就命名，比如 eno1，这种命名是比较常见的，否则使用规则2。
-
 2. 命名合并固件或BIOS提供的PCI-E热插拔口索引号，比如ens1，如果信息可读就使用，否则使用规则3。
-
 3. 命名合并硬件接口的物理位置，比如 enp2s0，可用就命名，失败直接到方案5。
-
 4. 命名合并接口的MAC地址，比如 enx78e7d1ea46da， 默认不使用，除非用户选择使用此方案。
-
 5. 使用传统的方案，如果所有的方案都失败，eth0。
 
 ## 2. 前两个字符的含义
 
-en: 以太网 Ethernet
-
-wl: 无线局域网 WLAN
-
-ww: 无线广域网 WWAN
+- en: 以太网 Ethernet
+- wl: 无线局域网 WLAN
+- ww: 无线广域网 WWAN
 
 ## 3. 第三个字符根据设备类型选择
 
