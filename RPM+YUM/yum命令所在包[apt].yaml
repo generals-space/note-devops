@@ -1,3 +1,4 @@
+site: https://command-not-found.com/
 yum:
     iproute:
         - ss
@@ -33,6 +34,7 @@ yum:
         - nohup
     util-linux:
         - more
+        - pivot_root
     sysstat:
         - iostat
     bind-utils:
