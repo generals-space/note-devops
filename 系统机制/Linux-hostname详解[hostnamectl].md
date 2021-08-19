@@ -3,9 +3,7 @@
 参考文章
 
 1. [How to Change Hostname in RHEL / CentOS 7.0](http://linoxide.com/linux-command/change-hostname-in-rhel-centos-7/)
-
 2. [linux的hostname修改详解](http://soft.chinabyte.com/os/281/11563281.shtml)
-
 3. [深入理解Linux修改hostname](http://www.cnblogs.com/kerrycode/p/3595724.html)
 
 ## 1. 基本配置及使用方法

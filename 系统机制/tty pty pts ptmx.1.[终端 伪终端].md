@@ -19,7 +19,7 @@ ta原本长这个样子.
 
 ![](https://gitee.com/generals-space/gitimg/raw/master/4562c38fd7fbe15d5a3cd87dfdc84d9b.png)
 
-`tty`是一个统称, 实际上ta包含如下种类:
+现在`tty`是一个统称, 实际上ta包含如下种类:
 
 1. 控制终端(/dev/tty)
 2. 控制台终端(/dev/ttyn(其中`n`为数字), /dev/console)
@@ -46,6 +46,8 @@ echo 2 > /dev/ttyS2
 控制终端: Controlling Terminal
 
 控制终端`/dev/tty`的行为表现与控制台终端`/dev/console`一致, 具体可见下一节的解释.
+
+控制终端更像是一个逻辑概念, 用户在哪个终端上进行交互, 哪个就是控制终端, 由于linux允许同一个用户多地登录, 所以这个概念很"唯心".
 
 > 为什么参考文章2中要把`/dev/console`归为控制台终端, 和`/dev/ttyn`放在一起呢? 和`/dev/tty`一起归为控制终端不好吗???
 
@@ -160,6 +162,12 @@ pty: pseudo-tty(伪终端)
 $ echo hello > /dev/pts/2
 -bash: /dev/pts/2: 权限不够
 ```
+
+------
+
+如果打开0, 1, 2共3个伪终端, 然后退出`pts1`, 再建立连接时, 打开的伪终端编号会是`pts1`还是`pts4`?
+
+答案是`pts1`, 伪终端会寻找最小最合适的终端编号.
 
 ## ptmx
 
