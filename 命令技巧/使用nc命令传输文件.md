@@ -4,13 +4,13 @@
 
 远程主机(监听端口任意, 不过客户端需要指定, 与其保持相同):
 
-```shell
+```bash
 nc -l 4567 > /tmp/cache.tar.gz
 ```
 
 本地主机:
 
-```shell
+```bash
 nc 远程主机IP 4567 < redis.tar.gz
 ```
 

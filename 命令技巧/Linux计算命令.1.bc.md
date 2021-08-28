@@ -1,4 +1,4 @@
-# Linux计算命令(一)bc
+# Linux计算命令.1.bc
 
 参考文章
 
@@ -20,7 +20,7 @@
 
 首先进入交互式命令行
 
-```
+```console
 $ bc
 bc 1.06
 Copyright 1991-1994, 1997, 1998, 2000 Free Software Foundation, Inc.

@@ -90,7 +90,7 @@ dd: error reading ‘/dev/mem’: Operation not permitted
 
 ### 3.2 /dev/null
 
-/dev/null, 输出设备, 它是空设备, 也称为位桶（bit bucket）. 任何写入它的输出都会被抛弃. 如果不想让消息以标准输出显示或写入文件, 那么可以将消息重定向到位桶. 
+/dev/null, 输出设备, 它是空设备, 也称为位桶(bit bucket). 任何写入它的输出都会被抛弃. 如果不想让消息以标准输出显示或写入文件, 那么可以将消息重定向到位桶. 
 
 ### 3.3 /dev/zero
 
