@@ -1,4 +1,4 @@
-# Linux查看系统与硬件信息(一)dmidecode
+# Linux查看系统与硬件信息.1.dmidecode
 
 Dmidecode 这款软件允许你在 Linux 系统下获取有关硬件方面的信息。Dmidecode 遵循 SMBIOS/DMI 标准，其输出的信息包括 BIOS、系统、主板、处理器、内存、缓存等等。
 

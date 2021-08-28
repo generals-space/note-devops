@@ -1,4 +1,4 @@
-# Linux查看系统与硬件信息(三)hostnamectl
+# Linux查看系统与硬件信息.3.hostnamectl
 
 `hostnamectl`是CentOS7中的命令, 可以查看hostname值, 系统类型, 内核版本等信息. 它是systemd机制中`systemd-hostnamed.service`服务的客户端操作工具.
 
