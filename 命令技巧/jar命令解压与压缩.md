@@ -3,14 +3,12 @@
 参考文章
 
 1. [把JAR文件解压了，怎样再把它压回去？？](https://zhidao.baidu.com/question/126789019.html)
-
 2. [Linux替换jar或war中的文件](http://blog.csdn.net/yyhjava/article/details/53895537)
-
 3. [jar包压缩与解压](http://blog.csdn.net/leon__zhou/article/details/8286428)
 
 如果要修改jar包中的文件, 不能直接用解压工具解压 -> 修改 -> 压缩, 这样得到的jar包文件, 在执行时会得到如果错误
 
-```
+```console
 $ java -jar xxx.jar
 no main manifest attribute, in xxx.jar
 ```
@@ -19,7 +17,7 @@ no main manifest attribute, in xxx.jar
 
 我尝试了下通过`jar`命令的`-m`在打包时指定`.MF`文件, 但是虽然打包成功了, 但好像无效, 而且打包命令的退出码为1, 这就表示有问题..
 
-```
+```console
 $ jar -cvf xxx.jar BOOT-INF/ META-INF/ org/ -m META-INF/MANIFEST.MF
 ...
 echo $?
@@ -34,7 +32,7 @@ echo $?
 
 在linux下, 可以将目标jar包解压, 修改后再将目标文件更新到jar包中. 使用jar的`-u`参数. 如下
 
-```
+```console
 $ jar -xf xxx.jar
 ## 一些修改
 $ sed -in "s/app.hdc.addr/${HDC_ADDR}/g" BOOT-INF/classes/conf.properties 
