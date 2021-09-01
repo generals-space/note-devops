@@ -19,7 +19,7 @@ TIME_WAIT 3982
 
 ## 普通`print`的输出
 
-```
+```console
 $ awk '{print $1, $2}' awk.txt
 SYN_RECV 798
 ESTABLISHED 2444
@@ -29,7 +29,7 @@ TIME_WAIT 3982
 
 ## `printf`实现左对齐输出
 
-```
+```console
 $ awk '{printf("status: %-15s sum: %d\n", $1, $2)}' awk.txt
 status: SYN_RECV        sum: 798
 status: ESTABLISHED     sum: 2444

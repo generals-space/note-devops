@@ -18,12 +18,12 @@ awk语言最基本的功能是在文件或者字符串中基于指定规则浏�
 
 ## 2. 入门实例
 
-### 2.1  `awk '{action}'`
+### 2.1 `awk '{action}'`
 
 假设`last -n 5`的输出如下(显示最近登录的5个帐号信息)
 
-```
-# last -n 5 <==仅取出前五行
+```console
+$ last -n 5 <==仅取出前五行
 root     pts/1   192.168.1.100  Tue Feb 10 11:21   still logged in
 root     pts/1   192.168.1.100  Tue Feb 10 00:46 - 02:28  (01:41)
 root     pts/1   192.168.1.100  Mon Feb  9 11:41 - 18:30  (06:48)
@@ -33,8 +33,8 @@ root     tty1                   Fri Sep  5 14:09 - 14:10  (00:01)
 
 若只是想显示最近登录的帐号名称(即只显示第一列)
 
-```
-# last -n 5 | awk '{print $1}'
+```console
+$ last -n 5 | awk '{print $1}'
 root
 root
 root
@@ -50,8 +50,8 @@ root
 
 过滤`/etc/passwd`中有root关键字的所有行
 
-```
-# awk '/root/' /etc/passwd
+```console
+$ awk '/root/' /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 ```
 
@@ -63,8 +63,8 @@ root:x:0:0:root:/root:/bin/bash
 
 搜索`/etc/passwd`有root关键字的所有行, 并显示对应的shell(第7列)
 
-```
-# awk -F: '/root/ {print $7}' /etc/passwd
+```console
+$ awk -F: '/root/ {print $7}' /etc/passwd
 /bin/bash
 ```
 

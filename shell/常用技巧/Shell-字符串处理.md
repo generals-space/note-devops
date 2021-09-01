@@ -119,5 +119,5 @@ bcd
 
 ```
 $ a='abc 123'
-$ echo $a | awk '{print lenght($0)}'
+$ echo $a | awk '{print length($0)}'
 ```

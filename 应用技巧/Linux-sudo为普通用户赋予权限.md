@@ -76,11 +76,8 @@ general    ALL=(ALL)       ALL
 ```
 
 - general: 表示被授权的用户, 如果是为`/etc/group`文件中存在的组进行授权, 使用`%组名`
-
 - 第一个ALL: 表示所有来源(从任何主机连接进来)
-
 - 第二个ALL: 表示所有用户
-
 - 第三个ALL: 表示所有命令
 
 我们为general添加`useradd`, `userdel`权限, 这样其将拥有权限执行这两条命令, 但无法再使用`sudo su`切换成root了.
