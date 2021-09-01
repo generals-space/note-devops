@@ -51,7 +51,7 @@ FIN_WAIT1 2
 TIME_WAIT 3982
 ```
 
-```
+```console
 $ awk '
 BEGIN{print "========== 开始输出 =========="} 
 {printf("status: %-10s sum: %d\n", $1, $2)} 
