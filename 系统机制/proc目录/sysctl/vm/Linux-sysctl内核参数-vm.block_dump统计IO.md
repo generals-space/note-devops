@@ -1,6 +1,4 @@
-# Linux-sysctl内核参数-vm篇
-
-## 1. vm.block_dump
+# Linux-sysctl内核参数-vm.block_dump统计IO
 
 参考文章
 
