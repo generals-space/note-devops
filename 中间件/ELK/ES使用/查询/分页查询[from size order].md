@@ -8,3 +8,22 @@
     - `search after`
 2. [elasticsearch之排序查询](https://www.cnblogs.com/heshun/articles/10657327.html)
     - `order`
+
+
+```
+GET /article/_search
+{
+    "query": {
+        "match": {
+            "title": "blog"
+        }
+    },
+    "sort": [
+        {
+            "age": {
+                "order": "desc"
+            }
+        }
+    ]
+}
+```
