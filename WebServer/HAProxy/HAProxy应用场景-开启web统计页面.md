@@ -1,4 +1,4 @@
-# HAProxy应用场景
+# HAProxy应用场景-开启web统计页面
 
 ```conf
 ######## 统计页面配置 ############
@@ -19,7 +19,15 @@ listen admin_stats
     stats auth admin:123456
     # 隐藏统计页面上HAProxy的版本信息
     stats hide-version
+```
 
+访问`localhost:1080/admin?stats`, 输入用户名密码即可.
+
+------
+
+下面的配置我自己没有使用记录, 应该是通过访问haproxy确认后端服务的运行状态, 相当于在haproxy层面做了一个metrics监控指标.
+
+```conf
 #######网站检测listen定义############
 listen site_status
     bind 0.0.0.0:1081
@@ -29,11 +37,11 @@ listen site_status
     monitor-uri /site_status
     # 定义网站down时的策略
     # 当挂在负载均衡上的指定backend的中有效机器数小于1台时返回true
-    acl site_dead   nbsrv(backend_pool) lt 1
+    acl site_dead  nbsrv(backend_pool) lt 1
     # 当满足策略的时候返回500
     monitor fail if site_dead
-    # 如果192.168.0.252或者192.168.0.31这两天机器挂了
-    # 认为网站挂了，这时候返回500，判断标准是如果mode是
-    # http返回200认为是正常的，如果mode是tcp认为端口畅通是好的
+    # 如果192.168.0.252或者192.168.0.31这两台机器挂了
+    # 认为网站挂了，这时候返回500，
+    # 判断标准是如果mode是 http, 返回200认为是正常的，如果mode是tcp认为端口畅通是好的
     monitor-net 192.168.0.252/31
 ```

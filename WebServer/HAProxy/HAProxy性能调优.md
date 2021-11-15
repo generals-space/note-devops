@@ -6,9 +6,9 @@ global
     maxconn 4096
     ...
 ```
-![](http://img.generals.com/6d0a912b0cb482948024654cdc2663cc.png)
+![](https://gitee.com/generals-space/gitimg/raw/master/6d0a912b0cb482948024654cdc2663cc.png)
 
-在`global`块中设置这个值后, 所有的块连接数默认都是4096, 并且默认后端服务器池的连接数是前端的1/10, 见图中红框.
+在`global`块中设置这个值后, **所有**的块连接数默认都是4096, 并且默认后端服务器池的连接数是前端的1/10, 见图中红框.
 
 在`listen`块中设置这个值, 则对应的前端(frontend)与后端(backend)都会变化, 并且维持`10:1`的比例.
 

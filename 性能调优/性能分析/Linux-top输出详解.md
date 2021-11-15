@@ -73,29 +73,32 @@ Swap 交换分区相关信息(Swap: 2097144k total, 151016k used, 1946128k free,
 
 在top命令中按`f`按可以查看显示的列信息, 按对应字母来开启/关闭列, 大写字母表示开启, 小写字母表示关闭. 带*号的是默认列. 
 
-A: PID = (Process Id) 进程Id; 
-E: USER = (User Name) 进程所有者的用户名; 
-H: PR = (Priority) 优先级
-I: NI = (Nice value) nice值. 负值表示高优先级, 正值表示低优先级
-O: VIRT = (Virtual Image (kb)) 进程使用的虚拟内存总量, 单位kb. VIRT=SWAP+RES
-Q: RES = (Resident size (kb)) 进程使用的、未被换出的物理内存大小, 单位kb. RES=CODE+DATA
-T: SHR = (Shared Mem size (kb)) 共享内存大小, 单位kb
-W: S = (Process Status) 进程状态. D=不可中断的睡眠状态,R=运行,S=睡眠,T=跟踪/停止,Z=僵尸进程
-K: %CPU = (CPU usage) 上次更新到现在的CPU时间占用百分比
-N: %MEM = (Memory usage (RES)) 进程使用的物理内存百分比
-M: TIME+ = (CPU Time, hundredths) 进程使用的CPU时间总计, 单位1/100秒
-b: PPID = (Parent Process Pid) 父进程Id
-c: RUSER = (Real user name)
-d: UID = (User Id) 进程所有者的用户id
-f: GROUP = (Group Name) 进程所有者的组名
-g: TTY = (Controlling Tty) 启动进程的终端名. 不是从终端启动的进程则显示为 ?
-j: P = (Last used cpu (SMP)) 最后使用的CPU, 仅在多CPU环境下有意义
-p: SWAP = (Swapped size (kb)) 进程使用的虚拟内存中, 被换出的大小, 单位kb
-l: TIME = (CPU Time) 进程使用的CPU时间总计, 单位秒
-r: CODE = (Code size (kb)) 可执行代码占用的物理内存大小, 单位kb
-s: DATA = (Data+Stack size (kb)) 可执行代码以外的部分(数据段+栈)占用的物理内存大小, 单位kb
-u: nFLT = (Page Fault count) 页面错误次数
-v: nDRT = (Dirty Pages count) 最后一次写入到现在, 被修改过的页面数
-y: WCHAN = (Sleeping in Function) 若该进程在睡眠, 则显示睡眠中的系统函数名
-z: Flags = (Task Flags <sched.h>) 任务标志, 参考 sched.h
-X: COMMAND = (Command name/line) 命令名/命令行
+- A: PID = (Process Id) 进程Id; 
+- E: USER = (User Name) 进程所有者的用户名; 
+- H: PR = (Priority) 优先级
+- I: NI = (Nice value) nice值. 负值表示高优先级, 正值表示低优先级
+- O: VIRT = (Virtual Image (kb)) 进程使用的虚拟内存总量, 单位kb. VIRT=SWAP+RES
+    - 该值取自`/proc/$pid/status`文件中的`VmSize`字段.
+- Q: RES = (Resident size (kb)) 进程使用的、未被换出的物理内存大小, 单位kb. RES=CODE+DATA
+    - 该值取自`/proc/$pid/status`文件中的`VmRSS`字段.
+- T: SHR = (Shared Mem size (kb)) 共享内存大小, 单位kb
+    - 该值取自`/proc/$pid/status`文件中的`RssFile`字段.
+- W: S = (Process Status) 进程状态. D=不可中断的睡眠状态,R=运行,S=睡眠,T=跟踪/停止,Z=僵尸进程
+- K: %CPU = (CPU usage) 上次更新到现在的CPU时间占用百分比
+- N: %MEM = (Memory usage (RES)) 进程使用的物理内存百分比
+- M: TIME+ = (CPU Time, hundredths) 进程使用的CPU时间总计, 单位1/100秒
+- b: PPID = (Parent Process Pid) 父进程Id
+- c: RUSER = (Real user name)
+- d: UID = (User Id) 进程所有者的用户id
+- f: GROUP = (Group Name) 进程所有者的组名
+- g: TTY = (Controlling Tty) 启动进程的终端名. 不是从终端启动的进程则显示为 ?
+- j: P = (Last used cpu (SMP)) 最后使用的CPU, 仅在多CPU环境下有意义
+- p: SWAP = (Swapped size (kb)) 进程使用的虚拟内存中, 被换出的大小, 单位kb
+- l: TIME = (CPU Time) 进程使用的CPU时间总计, 单位秒
+- r: CODE = (Code size (kb)) 可执行代码占用的物理内存大小, 单位kb
+- s: DATA = (Data+Stack size (kb)) 可执行代码以外的部分(数据段+栈)占用的物理内存大小, 单位kb
+- u: nFLT = (Page Fault count) 页面错误次数
+- v: nDRT = (Dirty Pages count) 最后一次写入到现在, 被修改过的页面数
+- y: WCHAN = (Sleeping in Function) 若该进程在睡眠, 则显示睡眠中的系统函数名
+- z: Flags = (Task Flags <sched.h>) 任务标志, 参考 sched.h
+- X: COMMAND = (Command name/line) 命令名/命令行
