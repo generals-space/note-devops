@@ -41,7 +41,9 @@ backend website_pool
 cat servername.crt servername.key | tee servername.pem
 ```
 
-关于`tune.ssl.default-dh-param 2048`, 我并不知道我的密钥是多少位加密, 只是如果不加这一句, haproxy启动时会报如下WARNING, 还是加上吧. 另外, 这一句只能加到`global`块中, 加在`defaults`块中会报错的.
+关于`tune.ssl.default-dh-param 2048`, 我并不知道我的密钥是多少位加密, 只是如果不加这一句, haproxy启动时会报如下WARNING, 还是加上吧. 
+
+另外, 这一句只能加到`global`块中, 加在`defaults`块中会报错的.
 
 ```
 [WARNING] 044/120924 (7281) : Setting tune.ssl.default-dh-param to 1024 by default, if your workload permits it you should set it to at least 2048. Please set a value >= 1024 to make this warning disappear.
@@ -49,7 +51,7 @@ cat servername.crt servername.key | tee servername.pem
 
 ## 2. http强制跳转
 
-访问`http://www.test.com`时, 强制跳转到`http://www.test.com`
+访问`http://www.test.com`时, 强制跳转到`https://www.test.com`
 
 ```conf
 global

@@ -2,9 +2,8 @@
 
 参考文章
 
-[Linux配置syslog服务器及CentOS配置rsyslog客户端远程记录日志](http://www.111cn.net/sys/CentOS/81133.htm)
-
-[CHAPTER 20. VIEWING AND MANAGING LOG FILES](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/ch-Viewing_and_Managing_Log_Files.html)
+1. [Linux配置syslog服务器及CentOS配置rsyslog客户端远程记录日志](http://www.111cn.net/sys/CentOS/81133.htm)
+2. [CHAPTER 20. VIEWING AND MANAGING LOG FILES](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/ch-Viewing_and_Managing_Log_Files.html)
 
 ...嗯, rsyslog的官方文档真差劲, 不如直接看redhat对rsyslog的介绍.
 
@@ -17,6 +16,8 @@
 不过也有一些应用软件懒得自行编写日志模块, 直接调用rsyslog服务的, 比如haproxy, supervisord等. 这里分析一下调用rsyslog的方式, 日志级别/格式等方法.
 
 ## 2. rsyslog安装方法
+
+略
 
 ## 3. 配置
 
