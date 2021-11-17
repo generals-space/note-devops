@@ -45,6 +45,8 @@ yum:
         - pstree
     genisoimage:
         - mkisofs
+    yum-utils:
+        - yumdownloader
 apt:
     xz-utils:
         - xz(解压命令)
