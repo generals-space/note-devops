@@ -5,13 +5,13 @@
 语法: `iptables [-t table名] -P 链名 规则(一般为DROP, ACCEPT等)`
 
 ```
-$ iptables -P INPUT DROP
+iptables -P INPUT DROP
 ```
 
 ## 2. 查看指定链规则
 
 ```
-$ iptables [-t {nat|filter}] --list-rules 链名 
+iptables [-t {nat|filter}] --list-rules 链名 
 ```
 
 说明: 不必添加`-L`选项, 可以查看目标链中的规则与子链名称(但不可查看子链下的规则). 若不指定链名, 将打印出当前表中所有规则.
