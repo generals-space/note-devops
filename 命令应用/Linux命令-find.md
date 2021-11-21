@@ -3,7 +3,6 @@
 参考文章
 
 1. [Find命令搭配atime/ctime/mtime时的日期写法](http://golehuang.blog.51cto.com/7499/1108124/)
-
 2. [每天一个linux命令（20）：find命令之exec](http://www.cnblogs.com/peida/archive/2012/11/14/2769248.html)
 
 ## 1. 基础用法-按名称查找
