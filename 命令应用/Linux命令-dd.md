@@ -22,7 +22,7 @@
 创建一个32G的文件, 以每个块1M的大小, 创建`1024 * 32`个块就可满足. 
 
 ```
-$ dd if=/dev/zero of=/tmp/ddfile bs=1M count=32768
+dd if=/dev/zero of=/tmp/ddfile bs=1M count=32768
 ```
 
 ## 2. 应用示例
@@ -34,7 +34,7 @@ $ dd if=/dev/zero of=/tmp/ddfile bs=1M count=32768
 由于/dev/zero设备的特殊性, 从其中取出字符流时不会存在读操作的性能瓶颈.
 
 ```
-$ dd if=/dev/zero of=/file 
+dd if=/dev/zero of=/file 
 ```
 
 测试磁盘的纯读取性能, if指定的需要是一个存在的文件
@@ -48,7 +48,7 @@ $ dd if=/file of=/dev/null
 测试磁盘的读写性能, 相当于拷贝操作, 先读后写.
 
 ```
-$ dd if=/file1 of=/file2 
+dd if=/file1 of=/file2 
 ```
 
 ### 2.2 全盘数据备份恢复
@@ -85,7 +85,7 @@ dd: error reading ‘/dev/mem’: Operation not permitted
 2048+0 records in
 2048+0 records out
 1048576 bytes (1.0 MB) copied, 0.0262912 s, 39.9 MB/s
-
+=
 ```
 
 ### 3.2 /dev/null
@@ -101,5 +101,5 @@ dd: error reading ‘/dev/mem’: Operation not permitted
 `/dev/urandom`: 输入设备, 与`/dev/zero`类似. 它可以提供无限的随机数据, 在某些场合可以利用它来销毁数据.
 
 ```
-$ dd if=/dev/urandom of=/dev/sda1
+dd if=/dev/urandom of=/dev/sda1
 ```

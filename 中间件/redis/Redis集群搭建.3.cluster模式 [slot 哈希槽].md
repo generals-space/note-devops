@@ -3,10 +3,10 @@
 参考文章
 
 1. [Redis-Cluster集群](https://www.jianshu.com/p/813a79ddf932)
+2. [官网 cluster模式](http://redis.io/topics/cluster-tutorial)
+    - 对集群模式做了基础但详细的介绍, 可以参考.
 
 redis3.0之前没有集群化的解决方案, 至多只有哨兵的存在. 3.0之后redis原生带有cluster的支持. 现在部署redis集群大多推荐使用cluster模式.
-
-redis官网对[cluster模式](http://redis.io/topics/cluster-tutorial)做了基础但详细的介绍, 可以参考. 下面是一点自己的理解.
 
 cluster 集群至少包含3个节点. 如果只有三个节点的话, 它们都应该作为主节点. 可以在之后为主节点添加从节点, 也可以继续添加新的主节点, 以提高可用性与负载均衡. 从节点不会直接对外服务, 而是实现对其本身的主节点的数据同步. 当主节点挂掉, 从节点可以接替主节点的位置.
 
