@@ -63,6 +63,8 @@ EndOfStreamException: Unable to read additional data from client sessionid 0x17b
 2021-09-08 12:15:04,000 [myid:] - INFO  [ProcessThread(sid:0 cport:2181)::PrepRequestProcessor@487] - Processed session termination for sessionid: 0x17bc54523570017
 ```
 
+## 解决方案
+
 因为端口是通的, 网络没问题, 我最开始没有往网络方面考虑, 在网上找到的文章都在东拉西扯(比如参考文章1). 也有文章说kafka工程目录`libs`下的zookeeper client客户端与zk版本不一致的, 我也改过, 没用.
 
 后来找到参考文章2, 尝试修改了下kafka的`zookeeper.connection.timeout.ms`配置(原来是6000, 改为10000), 就可以...竟然真的是超时问题.
