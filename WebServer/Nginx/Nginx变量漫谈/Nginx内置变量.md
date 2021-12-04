@@ -89,43 +89,29 @@ http{
 ## 3. 参考
 
 - `$content_length`: 请求头中的`Content-length`字段
-
 - `$content_type`: 请求头中的`Content-Type`字段
-
 - `$host`: 浏览器请求头中的`Host`字段, 否则为服务器名称
-
 - `$http_referer`: 请求头中的`Referer`字段, 用来记录从那个页面链接访问过来的
-
 - `$http_user_agent`: 客户端agent信息
-
 - `$http_cookie`: 客户端cookie信息
-
 - `$request_method`: 客户端请求的动作, 通常为GET或POST
 
 - `$remote_addr`: 客户端的IP地址(若经过代理的话就是代理服务器的IP)
-
 - `$remote_port`: 客户端的端口
-
 - `$remote_user`: 已经经过Auth Basic Module验证的用户名
 
 - `$server_protocol`: 请求使用的协议版本, 通常是`HTTP/1.0`或`HTTP/1.1`
 
 - `$server_addr`: 服务器地址, 在完成一次系统调用后可以确定这个值
-
 - `$server_name`: 服务器名称, 指的是在`server{}`块中`server_name`字段的设置值
-
 - `$server_port`: 请求到达服务器的端口号
 
 - `$http_x_forwarded_for`: 客户端源IP(即使经过代理, 此值也将指向客户端自己IP)
 
 - `$time_local`: 访问时间与时区
-
 - `$body_bytes_sent`: 记录发送给客户端文件主体内容大小
-
 - `$limit_rate`: 这个变量可以限制连接速率(不知道怎么用)
-
 - `$request_body_file`: 客户端请求主体信息的临时文件名(没懂)
-
 - `$request_body`: 客户端POST请求体中携带的数据
 
 - `$document_root`: 配置文件中`root`指令的值, 网站的根目录.
@@ -135,20 +121,14 @@ http{
 ------
 
 - `$scheme`: 协议类型(如`http`, `https`)
-
 - `$request`: 从结果来看, 这个值等与`$request_method` + `$request_uri` + `$server_protocol`
-
 - `$status`: 响应状态码
-
 - `$request_time`: 响应时间
 
 ------
 
 - `$upstream_addr`: 转发到后端服务器的地址(貌似只有ip和端口...)
-
 - `$upstream_status`: 后端服务器返回的状态码
-
 - `$upstream_response_time`: 后端服务器响应时间
-
 - `$upstream_response_length`: 后端服务器响应长度
 
