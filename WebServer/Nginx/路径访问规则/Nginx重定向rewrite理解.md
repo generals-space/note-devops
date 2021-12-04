@@ -1,5 +1,10 @@
 # Nginx重定向rewrite理解
 
+参考文章
+
+1. [nginx rewrite规则语法](http://blog.csdn.net/xiao_jun_0820/article/details/9397011)
+    - last, break
+
 语法
 
 ```
@@ -11,7 +16,6 @@ rewrite 源字符串(一般为正则)  目标字符串  标识位
 其中`redirect`与`permanent`分别为301和302重定向, 而`last`|`break`更适合被称为 **url重写**. 区别在于
 
 - 重定向会为当前请求返回`301`|`302`代码, 并在响应头`Location`字段中填写上`替换url`, 这将引起浏览器再次发起一次http请求(如果客户端是`curl`等命令就算了), 目标就是这个`Location`字段中重定向的url.
-
 - url重写完成后会以重写后的url在nginx配置文件中继续匹配, 而不是像重定向那样干脆返回一个`Location`字段让浏览器再发起一次请求.
 
 ## 1. rewrite重写规则
@@ -21,18 +25,12 @@ rewrite 源字符串(一般为正则)  目标字符串  标识位
 而替换的`目标字符串`目前发现的有3种格式可选:
 
 - 以`http://域名[:端口]`开头的全路径.
-
 - 以`/`开头的绝对路径, 将会以当前访问域名为前缀进行拼合.
-
 - 不带`/`的路径, 这将会被视为以当前请求资源为准的相对路径, 会与当前资源的访问路径进行拼合.
 
 原访问路径的请求参数不会被重写, 它默认追加到重写后的`uri`后面, 如果想舍弃原来的请求参数, 在`替换字符串`部分末尾加上'?'即可.
 
 ## 2. last与break的区别
-
-参考文章
-
-[nginx rewrite规则语法](http://blog.csdn.net/xiao_jun_0820/article/details/9397011)
 
 我们知道, `rewrite`合法位置在`server`, `if`, `location`块内. 并且上面也说了, `last`与`break`的`rewrite`称为 **url重写** 更为贴切. 我们首先要理解url重写之后的处理流程.
 
@@ -147,7 +145,6 @@ server {
 这就是`last`与`break`的区别了, 这点区别只在`location`块内有所表现.
 
 - `last`: url重写完成后立即结束当前`location`内的`rewrite`检测, 并且以重写后的uri继续对所有(包括本身)的`location`再次匹配;
-
 - `break`: url重写完成后立即结束当前`location`内的`rewrite`检测, 并且不再匹配任何`location`与`if`语句, 直接以重写后的url为路径去访问目标文件.
 
 上面的第1种情况, `if`语句将`/download/music/index.html`重写成`/music/index.html`, 匹配到第1个`location`, 又将其修改成`/download/music/index.html`, 虽然不再匹配上面的`if`语句, 但`last`标记表示结束当前`location`的`rewrite`匹配, 但又开始重新对所有`location`匹配, 于是这两个`location`之间陷入了死循环, nginx内部设置了`rewrite`的最大次数为10, 超过这个值就会返回500.
@@ -161,5 +158,4 @@ server {
 ## 3. 总结
 
 1. `rewrite`正则部分匹配的是uri部分, 不包括`http(s)://`, 域名, 端口信息, 确切一点说, 这个部分最终匹配到的是当前nginx内部的`$uri`变量, 而`$uri`随着nginx的处理流程, 是可以被修改的.
-
 2. location中正则匹配分组是可以被该location块内部的语句引用的.
