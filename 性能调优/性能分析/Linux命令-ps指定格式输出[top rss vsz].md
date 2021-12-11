@@ -40,6 +40,9 @@
     - 格式为`[DD-]hh:]mm:ss`
     - 还有个`etimes`, 表示总秒数
 - `stat`: 当前进程运行状态, man手册中`PROCESS STATE CODES`章节有对状态码的详细描述.
+- `drs`: data resident set size 物理内存中, trs之外的部分
+- `trs`: text resident set size 可执行代码所占用的物理内存
+    - 看缩写好像是和rss相关, 但实际貌似 drs + trs (+1) = vsz
 
 另外, `ps`的`-o`还可以指定输出结果在第一行的显示的列名, 如下
 
@@ -69,4 +72,10 @@ ps -e -o pid,ppid,%cpu,%mem,start_time,command
 
 ```
 ps -eT -o pid,ppid,tid,%cpu,%mem,start_time,command
+```
+
+资源相关
+
+```
+ps -eT -o pid,%cpu,%mem,rss,vsz,drs,trs,size,start_time,command
 ```
