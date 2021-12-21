@@ -6,7 +6,7 @@ Dmidecode 这款软件允许你在 Linux 系统下获取有关硬件方面的信
 
 DMI (Desktop Management Interface, DMI)就是帮助收集电脑系统信息的管理系统，DMI信息的收集必须在严格遵照SMBIOS规范的前提下进行。 SMBIOS(System Management BIOS)是主板或系统制造者以标准格式显示产品管理信息所需遵循的统一规范。SMBIOS和DMI是由行业指导机构Desktop Management Task Force (DMTF)起草的开放性的技术标准，其中DMI设计适用于任何的平台和操作系统。
 
-　　DMI充当了管理工具和系统层之间接口的角色。它建立了标准的可管理系统更加方便了电脑厂商和用户对系统的了解。DMI的主要组成部分是Management Information Format (MIF)数据库。这个数据库包括了所有有关电脑系统和配件的信息。通过DMI，用户可以获取序列号、电脑厂商、串口信息以及其它系统配件信息。
+DMI充当了管理工具和系统层之间接口的角色。它建立了标准的可管理系统更加方便了电脑厂商和用户对系统的了解。DMI的主要组成部分是Management Information Format (MIF)数据库。这个数据库包括了所有有关电脑系统和配件的信息。通过DMI，用户可以获取序列号、电脑厂商、串口信息以及其它系统配件信息。
 
 ## 2. 使用方法
 
@@ -24,9 +24,7 @@ Serial Number: INCY92700942
 其中的前三行都称为记录头(recoce Header), 其中包括了：
 
 1. recode id(handle): DMI表中的记录标识符，这是唯一的,比如上例中的Handle 0×0002。
-
 2. dmi type id: 记录的类型，譬如说:BIOS，Memory，上例是`type 2`，即”Base Board Information”
-
 3. recode size: DMI表中对应记录的大小，上例为8 bytes.（不包括文本信息，所有实际输出的内容比这个size要更大。）
 
 记录头之后就是记录的值：
