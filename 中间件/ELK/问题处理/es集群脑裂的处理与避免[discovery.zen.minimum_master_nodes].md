@@ -14,6 +14,7 @@
 5. [ElasticSearch集群脑裂现象](https://www.cnblogs.com/linlf03/p/13337872.html)
     - `discovery.zen.minimum_master_nodes = (N/2 + 1)`, `N`为集群内 master 节点的数量, 半数以上节点同意选举, 节点方可能成为master
     - 7.x 已经移除`discovery.zen.minimum_master_nodes`配置
+6. [[译]如何防止elasticsearch的脑裂问题 ](https://www.cnblogs.com/zhukunrong/p/5224558.html)
 
 ES: 7.5.1
 

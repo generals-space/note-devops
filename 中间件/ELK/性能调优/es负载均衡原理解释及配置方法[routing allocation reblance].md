@@ -14,9 +14,9 @@
 
 这种情况可以设置某个时间段, 关闭集群负载均衡, 任务写完后再打开负载均衡. 只要集群机器能承载的住, 将所有资源都用来写数据, 提高写入性能.
 
-all-开启；
-none-禁用(GET _cluster/settings可查看该项配置)；
-null-禁用（GET _cat/settings看不到该项配置） 
+- all: 开启；
+- none: 禁用(GET _cluster/settings可查看该项配置)；
+- null: 禁用（GET _cat/settings看不到该项配置） 
 
 ```json
 PUT _cluster/settings 
@@ -25,10 +25,10 @@ PUT _cluster/settings
         "cluster": { 
             "routing": { 
                 "allocation": { 
-                    "enable": "all"/"none"/null 
+                    "enable": "all"/"none"/"null"
                 }, 
                 "reblance": { 
-                    "enable": "all"/"none"/null 
+                    "enable": "all"/"none"/"null"
                 } 
             } 
         } 

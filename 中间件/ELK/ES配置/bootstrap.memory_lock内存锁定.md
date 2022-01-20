@@ -66,5 +66,5 @@ int mlockall(int flag)
 int munlockall(void)
 ```
 
-> 只有超级用户才能进行锁定和解除内存操作.
+> 只有root用户才能进行锁定和解除内存操作.
 

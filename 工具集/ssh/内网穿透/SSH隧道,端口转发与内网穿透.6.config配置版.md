@@ -7,7 +7,7 @@ Host forward
     User root
     ServerAliveInterval 60
     IgnoreUnknown RemoteForward
-    RemoteForward 0.0.0.0:2222 127.0.0.1:22
+    RemoteForward 0.0.0.0:2222 127.0.0.1:22
 ```
 
 上述是理论上的配置, 但我在Mac上如此配置并尝试连接时, 我得到了如下错误.

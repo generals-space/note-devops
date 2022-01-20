@@ -3,7 +3,6 @@
 参考文章
 
 1. [iptables中-j选项与-g选项的区别](http://blog.csdn.net/zahuopuboss/article/details/8886612)
-
 2. [[网络管理] iptables -g 选项？](http://bbs.chinaunix.net/thread-1928388-1-1.html)
 
 iptables中可以通过自定义子链完成更灵活, 管理更方便的操作. 在创建新链后, 需要挂载子链才能让规则生效. iptables下有两个可以将当前匹配规则的数据包交由子链处理, 它们分别是`-g(goto)`与`-j(jump)`.
