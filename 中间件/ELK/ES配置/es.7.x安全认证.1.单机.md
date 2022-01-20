@@ -28,7 +28,7 @@ curl -u elastic:123456 -H 'Content-Type: application/json' es:9200/_xpack/securi
 返回`{}`即为成功.
 
 ## 关于内置账号
-    
+
 大家都用同一个密码, 同样不安全. 毕竟, logstash 要部署在各个节点, 而 kibana 则是作为一个中心服务来运行的, 职责不同, 面向的用户也不同.
 
 es 内置了一些集成组件的账号, 如: apm_system, beats_system, elastic, kibana, logstash_system, remote_monitoring_user. 

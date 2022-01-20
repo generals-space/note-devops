@@ -1,4 +1,4 @@
-# 
+# ES节点重启模拟数据丢失[unassigned]
 
 参考文章
 
@@ -10,9 +10,8 @@
 
 本文模拟ES分片数据丢失的场景, 不是未分配, 而是真正的丢失.
 
-ES: v5.5.0
-
-master x 3 + data x 1(其中master也可以作为data存储数据)
+- ES版本: v5.5.0
+- 集群规格: master x 3 + data x 1(其中master也可以作为data存储数据)
 
 首先向集群中创建如下索引, 分片分片数量 > Node节点数量.
 
@@ -37,10 +36,10 @@ PUT article
 此时, 集群是无法访问的, head服务自然也连接不上, data-0的日志会有如下输出
 
 ```
-[2021-12-20T15:52:42,249][WARN ][o.e.c.NodeConnectionsService] [hjl-es-1220-01-data-0] failed to connect to node {hjl-es-1220-01-master-1}{1rMaMVGHSIa6IBdS-RnL4Q}{vPinPOG6SOm5Gy631KwRwQ}{192.168.34.219}{192.168.34.219:9311}{ml.enabled=true} (tried [241] times)
-org.elasticsearch.transport.ConnectTransportException: [hjl-es-1220-01-master-1][192.168.34.219:9311] handshake failed. unexpected remote node {hjl-es-1220-01-master-1}{1rMaMVGHSIa6IBdS-RnL4Q}{jrSJt5qoTDint5cvfNF2Qg}{192.168.34.219}{192.168.34.219:9311}{ml.enabled=true}
+[2021-12-20T15:52:42,249][WARN ][o.e.c.NodeConnectionsService] [xxx-es-1220-01-data-0] failed to connect to node {xxx-es-1220-01-master-1}{1rMaMVGHSIa6IBdS-RnL4Q}{vPinPOG6SOm5Gy631KwRwQ}{192.168.34.219}{192.168.34.219:9311}{ml.enabled=true} (tried [241] times)
+org.elasticsearch.transport.ConnectTransportException: [xxx-es-1220-01-master-1][192.168.34.219:9311] handshake failed. unexpected remote node {xxx-es-1220-01-master-1}{1rMaMVGHSIa6IBdS-RnL4Q}{jrSJt5qoTDint5cvfNF2Qg}{192.168.34.219}{192.168.34.219:9311}{ml.enabled=true}
     ...省略
-[2021-12-20T15:52:43,390][WARN ][o.e.d.z.ZenDiscovery     ] [hjl-es-1220-01-data-0] not enough master nodes discovered during pinging (found [[Candidate{node={hjl-es-1220-01-master-1}{1rMaMVGHSIa6IBdS-RnL4Q}{jrSJt5qoTDint5cvfNF2Qg}{192.168.34.219}{192.168.34.219:9311}{ml.enabled=true}, clusterStateVersion=-1}]], but needed [2]), pinging again
+[2021-12-20T15:52:43,390][WARN ][o.e.d.z.ZenDiscovery     ] [xxx-es-1220-01-data-0] not enough master nodes discovered during pinging (found [[Candidate{node={xxx-es-1220-01-master-1}{1rMaMVGHSIa6IBdS-RnL4Q}{jrSJt5qoTDint5cvfNF2Qg}{192.168.34.219}{192.168.34.219:9311}{ml.enabled=true}, clusterStateVersion=-1}]], but needed [2]), pinging again
 ```
 
 上面的日志说到, 还差一个master节点, 于是尝试连接master-1, 但是失败了(为啥不是master-0呢🤔)
