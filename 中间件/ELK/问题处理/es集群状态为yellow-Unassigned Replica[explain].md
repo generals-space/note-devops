@@ -29,7 +29,7 @@
 此时我的集群配置是 master * 3 + data * 1.
 
 ```json
-GET /_cat/indices/nginx-log-2020.09.16?format=json&pretty
+GET _cat/indices/nginx-log-2020.09.16?format=json&pretty
 ```
 
 ```json
@@ -56,7 +56,7 @@ GET /_cat/indices/nginx-log-2020.09.16?format=json&pretty
 按照参考文章1中提到的 explain 接口的使用方法, 在 dev tools 中做如下请求
 
 ```json
-GET /_cluster/allocation/explain
+GET _cluster/allocation/explain
 {
     "index": "nginx-log-2020.09.16",
     "shard": 0,
@@ -103,7 +103,7 @@ GET /_cluster/allocation/explain
 我本来是按照上面的`explanation`来寻找解决方法的, 但是偶然找到了参考文章2, 人家说想看一下`explain`请求时, `primary`设置为`false`, 即想看副本而不是主分片的情况. 于是我又重新请求了一次.
 
 ```json
-GET /_cluster/allocation/explain
+GET _cluster/allocation/explain
 {
     "index": "nginx-log-2020.09.16",
     "shard": 0,
@@ -156,7 +156,7 @@ GET /_cluster/allocation/explain
 首先查看一下当前的副本数量(其实上面图中也已经有了, 每个分片都有一个副本备份)
 
 ```
-GET /nginx-log-2020.09.16/_settings
+GET nginx-log-2020.09.16/_settings
 ```
 
 响应如下
