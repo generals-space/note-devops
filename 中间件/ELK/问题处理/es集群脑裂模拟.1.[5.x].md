@@ -17,8 +17,7 @@ discovery.zen.minimum_master_nodes: 2
 
 ```
 [monitor@ly-xjf-r020807-gyt operator]$ kwd pod
-NAME                        READY   STATUS    RESTARTS   AGE   IP               NODE                 NOMINATED NODE   READINESS GATES
-es-head-6d98cbd7b6-c96x2    1/1     Running   1          23d   192.168.34.27    ly-xjf-r021703-gyt   <none>           <none>
+NAME                    READY   STATUS    RESTARTS   AGE   IP               NODE                 NOMINATED NODE   READINESS GATES
 es-0119-01-data-0       2/2     Running   0          16m   192.168.34.66    ly-xjf-r021704-gyt   <none>           <none>
 es-0119-01-data-1       2/2     Running   0          16m   192.168.34.20    ly-xjf-r021702-gyt   <none>           <none>
 es-0119-01-data-2       2/2     Running   0          16m   192.168.34.135   ly-xjf-r021703-gyt   <none>           <none>

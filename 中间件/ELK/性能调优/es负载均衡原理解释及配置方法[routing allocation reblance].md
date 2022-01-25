@@ -3,6 +3,8 @@
 参考文章
 
 1. [ES踩坑——提高写入性能之集群负载均衡](https://blog.csdn.net/wx1528159409/article/details/106200978)
+2. [elasticsearch 重启后数据平衡问题](https://elasticsearch.cn/question/5376)
+    - 这个案例还没看, 先收藏
 
 当文档id, 即`_id`被指定的情况下, 由于每条文档往ES写入时, 会对`_id`进行hash分配其写到哪个节点的主分片上, 这样有可能出现写偏了的情况, 即集群某台节点的负载特别高, 所以一般建议_id让ES自动设置.
 

@@ -2,7 +2,10 @@
 
 参考文章
 
-1. [滚动重启](https://www.elastic.co/guide/cn/elasticsearch/guide/current/_rolling_restarts.html)
+1. [Full-cluster restart and rolling restart](https://www.elastic.co/guide/en/elasticsearch/reference/current/restart-cluster.html#restart-cluster)
+    - 7.5
+2. [滚动重启](https://www.elastic.co/guide/cn/elasticsearch/guide/current/_rolling_restarts.html)
+    - 参考文章1的中文版, 不过是2.x的, 大概意思应该一致.
 
 ## 1. 重启前
 
