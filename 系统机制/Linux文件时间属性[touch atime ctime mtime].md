@@ -16,13 +16,9 @@
 
 查看一个文件的三种时间属性可以使用`ls`或`stat`命令.
 
-用`ls`分别列出文件的`ctime`, `atime`, `mtime`
-
-```
-ls -lc 文件名 
-ls -lu 文件名 
-ls -l  文件名 
-```
+- `ls -lc`: 文件名: ctime
+- `ls -lu`: 文件名: atime
+- `ls -l`:  文件名: mtime
 
 ```console
 $ stat ./testA 

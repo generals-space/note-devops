@@ -6,6 +6,8 @@
     - 各种类型日志的捕获示例, stdin, redis, nginx, mysql 等.
 2. [logstash 官方文档 配置文件书写格式](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html#plugins-outputs-elasticsearch-options)
     - `output.elasticsearch.hosts`数组的书写格式
+3. [ELK 手册 - 8.1、grok正则过滤器配置](https://anbc.gitbooks.io/elk-handbook/content/81grokzheng_ze_guo_lv_qi_pei_zhi.html)
+
 
 最简示例
 
