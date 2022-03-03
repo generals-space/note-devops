@@ -1,5 +1,9 @@
 # logstash
 
+参考文章
+
+1. [管道配置文件的结构](https://www.kancloud.cn/aiyinsi-tan/logstash/854012)
+
 logstash的配置分为2部分, 一个是`logstash.yml`文件, 一个是`pipeline.conf`文件.
 
 其中前者定义了要加载的`pipeline`文件路径以及命名定义, 后者则是要处理的数据的信息了, 包括input数据源, filter处理规则, output输出目标.
