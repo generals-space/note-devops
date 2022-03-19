@@ -86,7 +86,7 @@ Nginx可以使用`nginx -V`查看编译选项, 如果没有`--with-http_ssl_modu
 
 nginx开启https需要两个文件: key与crt文件. 示例配置信息如下
 
-```shell
+```conf
 server {
         listen       443 ssl;
         server_name  你的域名;
