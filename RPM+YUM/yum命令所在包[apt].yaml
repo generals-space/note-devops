@@ -47,6 +47,9 @@ yum:
         - mkisofs
     yum-utils:
         - yumdownloader
+    lrzsz:
+    - rz
+    - sz
 apt:
     xz-utils:
         - xz(解压命令)
