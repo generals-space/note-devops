@@ -4,6 +4,7 @@
 
 1. [Elasticsearch 快照和恢复](https://www.cnblogs.com/kgdxpr/p/9522634.html)
 2. [S3 Repository Plugin](https://www.elastic.co/guide/en/elasticsearch/plugins/7.5/repository-s3.html)
+3. [ES Snapshot](https://www.jianshu.com/p/7890d259354e)
 
 es: 7.5.1(不适用于5.x)
 
