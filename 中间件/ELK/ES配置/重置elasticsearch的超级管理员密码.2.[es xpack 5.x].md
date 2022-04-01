@@ -63,8 +63,7 @@ $ curl -u my_admin:123456 localhost:9200/_xpack/security/user
 
 一是貌似 5.x 版本的本地账户貌似需要所有节点都添加上才可以(7.x 的文档其实也有说, 但实验证明不需要).
 
-> 
-As the administrator of the cluster, it is your responsibility to ensure the same users are defined on every node in the cluster. X-Pack security does not deliver any mechanism to guarantee this. --参考文章5
+> As the administrator of the cluster, it is your responsibility to ensure the same users are defined on every node in the cluster. X-Pack security does not deliver any mechanism to guarantee this. --参考文章5
 
 二是貌似要开启 file-based 形式的`realms`的认证方式, 甚至可能需要重启es节点. 尝试在`elasticsearch.yml`中添加如下配置
 
