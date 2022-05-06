@@ -4,7 +4,7 @@ curl -u elastic:f6yM26MZ '192.168.34.16:9211/_cat/indices'
 curl -u elastic:f6yM26MZ '192.168.34.16:9211/article01/_search'
 ```
 
-```
+```bash
 curl -u elastic:f6yM26MZ -XPOST -H 'Content-Type: application/json' "192.168.34.16:9211/article01/_doc/0" -d '
     {
         "id": 0,
@@ -16,7 +16,7 @@ curl -u elastic:f6yM26MZ -XPOST -H 'Content-Type: application/json' "192.168.34.
 '
 ```
 
-```
+```bash
 for i in $(seq 10000); do
     echo ;
     echo $i;
