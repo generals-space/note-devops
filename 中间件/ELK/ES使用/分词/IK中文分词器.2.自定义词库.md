@@ -39,13 +39,13 @@ POST _analyze
 
 ## 配置自定义分词库
 
-在集群**所有节点**的`${es_home}/config/analysis-ik/`下创建`custom`目录, 并在`custom`目录中添加`my.dic`文件, 在该文件中可以任意加入自定义分词, 每个分词占用一行.
+在集群**所有节点**的~~`${es_home}/config/analysis-ik/`~~下创建`custom`目录, 并在`custom`目录中添加`my.dic`文件, 在该文件中可以任意加入自定义分词, 每个分词占用一行.
 
 ```
 小脑斧
 ```
 
-编辑完成后, 打开`${es_home}/config/analysis-ik/IKAnalyzer.cfg.xml`添加相应配置:
+编辑完成后, 打开~~`${es_home}/config/analysis-ik/IKAnalyzer.cfg.xml`~~添加相应配置:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -66,7 +66,7 @@ POST _analyze
 不过在我的场景中, 这两个文件分别位于`${es_home}/plugins/ik/config/IKAnalyzer.cfg.xml`, 与`${es_home}/plugins/ik/config/custom/my.dic`才有效. 我的插件列表如下
 
 ```console
-$ elasticsearch-plugins list
+$ elasticsearch-plugin list
 ik
 ```
 
