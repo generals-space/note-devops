@@ -10,9 +10,9 @@
 
 ## 2. 实施方法
 
-1 . 首先可用`w`命令查看登录用户信息, `who`命令也可以, 不过信息不如`w`的输出丰富.
+1. 首先可用`w`命令查看登录用户信息, `who`命令也可以, 不过信息不如`w`的输出丰富.
 
-```
+```console
 general@ubuntu:~$ w
  05:54:18 up 13 min,  5 users,  load average: 0.00, 0.17, 0.18
 USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
@@ -25,16 +25,16 @@ general  pts/24   192.168.138.1    05:54    2.00s  0.10s  0.00s w
 
 其中, `tty1`是使用`Ctrl+Alt+F1`登录的, `pts/7, 1, 24`是通过ssh或ubuntu提供的伪终端登录的.
 
-2 . 可以用`who am i`命令查看此时自己属于哪个终端(小心别踢错了).
+2. 可以用`who am i`命令查看此时自己属于哪个终端(小心别踢错了).
 
-```
+```console
 general@ubuntu:~$ who am i
 general  pts/24       2016-02-28 05:54 (192.168.138.1)
 ```
 
-3 . 踢人的命令格式为`pkill -kill -t 终端名`或是`pkill -9 -t 终端名`
+3. 踢人的命令格式为`pkill -kill -t 终端名`或是`pkill -9 -t 终端名`
 
-```
+```console
 general@ubuntu:~$ pkill -kill -t pts/1
 general@ubuntu:~$ w
  06:26:29 up 46 min,  4 users,  load average: 0.00, 0.04, 0.13

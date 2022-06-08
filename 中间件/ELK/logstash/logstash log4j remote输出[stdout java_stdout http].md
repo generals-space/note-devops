@@ -50,11 +50,12 @@ Sending Logstash logs to /usr/share/logstash/logs which is now configured via lo
 没办法, 最后找到了`http`插件, 向一个不存在的地址进行输出, 这会出现报错, 不过报错的日志量也不错了, 满足目前的需求(如果使用`es`插件, 错误重试间隔5s, 还是太慢).
 
 ```conf
-stdout {
+output {
     http {
        http_method => "get"
        url => "http://127.0.0.1/xxx"
        message => "%{message}"
+       request_timeout => 5
     }
 }
 ```
@@ -64,3 +65,6 @@ stdout {
 ```
 [HTTP Output Failure] Could not fetch URL {:url=>\"http://127.0.0.1/xxx\", :method=>:get, :body=>\"\", :message=>\"\"}
 ```
+
+> 注意: input 至少需要输入一条消息才能触发.
+

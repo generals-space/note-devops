@@ -4,7 +4,7 @@
 
 比如在如下目录结构中, 要在所有`.html`文件的第一行添加`<!DOCTYPE>`.
 
-```
+```console
 $ tree
 .
 ├── common
@@ -28,7 +28,7 @@ $ find ./ -name '*.html'
 然后用`xargs`将查找到的文件作为参数传给`sed`.
 
 ```
-$ find ./ -name '*.html' | xargs sed -i 'N;2i\<!DOCTYPE>'
+find ./ -name '*.html' | xargs sed -i 'N;2i\<!DOCTYPE>'
 ```
 
 注意: `sed`指定行号时, 实际上指定行号=目标行号+1
@@ -36,5 +36,5 @@ $ find ./ -name '*.html' | xargs sed -i 'N;2i\<!DOCTYPE>'
 也可以使用`find`自带的对查找出的文件进行指定操作的`-exec`选项, 其中`{}`表示查找到的文件.
 
 ```
-$ find ./ -name '*.html' -exec sed -i 'N;2i\<!DOCTYPE>' {} \;
+find ./ -name '*.html' -exec sed -i 'N;2i\<!DOCTYPE>' {} \;
 ```

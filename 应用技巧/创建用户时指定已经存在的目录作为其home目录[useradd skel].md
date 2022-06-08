@@ -20,7 +20,7 @@ general:x:1001:1001::/home/general:/bin/bash
 
 这是因为, 创建新用户的操作, 除了在`/etc/passwd`中添加一行外, 还要从`/etc/skel`目录下拷贝`.bashrc`等模板文件到用户home目录. 指定已经存在的目录作为新建用户的home目录时, 没有拷贝这些模板文件.
 
-所以我们要做的是, 将此home目录的属主该为目标用户, 并修改其权限为`700`, 然后拷贝`/etc/skel`下的模板文件到home目录.
+所以我们要做的是, 将此home目录的属主该为目标用户, 并修改其权限为`700`, 然后拷贝`/etc/skel`下的模板文件(一此隐藏文件)到home目录.
 
 ```
 [root@localhost ~]# cp /etc/skel/* /home/general
