@@ -15,7 +15,7 @@ filebeat.config.inputs:
 filebeat.config.modules: 
   path: ${path.config}/modules.d/*.yml 
   reload.enabled: false 
-output.elasticsearch: 
+output.elasticsearch: ## 这里没有 filebeat. 前缀
   enabled: true 
   hosts: ["127.0.0.1:9200"] 
   username: "elastic" 
