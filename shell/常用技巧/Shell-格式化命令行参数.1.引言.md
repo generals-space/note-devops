@@ -2,16 +2,13 @@
 
 参考文章
 
-[SHELL中对选项和参数的处理方法](http://smilejay.com/2010/12/shell-handle-options/)
-
-[使用getopt处理shell脚本的参数](http://wangxiaoyu.blog.51cto.com/922065/624159/)
+1. [SHELL中对选项和参数的处理方法](http://smilejay.com/2010/12/shell-handle-options/)
+2. [使用getopt处理shell脚本的参数](http://wangxiaoyu.blog.51cto.com/922065/624159/)
 
 在bash中，可以用以下三种方式来处理命令行参数，每种方式都有自己适合的应用场景。
 
-1. 直接处理，依次对$1,$2,…,$n进行解析，分别手工处理(一般会用到`shift`)；
-
+1. 直接处理，依次对`$1`,`$2`,…,`$n`进行解析，分别手工处理(一般会用到`shift`)；
 2. `getopts`，单个字符选项的情况（如:`-n 10`与`-f file.txt`等选项）；
-
 3. `getopt`，可以处理单字符选项，也可以处理长选项（如:`–prefix=/home`等）。
 
 一般小脚本手工处理也许就够了，`getopts`能处理绝大多数的情况，`getopt`较复杂、功能也更强大。
