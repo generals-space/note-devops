@@ -9,7 +9,7 @@ kafka: 2.12-2.3.1
 ## 生产
 
 ```
-./bin/kafka-producer-perf-test.sh --topic test --num-records 100000 --record-size 1000 --throughput 2000 --producer-props bmootstrap.servers=127.0.0.1:9092
+./bin/kafka-producer-perf-test.sh --topic test --num-records 100000 --record-size 1000 --throughput 2000 --producer-props bootstrap.servers=127.0.0.1:9092
 ```
 - `--topic`: topic名称, 本例为`test`
 - `--num-records`: 总共需要发送的消息数, 本例为`100000`

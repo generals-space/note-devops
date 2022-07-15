@@ -12,16 +12,16 @@
 
 ```bash
 #!/bin/bash
-while read line  
-do  
-  echo $line  
+while read line
+do
+  echo $line
   ssh root@192.168.1.1 'date'
-done << EOF  
-1  
-2  
-3  
-4  
-5  
+done << EOF
+1
+2
+3
+4
+5
 EOF
 ```
 
