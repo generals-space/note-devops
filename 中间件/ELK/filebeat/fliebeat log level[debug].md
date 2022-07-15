@@ -5,6 +5,8 @@
 1. [Configure logging](https://www.elastic.co/guide/en/beats/filebeat/6.3/configuration-logging.html)
     - 官方文档
 
+filebeat: 6.3.2
+
 ```yaml
 logging.level: debug
 
@@ -19,5 +21,5 @@ filebeat.config.modules:
 output.kafka:
   enabled: true
   hosts: ["kafka-server:9092"]
-  topic: ""
+  topic: "xxx"
 ```

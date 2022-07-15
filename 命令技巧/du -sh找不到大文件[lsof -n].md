@@ -3,6 +3,7 @@
 参考文章
 
 1. [linux磁盘空间被占满，但是找不到大文件](https://www.cnblogs.com/healthinfo/p/12402139.html)
+2. [Linux大文件已删除，使用df查看已使用的空间并未减少](https://www.cnblogs.com/5201351/p/4281405.html)
 
 有时使用`df -h`查看磁盘, 发现已经100%了, 但是使用`du -sh ./*`又找不到大文件.
 
