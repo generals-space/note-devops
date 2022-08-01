@@ -45,6 +45,12 @@ $ dos2unix dosfile.txt
 
 上面的命令会去掉行尾的^M符号. 
 
+批量转换(当前目录)
+
+```
+find . -type f ! -path './.git/*' | xargs dos2unix
+```
+
 ## 2. 使用tr
 
 `tr`命令可以拷贝标准输入到标准输出, 替换或者删除掉选择的字符, 只能把DOS转换为UNIX文件, 命令如下：
