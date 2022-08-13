@@ -17,6 +17,7 @@ kafka: 2.12-2.3.1
 - `--record-size`: 每条消息的字节数, 本例为1000
 - `--throughput`: 每秒钟发送的消息数量, 本例为2000
 - `--producer-props bootstrap.servers=127.0.0.1:9092`: (发送端的配置信息, 本次测试取集群服务器中的一台作为发送端,可在kafka的config目录(以该项目为例: /usr/local/kafka/config), 查看`server.properties`中配置的`zookeeper.connect`的值, 默认端口: 9092)
+- `acks=1`: 同步发送(注意没有双横线`--`)
 
 按照消息总量(100000)/每秒钟发送的消息数量(2000), 上面的命令会在5秒钟左右执行完毕.
 

@@ -15,6 +15,7 @@ yum:
         - brctl
     bind-utils:
         - dig
+        - nslookup
     mlocate:
         - updatedb
         - locate
