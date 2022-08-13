@@ -10,8 +10,10 @@
 
 Macvlan的4种工作模式
 
-1. VEPA(Virtual Ethernet Port Aggregator): 看一下示意图, 会发现同主机上不同子接口间的通信需要从父接口出去, 再折回来才可以, 无法直接通信.
-2. Bridge: 与通过 bridge 网桥实现的功能很像, 同主机上不同子接口间可以直接通信, 不经过父接口. 但和bridge绝不一样, 它不需要学习 MAC 地址, 也不需要STP, 因此效能比起使用 Linux bridge 好上很多.
+1. Bridge: 与通过 bridge 网桥实现的功能很像, 同主机上不同子接口间可以直接通信, 不经过父接口. 但和bridge绝不一样, 它不需要学习 MAC 地址, 也不需要STP, 因此效能比起使用 Linux bridge 好上很多.
+2. VEPA(Virtual Ethernet Port Aggregator): 看一下示意图, 会发现同主机上不同子接口间的通信需要从父接口出去, 再折回来才可以, 无法直接通信.
 3. Private: 子接口可以与外部主机进行通信, 但是同一主机上不同的子接口之间不可以, 就算先发到外面都回不来.
 4. Passthru: 每个父接口只能创建一个子接口并绑定.
+
+从数据包的流通图上来看, 可以发现, 连通性: bridge > vepa > private > passthru
 
