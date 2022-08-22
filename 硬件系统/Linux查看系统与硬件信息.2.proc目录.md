@@ -13,23 +13,23 @@
 1. 查看物理CPU的个数
 
 ```
-$ cat /proc/cpuinfo | grep "physical id"| sort | uniq| wc –l
+cat /proc/cpuinfo | grep "physical id"| sort | uniq| wc –l
 ```
 
 2. 查看逻辑CPU的个数
 
 ```
-$ cat /proc/cpuinfo | grep "processor"| wc –l
+cat /proc/cpuinfo | grep "processor"| wc –l
 ```
 
 3. 查看CPU是几核
 
 ```
-$ cat /proc/cpuinfo | grep "cores"| uniq
+cat /proc/cpuinfo | grep "cores"| uniq
 ```
 
 4. 查看CPU的主频
 
 ```
-$ cat /proc/cpuinfo | grep MHz| uniq 
+cat /proc/cpuinfo | grep MHz| uniq 
 ```

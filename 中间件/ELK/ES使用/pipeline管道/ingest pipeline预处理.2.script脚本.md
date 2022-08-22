@@ -1,4 +1,4 @@
-# es-ingest预处理功能[pipeline]
+# ingest pipeline预处理.2.script脚本
 
 参考文章
 
@@ -15,99 +15,13 @@
 4. [Elasticsearch教程(30) pipeline处理 painless script脚本详细总结 查询更新案例](https://blog.csdn.net/winterking3/article/details/114033906)
     - ES pipeline 中 script processor 的使用方法.
 
-可以这么说, 在`Elasticsearch`没有提供`IngestNode`这一概念时, 我们想对存储在`Elasticsearch`里的数据在存储之前进行加工处理的话, 我们只能依赖`Logstash`或自定义插件来完成这一功能. 但是`在Elasticsearch 5.x`版本中, 官方在内部集成了部分`Logstash`的功能, 这就是`Ingest`, 而具有`Ingest`能力的节点称之为`Ingest Node`.
-
-> ingest: 摄入;食入;咽下
-
-在使用`logstash/filebeat`时, 可以在采集日志的同时进行处理(比如移除一些不必要的字段, 前者可以通过`pipeline.conf`中的`filter{}`实现, 后者也可以通过`grok`语句提供支持), 然后将处理后的文本发送出去.
-
-但我见过很多场景会使用更轻量的`filebeat`进行采集, 且此时并不对采集的日志进行处理, 而是直接发送到ES中, 由ES完成处理工作.
-
-> 个人感觉, 在ES中配置`pipeline`, 比在分散在各个主机的logstash/filebeat的配置文件更好维护, 修改后也不需要重启logstash/filebeat进程.
-
-比如logstash中可以配置ES的pipeline如下
-
-```conf
-output {
-    elasticsearch {
-        hosts => "elasticsearch:9200"
-        user => "elastic"
-        password => "123456"
-        pipeline => "article"
-    }
-}
-```
-
-之后logstash收集的日志在发送到ES后会交由名为`article`的管道进行处理.
-
-查看ES中的管道配置
-
-```
-GET /_ingest/pipeline
-GET /_ingest/pipeline/article
-```
-
-假设存在如下管道配置
-
-```
-GET _ingest/pipeline/article
-{
-    "description": "pipeline描述信息",
-    "processors" : [
-        {
-            "set" : {
-                "field": "foo",
-                "value": "bar"
-            }
-        }
-    ]
-}
-```
-
-那我们在向索引中写入数据时, ES会向每条数据中额外添加一个`foo`字段, 且该字段值为固定的`bar`, 接下来我们实验一下.
-
-## simulate
-
-和分词的`POST _analyze`接口类似, ES也为管道的功能提供了一个`simulate`模拟接口, 在不实际创建一个管道对象的情况下, 测试我们自己的管道代码是否正确工作, 如下
-
-```
-POST _ingest/pipeline/_simulate
-{
-    "pipeline" : {
-        "processors": [
-            {
-                "set" : {
-                    "field": "foo",
-                    "value": "bar"
-                }
-            }
-        ]
-    },
-    "docs": [
-        {
-            "_index": "index",
-            "_id": "id",
-            "_source": {
-                "title": "my first blog",
-                "author": "general",
-                "content": "hello world!",
-                "read_count": 22,
-                "create_at": "2021-07-30 12:00:00"
-            }
-        }
-    ]
-}
-```
-
-![](https://gitee.com/generals-space/gitimg/raw/master/5959269dfc1821fa05a220e0baeceec8.png)
-
 ## script脚本
 
-processor提供了一些功能, 除了上面的`set`, 还有`remove`, `split`等, 可以实现一些简单的文本处理. 
+processor提供了一些功能, 除了之前提到的的`set`, 还有`remove`, `split`等, 可以实现一些简单的文本处理. 
 
 但是如果处理工作比较复杂, 比如进行逻辑判断, 按数组下标切分字符串, 时间格式转换等功能, 还是需要高级语言支持, `script processor`就提供了这样的功能.
 
-```
+```json
 POST _ingest/pipeline/_simulate
 {
     "pipeline" : {
@@ -171,6 +85,6 @@ POST _ingest/pipeline/_simulate
     ctx._index = ctx._index + '_' + sdf.format(new Date(millis)); 
 ```
 
-> 注意: 上面是以`ctx.create_at`中的时间为准决定索引时间的, 而不是按照ES自身的当前时间, 因为需要打考虑到日志生成到采集, 传输, 以及ES自身处理的消耗, 使用ES自身的时间是不合适的.
+> 注意: 上面是以`ctx.create_at`中的时间为准决定索引时间的, 而不是按照ES自身的当前时间, 因为需要打考虑到日志生成到采集, 传输, 以及ES自身处理的耗时, 使用ES自身的时间是不合适的.
 
 ![](https://gitee.com/generals-space/gitimg/raw/master/2809db6a70fc8979301980437a03c001.png)

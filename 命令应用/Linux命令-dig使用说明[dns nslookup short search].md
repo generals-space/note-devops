@@ -5,7 +5,7 @@
 1. [Dig命令使用大全（转自别人翻译），稍加整理](https://www.cnblogs.com/longyongzhen/p/6592954.html)
 2. [linux下安装使用dig命令](https://www.cmsky.com/linux-dig/)
 
-## 直接查询某个域名的 ip
+## 最简使用 - 直接查询某个域名
 
 ```console
 $ dig t.cn
@@ -27,15 +27,6 @@ t.cn.			5	IN	A	203.107.55.116
 如果输出中没有`ANSWER SECTION`, 只给出了个`AUTHORITY SECTION`(内容格式见下面的示例), 说明目标域名在没找到, 用了`AUTHORITY SECTION`中的 dns 服务器解析也没找到, 那估计就是不存在了.
 
 最下面一块`SERVER`, 显示了本次查询默认使用的 dns 服务器地址(相当于默认路由, 出口第一跳).
-
-------
-
-简明使用，只会输出A记录(写脚本的时候容易获取ip地址)
-
-```console
-$ dig t.cn +short
-203.107.55.116
-```
 
 ## 指定 dns 服务器查询某个域名
 
@@ -88,6 +79,41 @@ generals.space.		5	IN	SOA	dns9.hichina.com. hostmaster.hichina.com. 2016030109 3
 
 > `soa`貌似是主 dns 服务器, 可以使用`dig soa note.generals.space`命令确认
 
-## `+trace`
+## 常用选项
+
+### +short 只查询IP
+
+简明使用，只会输出A记录(写脚本的时候容易获取ip地址)
+
+```console
+$ dig t.cn +short
+203.107.55.116
+```
+
+### +search 添加后缀
+
+在k8s的pod中, /etc/resolv.conf文件中通常都有`search`字段, 如下
+
+```
+nameserver 10.96.0.10
+search mcp-middleware.svc.cs-dev.hpc svc.cs-dev.hpc cs-dev.hpc
+options ndots:5
+```
+
+dig默认是不会为"Pod名称.Service名称"再去添加后缀的, 所以可能找不到
+
+```console
+$ dig +short mcp-redis-1.mcp-redis-svc
+## 啥也没有
+```
+
+此时需要加上`+search`选项, 让dig顺着/etc/resolv.conf的指向去找
+
+```console
+$ dig +short +search mcp-redis-1.mcp-redis-svc
+10.23.151.143
+```
+
+### `+trace`
 
 还没用到过, 有点类似于`traceroute`路由追踪, 因为 dns 记录也是一级一级递归查询的.
