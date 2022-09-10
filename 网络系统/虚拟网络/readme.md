@@ -59,7 +59,7 @@ NIC: Network Interface Card 网络接口卡, 即网卡, 一般指物理网卡.<?
 
 网桥(Bridge)工作在二层, 了解链路层协议, 按帧转发数据. 就是我们常说的**交换机**(在Linux的语境中, Bridge和Switch是一个概念。), 所以连接到网桥的设备处于同一网段. 交换机就是用来连接2个LAN的. 
 
-但是linux提供的bridge与硬件交换机不同的是, ta可以拥有IP地址...
+但是linux提供的bridge与硬件交换机不同的是, ta可以拥有IP地址(不过其实现在有很多三层交换机了, 也可以拥有IP地址...)
 
 Veth 设备成对存在, 相当于连接 Bridge 的网线...but这种设备tm也可以有ip, 拥有IP地址的端可以当作物理网卡使用(kuber中就使用`veth`的一端放在Pod中当作`eth0`).
 

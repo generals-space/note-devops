@@ -3,9 +3,16 @@
 `-l/--list`: 查看所有规则.
 `-n`: 直接显示端口而不是`http/https`这种名称字符串. 注意这个参数只能放在`-l`的后面, 放在前面会出错.
 
+## 错误方法
+
 ```console
 $ ipvsadm -nl
 Try `ipvsadm -h' or 'ipvsadm --help' for more information.
+```
+
+## 正确方法
+
+```console
 $ ipvsadm -ln
 IP Virtual Server version 1.2.1 (size=4096)
 Prot LocalAddress:Port Scheduler Flags
