@@ -3,9 +3,7 @@
 参考文章
 
 1. [iptables日志探秘](https://my.oschina.net/chenguang/blog/362054)
-
 2. [iptables日志探秘](http://www.cnblogs.com/AloneSword/p/4193419.html)
-
 3. [iptables之LOG目标](http://blog.163.com/leekwen@126/blog/static/33166229200973105543171/)
 
 ## 1. 使用方法
@@ -13,7 +11,7 @@
 核心命令
 
 ```
-$ iptables -I INPUT -p tcp -m tcp --dport 22 -j LOG --log-prefix 'SSH Connection: '
+iptables -I INPUT -p tcp -m tcp --dport 22 -j LOG --log-prefix 'SSH Connection: '
 ```
 
 其中核心的核心是`-j LOG`操作. LOG与`ACCEPT`, `REJECT`同级, 但不会是数据包的终点. 意思就是, 经由LOG处理后, 数据包会继续向下匹配其他规则.

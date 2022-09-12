@@ -40,3 +40,8 @@ $ ip neighbour
 ```
 
 其中拥有`PERMANENT`标记的为静态记录, `REACHABLE`则为动态记录.
+
+------
+
+使用`ip neigh add`添加arp记录时, 不能指定"PERMANENT"还是"REACHABLE", 所有通过`ip neigh add`添加的记录都只能是"PERMANENT"类型.
+

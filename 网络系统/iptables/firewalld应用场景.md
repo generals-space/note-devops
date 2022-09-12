@@ -3,7 +3,6 @@
 参考文章
 
 1. [第8章 Iptables与Firewalld防火墙. ](http://www.linuxprobe.com/chapter-08.html?jimmo5550)
-
 2. [How To Migrate from FirewallD to Iptables on CentOS 7](https://www.digitalocean.com/community/tutorials/how-to-migrate-from-firewalld-to-iptables-on-centos-7)
 
 ## firewalld与iptables的关系
@@ -54,7 +53,6 @@ public (default, active)
   icmp-blocks: 
   rich rules: 
 ```
-
 
 ## 2. 服务篇
 

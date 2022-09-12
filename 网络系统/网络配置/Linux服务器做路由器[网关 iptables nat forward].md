@@ -1,4 +1,4 @@
-# Linux 服务器做网关
+# Linux服务器做路由器[网关 iptables nat forward]
 
 参考文章
 
@@ -20,17 +20,16 @@ echo 'net.ipv4.ip_forward = 1' >> /etc/sysctl.conf
 sysctl -p
 ```
 
-设置SNAT
-
-```
-iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-```
-
-同时允许FORWARD转发
+filter表允许FORWARD转发
 
 ```
 iptables -A FORWARD -j ACCEPT
 ```
 
-其他服务器设置GATEWAY为该网关服务器即可.
+nat表设置SNAT
 
+```
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+```
+
+其他服务器设置GATEWAY为该网关服务器即可.

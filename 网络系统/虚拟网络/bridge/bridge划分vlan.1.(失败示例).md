@@ -156,7 +156,7 @@ ip netns exec netns3 ip link set dev mybr0 type bridge vlan_filtering 1
 
 后来在进行了第2个实验才醒悟过来, 一个`netns`中存在两个网卡本身就是有问题的. 
 
-于是把`netns3`的`veth33`从`mybr0`中移除, 于是在`netns1`中`ping 10.1.1.202`就不通了.
+于是把`netns3`的`veth33`从`mybr0`中移除, 在`netns1`中`ping 10.1.1.202`就不通了.
 
 可以得出结论, 其实是因为之前的实验中, 数据包经过了这样一个流程`veth11 -> veth31 -> mybr0 -> veth33 -> veth23 -> veth24`.
 

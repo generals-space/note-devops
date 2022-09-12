@@ -113,7 +113,7 @@ tcpdump: listening on veth21, link-type EN10MB (Ethernet), capture size 262144 b
 04:26:20.566593 32:21:c9:c2:d8:69 > Broadcast, ethertype 802.1Q (0x8100), length 46: vlan 1, p 0, ethertype ARP, Ethernet (len 6), IPv4 (len 4), Request who-has 10.1.1.2 tell 10.1.1.1, length 28
 ```
 
-与前面抓包示例相比, 这次`veth21`上有了`vlan tag`. 这也说明了`Egress Untagged`的作用: 可以把流入的数据包中`vlan tag`移除, 再
+与前面抓包示例相比, 这次`veth21`上有了`vlan tag`. 这也说明了`Egress Untagged`的作用: 可以把流入的数据包中`vlan tag`移除后再流出, 这样出去的数据包中就不带有`vlan tag`了.
 
 由于`veth`设备类似于物理网线, 对任何数据都会透传, 所以在`veth22`上抓包也可以看到`vlan tag`.
 
