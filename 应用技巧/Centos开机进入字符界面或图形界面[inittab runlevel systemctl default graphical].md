@@ -1,13 +1,14 @@
 # Linux开机进入字符界面/图形界面
 
+<!--
 <!key!>: {c2f8cf90-5387-11e9-ae66-aaaa0008a014}
 
 <!link!>: {664fdd98-537c-11e9-b398-aaaa0008a014}
+-->
 
 参考文章
 
 1. [systemd详解](https://blog.linuxeye.com/400.html#comments)
-
 2. [真的超赞！用systemd命令来管理linux系统！](https://linux.cn/article-3801-1.html)
 
 ## 1. CentOS7-
@@ -38,12 +39,11 @@ id:5:initdefault:
 在`/etc/systemd/system`下有名为`default.target`的软链接指向`/usr/lib/systemd/system`目录下的某个`target`文件作为运行模式(好多). 常用到的有两个:
 
 - multi-user.target: 类似于 runlevel 3(字符界面)
-
 - graphical.target: 类似于 runlevel 5(图形界面)
 
 切换运行模式的命令为
 
-```shell
+```bash
 systemctl set-default 目标target文件名
 ```
 
