@@ -9,15 +9,17 @@
     - 源码安装
 4. [Installing Open vSwitch](https://docs.openvswitch.org/en/latest/intro/install/)
     - 官方文档
+5. [OVS初级教程：使用Open vSwitch构建虚拟网络](https://www.sdnlab.com/sdn-guide/14747.html)
 
 ```
 yum install -y centos-release-openstack-queens
 yum install -y openvswitch.x86_64
 ```
 
-
+```
 systemctl start openvswitch
 systemctl enable openvswitch
+```
 
 ```console
 $ ovs-vsctl add-br ovs-br0
@@ -29,7 +31,3 @@ $ ip -d addr
     link/ether 36:96:84:36:26:4a brd ff:ff:ff:ff:ff:ff promiscuity 1
     openvswitch numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535
 ```
-
-
-
-iptables -t filter -A FORWARD -t ACCEPT
