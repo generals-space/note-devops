@@ -48,6 +48,8 @@
     - 不知道怎么归类, 不明觉厉.
 19. [【译】Linux虚拟网络接口简介](https://xiaoz.co/2020/01/23/linux-interfaces-for-virtual-networking/)
     - 这个文章把所有可能的虚拟网络设备都提到了, 并做了简洁的解释.
+20. [Linux开源网络全栈详解——笔记](https://blog.csdn.net/qq_41976997/article/details/121250087)
+21. [容器网络 (虚拟网络) 基础](https://kuricat.com/articles/virtual-network-basic-7yoiq)
 
 虚拟网卡, 网桥bridge, 虚拟IP, NAT的区别
 
