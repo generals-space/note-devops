@@ -5,6 +5,8 @@
 1. [Fun with veth-devices, Linux bridges and VLANs in unnamed Linux network namespaces – IV](https://linux-blog.anracom.com/2017/11/20/fun-with-veth-devices-linux-bridges-and-vlans-in-unnamed-linux-network-namespaces-iv/)
     - 系列文章第4章, 对bridge设备的vlan设置规则有详细介绍, 本章并没有提供代码示例.
 
+untagged 只在数据包从本端口发出的时候在有意义, ta本身并不影响 bridge 的转发行为.
+
 ## 1. 部署实验网络
 
 ```
