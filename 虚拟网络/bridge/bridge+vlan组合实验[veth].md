@@ -53,9 +53,9 @@ ip netns exec netns2 ip link set dev mybr2 type bridge vlan_filtering 1
 ```
 
 
-### 2. step 2
+## 2. step 2
 
-创建vlan条目, 先删除原来的id 1(`1`貌似是保留id).
+先删除原来的vlan条目(`1`貌似是保留id).
 
 ```bash
 ip netns exec netns2 bridge vlan del dev veth2 vid 1
@@ -67,7 +67,7 @@ ip netns exec netns2 bridge vlan del dev mybr2 vid 1 self
 
 > 注意: **删除`bridge`设备本身的条目时要加`self`标记, 否则会出错.**
 
-再新建
+再新建vlan
 
 ```bash
 ip netns exec netns2 bridge vlan add dev veth2 vid 100 pvid

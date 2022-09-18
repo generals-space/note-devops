@@ -127,9 +127,3 @@ mybr2	 1 PVID Egress Untagged
 ```
 
 > 注意: `bridge vlan add`无法添加`dev`为`veth2.100`这种已经是vlan类型的设备.
-
-------
-
-使用`ip link set <dev> master <bridge>`命令将设备接入网桥, 你会发现在`bridge vlan show`中接入的设备存在一些默认值, 如`vlan id`为1, 并且拥有`PVID`和`Egress Untagged`标签.
-
-而使用`bridge vlan add`添加vlan条目, 除了`vid`字段是必须指定的, `PVID`与`Egress Untagged`只能通过`pvid`与`untagged`两个选项显式指定, 否则将为空.

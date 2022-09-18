@@ -68,8 +68,16 @@ bridge br0 is still up; can't delete it
 
 ## VLAN MANAGEMENT
 
-| ACTION                         | brctl | bridge                                                           |
-| :----------------------------- | :---- | :--------------------------------------------------------------- |
-| Creating new VLAN filter entry |       | `bridge vlan add dev <dev> [vid, pvid, untagged, self, master]`  |
-| Delete VLAN filter entry       |       | `bridge vlan delete dev <dev> (parameters same as for vlan add)` |
-| List VLAN configuration        |       | `bridge vlan show`                                               |
+| ACTION                         | brctl | bridge                                                                     |
+| :----------------------------- | :---- | :------------------------------------------------------------------------- |
+| List VLAN configuration        |       | `bridge vlan show`                                                         |
+| Creating new VLAN filter entry |       | `bridge vlan add dev <dev> vid <vid> [pvid, untagged, self, master]`       |
+| Delete VLAN filter entry       |       | `bridge vlan delete dev <dev> vid <vid> (parameters same as for vlan add)` |
+
+注意:
+
+1. 使用`ip link set <dev> master <bridge>`命令将设备接入网桥, 没办法指定其他参数, `bridge vlan show`中接入的设备存在一些默认值, 如`vlan id`为1, 并且拥有`PVID`和`Egress Untagged`标签.
+2. 使用`bridge vlan add`添加vlan条目, 除了`vid`字段是必须指定的, `PVID`与`Egress Untagged`只能通过`pvid`与`untagged`两个选项显式指定, 否则将为空.
+
+另外, 使用`bridge`命令管理vlan时, 必须是已接入设备的接口(只有接入bridge的设备, 才会出现`bridge vlan show`的结果中).
+

@@ -28,3 +28,10 @@ ip link add link <ethX | vethX > name vlanX.100 type vlan id 100
 
 `vlanX.100`(名称随意)的作用在于, 数据流向为`vlanX.100 -> ethX|vethX`的时候, 到达ethX或vethX设备的数据包中会携带`vlan tag`, 但反过来则不会.
 
+------
+
+pvid: port vlan id
+
+交换机的一个port端口, 可以配置接受多个 vlan, 但是 pvid 标记只能打在一个 vlan 上.
+
+这样, 不带 vlan tag 的数据包流入该端口时, 就会自动被 pvid 打上ta自己的 vlan tag.
