@@ -1,4 +1,4 @@
-# ipvlan-Operation not supported
+# 创建ipvlan设备失败-Operation not supported
 
 ip link add link ens34 ipvlan1 type ipvlan mode l3
 

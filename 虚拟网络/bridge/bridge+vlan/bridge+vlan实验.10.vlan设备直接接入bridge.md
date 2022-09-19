@@ -27,44 +27,44 @@
 ## 1. 部署实验网络
 
 ```bash
-ip netns add netns1
-ip netns add netns2
-ip netns add netns3
+ip netns add ns01
+ip netns add ns02
+ip netns add ns03
 
 ip link add veth11 type veth peer name veth31
 ip link add veth22 type veth peer name veth32
 
-ip link set veth11 netns netns1
-ip link set veth22 netns netns2
-ip link set veth31 netns netns3
-ip link set veth32 netns netns3
+ip link set veth11 netns ns01
+ip link set veth22 netns ns02
+ip link set veth31 netns ns03
+ip link set veth32 netns ns03
 
-ip netns exec netns1 ip link add link veth11 name veth11.100 type vlan id 100
-ip netns exec netns3 ip link add link veth31 name veth31.100 type vlan id 100
-ip netns exec netns1 ip addr add 10.1.1.1/24 dev veth11.100
-ip netns exec netns2 ip addr add 10.1.1.2/24 dev veth22
-ip netns exec netns1 ip link set veth11 up
-ip netns exec netns2 ip link set veth22 up
-ip netns exec netns3 ip link set veth31 up
-ip netns exec netns3 ip link set veth32 up
-ip netns exec netns1 ip link set veth11.100 up
-ip netns exec netns3 ip link set veth31.100 up
+ip netns exec ns01 ip link add link veth11 name veth11.100 type vlan id 100
+ip netns exec ns03 ip link add link veth31 name veth31.100 type vlan id 100
+ip netns exec ns01 ip addr add 10.1.1.3/24 dev veth11.100
+ip netns exec ns02 ip addr add 10.1.1.4/24 dev veth22
+ip netns exec ns01 ip link set veth11 up
+ip netns exec ns02 ip link set veth22 up
+ip netns exec ns03 ip link set veth31 up
+ip netns exec ns03 ip link set veth32 up
+ip netns exec ns01 ip link set veth11.100 up
+ip netns exec ns03 ip link set veth31.100 up
 ```
 
-在`netns3`中创建, 配置`bridge`, 并将`veth31`与`veth32`接入.
+在`ns03`中创建, 配置`bridge`, 并将`veth31`与`veth32`接入.
 
 ```bash
-ip netns exec netns3 ip link add mybr0 type bridge
-ip netns exec netns3 ip link set mybr0 up
-ip netns exec netns3 ip link set veth31.100 master mybr0
-ip netns exec netns3 ip link set veth32 master mybr0
-ip netns exec netns3 ip link set dev mybr0 type bridge vlan_filtering 1
+ip netns exec ns03 ip link add mybr0 type bridge
+ip netns exec ns03 ip link set mybr0 up
+ip netns exec ns03 ip link set veth31.100 master mybr0
+ip netns exec ns03 ip link set veth32 master mybr0
+ip netns exec ns03 ip link set dev mybr0 type bridge vlan_filtering 1
 ```
 
 ```
 +-----------------------------+-----------------------------------------------------------------------+
-|                    netns1   |                                   netns3                |   netns2    |
-|  10.1.1.1/24                |                                                         | 10.1.1.2/24 |
+|                    ns01     |                                   ns03                  |    ns02     |
+|  10.1.1.3/24                |                                                         | 10.1.1.4/24 |
 | +-----------+     +-------+ | +-------+     +-----------+     +-------+     +-------+ |  +-------+  |
 | | veth11.100| <-> | veth11| | | veth31| <-> | veth31.100| <-> | mybr0 | <-> | veth32| |  | veth22|  |
 | +-----------+     +---↑---+ | +---↑---+     +-----------+     +-------+     +----↑--+ |  +--↑----+  |
@@ -74,7 +74,7 @@ ip netns exec netns3 ip link set dev mybr0 type bridge vlan_filtering 1
 
 ## 2. 网络分析
 
-~~此时在`netns1`中`ping 10.1.1.2`应该是不通的, 因为来自`veth31.100`的数据包中的`vlan tag`值为100, 而接入`mybr0`的端口默认`vid`值为1, 数据包是进不了的.~~
+~~此时在`ns01`中`ping 10.1.1.4`应该是不通的, 因为来自`veth31.100`的数据包中的`vlan tag`值为100, 而接入`mybr0`的端口默认`vid`值为1, 数据包是进不了的.~~
 
 看来我之前的认知是错误的, 因为双向都可以ping通...🤔
 
@@ -87,7 +87,7 @@ veth31.100
 mybr0	 1 PVID Egress Untagged
 ```
 
-我们从`netns1`执行 ping 10.1.1.2, 在`netns3`中抓包时, 发现数据包流经`veth31`时, 还带着`vlan tag`, 值为100. 但是在流经`veth31.100`时, 捕获到的数据包已经没有`vlan tag`了. 并且由于`veth31.100`接入`mybr0`的端口默认带有`pvid`标记, 所以线路就通了.
+我们从`ns01`执行 ping 10.1.1.4, 在`ns03`中抓包时, 发现数据包流经`veth31`时, 还带着`vlan tag`, 值为100. 但是在流经`veth31.100`时, 捕获到的数据包已经没有`vlan tag`了. 并且由于`veth31.100`接入`mybr0`的端口默认带有`pvid`标记, 所以线路就通了.
 
 veth31.100 -> mybr0 也能被接收, 说明流入的数据包是不带 vlan tag 的, 否则会被丢弃.
 
