@@ -30,8 +30,8 @@
 
 ```
 +-----------------------------+-----------------------------------------------------------------------+
-|                    netns1   |                                   netns3                |   netns2    |
-|  10.1.1.1/24                |                                                         | 10.1.1.2/24 |
+|                     ns01    |                                    ns03                 |    ns02     |
+|  10.1.1.3/24                |                                                         | 10.1.1.4/24 |
 | +-----------+     +-------+ | +-------+     +-----------+     +-------+     +-------+ |  +-------+  |
 | | veth11.100| <-> | veth11| | | veth31| <-> | veth31.100| <-> | mybr0 | <-> | veth32| |  | veth22|  |
 | +-----------+     +---↑---+ | +---↑---+     +-----------+     +-------+     +----↑--+ |  +--↑----+  |
@@ -39,7 +39,7 @@
 +-----------------------------+---------------------------------------------------------+-------------+
 ```
 
-在这个网络中, `netns1`和`netns2`是可以相互ping通的, 本实验中我们只修改 bridge vlan 接口配置, 不再修改网络结构, 且主要观察从右到左的数据流向.
+在这个网络中, `ns01`和`ns02`是可以相互ping通的, 本实验中我们只修改 bridge vlan 接口配置, 不再修改网络结构, 且主要观察从右到左的数据流向.
 
 ## 1. `vid 100 -> veth1.100`: 从bridge端口中流出的数据包带有值与`veth vlan`设备的相同的`vlan tag`, 可以被后者接收
 
@@ -74,14 +74,13 @@ veth31.100
 mybr0	 1 PVID Egress Untagged
 ```
 
-此时从`netns2`中`ping 10.1.1.1`已经不通了. 在`netns3`中抓包, 结果如下
+此时从`ns02`中`ping 10.1.1.3`已经不通了. 在`ns03`中抓包, 结果如下
 
 **veth31**
 
 ```console
 $ tcpdump -nve -i veth31
-05:19:43.350913 8e:d9:b6:70:d3:82 > Broadcast, ethertype 802.1Q (0x8100), length 50: vlan 100, p 0, ethertype 802.1Q, vlan 100, p 0, ethertype ARP, Ethernet (len 6), IPv4 (len 4), Request who-has 10.1.1.1 tell 10.1.1.2, length 28
-05:19:45.354734 8e:d9:b6:70:d3:82 > Broadcast, ethertype 802.1Q (0x8100), length 50: vlan 100, p 0, ethertype 802.1Q, vlan 100, p 0, ethertype ARP, Ethernet (len 6), IPv4 (len 4), Request who-has 10.1.1.1 tell 10.1.1.2, length 28
+05:19:43.350913 8e:d9:b6:70:d3:82 > Broadcast, ethertype 802.1Q (0x8100), length 50: vlan 100, p 0, ethertype 802.1Q, vlan 100, p 0, ethertype ARP, Ethernet (len 6), IPv4 (len 4), Request who-has 10.1.1.3 tell 10.1.1.4, length 28
 ```
 
 说明数据包已经被转发出去了.
@@ -114,14 +113,14 @@ mybr0	 1 PVID Egress Untagged
 
 ```console
 $ tcpdump -nve -i veth31.100
-05:28:08.309281 8e:d9:b6:70:d3:82 > Broadcast, ethertype 802.1Q (0x8100), length 46: vlan 200, p 0, ethertype ARP, Ethernet (len 6), IPv4 (len 4), Request who-has 10.1.1.1 tell 10.1.1.2, length 28
+05:28:08.309281 8e:d9:b6:70:d3:82 > Broadcast, ethertype 802.1Q (0x8100), length 46: vlan 200, p 0, ethertype ARP, Ethernet (len 6), IPv4 (len 4), Request who-has 10.1.1.3 tell 10.1.1.4, length 28
 ```
 
 **veth31**
 
 ```console
 $ tcpdump -nve -i veth31
-05:28:13.311851 8e:d9:b6:70:d3:82 > Broadcast, ethertype 802.1Q (0x8100), length 50: vlan 100, p 0, ethertype 802.1Q, vlan 200, p 0, ethertype ARP, Ethernet (len 6), IPv4 (len 4), Request who-has 10.1.1.1 tell 10.1.1.2, length 28
+05:28:13.311851 8e:d9:b6:70:d3:82 > Broadcast, ethertype 802.1Q (0x8100), length 50: vlan 100, p 0, ethertype 802.1Q, vlan 200, p 0, ethertype ARP, Ethernet (len 6), IPv4 (len 4), Request who-has 10.1.1.3 tell 10.1.1.4, length 28
 ```
 
 虽然流经`mybr0 -> veth31.100`的数据包都携带值为200的`vlan tag`, 但会被`veth31.100`修改为100.
@@ -152,16 +151,16 @@ mybr0	 1 PVID Egress Untagged
 
 ```
 $ tcpdump -nve -i veth31.100
-05:47:32.509708 8e:d9:b6:70:d3:82 > Broadcast, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Request who-has 10.1.1.1 tell 10.1.1.2, length 28
-05:47:32.509724 a2:df:d5:0d:c3:a1 > 8e:d9:b6:70:d3:82, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Reply 10.1.1.1 is-at a2:df:d5:0d:c3:a1, length 28
+05:47:32.509708 8e:d9:b6:70:d3:82 > Broadcast, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Request who-has 10.1.1.3 tell 10.1.1.4, length 28
+05:47:32.509724 a2:df:d5:0d:c3:a1 > 8e:d9:b6:70:d3:82, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Reply 10.1.1.3 is-at a2:df:d5:0d:c3:a1, length 28
 ```
 
 **veth31**
 
 ```
 $ tcpdump -nve -i veth31
-05:47:45.543786 8e:d9:b6:70:d3:82 > Broadcast, ethertype 802.1Q (0x8100), length 46: vlan 100, p 0, ethertype ARP, Ethernet (len 6), IPv4 (len 4), Request who-has 10.1.1.1 tell 10.1.1.2, length 28
-05:47:45.543803 a2:df:d5:0d:c3:a1 > 8e:d9:b6:70:d3:82, ethertype 802.1Q (0x8100), length 46: vlan 100, p 0, ethertype ARP, Ethernet (len 6), IPv4 (len 4), Reply 10.1.1.1 is-at a2:df:d5:0d:c3:a1, length 28
+05:47:45.543786 8e:d9:b6:70:d3:82 > Broadcast, ethertype 802.1Q (0x8100), length 46: vlan 100, p 0, ethertype ARP, Ethernet (len 6), IPv4 (len 4), Request who-has 10.1.1.3 tell 10.1.1.4, length 28
+05:47:45.543803 a2:df:d5:0d:c3:a1 > 8e:d9:b6:70:d3:82, ethertype 802.1Q (0x8100), length 46: vlan 100, p 0, ethertype ARP, Ethernet (len 6), IPv4 (len 4), Reply 10.1.1.3 is-at a2:df:d5:0d:c3:a1, length 28
 ```
 
 虽然`veth31.100`接入的端口流出的数据包不带有`vlan tag`, 但仍会被`veth31.100`设备加上值为100的`vlan tag`. 

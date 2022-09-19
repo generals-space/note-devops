@@ -1,3 +1,5 @@
+# macvlan bridge模式实现容器与宿主机通信
+
 参考文章
 
 1. [Macvlan 网络方案实践](https://cloud.tencent.com/developer/article/1495218)
@@ -25,8 +27,6 @@ ip netns exec ns02 ip link set macvlan02 up
 ip netns exec ns01 ip route add default via 192.168.42.2 dev macvlan01
 ip netns exec ns02 ip route add default via 192.168.42.2 dev macvlan02
 ```
-
-
 
 为了实现宿主机与其上面的 macvlan 容器相互通信, 可以按照参考文章1和2, 有2种不同的处理方法(不过原理上感觉是相同的).
 
