@@ -3,11 +3,8 @@
 参考文章
 
 1. [使用 supervisor 管理进程](http://www.ttlsa.com/linux/using-supervisor-control-program/)
-
 2. [supervisord监控详解](http://www.2cto.com/os/201406/306622.html)
-
 3. [Linux 进程管理与监控（supervisor and monit）](http://tchuairen.blog.51cto.com/3848118/1827716)
-
 4. [supervisor(一)基础篇](http://lixcto.blog.51cto.com/4834175/1539136)及其后续
 
 ```ini
