@@ -5,10 +5,6 @@
 1. [Macvlan 和 IPvlan](https://www.cnblogs.com/menkeyi/p/11374023.html)
     - IPvlan分为两种工作模式: L2/L3
 
-如果说`macvlan`在某种程度上实现了部分`bridge`设备的功能, 那么`ipvlan`就实现了部分`router`的功能.
-
-> 之前一直在想为什么linux虚拟设备中没有虚拟路由器的存在, 还要在宿主机上开`ip_forward`+添加路由规则才能完成, 现在有了 ヾ(*´▽‘*)ﾉ
-
 `ipvlan`设备有2种工作模式:
 
 1. L2: 和 macvlan bridge 模式工作原理很相似, 父接口作为交换机来转发子接口的数据. 同一个网络的子接口可以通过父接口来转发数据, 而如果想发送到其他网络, 报文则会通过父接口的路由转发出去. 
@@ -22,13 +18,7 @@
 
 如果ipvlan设备工作在L3, 而各设备的IP又非同一子网, ta们之间是没有办法直接通信的, 除非在宿主机上添加各自的路由. 这个倒不难理解.
 
-------
 
-不能基于`lo`环回网卡创建ipvlan设备.
+ipvlan L2与macvlan bridge创建方式, 使用方式及工作模式基本都相同, 不过与macvlan不同的的, ipvlan虚拟出来的设备的mac地址都是一样的. 
 
-```console
-$ ip link add link lo ipvlan1 type ipvlan mode l3
-RTNETLINK answers: Invalid argument
-```
-
-另外, 基于`bridge`设备虽然可以创建的`ipvlan`设备, 但是`ipvlan`设备之间不能像基于ether设备那样互通.
+不过, 在与物理网络中宿主机之外的主机通信, 数据流经物理网卡时, macvlan模型可以通过mac地址查找目的地址, 而ipvlan则需要通过 ip 查找.

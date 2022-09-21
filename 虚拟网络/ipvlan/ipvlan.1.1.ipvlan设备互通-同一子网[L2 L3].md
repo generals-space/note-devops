@@ -232,10 +232,6 @@ Unicast reply from 172.16.91.100 [00:0C:29:51:4C:E0]  0.696ms
 Unicast reply from 172.16.91.100 [00:0C:29:51:4C:E0]  0.558ms
 ```
 
-如果目标地址不在本机, 数据包送到ens34后, 会根据ens34本身的路由发送出去.
-
-注意: ipvlan模型是不支持ipvlan设备与父接口以及宿主机上其他网卡通信的.
-
 在ns01中`arping 172.16.91.14`, 仅会得到1次广播包回应, 不过在ens34上还是可以接收到`arp`请求包的. 
 
 ```console
@@ -244,5 +240,3 @@ ARPING 172.16.91.14 from 172.16.91.101 ipvlan1
 Unicast reply from 172.16.91.14 [00:0C:29:51:4C:E0]  0.627ms
 ^CSent 5 probes (1 broadcast(s))
 ```
-
-ping的话, ens34上会收到`icmp request`包, 但不会回复. 在vm02上ping`172.16.91.101`倒是可以, 因为出的数据包和入的数据包所经的路线根本不一样. 
