@@ -22,7 +22,7 @@ openssl命令行工具可以实现: 秘钥证书管理、对称加密和非对�
 
 关于openssl在命令行的使用方法, 可以使用`openssl --help`查看. 
 
-```
+```console
 $ openssl --help
 openssl:Error: '--help' is an invalid command.
 
@@ -46,3 +46,4 @@ aes-128-cbc       aes-128-ecb       aes-192-cbc       aes-192-ecb
 3. 数据加密算法子命令
 
 > ...关于摘要算法与加密算法的区别, 数据摘要算法不可逆主要用于验证与比对，加密算法由于可逆性, 可以进行加解密.
+

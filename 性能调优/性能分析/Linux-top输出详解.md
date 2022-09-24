@@ -84,7 +84,7 @@ Swap 交换分区相关信息(Swap: 2097144k total, 151016k used, 1946128k free,
 - T: SHR = (Shared Mem size (kb)) 共享内存大小, 单位kb
     - 该值取自`/proc/$pid/status`文件中的`RssFile`字段.
 - W: S = (Process Status) 进程状态. D=不可中断的睡眠状态,R=运行,S=睡眠,T=跟踪/停止,Z=僵尸进程
-- K: %CPU = (CPU usage) 上次更新到现在的CPU时间占用百分比
+- K: %CPU = (CPU usage) 上次更新到现在的CPU时间占用百分比(100%则为单核满载)
 - N: %MEM = (Memory usage (RES)) 进程使用的物理内存百分比
 - M: TIME+ = (CPU Time, hundredths) 进程使用的CPU时间总计, 单位1/100秒
 - b: PPID = (Parent Process Pid) 父进程Id

@@ -3,14 +3,12 @@
 参考文章
 
 1. [How to save a remote server SSL certificate locally as a file](https://superuser.com/questions/97201/how-to-save-a-remote-server-ssl-certificate-locally-as-a-file)
-
 2. [Displaying a remote SSL certificate details using CLI tools](https://serverfault.com/questions/661978/displaying-a-remote-ssl-certificate-details-using-cli-tools)
-
 3. [如何用OpenSSL从https网站上导出SSL的CA证书?](https://blog.csdn.net/iteye_4639/article/details/82579715)
 
 按照参考文章3中所说, 可以使用openssl的`s_client`子命令.
 
-```
+```console
 $ openssl s_client -showcerts -connect https://goproxy.onetool.net
 getaddrinfo: Servname not supported for ai_socktype
 connect:errno=0
@@ -18,7 +16,7 @@ connect:errno=0
 
 网站地址不能是`https://`这种, 要使用**域名+端口**的形式, 如下
 
-```
+```console
 $ openssl s_client -showcerts -connect goproxy.onetool.net:443
 CONNECTED(00000003)
 depth=3 C = SE, O = AddTrust AB, OU = AddTrust External TTP Network, CN = AddTrust External CA Root
