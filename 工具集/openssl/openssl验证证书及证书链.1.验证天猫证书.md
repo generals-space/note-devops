@@ -1,13 +1,10 @@
-# openssl验证证书及证书链(一)验证天猫证书
+# openssl验证证书及证书链.1.验证天猫证书
 
 参考文章
 
 1. [使用openssl校验证书链](http://www.zeali.net/entry/532)
-
 2. [SSL自签署证书生成脚本](http://www.zeali.net/entry/532)
-
 3. [Shell脚本实现生成SSL自签署证书](http://www.jb51.net/article/60371.htm)
-
 4. [openssl生成证书链多级证书](http://www.cnblogs.com/gsls200808/p/4502044.html)
 
 - 系统版本: CentOS7
@@ -21,7 +18,7 @@
 
 ![](https://gitee.com/generals-space/gitimg/raw/master/35402934e1075c9050ae5e0c0c498e0c.png)
 
-```
+```console
 $ ll
 total 20
 drwxr-xr-x  2 general general 4096 4月   9 09:03 ./
@@ -53,7 +50,7 @@ error 20 at 0 depth lookup:unable to get local issuer certificate
 
 然后我们用根证书去验证2级证书, 通过`-CAfile`选项指定父级证书.
 
-```
+```console
 $ openssl verify -CAfile builtin.crt global.crt 
 global.crt: OK
 ```
@@ -62,14 +59,14 @@ global.crt: OK
 
 现在用2级证书验证3级证书.
 
-```
+```console
 $ openssl verify -CAfile global.crt tmall.crt 
 tmall.crt: OK
 ```
 
 ...没毛病, 不像参考文章1中所说需要合并根证书与2级证书才能通过验证, 不过还是要试一试.
 
-```
+```console
 $ cat builtin.crt global.crt > bundle.crt
 $ openssl verify -CAfile bundle.crt tmall.crt 
 tmall.crt: OK

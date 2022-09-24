@@ -1,13 +1,10 @@
-# openssl验证证书及证书链(二)验证自签名证书
+# openssl验证证书及证书链.2.验证自签名证书
 
 参考文章
 
 1. [使用openssl校验证书链](http://www.zeali.net/entry/532)
-
 2. [SSL自签署证书生成脚本](http://www.zeali.net/entry/532)
-
 3. [Shell脚本实现生成SSL自签署证书](http://www.jb51.net/article/60371.htm)
-
 4. [openssl生成证书链多级证书](http://www.cnblogs.com/gsls200808/p/4502044.html)
 
 我们来做个比较复杂的实验吧.
@@ -32,9 +29,9 @@ openssl req -new -x509 -days 36500 -extensions v3_ca -keyout CA.key -out CA.crt
 然后生成二级CA A和B, 服务器证书a
 
 ```
-openssl genrsa -out A.key 2048
-openssl genrsa -out B.key 2048
-openssl genrsa -out a.key 2048
+openssl genrsa -des3 -out A.key 2048
+openssl genrsa -des3 -out B.key 2048
+openssl genrsa -des3 -out a.key 2048
 openssl req -new -key A.key -out A.csr
 openssl req -new -key B.key -out B.csr
 openssl req -new -key a.key -out a.csr
@@ -59,7 +56,7 @@ openssl x509 -req -CA A.crt -CAkey A.key -CAcreateserial -days 36500 -in a.csr -
 
 验证自签发CA根证书时
 
-```
+```console
 $ openssl verify CA.crt
 CA.crt: C = XX, L = Default City, O = Default Company Ltd, CN = 0.0.0.0
 error 18 at 0 depth lookup:self signed certificate
@@ -76,7 +73,7 @@ OK
 
 首先验证`A.crt`
 
-```
+```console
 $ openssl verify A.crt
 A.crt: C = XX, L = Default City, O = Default Company Ltd, CN = A
 error 20 at 0 depth lookup:unable to get local issuer certificate
@@ -86,7 +83,7 @@ error 20 at 0 depth lookup:unable to get local issuer certificate
 
 使用`CA.crt`验证`A.crt`
 
-```
+```console
 $ openssl verify -CAfile CA.crt A.crt 
 A.crt: OK
 ```
@@ -95,7 +92,7 @@ A.crt: OK
 
 再用`A.crt`验证`a.crt`.
 
-```
+```console
 $ openssl verify -CAfile A.crt a.crt 
 a.crt: C = XX, L = Default City, O = Default Company Ltd, CN = a
 error 18 at 0 depth lookup:self signed certificate
@@ -104,7 +101,7 @@ OK
 
 好像有点问题, 按照参考文章1说的, 把CA和A证书合并一下再验证
 
-```
+```console
 $ cat CA.crt A.crt > bundle.crt
 $ openssl verify -CAfile bundle.crt a.crt 
 a.crt: C = XX, L = Default City, O = Default Company Ltd, CN = a
@@ -114,7 +111,7 @@ OK
 
 还是这个问题, 但是和错误还不太搭边, 因为真正验证错误是下面这样的.
 
-```
+```console
 $ openssl verify -CAfile B.crt A.crt 
 A.crt: C = XX, L = Default City, O = Default Company Ltd, CN = A
 error 20 at 0 depth lookup:unable to get local issuer certificate
@@ -123,8 +120,8 @@ error 20 at 0 depth lookup:unable to get local issuer certificate
 ## 3. 信任根证书后验证
 
 ```
-$ cp CA.crt /etc/pki/ca-trust/source/anchors/
-$ update-ca-trust
+cp CA.crt /etc/pki/ca-trust/source/anchors/
+update-ca-trust
 ```
 
 重复上面的步骤试试.
