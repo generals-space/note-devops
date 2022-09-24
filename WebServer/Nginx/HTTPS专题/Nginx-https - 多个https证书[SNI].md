@@ -3,7 +3,6 @@
 参考文章
 
 1. [【nginx】配置nginx支持ssl sni （一个IP绑定多个证书）](http://blog.csdn.net/cccallen/article/details/6672451)
-
 2. [通过开启Nginx TLS SNI来支持同一IP下多SSL证书](http://www.2cto.com/article/201503/386296.html)
 
 在不支持TLS SNI的nginx中, 相同端口下(如443), 如果有多个不同的https server块(`server_name`字段不同), 用户访问时, 只会使用配置文件中第一个server块中指定的证书(或是`server_name`指定了`default`标识的server块, 实际上这与nginx的访问规则有关). 这样的话, 配置文件中靠后的证书就无法生效.

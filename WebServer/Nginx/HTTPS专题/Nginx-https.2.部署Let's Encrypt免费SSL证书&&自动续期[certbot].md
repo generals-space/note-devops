@@ -1,23 +1,24 @@
-# 部署Let's Encrypt免费SSL证书&&自动续期
+# Nginx-https.2.部署Let's Encrypt免费SSL证书&&自动续期[certbot]
 
 参考文章
 
 1. [部署Let’s Encrypt免费SSL证书&&自动续期](http://www.linuxidc.com/Linux/2017-03/142248.htm)
-
 2. [Let's Encrypt官网链接](https://letsencrypt.org/getting-started/)
-
 3. [Certbot官网链接](https://certbot.eff.org/#centosrhel7-nginx)
 
 Let's Encrypt提供了一个工具命令, 托管在CentOS下的epel源中(实际上它支持多个操作系统, 在官网上你可以自行选择, 然后得到可行的部署流程).
 
-## 1. 流程
+环境准备:
 
-以CentOS7为例.
+1. centos 7
+2. 安装好 nginx, 并完成域名配置
+
+## 1. 流程
 
 首先使用yum安装`cerbot-nginx`工具包.
 
 ```
-$ yum install certbot-nginx
+yum install certbot-nginx
 ```
 
 然后可以得到`certbot`命令.
@@ -27,21 +28,16 @@ $ yum install certbot-nginx
 然后执行
 
 ```
-$ certbot --nginx
+certbot --nginx
 ```
 
 这一步, 是`certbot`为你完成如下步骤提供的傻瓜导航. 在普通情况下, 你可能需要完成如下流程才能配置好一个证书.
 
 1. 注册startSSL
-
 2. 验证域名所有权
-
 3. 生成证书
-
 4. CA签名
-
 5. 下载证书
-
 6. nginx配置证书并重启
 
 `certbot`简化了这一流程(不过, 事先知晓证书申请的通用流程会让心里更有底). 
@@ -63,7 +59,6 @@ $ certbot --nginx
 注意:
 
 1. 貌似`certbot`只支持默认安装的nginx, 不然它找不到nginx配置文件路径. 源码安装的nginx, 可以使用软链接将自定义nginx的`conf`目录软链接到`/etc/nginx`.
-
 2. 如果nginx中原本存在证书, 也会被替换成`certbot`新生成的证书路径, 即`ssl_certificate`与`ssl_certificate_key`字段将被修改.
 
 ## 2. 延期
@@ -75,7 +70,7 @@ $ certbot --nginx
 `certbot`官网提供了解决方案, 也是由`certbot`命令提供的. 首先使用如下命令进行检测
 
 ```
-$ certbot renew --dry-run
+certbot renew --dry-run
 ```
 
 如果执行成功, 说明当前服务器可以完成在线更新行为, 然后将如下命令写在crontab中定时执行以保证我们的证书长久有效.
