@@ -20,12 +20,12 @@ Swap:          8912        1604        7308
 1. 创建`/home/swapfile`文件, 每个块为1M, 一共`1024 * 32`个块.
 
 ```
-$ dd if=/dev/zero of=/home/swapfile bs=1M count=32768
+dd if=/dev/zero of=/home/swapfile bs=1M count=32768
 ```
 
 2. 格式化刚才创建的`swapfile`
 
-```
+```console
 $ mkswap -f /home/swapfile 
 正在设置交换空间版本 1，大小 = 33554428 KiB
 无标签，UUID=11f974e2-9acd-4066-8697-cce532440278
@@ -33,7 +33,7 @@ $ mkswap -f /home/swapfile
 
 3. 启用swapfile,查看虚拟内存大小
 
-```
+```console
 $ swapon /home/swapfile
 swapon: /home/swapfile：不安全的权限 0644，建议使用 0600. 
 $ chmod 600 /home/swapfile
