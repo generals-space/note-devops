@@ -1,20 +1,8 @@
-# Linux源与镜像源分析(待整理)
-
-<!tags!>: <!linux应用技巧!>
-
-## 1. 引言
-
-本文只涉及CentOS/Fedora系和Debian/Ubuntu系的在线包管理机制, 其他的Linux发行版没有使用过.
-
-源(source)即是Linux发行版的软件仓库(repository)的 **url地址**. 软件仓库其实是http/ftp站点, CentOS/Fedora与Debian/Ubuntu分别通过yum(dnf)与apt进行软件 **在线管理**. 通过url确定站点地址, 通过系统版本号等信息确定路径, 到指定的仓库查询目标软件.
-
-不同的源之间的区别主要在于, **访问速度的快慢**与**包的种类是否全面**. 我觉得这也是问题的根源, 因为这会引起人们对源的寻找与包的导入, 通常会遇见各种奇怪的问题.
-
-## 2. CentOS/Fedora
+# Linux源与镜像源配置分析.1.yum
 
 参考文章
 
-[CentOS yum 源的配置与使用](http://www.cnblogs.com/mchina/archive/2013/01/04/2842275.html)
+1. [CentOS yum 源的配置与使用](http://www.cnblogs.com/mchina/archive/2013/01/04/2842275.html)
 
 yum 的配置文件分为两部分: `main`和`repository`
 
@@ -49,7 +37,7 @@ baseurl=url://server2/path/to/repository/
 baseurl=url://server3/path/to/repository/
 ```
 
- 以CentOS7基本源为例.
+以CentOS7基本源为例.
 
 ```conf
 [base]
@@ -86,7 +74,7 @@ url 之后可以加上多个选项, 如 `gpgcheck`, `exclude`, `failovermethod`�
 
 按照这个格式, 取$release=7, $arch=x86_64, 访问相应地址, 如[这里](http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=os), 得到的是一个纯文本文件, 格式如下.
 
-```shell
+```conf
 http://mirrors.hust.edu.cn/centos/7.2.1511/os/x86_64/
 http://mirror.bit.edu.cn/centos/7.2.1511/os/x86_64/
 http://mirrors.nwsuaf.edu.cn/centos/7.2.1511/os/x86_64/
@@ -101,72 +89,13 @@ http://mirrors.163.com/centos/7.2.1511/os/x86_64/
 
 可以看出这是一个镜像列表, 但是不在本地无法编辑. 默认`yum`操作时会依次访问这些地址, 当某一个镜像源访问速度极慢时, 会拖垮整个`yum`操作速度. 所以感觉还是`baseurl`比较好, 可以自由定制.
 
- **关于epel(Extra Packages for Enterprise) 企业扩展包集**
+**关于epel(Extra Packages for Enterprise) 企业扩展包集**
 
 CentOS官方源中的软件包还是太少了, 官方源及其镜像源中有很多软件包无法找到. epel是社区强烈打造的免费开源发行软件包版本库, 强烈建议安装, 与其他源安装方式相同.
 
-## 3. Ubuntu
+## 附录 `yum.conf`文件详解
 
-参考文章
-
-[关于ubuntu的sources.list总结](http://www.cnblogs.com/jiangz/p/4076811.html?utm_source=tuicool&utm_medium=referral)
-[ubuntu添加ppa源(个人软件包集)简单方法](http://www.jbxue.com/LINUXjishu/26993.html)
-
-apt的配置文件在 `/etc/apt`目录下, 虽然文件名不一样, 但配置结构与CentOS相似, `source.list`文件相当于`yum.conf`为主配置文件, `source.list.d/*.list`相当于`yum.conf.d/*.conf`文件. 不过 `source.list`没有那么多配置选项, 貌似都是直接上url地址.
-
-以ubuntu14.04下的`source.list`为例.
-
-```shell
-# deb cdrom:[Ubuntu 14.04.1 LTS _Trusty Tahr_ - Release amd64 (20140722.2)]/ tru
-sty main restricted
-
-# See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
-# newer versions of the distribution.
-deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted
-
-## Major bug fix updates produced after the final release of the
-## distribution.
-deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted
-deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted
-```
-
-每一行的开头是`deb`或者`deb-src`, 分别表示直接通过.deb文件进行安装和通过源文件的方式进行安装.
-
-deb或者deb-src字段之后, 是一段URL, 之后是五个用空格隔开的字符串, 分别对应相应的目录结构. 在浏览器中输入http://mirrors.aliyun.com/ubuntu/, 并进入dists目录, 可以发现有5个目录和前述sources.list文件中的第三列字段相对应. 任选其中一个目录进入, 可以看到和sources.list后四列相对应的目录结构.
-
-更多内容可以使用man source.list获得.
-
-------
-
-**关于`ppa(personal package archives)`, 个人软件包集.**
-
-当由于种种原因, 不能进入官方的ubuntu软件仓库时, 为方便ubuntu用户使用, launchpad.net提供了ppa, 允许用户建立自己的软件仓库, 自由的上传软件.
-
-ppa也被用来对一些打算进入ubuntu官方仓库的软件, 或者某些软件的新版本进行测试.
-
-launchpad是ubuntu母公司canonical有限公司所架设的网站, 是一个提供维护、支援或联络ubuntu开发者的平台. 在[launchpad](https://launchpad.net/ubuntu/)中查找官方源中不提供的软件包.
-
-然后添加ppa源
-
-```shell
-sudo add-apt-repository ppa:user/ppa-name
-```
-
-你会在`source.list.d`目录下看到包含`ppa`串的刚添加的ppa源. 接着更新源, 再安装即可
-
-```shell
-sudo apt-get update
-sudo apt-get install 你想要的软件包
-```
-
-------
-
-## 附录
-
-### 1. 附录1 `yum.conf`文件详解
-
-```shell
+```conf
 [main]
 ##yum 缓存目录, yum 在此存储下载的 rpm包和数据库, 默认设置为/var/cache/yum
 cachedir=/var/cache/yum

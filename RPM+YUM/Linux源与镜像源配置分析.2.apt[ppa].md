@@ -26,9 +26,11 @@ deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted
 
 每一行的开头是`deb`或者`deb-src`, 分别表示直接通过.deb文件进行安装和通过源文件的方式进行安装.
 
-deb或者deb-src字段之后, 是一段URL, 之后是五个用空格隔开的字符串, 分别对应相应的目录结构. 在浏览器中输入http://mirrors.aliyun.com/ubuntu/, 并进入dists目录, 可以发现有5个目录和前述sources.list文件中的第三列字段相对应. 任选其中一个目录进入, 可以看到和sources.list后四列相对应的目录结构.
+deb或者deb-src字段之后, 是一段URL, 之后是五个用空格隔开的字符串, 分别对应相应的目录结构. 
 
-更多内容可以使用man source.list获得.
+在浏览器中输入http://mirrors.aliyun.com/ubuntu/, 并进入dists目录, 可以发现有5个目录和前述sources.list文件中的第三列字段相对应. 任选其中一个目录进入, 可以看到和sources.list后四列相对应的目录结构.
+
+更多内容可以使用man source.list查询.
 
 ------
 
