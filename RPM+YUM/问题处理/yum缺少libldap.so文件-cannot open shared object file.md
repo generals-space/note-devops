@@ -6,7 +6,7 @@
 
 系统: CentOS7
 
-```
+```console
 $ yum search abc
 There was a problem importing one of the Python modules
 required to run yum. The error leading to this problem was:
@@ -32,29 +32,29 @@ the yum faq at:
 
 第一个, 如果直接`-ivh`没法安装上的话, 尝试添加`--nodeps`参数.
 
-```
-[root@dev-cmdb grafana]# rpm -ivh [--nodeps] ./openldap-2.4.44-5.el7.x86_64.rpm
+```console
+$ rpm -ivh [--nodeps] ./openldap-2.4.44-5.el7.x86_64.rpm
 Preparing...                          ################################# [100%]
 	package openldap-2.4.44-5.el7.x86_64 is already installed
-[root@dev-cmdb grafana]# rpm -ivh ./openldap-clients-2.4.44-5.el7.x86_64.rpm
+$ rpm -ivh ./openldap-clients-2.4.44-5.el7.x86_64.rpm
 Preparing...                          ################################# [100%]
 Updating / installing...
    1:openldap-clients-2.4.44-5.el7    ################################# [100%]
-[root@dev-cmdb grafana]# rpm -ivh openldap-devel-2.4.44-5.el7.x86_64.rpm
+$ rpm -ivh openldap-devel-2.4.44-5.el7.x86_64.rpm
 Preparing...                          ################################# [100%]
 Updating / installing...
    1:openldap-devel-2.4.44-5.el7      ################################# [100%]
-[root@dev-cmdb grafana]# rpm -ivh openldap-servers-2.4.44-5.el7.x86_64.rpm
+$ rpm -ivh openldap-servers-2.4.44-5.el7.x86_64.rpm
 Preparing...                          ################################# [100%]
 Updating / installing...
    1:openldap-servers-2.4.44-5.el7    ################################# [100%]
-^[[A[root@dev-cmdb grafana]# rpm -ivh openldap-servers-sql-2.4.44-5.el7.x86_64.rpm
+^[[A$ rpm -ivh openldap-servers-sql-2.4.44-5.el7.x86_64.rpm
 error: open of ivh failed: No such file or directory
-[root@dev-cmdb grafana]# rpm -ivh  openldap-servers-sql-2.4.44-5.el7.x86_64.rpm
+$ rpm -ivh  openldap-servers-sql-2.4.44-5.el7.x86_64.rpm
 Preparing...                          ################################# [100%]
 Updating / installing...
    1:openldap-servers-sql-2.4.44-5.el7################################# [100%]
-[root@dev-cmdb grafana]# rpm -ivh  compat-openldap-2.3.43-5.el7.x86_64.rpm
+$ rpm -ivh  compat-openldap-2.3.43-5.el7.x86_64.rpm
 Preparing...                          ################################# [100%]
 Updating / installing...
    1:compat-openldap-1:2.3.43-5.el7   ################################# [100%]
@@ -62,8 +62,8 @@ Updating / installing...
 
 然后就可以了.
 
-```
- yum search abc
+```console
+$ yum search abc
 Loaded plugins: fastestmirror
 Loading mirror speeds from cached hostfile
  * base: mirrors.aliyun.com
