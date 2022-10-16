@@ -3,11 +3,8 @@
 ## 1. 实验环境
 
 - 系统平台: CentOS 6.4
-
 - Apache: 2.4.17
-
 - Tomcat: 8.0.24, 使用二进制发布版即可.
-
 - Tomcat Connectors (mod_jk): 1.2.41, 官网在[这里](http://tomcat.apache.org/download-connectors.cgi)
 
 > 注意: 因为`jk`模块需要编译安装, 编译选项需要用到Apache的`apxs`, 所以Apache也需要用源码安装(我在用yum安装apache的Linux环境中没找到apxs可执行文件).

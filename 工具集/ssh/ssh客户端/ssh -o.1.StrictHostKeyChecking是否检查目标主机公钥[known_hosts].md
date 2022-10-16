@@ -3,7 +3,6 @@
 参考文章
 
 1. [Linux之ssh连接保持与重用](http://www.ttlsa.com/linux/linux-ssh-connection-reuse/)
-
 2. [通过 ControlMaster 对 OpenSSH 进行加速，减少系统资源消耗](https://www.ibm.com/developerworks/community/blogs/IBMzOS/entry/20150502?lang=en)
 
 此选项默认值为yes.
