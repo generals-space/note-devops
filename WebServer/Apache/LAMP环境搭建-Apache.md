@@ -35,34 +35,38 @@ yum install apr apr-devel apr-util apr-util-devel pcre pcre-devel
 
 apache的configure选项很多, 需要对apache也有很深刻的了解才可以准确配置. 引用网上的一个安装步骤:
 
-```shell
-$ tar xf httpd-2.2.31.tar.bz2
-$ cd httpd-2.2.31
-$ ./configure \
+```bash
+tar xf httpd-2.2.31.tar.bz2
+cd httpd-2.2.31
+./configure \
 --prefix=/usr/local/apache \
 --sysconfdir=/etc/httpd-2.2.31 \
 --enable-so --enable-ssl --enable-cgi --enable-rewrite --enable-deflate \
 --with-z --with-pcre --with-apr=/usr/local/apr --with-apr-util=/usr/local/apr-util \
 --enable-modules=most --enable-mpms-shared=all \
 --with-mpm=event
-$ make && make install
-
-# 各编译参数详解
---prefix：#安装路径
---sysconfdir：#配置文件路径
---enable-ssl：#支持SSL/TLS，可以实现https访问
---enable-cgi：#支持CGI脚本（默认对非线程的MPM模式开启）
---enable-rewrite：#启用Rewrite功能
---enable-deflate：#支持压缩
---with-z：#使用指定的zlib库，不指定路径会自动寻找
---with-pcre：#使用指定的PCRE库，不指定路径会自动寻找
---with-apr：#指定apr安装路径
---with-apr-util：#指定apr-util安装路径
---enable-modules：#支持动态启用的模块，可选参数有“all”，“most”，“few”，“reallyall”
---enable-so：#DSO兼容，DSO=Dynamic Shared Object，动态共享对象，可实现模块动态生效
---enable-mpms-shared：#支持动态加载的MPM模块，可选“all”
---with-mpm：#设置默认启用的MPM模式
+make && make install
 ```
+
+**各编译参数详解**
+
+|                      |                                                                      |
+| :------------------- | :------------------------------------------------------------------- |
+| --prefix             | 安装路径                                                             |
+| --sysconfdir         | 配置文件路径                                                         |
+| --enable-ssl         | 支持SSL/TLS, 可以实现https访问                                       |
+| --enable-cgi         | 支持CGI脚本（默认对非线程的MPM模式开启）                             |
+| --enable-rewrite     | 启用Rewrite功能                                                      |
+| --enable-deflate     | 支持压缩                                                             |
+| --with-z             | 使用指定的zlib库, 不指定路径会自动寻找                               |
+| --with-pcre          | 使用指定的PCRE库, 不指定路径会自动寻找                               |
+| --with-apr           | 指定apr安装路径                                                      |
+| --with-apr-util      | 指定apr-util安装路径                                                 |
+| --enable-modules     | 支持动态启用的模块, 可选参数有"all", "most", "few", "reallyall"      |
+| --enable-so          | DSO兼容, DSO=Dynamic Shared Object, 动态共享对象, 可实现模块动态生效 |
+| --enable-mpms-shared | 支持动态加载的MPM模块, 可选"all"                                     |
+| --with-mpm           | 设置默认启用的MPM模式                                                |
+
 
 Apache安装目录结构
 

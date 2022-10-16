@@ -10,7 +10,7 @@ apache开启https需要加载ssl模块, 查看apahce的modules目录中是否有
 LoadModule ssl_module modules/mod_ssl.so
 ```
 
-确认mod_ssl模块被启用, 然后配置`ssl.conf`文件如下.
+确认`mod_ssl`模块被启用, 然后配置`ssl.conf`文件如下.
 
 ```xml
 LoadModule ssl_module modules/mod_ssl.so

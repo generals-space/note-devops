@@ -7,13 +7,13 @@
 
 ## 1. xargs简介
 
-之所以能用到这个命令, 关键是由于很多命令不支持管道`|`来传递参数, 而日常工作中经常需要这个功能, 所以就有了`xargs`命令, 例如: 
+之所以能用到这个命令, 主要是由于很多命令不支持管道`|`来传递参数, 而日常工作中经常需要这个功能, 所以就有了`xargs`命令, 例如: 
 
-```
+```bash
 ## 错误
-$ find /sbin/ -name 'l*' | ls -l
+find /sbin/ -name 'l*' | ls -l
 ## 正确
-$ find /sbin/ -name 'l*' | xargs ls -l
+find /sbin/ -name 'l*' | xargs ls -l
 ```
 
 `xargs`可以读取标准输入的内容, 并且以空白字符或换行符为分隔, 将标准输入的内容分隔成为 arguments. 
@@ -71,7 +71,7 @@ hello kitty.gz  hello world.gz
 
 - `-a` 文件名: 从文件中读入内容作为输入, 同管道输入没什么区别.
 
-```
+```console
 $ cat test 
 #!/bin/sh
 echo "hello world/n"
@@ -86,7 +86,7 @@ $ xargs -a test echo
 如下示例, 还是很容易理解的.
 
 ```
-$ ls | xargs -t -i mv {} {}.bak
+ls | xargs -t -i mv {} {}.bak
 ```
 
 ### 2.4 指定分隔符
