@@ -16,7 +16,7 @@ yum安装操作的实际都是下载一系列有依赖关系的rpm包再用`rpm`
 $ yumdownloader salt
 Loaded plugins: fastestmirror
 Loading mirror speeds from cached hostfile
-salt-2015.5.10-2.el7.noarch.rpm                                                                                                  | 4.1 MB  00:00:00     
+salt-2015.5.10-2.el7.noarch.rpm    | 4.1 MB  00:00:00
 $ ls
 salt-2015.5.10-2.el7.noarch.rpm
 ```

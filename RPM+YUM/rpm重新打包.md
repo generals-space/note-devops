@@ -4,7 +4,7 @@
 
 1. [请教：如何修改现有RPM包内部文件？](http://bbs.chinaunix.net/thread-2173735-1-1.html)
 
-场景描述
+## 场景描述
 
 saltstack通过yum安装后在`CentOS 5`下的启动脚本有点问题, 想给它改点内容, 再打个包放到内网源, 替换一下.
 
@@ -15,13 +15,13 @@ saltstack通过yum安装后在`CentOS 5`下的启动脚本有点问题, 想给�
 安装rpm的打包工具
 
 ```
-$ yum install rpmdevtools -y
+yum install rpmdevtools -y
 ```
 
 然后创建编译rpm包时的目录结构, 因为之后重新打包需要这样的结构.
 
 ```
-$ rpmdev-setuptree
+rpmdev-setuptree
 ```
 
 这将创建`~/rpmbuild`目录, 目录下有`BUILD`, `BUILDROOT`, `RPMS`, `SOURCES`, `SPECS`, `SRPMS`5个子目录.
@@ -31,7 +31,7 @@ $ rpmdev-setuptree
 解压命令
 
 ```
-$ rpm2cpio salt-2016.11.3-2.el5.src.rpm | cpio -div
+rpm2cpio salt-2016.11.3-2.el5.src.rpm | cpio -div
 ```
 
 然后把`.src.rpm`原文件删掉, 把`.spec`文件移到`~/rpmbuild`根目录下. 这样编译的目录结构就完成了.
