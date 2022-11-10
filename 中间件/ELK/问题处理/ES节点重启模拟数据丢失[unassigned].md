@@ -13,7 +13,7 @@
 - ES版本: v5.5.0
 - 集群规格: master x 3 + data x 1(其中master也可以作为data存储数据)
 
-首先向集群中创建如下索引, 分片分片数量 > Node节点数量.
+首先向集群中创建如下索引, **索引分片数量 > Node节点数量**.
 
 ```json
 PUT article

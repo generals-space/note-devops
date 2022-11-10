@@ -1,6 +1,6 @@
 # awk获取所有网络连接状态总量
 
-```
+```console
 $ netstat -an
 Active Internet connections (servers and established)
 Proto Recv-Q Send-Q Local Address           Foreign Address         State
@@ -16,7 +16,7 @@ tcp        0      0 0.0.0.0:3002            0.0.0.0:*               ESTABLISHED
 - `END {actions}`: 在处理完所有行(将不同状态的连接归类汇总)后, 执行actions操作.
 - `for(a in S) print a, S[a]`: 循环打印`S`字典中不同状态的名称`a`及汇总数据`S[a]`, 将会按`a`进行排序.
 
-```
+```console
 $ netstat -an | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
 ESTABLISHED 9330
 SYN_SENT 670
@@ -25,7 +25,7 @@ TIME_WAIT 1
 
 添加上格式化输出会顺眼一些
 
-```
+```console
 $ netstat -an | awk '
 /^tcp/ {++S[$NF]} 
 END {

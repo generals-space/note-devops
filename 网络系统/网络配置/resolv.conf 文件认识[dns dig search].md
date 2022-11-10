@@ -19,7 +19,7 @@ domain和search不能共存；如果同时存在，后面出现的将会被使�
 
 sortlist允许将得到域名结果进行特定的排序 它的参数为网络/掩码对，允许任意的排列顺序。
 
-“search domainname.com”表示当提供了一个不包括完全域名的主机名时，在该主机名后添加domainname.com的后 缀；“nameserver”表示解析域名时使用该地址指定的主机为域名服务器。其中域名服务器是按照文件中出现的顺序来查询的。
+"search domainname.com"表示当提供了一个不包括完全域名的主机名时，在该主机名后添加domainname.com的后 缀；"nameserver"表示解析域名时使用该地址指定的主机为域名服务器。其中域名服务器是按照文件中出现的顺序来查询的。
 其中domainname和search可同时存在，也可只有一个。
 
 > Red Hat中没有提供缺省的`/etc/resolv.conf`文件，它的内容是根据在安装时给出的选项动态创建的。
