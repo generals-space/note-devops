@@ -2,7 +2,7 @@
 
 这里要求的代理服务器不是简单的访问`www.abc.com?key=value`由nginx实际取回`www.xyz.com?key=value`这样类似于重定向的功能, 而是那种可以在chrome中的http代理服务器配置中填写nginx所在服务器IP及nginx监听端口, 每次访问网络时由代理服务器代为获取的形式.
 
-```shell
+```conf
 server {
     resolver 8.8.8.8 1.1.1.1;
     resolver_timeout 5s;
@@ -30,6 +30,6 @@ server {
 
 另外, nginx貌似不能作为`https`代理, 因为nginx不支持CONNECT，所以如果访问Https网站, 比如: `https://www.google.com`, nginx的access.log 日志如下:
 
-```shell
+```log
 "CONNECT www.google.com:443 HTTP/1.1" 400
 ```

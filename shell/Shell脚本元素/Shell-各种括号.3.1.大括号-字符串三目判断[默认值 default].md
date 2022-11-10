@@ -13,7 +13,7 @@
 | `str=${cond?var}`  | var将输出至stderr         | str=                          | str=cond                 |
 | `str=${cond:?var}` | var将输出至stderr         | var将输出至stderr             | str=cond                 |
 
-## 1. `${cond-var}`与`${cond:-var}`
+## 1. `${cond-var}`与`${cond:-var}`: 后者可用于设置默认值
 
 新开终端, 重新声明变量
 

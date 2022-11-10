@@ -5,11 +5,8 @@
 实际只用1台阿里云服务器, 部署1个Nginx, 3个Tomcat, 1个Memcached;
 
 - 系统版本: 阿里云CentOS 7
-
 - Nginx: 1.9.3
-
 - Tomcat: 8.0
-
 - Memcached:1.4.15
 
 环境准备好后进行接下来的步骤.
@@ -42,41 +39,41 @@ port值默认为`8005`, 将3台Tomcat分别更改为tomcat1监听`8005`, tomcat2
 
 然后设置Nginx的转发规则.
 
-```
-##Tomcat后端服务器池, 用于接收来自Nginx转发过来的请求
+```conf
+## Tomcat后端服务器池, 用于接收来自Nginx转发过来的请求
 upstream backend_pool {
-        server localhost:8080 max_fails=3 fail_timeout=60s weight=1;
-        server localhost:8180 max_fails=3 fail_timeout=60s weight=1;
-        server localhost:8280 max_fails=3 fail_timeout=60s weight=1;
+    server localhost:8080 max_fails=3 fail_timeout=60s weight=1;
+    server localhost:8180 max_fails=3 fail_timeout=60s weight=1;
+    server localhost:8280 max_fails=3 fail_timeout=60s weight=1;
 }
 server {
-        listen       80 default_server;
-        listen       [::]:80 default_server;
-        server_name  www.example.com;
+    listen       80 default_server;
+    listen       [::]:80 default_server;
+    server_name  www.example.com;
 
-        ##将root属性定位在某一个tomcat的webapps/ROOT目录下, 
-        ##因为新安装的tomcat只有它默认的欢迎页,
-        ##实际应用中应将此目录定位在静态文件的根目录
-        root         /opt/tomcat1/webapps/ROOT;
-        index   index.jsp
+    ##将root属性定位在某一个tomcat的webapps/ROOT目录下, 
+    ##因为新安装的tomcat只有它默认的欢迎页,
+    ##实际应用中应将此目录定位在静态文件的根目录
+    root         /opt/tomcat1/webapps/ROOT;
+    index   index.jsp
 
-        include /etc/nginx/default.d/*.conf;
-       
-        location ~ .*\.(css|js|jpg|bmp|png|swf)$ {
-                ##这里的root属性将继承父节点的root值
-                ##root /opt/tomcat1/webapps/ROOT;
-                expires 30d;
-        }
-        ##不明确指定jsp与do请求才转发给tomcat,
-        ##因为有很多java程序中没有对servlet后缀进行标识, 因而看起来像是一个目录.
-        ##所以将一些可以想到的静态文件由Nginx处理, 其他的都转发给后端Tomcat
-        ##location ~ .*\.(jsp|do)$ {
-        location / {
-            proxy_pass   http://backend_pool;
-            proxy_set_header HOST $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        }
+    include /etc/nginx/default.d/*.conf;
+    
+    location ~ .*\.(css|js|jpg|bmp|png|swf)$ {
+            ##这里的root属性将继承父节点的root值
+            ##root /opt/tomcat1/webapps/ROOT;
+            expires 30d;
+    }
+    ##不明确指定jsp与do请求才转发给tomcat,
+    ##因为有很多java程序中没有对servlet后缀进行标识, 因而看起来像是一个目录.
+    ##所以将一些可以想到的静态文件由Nginx处理, 其他的都转发给后端Tomcat
+    ##location ~ .*\.(jsp|do)$ {
+    location / {
+        proxy_pass   http://backend_pool;
+        proxy_set_header HOST $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
 }
 ```
 
@@ -95,7 +92,6 @@ server {
 简单说来就是两个页面: `index.jsp`与`welcome.jsp`, 这两个页面都会对当前的session进行检查.
 
 - `index.jsp`检测如果当前存在一个名为`username`的`session`, 就自动跳转到`welcome.jsp`页面, 否则显示登录框与登录按钮;
-
 - `welcome.jsp`也会检测如果当前存在一个名为`username`的`session`, 就显示"欢迎, $username"字符串与注销按钮, 否则跳转到`index.jsp`;
 
 当然后台需要编写servlet完成登录与注销时创建与销毁session的功能.
@@ -127,21 +123,13 @@ server {
 下载列表为:
 
 1. spymemcached-2.11.1.jar
-
 2. memcached-session-manager-${version}.jar
-
 3. memcached-session-manager-tc8-${version}.jar(我所用的tomcat是8.0, 所以是tc8, 可以根据你的版本自行选择, tomcat的6,7,8 都有的);
-
 4. msm-kryo-serializer
-
 5. kryo-serializers-0.34
-
 6. kryo-3.x(3点多版本的都无所谓了).
-
 7. minlog
-
 8. reflectasm
-
 9. asm-5.x(这个也是5点多版本的都无所谓的)
 
 按照官方文档上说的, 1-3是需要放置在每个`tomcat/lib`目录中的, 4-9是要放在每个应用程序的`WEB-INF/lib`中的, 当然我感觉都放在`tomcat/lib`中也可以.

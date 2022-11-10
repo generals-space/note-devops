@@ -50,7 +50,7 @@ try_files $uri $uri/ /index.php?$args;
 
 这个是Nginx以fastcgi模式处理PHP请求的配置, 这个就没什么为什么了. 就是实际处理请求的PHP文件. 见过下面的经典配置么?
 
-```
+```conf
 location ~ \.php$ {
     fastcgi_pass   127.0.0.1:9000;
     fastcgi_index  index.php;
@@ -71,14 +71,14 @@ location ~ \.php$ {
 
 好了, 第一节中的变量是url访问路径相关的, 剩下的基本是HTTP协议的Header信息, 有一些Nginx的日志部分可能会用到. 日志中变量的使用方法如下
 
-```
+```conf
 http{
     log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
                       '$status $body_bytes_sent "$http_referer" '
                       '"$http_user_agent" "$http_x_forwarded_for"';
 
     server {
-        ...省略
+        ## ...省略
         access_log  /var/log/access.log  main;
     }
 }
