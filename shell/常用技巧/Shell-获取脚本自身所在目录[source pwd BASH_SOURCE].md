@@ -5,6 +5,9 @@
 1. [Getting the Current/Present working directory of a Bash script from within the script](http://stackoverflow.com/questions/59895/getting-the-current-present-working-directory-of-a-bash-script-from-within-the-s)
 2. [获取shell脚本自身所在目录的Shell脚本分享](http://www.jb51.net/article/59949.htm)
 3. [How to get the source directory of a Bash script from within the script itself](https://stackoverflow.com/questions/59895/how-to-get-the-source-directory-of-a-bash-script-from-within-the-script-itself)
+4. [How do I get the directory where a Bash script is located from within the script itself?](https://stackoverflow.com/questions/59895/how-do-i-get-the-directory-where-a-bash-script-is-located-from-within-the-script)
+    - `DIR=$(cd $(dirname ${BASH_SOURCE[0]}) && pwd)`
+5. [How to determine the path to a sourced tcsh or bash shell script from within the script](https://unix.stackexchange.com/questions/4650/how-to-determine-the-path-to-a-sourced-tcsh-or-bash-shell-script-from-within-the)
 
 ## 1. 情景描述
 

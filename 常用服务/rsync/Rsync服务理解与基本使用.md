@@ -36,7 +36,7 @@ rsync可以通过`rsync --daemon`使用独立进程的方式开启守护进程, 
 
 这种方式采用SSH方式进行工作, 传输的口令及文档内容全部是加密数据. 远程账号(下例中的general)是远程服务器实体账户, 口令也是此实体账户的系统口令, 与scp十分相似.
 
-```
+```bash
 rsync -avzP /home/general/Documents general@172.16.171.132:~/Public/
 general@172.16.171.132's password:
 
@@ -58,9 +58,9 @@ general@172.16.171.132's password:
 
 #### 1.2.1 --daemon参数方式，是让rsync直接以服务模式运行
 
-```shell
+```bash
 # --config用于指定rsyncd.conf的位置, 默认为/etc/rsyncd.conf
-$ /usr/bin/rsync --daemon --config=/etc/rsyncd/rsyncd.conf 　
+/usr/bin/rsync --daemon --config=/etc/rsyncd/rsyncd.conf 　
 ```
 
 #### 1.2.2 xinetd方式(如果没有这个服务可以先安装)
@@ -69,20 +69,20 @@ $ /usr/bin/rsync --daemon --config=/etc/rsyncd/rsyncd.conf 　
 
 vim编辑/etc/xinet.d/rsync(如不存在可手动创建):
 
-```
+```conf
 # default: off
 # description: The rsync server is a good addition to an ftp server, as it 
 #       allows crc checksumming etc.
 service rsync
 {
-        disable = no    #如果该文件存在, 则默认disable的值为yes, 将其改为no即可启用
-        flags           = IPv6
-        socket_type     = stream
-        wait            = no
-        user            = root
-        server          = /usr/bin/rsync
-        server_args     = --daemon
-        log_on_failure  += USERID
+    disable = no    #如果该文件存在, 则默认disable的值为yes, 将其改为no即可启用
+    flags           = IPv6
+    socket_type     = stream
+    wait            = no
+    user            = root
+    server          = /usr/bin/rsync
+    server_args     = --daemon
+    log_on_failure  += USERID
 }
 ```
 
@@ -116,9 +116,9 @@ service rsync
 
 服务端`/etc/rsyncd.conf`(**注意同一行中不要有#注释**):
 
-```
+```ini
 #以root用户启动此服务
-uid=root                          
+uid=root
 gid=root
 use chroot=no
 max connections=10
@@ -147,17 +147,17 @@ hosts deny=0.0.0.0/32
 
 服务端`/etc/rsyncd.secrets`
 
-```
-#再次说明,这里的用户是上面checksync模块指定的auth users, 不需要存在于服务端.
-general:123456                    
+```bash
+## 再次说明, 这里的用户是上面checksync模块指定的auth users, 不需要存在于服务端.
+general:123456
 ```
 
 修改此文件的权限
 
-```
-#修改属主
+```bash
+## 修改属主
 chown root:root rsyncd.secrets 　
-#修改权限
+## 修改权限
 chmod 600 rsyncd.secrets        
 ```
 
@@ -165,16 +165,16 @@ chmod 600 rsyncd.secrets
 
 然后是客户端`/etc/rsync_client.pwd`
 
-```
-#与服务端/etc/rsyncd.secrets中的密码一致就好了
+```bash
+## 与服务端/etc/rsyncd.secrets中的密码一致就好了
 123456                           
 ```
 
 修改它的权限
 
-```
-#修改权限
-chmod 600 rsyncd.secrets        
+```bash
+## 修改权限
+chmod 600 rsyncd.secrets
 ```
 
 好了, 现在可以开始备份了.
@@ -184,13 +184,13 @@ chmod 600 rsyncd.secrets
 将本地的`/home/general/Documents`备份到服务端的`/tmp`下(因为服务端已经指明路径, 所以这里只需要指定`src`参数就好):
 
 ```
-$ /usr/bin/rsync -auvzP --progress --password-file=/etc/rsync_client.pwd /home/general/Documents general@172.16.171.131::checksync
+/usr/bin/rsync -auvzP --progress --password-file=/etc/rsync_client.pwd /home/general/Documents general@172.16.171.131::checksync
 ```
 
 或者将服务端`/tmp`目录下的文件备份到本地`/tmp`目录下
 
 ```
-$ /usr/bin/rsync -auvzP --progress --password-file=/etc/rsync_client.pwd  general@172.16.171.131::checksync /tmp
+/usr/bin/rsync -auvzP --progress --password-file=/etc/rsync_client.pwd  general@172.16.171.131::checksync /tmp
 ```
 
 从上面两个命令可以看到, 其实这里的服务器与客户端的概念是很模糊的, `rsync daemon`都运行在远程`172.16.171.131`上, 第一条命令是本地主动推送目录到远程, 远程服务器是用来备份的; 第二条命令是本地主动向远程索取文件, 本地服务器用来备份, 也可以认为是本地服务器恢复的一个过程.

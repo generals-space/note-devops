@@ -88,7 +88,7 @@ localhost.localdomain
 其使用方法为
 
 ```
-$ hostnamectl [--static | --transient | --pretty] set-hostname 新的hostname
+hostnamectl [--static | --transient | --pretty] set-hostname 新的hostname
 ```
 
 `--static`选项会使得hostname存储在`/etc/hostname`文件中, 系统启动时会优先读取这个文件中的配置. 新建shell生效, 重启后配置保留. 注意哦, **直接修改`/etc/hostname`是不成的!!!**

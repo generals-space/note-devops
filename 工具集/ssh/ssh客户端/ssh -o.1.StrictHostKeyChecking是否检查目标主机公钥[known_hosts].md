@@ -4,6 +4,8 @@
 
 1. [Linux之ssh连接保持与重用](http://www.ttlsa.com/linux/linux-ssh-connection-reuse/)
 2. [通过 ControlMaster 对 OpenSSH 进行加速，减少系统资源消耗](https://www.ibm.com/developerworks/community/blogs/IBMzOS/entry/20150502?lang=en)
+3. [ssh StrictHostKeyChecking](https://www.jianshu.com/p/ebcf41c75786)
+    - 一劳永逸
 
 此选项默认值为yes.
 
@@ -45,3 +47,10 @@ Last login: Sat Dec 30 20:39:42 2017 from 192.168.101.65
 ```
 
 > `StrictHostKeyChecking`选项不是不检查, 而是默认接受对方公钥. 但如果存储的公钥与目标公钥不一致时, 虽然也能正常登录, 但不会更新新的公钥(旧的公钥依然存在).
+
+一劳永逸型.
+
+```
+Host *
+  StrictHostKeyChecking no
+```
