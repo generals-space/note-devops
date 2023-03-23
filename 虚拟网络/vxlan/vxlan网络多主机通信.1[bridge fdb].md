@@ -86,10 +86,8 @@ udp        0      0 0.0.0.0:4789            0.0.0.0:*                           
 
 如下, 从vm1中`ping 10.0.0.2`, 不过此时是ping不通的. 
 
-在vm1上抓包, 协议类型选择icmp时无法捕获数据, 需要捕获udp包.
-
 ```console
-$ tcpdump -nve -i ens33 udp
+$ tcpdump -nve -i eth0 udp
 
 17:12:05.831569 00:0c:29:28:37:29 > 01:00:5e:01:01:01, ethertype IPv4 (0x0800), length 92: (tos 0x0, ttl 1, id 24985, offset 0, flags [none], proto UDP (17), length 78)
     172.16.91.128.36642 > 239.1.1.1.4789: VXLAN, flags [I] (0x08), vni 42
@@ -100,11 +98,13 @@ e6:0d:35:61:51:0f > Broadcast, ethertype ARP (0x0806), length 42: Ethernet (len 
 36:64:80:a2:4a:31 > e6:0d:35:61:51:0f, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Reply 10.0.0.2 is-at 36:64:80:a2:4a:31, length 28
 ```
 
+> 在vm1上抓包, 协议类型选择`icmp`时无法捕获数据, 需要捕获`udp`包.
+
 ## bridge fdb 添加转发表
 
 要组成同一个 vxlan 网络, VTEP 就必须能感知到彼此的存在. 上面`ping`不通, 是因为数据包根本没路由能到vm2.
 
-参考文章4给出了在二层让主机互通的方法, 就是通过添加转发表来完成.
+参考文章4给出了在二层让主机互通的方法, 就是通过添加转发表来完成, 在 vm1 和 vm2 上分别执行如下命令:
 
 vm1: `bridge fdb append to 00:00:00:00:00:00 dst 172.16.91.129 dev vxlan0`
 

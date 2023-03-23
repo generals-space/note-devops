@@ -33,7 +33,7 @@ python3 setup.py install
 
 `service`服务脚本也在源码目录中, 不过`systemctl start denyhosts`启动会失败, 查看message有如下日志
 
-```
+```log
 Dec  8 21:29:02 wuhou systemd: Starting SSH log watcher...
 Dec  8 21:29:02 wuhou systemd: Failed at step EXEC spawning /usr/bin/denyhosts.py: No such file or directory
 Dec  8 21:29:02 wuhou systemd: denyhosts.service: control process exited, code=exited status=203
@@ -52,7 +52,7 @@ ln -s /usr/local/bin/denyhosts.py /usr/bin/denyhosts.py
 
 但是启动还是有问题, 看起来像是代码的问题.
 
-```
+```log
 Dec  8 22:08:38 wuhou systemd: Starting SSH log watcher...
 Dec  8 22:08:52 wuhou denyhosts.py: Traceback (most recent call last):
 Dec  8 22:08:52 wuhou denyhosts.py: File "/usr/bin/denyhosts.py", line 229, in <module>
