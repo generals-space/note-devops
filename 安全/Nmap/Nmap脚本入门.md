@@ -17,11 +17,8 @@ nmap是扫描工具, 目标是服务器, 地址索引是ip, 端口. 所以脚本
 该部分定义脚本执行的必要条件. 至少包含下面列表中的一个函数:
 
 - portrule
-
 - hostrule
-
 - prerule
-
 - postrule
 
 ### 2. The Action Section
@@ -86,7 +83,7 @@ end
 
 debug模式下再次扫描百度网站, 有如下输出.
 
-```
+```log
 NSE: [myscript 115.239.211.112:80] key: registry, type: string, value: table: 0x55cfb33780b0
 NSE: [myscript 115.239.211.112:80] key: directly_connected, type: string, value: false
 NSE: [myscript 115.239.211.112:80] key: name, type: string, value: 
