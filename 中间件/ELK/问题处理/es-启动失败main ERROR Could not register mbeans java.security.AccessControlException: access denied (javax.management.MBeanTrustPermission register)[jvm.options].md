@@ -58,3 +58,5 @@ Exception: java.security.AccessControlException thrown from the UncaughtExceptio
 参考文章1所说, 是因为 jvm.options 中缺少了`-Dlog4j2.disable.jmx=true`的配置.
 
 排查之后果然如此, 是因为根本没拷贝`jvm.options`到`$ES/config`目录中, 拷贝过去后就可以了.
+
+> 注意: `jvm.options`中每行的内容必须顶格出现, 不能以空格开头, 否则还是会报上面的错误.
