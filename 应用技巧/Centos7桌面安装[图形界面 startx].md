@@ -9,6 +9,8 @@
 参考文章
 
 1. [CentOS-7-x86_64-DVD-1810安装之后无法切换到图形界面](https://blog.csdn.net/weixin_39753511/article/details/85337373)
+2. [ubuntu 启动、退出 startx界面](https://blog.csdn.net/qiushangren/article/details/125696744)
+    - 退出 startx 界面 - ctrl+alt+F4
 
 想在虚拟机中安装图形界面的centos7, 在官网上下载了DVD版的iso镜像(4点多个G), 按照链接文章中的说明, 使用`systemctl set-default graphical.target`设置开机进入图形界面, 但是重启后进入的仍然是字符界面.
 
