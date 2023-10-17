@@ -64,6 +64,8 @@ GET _cluster/allocation/explain
 }
 ```
 
+> 如果用`curl`或`postman`发请求, 需要使用`application/json`类型的body放数据(不要用query数据).
+
 得到的响应如下
 
 ```json
