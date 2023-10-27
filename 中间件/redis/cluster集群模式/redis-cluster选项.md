@@ -7,6 +7,7 @@
 3. [Fix redis-cli --cluster reshard may report "ERR Please use SETSLOT only with masters"](https://github.com/redis/redis/pull/9239)
 4. [Fix redis-cli CLUSTER SETSLOT race conditions](https://github.com/redis/redis/pull/10381)
 
+`redis-cli`的`--cluster`选项应该是旧版本`redis-trib.rb`工具的集成版.
 
 ###
 
