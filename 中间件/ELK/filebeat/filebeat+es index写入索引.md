@@ -32,4 +32,3 @@ setup.template.settings:
   index.number_of_shards: 3
   index.number_of_replicas: 1
 ```
-
