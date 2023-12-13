@@ -1,4 +1,4 @@
-```
+```json
 {
     "query": {
         "bool": {
