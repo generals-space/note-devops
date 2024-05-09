@@ -88,7 +88,7 @@ done
 
 引申, 行号按指定步长增加
 
-```
+```bash
 for ((line_num = 1; line_num <= $line_sum; line_num=$((${line_num}+2))))
 ```
 
