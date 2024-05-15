@@ -2,11 +2,9 @@
 
 参考文章
 
-[cat和EOF的使用](http://luxiaok.blog.51cto.com/2177896/711822)
-
-[怎么在 shell 中用cat>test1<<EOF写入文件时不输出EOF的变量？](https://www.v2ex.com/t/125834)
-
-[cat<<EOF与cat <<-EOF的区别](http://blog.csdn.net/apache0554/article/details/45508631)
+1. [cat和EOF的使用](http://luxiaok.blog.51cto.com/2177896/711822)
+2. [怎么在 shell 中用cat>test1<<EOF写入文件时不输出EOF的变量？](https://www.v2ex.com/t/125834)
+3. [cat<<EOF与cat <<-EOF的区别](http://blog.csdn.net/apache0554/article/details/45508631)
 
 EOF: End Of File, 表示文本结束符.
 
@@ -48,7 +46,7 @@ $ echo -e "1\n2\n3"
 
 ~~在命令行中, 第2个`EOF`符并不是通过EOF字符串表示的, 而是`Ctrl+D`~~. 扯, 我自己试验的时候EOF字符串有效, 而`Ctrl+D`报错. 
 
-```txt
+```log
 $ cat > test << EOF
 > 1
 > 2

@@ -9,7 +9,7 @@
 
 docker容器中, 只有主进程1可以获取环境变量, 如果其他进程(或是通过ssh登录的终端)希望获取环境变量时, 只能通过`/proc/1/environ`文件.
 
-```console
+```bash
 $ cat /proc/1/environ |tr '\0' '\n'
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 HOSTNAME=k8s-master-01
@@ -19,7 +19,7 @@ KUBE_DNS_PORT_9153_TCP_PROTO=tcp
 
 xargs+export是不行的.
 
-```
+```log
 $ cat /proc/1/environ |tr '\0' '\n' | xargs export
 xargs: export: No such file or directory
 ```

@@ -1,15 +1,10 @@
 # Shell脚本技巧-exec操作文件描述符
 
-<!tags!>: <!shell语法!> <!exec!> <!文件描述符!> <!proc!>
-
 参考文章
 
 1. [[Shell]文件描述符](http://www.dutor.net/index.php/2010/03/shell-file-descriptor/)
-
 2. [shell脚本之exec操作文件描述符 + 示例](http://blog.csdn.net/donghanhang/article/details/51005972)
-
 3. [Linux exec与文件描述符](http://www.cnblogs.com/lizhaoxian/p/5294158.html)
-
 4. [linux shell 脚本实现tcp/upd协议通讯（重定向应用）](https://www.cnblogs.com/chengmo/archive/2010/10/22/1858302.html)
 
 Linux系统中, 每当进程打开一个文件时, 系统就为其分配一个 **唯一**的整型文件描述符, 用来标识这个文件. 大家知道, 在C语言中, **每个进程**默认打开的有三个文件, 标准输入、标准输出、标准错误输出, 分别用一个FILE结构的指针来标示, 即stdin、stdout、stderr, 这三个结构中分别维护着三个文件描述符0、1、2. Shell中, 0、1、2也是默认可用的三个文件描述符. 
@@ -18,7 +13,7 @@ Linux系统中, 每当进程打开一个文件时, 系统就为其分配一个 *
 
 为了利用其他文件描述符来标识特定文件, 我们需要使用`exec`命令打开该文件, 并指定一个数字作为描述符: 
 
-```
+```bash
 ## 以"只读方式"打开a.txt, 文件描述符对应为3
 $ exec 3<a.txt
 
@@ -54,7 +49,7 @@ ping www.baidu.com &
 
 那么, 不指定描述符数值的`<>`呢? `exec <>a.txt`会发生什么?
 
-```
+```bash
 [root@7-13 tmp]# cat a.txt
 1 2 3 4 5 6
 [root@7-13 tmp]# exec <>a.txt
@@ -80,13 +75,13 @@ Connection to 192.168.7.13 closed.
 
 > ~~注意: 拷贝文件描述符时, 描述符的输入输出属性不能搞错. 比如, 如果对标准输出的复制使用了`exec 1<&4`, 就会出现如下错误.~~ 好吧错了, 只是因为描述符4不存在而已.
 
-```
+```log
 脚本名称: line 2: 4: Bad file descriptor
 ```
 
 ## 3. 关闭文件描述符
 
-```
+```bash
 ## 关闭输入文件描述符
 $ exec n<&-
 ## 关闭输出文件描述符
@@ -99,7 +94,7 @@ $ exec m>&-
 
 ### 4.1 标准输出重定向示例
 
-```shell
+```bash
 #!/bin/bash
 
 exec 100> /tmp/ping_log
@@ -117,7 +112,7 @@ ping www.baidu.com &
 
 `/tmp/numbers`的内容为`1 2 3 4 5 6`, 只有这一行
 
-```shell
+```bash
 #!/bin/bash
 
 exec 4<>/tmp/numbers
@@ -147,7 +142,7 @@ cat /tmp/numbers
 
 如下是在当前终端获取的描述符信息.()
 
-```console
+```log
 general@ubuntu:/tmp$ ls /proc/self/fd
 0  1  2  3
 general@ubuntu:/tmp$ exec 4< /tmp/numbers 

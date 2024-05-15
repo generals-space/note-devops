@@ -1,12 +1,9 @@
 # Shell脚本元素-hash命令
 
-<!tags!>: <!hash!>
-
 参考文章
 
-[<linux下内置命令和外部命令>](http://www.cnblogs.com/linux-super-meng/p/4155000.html)
-
-[hash命令：显示、添加或清除哈希表](http://www.th7.cn/system/lin/201406/60174.shtml)
+1. [<linux下内置命令和外部命令>](http://www.cnblogs.com/linux-super-meng/p/4155000.html)
+2. [hash命令：显示、添加或清除哈希表](http://www.th7.cn/system/lin/201406/60174.shtml)
 
 ## 1. 内置命令和外部命令
 
@@ -16,7 +13,7 @@ bash的命令可以分为内置命令和外部命令：
 
 内置命令`enable`可以查看可用的内置命令，同时也可以判断是否为内置命令。
 
-```
+```bash
 $ enable
 enable .
 enable :

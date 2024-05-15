@@ -8,7 +8,7 @@
 
 执行脚本报如下错误
 
-```
+```log
 ./xxx.sh: line 100: warning: here-document at line 72 delimited by end-of-file (wanted `EOF')
 ./xxx.sh: line 101: syntax error: unexpected end of file
 ```
@@ -31,7 +31,7 @@ whoami
 
 执行时有一个warning如下
 
-```
+```log
 ./sus.sh: line 7: warning: here-document at line 3 delimited by end-of-file (wanted `!')
 ```
 
