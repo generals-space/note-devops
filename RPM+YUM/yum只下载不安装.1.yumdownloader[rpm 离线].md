@@ -12,7 +12,7 @@ yum安装操作的实际都是下载一系列有依赖关系的rpm包再用`rpm`
 
 按照参考文章1的说法, 我首先尝试的是`yum-utils`包里的`yumdownloader`命令.
 
-```console
+```log
 $ yumdownloader salt
 Loaded plugins: fastestmirror
 Loading mirror speeds from cached hostfile
@@ -23,7 +23,7 @@ salt-2015.5.10-2.el7.noarch.rpm
 
 而且!!! 它还有一个`--resolve`参数!!! 能把一个软件包的所有依赖包都下载了!!! 多么美好的事情!!!
 
-```console
+```log
 $ yumdownloader --resolve salt
 Loaded plugins: fastestmirror
 Loading mirror speeds from cached hostfile

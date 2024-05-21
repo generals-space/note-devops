@@ -20,7 +20,7 @@
 - `ls -lu`: 文件名: atime
 - `ls -l`:  文件名: mtime
 
-```console
+```log
 $ stat ./testA 
   File: `./testA'
   Size: 0         	Blocks: 0          IO Block: 4096   regular empty file
@@ -35,7 +35,7 @@ Change: 2012-01-01 00:00:38.304903043 +0000
 
 使用`date`命令修改当前日期, 这样我们就可以自由的设定文件的创建时间与修改时间了. 首先在2012年创建一个文件`testA`, 观察它的三个时间属性.
 
-```console
+```log
 $ date 
 Sun Jan  1 00:03:14 CST 2012
 $ date -s 2012/01/01
@@ -59,7 +59,7 @@ Change: 2012-01-01 00:02:28.635043041 -0800
 
 然后我们跳到2013年, 对其进行一些操作后再次观察. 
 
-```console
+```log
 $ date -s 2013/01/01
 Tue Jan  1 00:00:00 PST 2013
 ## 如果不对`testA`文件进行任何操作的话, 这三个时间是不会变化的
@@ -149,7 +149,7 @@ touch [-actmd] 文件
 - -c: 仅修改时间而不建立文件
 - -t: 后面可以接时间, 格式为: [[CC]YY]MMDDhhmm[.ss]
 
-```console
+```log
 $ stat ./testA/
   File: ‘./testA/’
   Size: 30        	Blocks: 0          IO Block: 4096   directory
@@ -179,7 +179,7 @@ Change: 2012-01-01 02:21:45.967925262 -0800
 
 `-c`选项好像是单独用的, 而且不能跟参数, 它将把目标文件的三个时间属性都改成当前时间...
 
-```console
+```log
 $ date
 Sun Jan  1 02:32:16 PST 2012
 $ touch -c  ./testA/

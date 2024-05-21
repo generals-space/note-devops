@@ -19,7 +19,7 @@ etcd mvcc 中的 Version, Revision, ModRevision, CreateRevision 到底都是什�
 - ModRevision: 作用域为 key, 等于修改这个 key 时集群的 Revision, 只要这个 key 更新都会自增
 - Version: 作用域为 key, 这个key刚创建时Version为1, 之后每次更新都会自增, 即这个key从创建以来更新的总次数. 
 
-关于 watch 哪个版本：
+关于 watch 哪个版本: 
 
 watch 某一个 key 时, 想要从历史记录开始就用 CreateRevision, 最新一条(这一条直接返回) 开始就用 ModRevision . 
 watch 某个前缀, 就必须使用 Revision. 如果要watch当前前缀后续的变化, 则应该从当前集群的 Revision+1 版本开始watch. 
@@ -28,7 +28,7 @@ watch 某个前缀, 就必须使用 Revision. 如果要watch当前前缀后续�
 
 如何查看
 
-```console
+```log
 $ etcdctl get '/registry/statefulsets/default/test-sts' --write-out="fields" | grep -v Value
 "ClusterID" : 6138936026546267994
 "MemberID" : 4601696108602649857

@@ -1,7 +1,5 @@
 # 为普通用户添加sudo权限
 
-<!tags!>: <!sudo!> <!sudoers!>
-
 参考文章
 
 1. [linux中sudo的用法和sudoers配置详解](http://www.bianceng.cn/OS/Linux/201410/45603.htm)

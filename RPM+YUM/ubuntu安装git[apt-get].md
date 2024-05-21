@@ -8,7 +8,7 @@ ubuntu: 18.04 LTS
 
 装了清华大学的镜像源, 但是安装 git 却失败了.
 
-```console
+```log
 root@b939cfa3b145:/usr/local/git-2.9.5# apt-get install git
 Reading package lists... Done
 Building dependency tree
@@ -65,7 +65,7 @@ make
 
 ...没想到竟然出错了
 
-```
+```log
 GITGUI_VERSION = 0.20.GITGUI
     * new locations or Tcl/Tk interpreter
     GEN git-gui

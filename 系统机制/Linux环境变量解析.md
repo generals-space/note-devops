@@ -4,18 +4,14 @@
 
 参考文章
 
-[.bash_profile .bashrc profile 文件的作用的执行顺序](http://www.linuxidc.com/Linux/2013-01/78005.htm)
-
-[Linux-profile、bashrc、bash_profile之间的区别和联系](http://www.cnblogs.com/JohnABC/p/4195164.html)
+1. [.bash_profile .bashrc profile 文件的作用的执行顺序](http://www.linuxidc.com/Linux/2013-01/78005.htm)
+2. [Linux-profile、bashrc、bash_profile之间的区别和联系](http://www.cnblogs.com/JohnABC/p/4195164.html)
 
 与环境变量有关的四个文件
 
 - `/etc/profile`
-
 - `/etc/bashrc`
-
 - `~/.bash_profile`
-
 - `~/.bashrc`
 
 本篇文章实验比较多, 步骤有点复杂, 这里先说结论
@@ -54,7 +50,7 @@
 
 实验如下操作
 
-```
+```bash
 [root@localhost ~]# echo 'usual_var=123456' >> /etc/profile
 [root@localhost ~]# echo $usual_var
 
@@ -80,7 +76,7 @@ logout
 
 继续进行, 在当前终端执行`bash`命令, 会打开一个新的shell, 这也是一个非登录式shell.
 
-```
+```bash
 [root@localhost ~]# echo 'usual_var=123456' >> /etc/profile
 [root@localhost ~]# echo $usual_var
 
@@ -152,7 +148,7 @@ $ crontab -e
 
 我们在主机A的`/etc/profile`文件写入以下内容. (主机A是Fedora 24的桌面发行版)
 
-```
+```bash
 for i in {0..100};
 do
     ping -c 1 主机B的IP地址
@@ -168,7 +164,7 @@ done
 
 在ssh登录的shell中执行查询
 
-```
+```log
 $ ps aux | grep bash
 general    7056  0.0  0.0 119904     8 tty2     S+   22:37   0:00 -/bin/bash -c gnome-session
 root      23738  0.0  0.1 120708  4376 pts/0    Ss   22:42   0:00 -bash

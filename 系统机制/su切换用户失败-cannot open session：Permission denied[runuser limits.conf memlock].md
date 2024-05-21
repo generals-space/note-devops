@@ -27,7 +27,7 @@ cannot open session: Permission denied
 
 ### 1. 注释`/etc/pam.d/su`文件中`session include system-auth`这一行
 
-```console
+```log
 $ cat /etc/pam.d/su
 #%PAM-1.0
 auth            sufficient      pam_rootok.so

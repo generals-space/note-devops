@@ -4,6 +4,7 @@
 
 1. [CentOS7修改时区的正确姿势](http://blog.csdn.net/yin138/article/details/52765089)
 2. [CentOS 7 修改时区](http://blog.csdn.net/robertsong2004/article/details/42268701)
+3. [Java TimeZone 和 Linux TimeZone问题](https://my.oschina.net/huawu/blog/4646)
 
 ```
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
@@ -17,7 +18,7 @@ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 这个命令在CentOS6上面工作正常, 但是CentOS7上却发现运行的Java程序的日志中时间与当前系统时间不一致. 尝试过手动写入如下内容到`/etc/sysconfig/clock`文件, 但是无效.
 
-```
+```ini
 ZONE="Asia/Shanghai"
 UTC=false
 ARC=false
@@ -25,7 +26,7 @@ ARC=false
 
 参考文章1中给出了解释.
 
-> 用`cp`命令修改时区, 通过`date`, `date -R`命令显示的时区都是正确的, 可是对于Java程序而言, 是错误的, 具体原因在于Java访问系统时区的方式上, 可参见文章: [Java TimeZone 和 Linux TimeZone问题](https://my.oschina.net/huawu/blog/4646).
+> 用`cp`命令修改时区, 通过`date`, `date -R`命令显示的时区都是正确的, 可是对于Java程序而言, 是错误的, 具体原因在于Java访问系统时区的方式上, 可参见参考文章3.
 
 Java访问系统时区的方式: 
 
@@ -53,7 +54,7 @@ ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 用法很简单, `--help`一下就能明白. 就是列出可用时区, 设置当前时区, 查看当前时区状态等.
 
-```
+```log
 $ timedatectl status
 Warning: Ignoring the TZ variable. Reading the system's time zone setting only.
 

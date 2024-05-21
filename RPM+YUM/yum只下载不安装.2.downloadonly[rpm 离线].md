@@ -14,7 +14,7 @@ yum -y install yum-downloadonly
 
 使用方法如下
 
-```console
+```log
 $ yum install -y --downloadonly --downloaddir=/tmp salt
 Loaded plugins: fastestmirror
 Loading mirror speeds from cached hostfile

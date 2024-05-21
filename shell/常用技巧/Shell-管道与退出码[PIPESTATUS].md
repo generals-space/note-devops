@@ -19,13 +19,13 @@
 
 在用 appium 做自动化测试的时候, 我的脚本在个旧手机上出了问题.
 
-```
+```log
 WebDriverException("An unknown server-side error occurred while processing the command. Original error: Error getting device API level. Original error: The actual output 'WARNING: linker: libset.so: unused DT entry: type 0x6fffffff arg 0x3\r\nWARNING: linker: libset.so: unused DT entry: type 0x6ffffffe arg 0x4518\r\nWARNING: linker: libset.so: unused DT entry: type 0x6fffffff arg 0x3\r\n22' cannot be converted to an integer", None, None)
 ```
 
 我试了下, 原来连接上这个手机, `adb`命令除了`adb devices|disconnect`, 其他的基本都会出问题...
 
-```
+```log
 root@79a8d22ee501:/app# adb shell getprop ro.build.version.release
 WARNING: linker: libset.so: unused DT entry: type 0x6ffffffe arg 0x4518
 WARNING: linker: libset.so: unused DT entry: type 0x6fffffff arg 0x3
@@ -53,7 +53,7 @@ adb.1 $@ | grep -v 'WARNING: linker: libset.so: unused DT entry'
 
 重新运行程序, 结果又报了如下错误
 
-```
+```log
 2020-12-19 03:11:30,865 ERROR - main.py:19 - WebDriverException("An unknown server-side error occurred while processing the command. Original error: Error waiting for the device to be available. Original error: 'Error executing adbExec. Original error: 'Command '/root/platform-tools/adb -P 5037 -s 192.168.31.51\\:5555 wait-for-device' exited with code 1'; Stderr: ''; Code: '1''", None, None)
 ```
 

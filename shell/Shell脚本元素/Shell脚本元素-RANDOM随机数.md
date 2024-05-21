@@ -1,4 +1,4 @@
-# Shell-随机数RANDOM内置变量
+# Shell脚本元素-RANDOM随机数
 
 `RANDOM`应该是bash的一个内置变量, 每次打印或赋值的时候, 都会得到一个随机数.
 

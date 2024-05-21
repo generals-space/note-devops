@@ -111,7 +111,7 @@ service vsfptd start
 
 在客户端上通过ftp尝试登陆.
 
-```
+```log
 $ ftp
 ftp> open 172.17.0.4
 Connected to 172.17.0.4 (172.17.0.4).
@@ -146,7 +146,7 @@ ftp> quit
 
 要达到这个目的, 需要使用如下三个选项
 
-```
+```ini
 # 取YES时将所有本地用户限制在自家目录中，NO则不限制
 chroot_local_user=YES
 ## 是否允许vsftpd读取一个提供了用户名的文件, 来确定某些例外于chroot_local_user规则的用户
@@ -222,7 +222,7 @@ cmds_allowed=FEAT,REST,CWD,LIST,MDTM,NLST,PASS,PASV,PORT,PWD,QUIT,RETR,SIZE,STOR
 
 ### 1. 
 
-```
+```log
 ftp> open 192.168.169.75
 Connected to 192.168.169.75 (192.168.169.75).
 220 (vsFTPd 2.2.2)

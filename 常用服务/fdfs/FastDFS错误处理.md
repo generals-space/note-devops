@@ -6,7 +6,7 @@
 
 [FastDFS常见问题](http://support.supermap.com.cn/DataWarehouse/WebDocHelp/6.1.3/iserverOnlineHelp/Server_Service_Management/CacheConfig/FastDFS_install_config/FastDFSFAQ.htm)
 
-```
+```log
 2016-12-16 10:43:07,731 ERROR [FastDfsService][2016121610430000000790095] - fastDfs上传错误
 org.csource.common.MyException: getStoreStorage fail, errno code: 28
         at org.csource.fastdfs.StorageClient.newWritableStorageConnection(StorageClient.java:1941)
