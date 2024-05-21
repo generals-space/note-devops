@@ -15,11 +15,17 @@ redis-cli [-a 密码] --cluster del-node host:port nodeid
 
 也可以从集群中移除节点, 而且只需要执行一次, 不需要在每个节点上执行.
 
-不过这条命令只是将节点从集群中移除, 集群是不再认识这个节了, 但这个节点还是记得原集群的, 进入这个节点执行 cluster nodes 还能看到原本的集群拓扑, 如果要使用 add-node 将该节点再加入集群, 则需要将该节点上的集群信息清空, 可以用 cluster reset 完成.
+不过这条命令只是将节点从集群中移除, 集群是不再认识这个节点了, 但这个节点还是记得原集群的, 进入这个节点执行 cluster nodes 还能看到原本的集群拓扑, 如果要使用 add-node 将该节点再加入集群, 则需要将该节点上的集群信息清空, 可以用 cluster reset 完成.
+
+如果目标节点为 slave, 可以直接删除, 如果是 master 则其中不能含有 slot 信息, 否则会移除失败.
+
+而且, 如果是 master 节点被删除后, 属于ta的 slave 仍然会被保留, 只不过ta的 master 信息会变为空.
 
 ###
 
 redis-cli [-a 密码] --cluster add-node newhost:port oldhost:port
+
+> 注意 newhost 与 oldhost 的参数顺序
 
 > oldhost 是集群中的某个节点IP
 
