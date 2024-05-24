@@ -36,7 +36,7 @@ find 目标路径 {-atime|-ctime|-mtime|-amin|-cmin|-mmin} [-|+]num
 
 实践是检验真理的唯一标准...
 
-```
+```log
 ## 通过date设置日期, 从01-01到01-05, 每天touch一个文件
 $ date -s '2016/01/01 12:00:00'
 Fri Jan  1 12:00:00 CST 2016
@@ -79,7 +79,6 @@ $ find ./ -ctime 1
 ```
 
 可以看出`-ctime 0`表示当天修改过的文件, 所以`{-atime|-ctime|-mtime|-amin|-cmin|-mmin}`子选项后面的参数值, 是从0开始计算的.
-
 
 ## 3. exec选项执行命令
 

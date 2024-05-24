@@ -7,7 +7,7 @@
 
 ## 最简使用 - 直接查询某个域名
 
-```console
+```log
 $ dig t.cn
 ...
 ;; QUESTION SECTION:
@@ -34,7 +34,7 @@ t.cn.			5	IN	A	203.107.55.116
 
 像下面的示例, `172.16.91.10`就没有运行 dns 服务
 
-```console
+```log
 $ dig @172.16.91.10 t.cn
 
 ; <<>> DiG 9.11.4-P2-RedHat-9.11.4-16.P2.el7_8.6 <<>> @172.16.91.10 t.cn
@@ -48,7 +48,7 @@ telnet: connect to address 172.16.91.10: Connection refused
 
 下面就比较正常
 
-```console
+```log
 $ dig @172.16.91.2 t.cn
 
 ;; QUESTION SECTION:
@@ -64,7 +64,7 @@ ns: name server, 就是我们在注册域名时, 提供该域名的解析服务�
 
 ![](https://gitee.com/generals-space/gitimg/raw/master/847f167e81ffcbcb0f5a1fa3e88cbd19.png)
 
-```console
+```log
 sh-4.2# dig ns note.generals.space
 
 ;; QUESTION SECTION:
@@ -85,7 +85,7 @@ generals.space.		5	IN	SOA	dns9.hichina.com. hostmaster.hichina.com. 2016030109 3
 
 简明使用，只会输出A记录(写脚本的时候容易获取ip地址)
 
-```console
+```log
 $ dig t.cn +short
 203.107.55.116
 ```
@@ -94,7 +94,7 @@ $ dig t.cn +short
 
 在k8s的pod中, /etc/resolv.conf文件中通常都有`search`字段, 如下
 
-```
+```log
 nameserver 10.96.0.10
 search mcp-middleware.svc.cs-dev.hpc svc.cs-dev.hpc cs-dev.hpc
 options ndots:5
@@ -102,14 +102,14 @@ options ndots:5
 
 dig默认是不会为"Pod名称.Service名称"再去添加后缀的, 所以可能找不到
 
-```console
+```log
 $ dig +short mcp-redis-1.mcp-redis-svc
 ## 啥也没有
 ```
 
 此时需要加上`+search`选项, 让dig顺着/etc/resolv.conf的指向去找
 
-```console
+```log
 $ dig +short +search mcp-redis-1.mcp-redis-svc
 10.23.151.143
 ```

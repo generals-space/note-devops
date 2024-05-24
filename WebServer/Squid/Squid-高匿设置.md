@@ -32,7 +32,7 @@
 
 ### 2.1. 高透代理(High Transparent Proxy): 单纯地转发数据
 
-```
+```ini
 Remote Address = 客户端IP
 X-Forwarded-For = 客户端IP
 Via = 客户端IP
@@ -42,7 +42,7 @@ Via = 客户端IP
 
 ### 2.2. 透明代理(Transparent Proxy): 知道你在用代理, 知道你IP
 
-```
+```ini
 Remote Address = 代理IP
 X-Forwarded-For = 客户端IP
 Via = 代理IP

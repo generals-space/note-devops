@@ -12,7 +12,7 @@ LAMP环境搭建好后访问网站, 网页上输出了上述错误, 网上说法
 
 在apache2.2中, 在`<Directory "xxx"></Directory>`标签修改为如下:
 
-```
+```xml
 <Directory "代码目录">
     Options Indexes FollowSymLinks
     AllowOverride All
@@ -23,7 +23,7 @@ LAMP环境搭建好后访问网站, 网页上输出了上述错误, 网上说法
 
 在apache2.4中, 则要改成这样:
 
-```
+```xml
 <Directory "代码目录">
     Options Indexes FollowSymlinks
     AllowOverride All

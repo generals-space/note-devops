@@ -4,7 +4,7 @@
 
 直接通过ssh在命令行执行启动命令, 以virtual box为例, 可能得到如下错误
 
-```
+```log
 $ virtualbox 
 Qt FATAL: QXcbConnection: Could not connect to display 
 Aborted (core dumped)

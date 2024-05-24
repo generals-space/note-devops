@@ -57,7 +57,7 @@ whoami
 
 将上面的脚本保存为`test2.sh`, 以root身份执行, 结果如下
 
-```
+```log
 [root@b14e517d408b tmp]# pip freeze | grep -i django
 [root@b14e517d408b tmp]# ./test2.sh 
 root
