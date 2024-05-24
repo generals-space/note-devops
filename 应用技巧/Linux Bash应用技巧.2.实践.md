@@ -12,7 +12,7 @@
 
 删除上一条命令中的多余部分
 
-```console
+```log
 $ grep fooo /var/log/auth.log
 $ ^o
 $ grep foo /var/log/auth.log
@@ -20,7 +20,7 @@ $ grep foo /var/log/auth.log
 
 替换输错的部分
 
-```console
+```log
 $ ansible nginx -m command -a 'which nginx'
 $ !:gs/nginx/squid
 $ ansible squid -m command -a 'which squid'
@@ -30,7 +30,7 @@ $ ansible squid -m command -a 'which squid'
 
 重复上一条命令
 
-```console
+```log
 $ apt-get install figlet
 E: Could not open lock file /var/lib/dpkg/lock - open (13: Permission denied)
 E: Unable to lock the administration directory (/var/lib/dpkg/), are you root?
@@ -43,7 +43,7 @@ sudo apt-get install figlet
 
 选取上一条命令中的第一个参数
 
-```console
+```log
 $ ls /usr/share/doc /usr/share/man
 
 $ cd !^
@@ -53,7 +53,7 @@ $ cd !^
 
 选取参数中路径的开头部分
 
-```console
+```log
 $ ls /usr/share/fonts/truetype
 
 $ cd !$:h
@@ -64,7 +64,7 @@ cd /usr/share/fonts
 
 组合使用命令选取与参数选取
 
-```console
+```log
 [root@localhost nginx]# ls /var/log/nginx/
 access.log  access.log-20160331.gz  error.log  error.log-20160331.gz
 [root@localhost nginx]# pwd
@@ -74,7 +74,7 @@ cd /var/log/nginx/
 [root@localhost nginx]#
 ```
 
-```console
+```log
 [root@localhost nginx]# cd /var/log/nginx
 [root@localhost nginx]# cd !cd:1:h
 cd /var/log
@@ -82,7 +82,7 @@ cd /var/log
 
 不过`!?string`貌似无法与参数选取合用
 
-```console
+```log
 [root@localhost log]# cd /var/log/nginx
 [root@localhost nginx]# cd /etc/nginx/
 [root@localhost nginx]# cd !?var:1:h

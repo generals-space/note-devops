@@ -10,7 +10,7 @@ haproxy的`timeout`字段可以检测双方的空闲连接, 主动断开.
 
 但是这个东西和 tcp keepalive 是两回事.
 
-```console
+```log
 [root@ly-xjf-r021702-gyt haproxy]# netstat -anop | grep haprox
 tcp        0      0 0.0.0.0:6442            0.0.0.0:*               LISTEN      362334/haproxy       off (0.00/0/0)
 tcp        0      0 0.0.0.0:12181           0.0.0.0:*               LISTEN      362334/haproxy       off (0.00/0/0)

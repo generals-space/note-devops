@@ -6,7 +6,7 @@
 
 系统: CentOS7
 
-```console
+```log
 $ yum search abc
 There was a problem importing one of the Python modules
 required to run yum. The error leading to this problem was:
@@ -32,7 +32,7 @@ the yum faq at:
 
 第一个, 如果直接`-ivh`没法安装上的话, 尝试添加`--nodeps`参数.
 
-```console
+```log
 $ rpm -ivh [--nodeps] ./openldap-2.4.44-5.el7.x86_64.rpm
 Preparing...                          ################################# [100%]
 	package openldap-2.4.44-5.el7.x86_64 is already installed
@@ -62,7 +62,7 @@ Updating / installing...
 
 然后就可以了.
 
-```console
+```log
 $ yum search abc
 Loaded plugins: fastestmirror
 Loading mirror speeds from cached hostfile

@@ -75,7 +75,7 @@ ip netns exec netns2 ip route add default via 20.1.1.1 dev veth22
 
 结果验证
 
-```console
+```log
 $ ip netns exec netns1 ping -c 2 20.1.1.2
 
 PING 20.1.1.2 (20.1.1.2) 56(84) bytes of data.
@@ -87,7 +87,7 @@ PING 20.1.1.2 (20.1.1.2) 56(84) bytes of data.
 rtt min/avg/max/mdev = 0.171/0.174/0.178/0.013 ms
 ```
 
-```console
+```log
 $ ip netns exec netns2 ping -c 2 10.1.1.2
 
 PING 10.1.1.2 (10.1.1.2) 56(84) bytes of data.

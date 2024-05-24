@@ -40,7 +40,7 @@ mybr0	 1 PVID Egress Untagged
 
 此时数据包可以通过 veth31 流出.
 
-```console
+```log
 $ tcpdump -nve not port 22 -i veth31
 tcpdump: listening on veth31, link-type EN10MB (Ethernet), capture size 262144 bytes
 17:38:10.384940 42:2d:0b:0c:8b:9f > Broadcast, ethertype 802.1Q (0x8100), length 46: vlan 1, p 0, ethertype ARP, Ethernet (len 6), IPv4 (len 4), Request who-has 10.1.1.3 tell 10.1.1.4, length 28

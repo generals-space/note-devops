@@ -19,7 +19,7 @@ $ wait job序号
 
 示例
 
-```console
+```log
 $ ping -c 20 www.baidu.com > /tmp/ping_baidu &
 [1] 6913
 $ wait 6913 ; echo 'yes'

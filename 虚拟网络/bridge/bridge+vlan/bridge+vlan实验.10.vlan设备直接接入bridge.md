@@ -78,7 +78,7 @@ ip netns exec ns03 ip link set dev mybr0 type bridge vlan_filtering 1
 
 看来我之前的认知是错误的, 因为双向都可以ping通...🤔
 
-```console
+```log
 $ bridge vlan show
 port	vlan ids
 veth32	 1 PVID Egress Untagged

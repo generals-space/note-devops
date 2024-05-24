@@ -17,7 +17,7 @@ elasticsearch.password: "123456"
 
 移除配置文件`kibana.yml`中的`username`和`password`这两个键, 然后调用`kibana-keystore`, 执行如下命令.
 
-```console
+```log
 $ ./kibana-keystore create
 Created Kibana keystore in /usr/share/kibana/data/kibana.keystore
 $ ./kibana-keystore add elasticsearch.username

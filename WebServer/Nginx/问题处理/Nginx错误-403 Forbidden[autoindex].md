@@ -26,7 +26,7 @@ Nginx需要拥有这个文件的`r`权限, 还需要拥有对`/`, `/usr`, `/usr/
 
 为了检查该路径上各级的属主和权限, 我们可以使用`namei`工具, 像这样:
 
-```console
+```log
 $ namei -l /var/www/vhosts/example.com
 
 f: /var/www/vhosts/example.com

@@ -16,7 +16,7 @@ EOF
 
 模板文件
 
-```console
+```log
 $ cat test.txt
 a=$a
 b=$b
@@ -24,7 +24,7 @@ b=$b
 
 测试
 
-```console
+```log
 $ a=123
 $ b=456
 $ eval "cat <<EOF
@@ -57,7 +57,7 @@ EOF
 " > 结果文件路径
 ```
 
-```console
+```log
 $ a=123
 $ b=456
 $ eval "cat <<EOF

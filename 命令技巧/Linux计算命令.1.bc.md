@@ -20,7 +20,7 @@
 
 首先进入交互式命令行
 
-```console
+```log
 $ bc
 bc 1.06
 Copyright 1991-1994, 1997, 1998, 2000 Free Software Foundation, Inc.

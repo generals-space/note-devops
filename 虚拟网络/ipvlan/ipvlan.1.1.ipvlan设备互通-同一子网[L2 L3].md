@@ -225,7 +225,7 @@ ens34上也接收不到任何来自ipvlan设备的2层arp包.
 
 不过这次再使用`arping`向`172.16.91.100`发送2层包(在`ns01`中), 就可以看到如下结果了.
 
-```console
+```log
 $ arping 172.16.91.100 -I ipvlan1
 ARPING 172.16.91.100 from 172.16.91.101 ipvlan1
 Unicast reply from 172.16.91.100 [00:0C:29:51:4C:E0]  0.696ms
@@ -234,7 +234,7 @@ Unicast reply from 172.16.91.100 [00:0C:29:51:4C:E0]  0.558ms
 
 在ns01中`arping 172.16.91.14`, 仅会得到1次广播包回应, 不过在ens34上还是可以接收到`arp`请求包的. 
 
-```console
+```log
 $ arping 172.16.91.14
 ARPING 172.16.91.14 from 172.16.91.101 ipvlan1
 Unicast reply from 172.16.91.14 [00:0C:29:51:4C:E0]  0.627ms

@@ -48,7 +48,7 @@ apt-get -y install tightvncserver
 
 密码设置的方式为
 
-```console
+```log
 $ vncpasswd
 Using password file /root/.vnc/passwd
 Password:
@@ -63,7 +63,7 @@ Verify:
 
 ### 命令行启动
 
-```console
+```log
 $ vncserver :1
 $ ps -ef | grep auth
 root      1197     1  0 21:11 pts/0    00:00:00 Xtightvnc :1 -desktop X -auth /root/.Xauthority -geometry 1024x768 -depth 24 -rfbwait 120000 -rfbauth /root/.vnc/passwd -rfbport 5901 -fp /usr/share/fonts/X11/misc/,/usr/share/fonts/X11/Type1/,/usr/share/fonts/X11/75dpi/,/usr/share/fonts/X11/100dpi/ -co /etc/X11/rgb

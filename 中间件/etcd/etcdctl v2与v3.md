@@ -20,7 +20,7 @@
 
 这里有一个坑, 在v2中, 通过`mk`创建的key默认位于根目录`/`下. 如下
 
-```console
+```log
 $ etcdctl mk key1 val1
 val1
 $ etcdctl get key1
@@ -35,7 +35,7 @@ $ etcdctl ls / -r
 
 但是在v3中创建同样的key, 则不会放在根目录. 如下
 
-```console
+```log
 $ etcdctl put key1 val1
 OK
 $ etcdctl get key1
@@ -47,7 +47,7 @@ $ etcdctl get / --prefix
 
 可以说`key1`与根目录`/`同级, 要获取这样的key, 需要使用如下命令.
 
-```console
+```log
 $ etcdctl get '' --prefix
 key1
 val1

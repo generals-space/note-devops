@@ -8,7 +8,7 @@
 
 按照参考文章3中所说, 可以使用openssl的`s_client`子命令.
 
-```console
+```log
 $ openssl s_client -showcerts -connect https://goproxy.onetool.net
 getaddrinfo: Servname not supported for ai_socktype
 connect:errno=0
@@ -16,7 +16,7 @@ connect:errno=0
 
 网站地址不能是`https://`这种, 要使用**域名+端口**的形式, 如下
 
-```console
+```log
 $ openssl s_client -showcerts -connect goproxy.onetool.net:443
 CONNECTED(00000003)
 depth=3 C = SE, O = AddTrust AB, OU = AddTrust External TTP Network, CN = AddTrust External CA Root

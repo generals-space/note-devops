@@ -10,7 +10,7 @@ ubuntu 的镜像源版本目录不是按版本号而是按版本名来的(真tm 
 
 我在 docker 里可以通过`os-release`查看.
 
-```console
+```log
 $ cat /etc/os-release
 NAME="Ubuntu"
 VERSION="20.04.1 LTS (Focal Fossa)"

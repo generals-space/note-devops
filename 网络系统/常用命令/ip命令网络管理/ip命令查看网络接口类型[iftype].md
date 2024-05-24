@@ -32,7 +32,7 @@ for type in "${TYPES[@]}"; do
 done
 ```
 
-```console
+```log
 [root@k8s-worker-7-17 ~]# ./iftype.sh docker0
 docker0:bridge
 [root@k8s-worker-7-17 ~]# ip link show type bridge

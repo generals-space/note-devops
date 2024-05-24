@@ -65,7 +65,7 @@ POST _analyze
 
 不过在我的场景中, 这两个文件分别位于`${es_home}/plugins/ik/config/IKAnalyzer.cfg.xml`, 与`${es_home}/plugins/ik/config/custom/my.dic`才有效. 我的插件列表如下
 
-```console
+```log
 $ elasticsearch-plugin list
 ik
 ```

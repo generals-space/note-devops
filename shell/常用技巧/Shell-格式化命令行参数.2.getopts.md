@@ -67,7 +67,7 @@ b选项无参数, 此时OPTARG变量的值为:
 
 **验证第1点**
 
-```console
+```log
 $ ./test1.sh -b 123 -a abc
 -b 123 -a abc
 b选项无参数, 此时OPTARG变量的值为: 
@@ -78,7 +78,7 @@ b选项无参数, 此时OPTARG变量的值为:
 
 **验证第2点**
 
-```console
+```log
 $ ./test1.sh -a abc -c -b 
 -a abc -c -b
 a选项是有参数的, 这里取到它的参数为:  abc

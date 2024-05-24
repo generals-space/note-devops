@@ -8,7 +8,7 @@
 
 es版本: 7.2.0
 
-```console
+```log
 $ curl -XGET 'es-cluster:9200/_cat/health'
 1592808140 06:42:20 elasticsearch green 3 3 8 4 0 0 0 0 - 100.0%
 ```

@@ -8,7 +8,7 @@
     - ping本地的ipv6地址时, 需要指定用来发送数据包的网络接口(有点像没有合适路由的时候手动选择出口网卡啊...), 使用`-I`选项指定接口名称.
     - IPv6地址中`FF80`开头的为link-local address, 类似于`192.168.0.0/16`, `169.254.0.0/16`在 IPv4 中的地位.
 
-```console
+```log
 $ ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
@@ -24,7 +24,7 @@ $ ip a
        valid_lft forever preferred_lft forever
 ```
 
-```console
+```log
 ## 本地回环地址
 $ ping6 ::1
 PING ::1(::1) 56 data bytes
@@ -43,7 +43,7 @@ connect: Invalid argument
 
 下面两种方式都是正确的.
 
-```console
+```log
 # %2 也是可以的, 这里的 2 是 ens33 接口的索引值.
 # ping6 fe80::20c:29ff:fe4e:6243%2
 $ ping6 fe80::20c:29ff:fe4e:6243%ens33
@@ -56,7 +56,7 @@ PING fe80::20c:29ff:fe4e:6243%ens33(fe80::20c:29ff:fe4e:6243%ens33) 56 data byte
 rtt min/avg/max/mdev = 0.141/0.143/0.146/0.012 ms
 ```
 
-```console
+```log
 $ ping6 -I ens33 fe80::20c:29ff:fe4e:6243
 PING fe80::20c:29ff:fe4e:6243(fe80::20c:29ff:fe4e:6243) from fe80::20c:29ff:fe4e:6243%ens33 ens33: 56 data bytes
 64 bytes from fe80::20c:29ff:fe4e:6243%ens33: icmp_seq=1 ttl=64 time=0.041 ms

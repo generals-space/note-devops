@@ -17,7 +17,7 @@ dir=/registry/services
 etcdctl get --prefix --keys-only $dir | sed -n "s#$dir\/\([^\/]*\).*#\1#p" | uniq
 ```
 
-```console
+```log
 $ dir=/registry/services
 $ etcdctl get --prefix --keys-only $dir | sed -n "s#$dir\/\([^\/]*\).*#\1#p" | uniq
 endpoints

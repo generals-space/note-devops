@@ -32,7 +32,7 @@ es版本: 7.2.0
 
 根据参考文章2, 其实默认的`_cat/nodes`的响应结果是不完整的, 我们可以通过`h`参数指定要显示的字段, 可选的字段有:
 
-```console
+```log
 $ curl 'localhost:9200/_cat/nodes?v&h=http,version,jdk,disk.total,disk.used,disk.avail,disk.used_percent,heap.current,heap.percent,heap.max,ram.current,ram.percent,ram.max,master'
 http          version jdk       disk.total disk.used disk.avail disk.used_percent heap.current heap.percent heap.max ram.current ram.percent ram.max master
 10.0.0.4:9200 6.3.1   1.8.0_181       29gb     3.3gb     25.6gb             11.72        254mb            7    3.3gb       6.2gb          92   6.8gb -

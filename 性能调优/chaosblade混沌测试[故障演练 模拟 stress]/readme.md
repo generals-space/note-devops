@@ -4,7 +4,7 @@
 
 官方称谓是"混沌测试", how tm 高大上的名字...
 
-```console
+```log
 $ blade create --help
   cplus       C++ chaos experiments
   cpu         Cpu experiment

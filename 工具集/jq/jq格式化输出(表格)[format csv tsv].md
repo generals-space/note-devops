@@ -32,7 +32,7 @@ ecs.t1.xsmall	1	0.5
 
 **错误**
 
-```console
+```log
 $ echo xxx | jq -r '.InstanceTypes.InstanceType[] | .InstanceTypeId,.CpuCoreCount,.MemorySize'
 ecs.t1.xsmall
 1
@@ -41,7 +41,7 @@ ecs.t1.xsmall
 
 **正确**
 
-```console
+```log
 $ echo xxx | jq -r '.InstanceTypes.InstanceType[] | [.InstanceTypeId,.CpuCoreCount,.MemorySize]'
 [
   "ecs.t1.xsmall",

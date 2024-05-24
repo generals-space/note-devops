@@ -9,7 +9,7 @@
 
 在linux下做模拟calico网络的隧道实验时, 添加`tunnel`设备失败, 显示报错如下.
 
-```console
+```log
 $ ip tunnel add tun_gre0 mode gre
 add tunnel "gre0" failed: File exists
 ```

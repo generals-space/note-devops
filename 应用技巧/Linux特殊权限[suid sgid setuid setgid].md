@@ -31,7 +31,7 @@ $ ll /etc/passwd /etc/shadow
 
 实际上, 普通用户能更新自己的密码并使其生效, 与`/etc/passwd`和`/etc/shadow`文件的权限没什么关系, 而是跟`passwd`命令有关系.
 
-```console
+```log
 $ which passwd
 /usr/bin/passwd
 $ ll /usr/bin/passwd

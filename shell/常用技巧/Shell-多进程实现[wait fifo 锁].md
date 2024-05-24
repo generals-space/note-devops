@@ -58,7 +58,7 @@ wait $subpid1 ; echo '百度已ping完'
 
 执行它, 得到如下输出
 
-```console
+```log
 general@ubuntu:/tmp$ bash multiproc.sh 
 6951 6952
 [1]-  Running                 ping -c 20 www.baidu.com > /tmp/ping_baidu &
@@ -164,7 +164,7 @@ done
 
 执行结果是
 
-```console
+```log
 general@ubuntu:/tmp$ time bash single.sh 
 www.baidu.com finished
 www.taobao.com finished
@@ -234,7 +234,7 @@ exec 6>&-
 
 执行它, 得到
 
-```console
+```log
 general@ubuntu:/tmp$ time bash multiproc.sh 
 www.baidu.com finished
 www.taobao.com finished

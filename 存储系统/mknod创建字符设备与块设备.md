@@ -14,7 +14,7 @@
 mknod /tmp/tun c 30 1
 ```
 
-```console
+```log
 $ ll /tmp | grep tun
 crw-r--r--    1 root    root       30, 1 6月  12 14:13 tun
 ```

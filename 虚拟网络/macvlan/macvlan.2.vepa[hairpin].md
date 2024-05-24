@@ -78,7 +78,7 @@ ip netns exec ns02 ip link set macvlan2 up
 
 但是由于我的测试环境是vmware虚拟机, vswitch不支持`hairpin`, 所以在第2步就卡住了, 在宿主机vm02上抓取物理网卡`ens34`上的arp流量, 发现有如下输出.
 
-```console
+```log
 $ tcpdump -nve -i ens34 arp
 tcpdump: listening on ens34, link-type EN10MB (Ethernet), capture size 262144 bytes
 18:10:22.341924 26:10:84:17:90:d2 > Broadcast, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Request who-has 172.16.91.102 tell 172.16.91.102, length 28

@@ -158,7 +158,7 @@ pty: pseudo-tty(伪终端)
 
 若是此时没有第3个ssh会话, 却向`/dev/pts/2`写入数据会发生什么?
 
-```console
+```log
 $ echo hello > /dev/pts/2
 -bash: /dev/pts/2: 权限不够
 ```

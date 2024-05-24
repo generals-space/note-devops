@@ -11,7 +11,7 @@
 
 在查看kuber存储在etcd中的信息时, 希望得到某一目录下的子目录名称, 类似v2接口中的ls命令. 输出如下
 
-```console
+```log
 $ etcdctl get --prefix --keys-only /registry/
 /registry/services/endpoints/etcd/etcd-operator
 /registry/services/specs/kube-system/kube-dns
@@ -23,7 +23,7 @@ $ etcdctl get --prefix --keys-only /registry/
 
 我想得到`/registry`目录下所有子目录名称, 如`services`, `storageclasses`...等. 使用`sed`命令完成这个功能
 
-```console
+```log
 $ etcdctl get --prefix --keys-only /registry | sed -n "s/\/registry\/\([^\/]*\).*/\1/p"
 services
 services
@@ -34,7 +34,7 @@ storageclasses
 
 但是出现了如下问题.
 
-```console
+```log
 $ dir=/registry
 $ etcdctl get --prefix --keys-only $dir | sed -n "s/$dir\/\([^\/]*\).*/\1/p"
 sed: -e expression #1, char 27: unknown option to `s'
@@ -42,7 +42,7 @@ sed: -e expression #1, char 27: unknown option to `s'
 
 到网上查了查, 发现将分隔符`/`修改为`#`或`|`后的确可行.
 
-```console
+```log
 $ ## etcdctl get --prefix --keys-only $dir | sed -n "s#$dir\/\([^\/]*\).*#\1#p"
 $ etcdctl get --prefix --keys-only $dir | sed -n "s|$dir\/\([^\/]*\).*|\1|p"
 services

@@ -56,7 +56,7 @@ ip netns exec netns2 ip link set dev mybr2 type bridge vlan_filtering 1
 
 最初的vlan配置如下
 
-```console
+```log
 $ ip netns exec netns2 bridge vlan show
 port	vlan ids
 veth2	 1 PVID Egress Untagged
@@ -74,7 +74,7 @@ ip netns exec netns1 ping 10.1.1.2
 
 在`netns2`中抓包如下
 
-```console
+```log
 $ ip netns exec netns2 tcpdump -nve -i veth21
 tcpdump: listening on veth21, link-type EN10MB (Ethernet), capture size 262144 bytes
 16:39:13.991751 6e:c1:18:37:93:79 > d2:0a:94:45:85:bf, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 47386, offset 0, flags [DF], proto ICMP (1), length 84)
@@ -98,7 +98,7 @@ ip netns exec netns2 bridge vlan add dev veth21 vid 1 pvid
 
 此时的vlan配置如下
 
-```console
+```log
 $ ip netns exec netns2 bridge vlan show
 port	vlan ids
 veth2	 1 PVID Egress Untagged
@@ -108,7 +108,7 @@ mybr2	 1 PVID Egress Untagged
 
 再ping(此时已经ping不通了...), 再抓包.
 
-```console
+```log
 $ ip netns exec netns2 tcpdump -nve -i veth21
 tcpdump: listening on veth21, link-type EN10MB (Ethernet), capture size 262144 bytes
 04:26:19.551616 32:21:c9:c2:d8:69 > Broadcast, ethertype 802.1Q (0x8100), length 46: vlan 1, p 0, ethertype ARP, Ethernet (len 6), IPv4 (len 4), Request who-has 10.1.1.2 tell 10.1.1.1, length 28
@@ -119,7 +119,7 @@ tcpdump: listening on veth21, link-type EN10MB (Ethernet), capture size 262144 b
 
 由于`veth`设备类似于物理网线, 对任何数据都会透传, 所以在`veth22`上抓包也可以看到`vlan tag`.
 
-```console
+```log
 $ ip netns exec netns2 tcpdump -nve -i veth22
 tcpdump: listening on veth22, link-type EN10MB (Ethernet), capture size 262144 bytes
 04:29:08.519472 32:21:c9:c2:d8:69 > Broadcast, ethertype 802.1Q (0x8100), length 46: vlan 1, p 0, ethertype ARP, Ethernet (len 6), IPv4 (len 4), Request who-has 10.1.1.2 tell 10.1.1.1, length 28

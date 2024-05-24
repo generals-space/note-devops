@@ -10,7 +10,7 @@
 
 `-list`选项可以查看当前用户启动的vnc实例, 通过命令行启动的vnc这个命令十分有用.
 
-```console
+```log
 $ vncserver -list
 
 TigerVNC server sessions:
@@ -22,7 +22,7 @@ X DISPLAY #	PROCESS ID
 
 `-kill`可以停止目标实例, 如
 
-```console
+```log
 $ vncserver -kill :1
 Killing Xvnc process ID 23440
 ```

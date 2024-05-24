@@ -21,7 +21,7 @@ kubernetes: 1.17.2
 
 zk的3个节点全部启动, 集群也建起来了, 正常对外提供服务. 但是执行`zkServer.sh status`查询节点状态异常, 如下
 
-```console
+```log
 $ ./bin/zkServer.sh status 
 ZooKeeper JMX enabled by default 
 Using config: /usr/zookeeper-3.4.9/bin/../conf/zoo.cfg 

@@ -6,13 +6,13 @@
 
 ## 以下两种是正常情况
 
-```console
+```log
 $ abc=
 $ if [ -z $abc ]; then echo empty; fi
 empty
 ```
 
-```console
+```log
 $ abc=123
 $ if [ -z $abc ]; then echo empty; fi
 # 无输出
@@ -22,7 +22,7 @@ $ if [ -z $abc ]; then echo empty; fi
 
 如果待比较字符串中包含空格或是回车啥的, 可能出现如下报错
 
-```console
+```log
 $ abc='123 456'
 $ if [ -z $abc ]; then echo empty; fi
 -bash: [: 123: binary operator expected
@@ -30,7 +30,7 @@ $ if [ -z $abc ]; then echo empty; fi
 
 解决方法是, 将目标变量用双引号包裹起来.
 
-```console
+```log
 $ abc='123 456'
 $ if [ -z "$abc" ]; then echo empty; fi
 # 无输出

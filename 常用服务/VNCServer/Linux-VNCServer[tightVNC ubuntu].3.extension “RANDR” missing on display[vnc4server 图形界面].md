@@ -30,7 +30,7 @@ vnc4server :1
 
 其实我也试过`x11vnc`, 但是在启动时总提示下面的报错, 没找到解决方法, 放弃了.
 
-```console
+```log
 $ x11vnc -forever -shared -rfbauth ~/.vnc/passwd -display :1 -rfbport 5901
 08/02/2021 10:25:45 passing arg to libvncserver: -rfbauth
 08/02/2021 10:25:45 passing arg to libvncserver: /root/.vnc/passwd

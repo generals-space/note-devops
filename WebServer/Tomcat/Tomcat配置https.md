@@ -8,7 +8,7 @@
 
 **1. 生成key文件**
 
-```console
+```log
 [root@localhost conf]# keytool -genkey -alias tomcat -keyalg RSA -keystore ./tomcat.keystore
 Enter keystore password:  
 Re-enter new password: 
@@ -34,7 +34,7 @@ Re-enter new password:
 
 **2. 生成证书文件**
 
-```console
+```log
 [root@localhost conf]# keytool -export -file ./tomcat.crt -alias tomcat -keystore ./tomcat.keystore 
 Enter keystore password:  
 Certificate stored in file <./tomcat.crt>

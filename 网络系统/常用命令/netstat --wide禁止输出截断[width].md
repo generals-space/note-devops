@@ -4,7 +4,7 @@
 
 1. [Netstat output line width limit](https://unix.stackexchange.com/questions/212096/netstat-output-line-width-limit)
 
-```console
+```log
 $ netstat -anopt
 Active Internet connections (servers and established)
 Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name     Timer
@@ -26,7 +26,7 @@ tcp6       0      0 2409:808e:4980:31:35708 2409:808e:4980:734:2181 TIME_WAIT   
 
 可以添加`--wide`参数解决
 
-```console
+```log
 $ netstat -anopt --wide
 Active Internet connections (servers and established)
 Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name     Timer

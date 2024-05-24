@@ -13,7 +13,7 @@ md刚刚差不多学会ip命令, CentOS 8又把network服务移除了...
 
 重命名 connection 对象
 
-```console
+```log
 $ nmcli c
 NAME                    UUID                                                TYPE      DEVICE
 Wired Connection 1      9115e4b3-75a0-3512-98b6-f82e6b15bb5d                ethernet  ens34

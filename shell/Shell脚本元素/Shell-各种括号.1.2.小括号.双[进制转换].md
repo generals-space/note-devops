@@ -146,7 +146,7 @@ while [ $a -lt 10 ]; do echo $a; ((a++)); done
 
 **if**
 
-```console
+```log
 ## 默认[]中是不可以使用`&&`与`||`操作符, 并且数值比较不能使用> < =等符号的, 双小括号中可以, 这一点与双中括号类似
 $ if (( 'abc' == 'abc' || 1 == 2 )); then echo yes; else echo no; fi
 yes
@@ -156,7 +156,7 @@ yes
 
 **for**
 
-```console
+```log
 $ for ((a=0; a<5; a++)); do echo $a; done
 0
 1
@@ -165,7 +165,7 @@ $ for ((a=0; a<5; a++)); do echo $a; done
 4
 ```
 
-```console
+```log
 $ a=0
 $ while ((a<5)); do echo $a; ((a++)); done
 0

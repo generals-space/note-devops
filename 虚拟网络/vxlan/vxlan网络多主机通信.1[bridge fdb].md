@@ -54,7 +54,7 @@ ip link set vxlan0 up
 
 创建`vxlan`设备并启动后, 会新增一条到`10.0.0.0/24`的路由, 并且可以查看到`udp`端口的开放状态, 之后`vxlan`通过`udp`包封装后就是通过这个端口通信的.
 
-```console
+```log
 $ ip r
 ...省略
 10.0.0.0/24 dev vxlan0 proto kernel scope link src 10.0.0.1
@@ -86,7 +86,7 @@ udp        0      0 0.0.0.0:4789            0.0.0.0:*                           
 
 如下, 从vm1中`ping 10.0.0.2`, 不过此时是ping不通的. 
 
-```console
+```log
 $ tcpdump -nve -i eth0 udp
 
 17:12:05.831569 00:0c:29:28:37:29 > 01:00:5e:01:01:01, ethertype IPv4 (0x0800), length 92: (tos 0x0, ttl 1, id 24985, offset 0, flags [none], proto UDP (17), length 78)

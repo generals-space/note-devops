@@ -123,7 +123,7 @@ ExecStop=-/usr/bin/vncserver -kill %i
 
 然后启动服务.
 
-```console
+```log
 $ systemctl daemon-reload
 systemctl enable vncserver@:1.service
 systemctl start vncserver@:1.service

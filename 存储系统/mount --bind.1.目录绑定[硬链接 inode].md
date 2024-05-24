@@ -16,7 +16,7 @@
 
 `mount`在默认情况下只能挂载块设备, 比如我们随便建一个目录`source`, 是没有办法将ta挂载到指定目录的. 
 
-```console
+```log
 $ pwd
 /tmp
 $ mkdir source
@@ -68,7 +68,7 @@ mount --bind /tmp/source /tmp/target
 
 查看变化
 
-```console
+```log
 $ ls /tmp/source
 source.txt
 /tmp
@@ -85,7 +85,7 @@ touch /tmp/source/source-after-bind.txt
 touch /tmp/target/target-after-bind.txt
 ```
 
-```console
+```log
 $ ls /tmp/source
 source-after-bind.txt  source.txt  target-after-bind.txt
 /tmp
@@ -99,7 +99,7 @@ source-after-bind.txt  source.txt  target-after-bind.txt
 
 ok, 现在我们将映射关系解除, 看看原`target`目录的内容还在不在.
 
-```console
+```log
 $ umount /tmp/target
 /tmp
 $ ls /tmp/source
@@ -116,7 +116,7 @@ target.txt
 
 我们知道, 硬链接的源文件与目标文件, 是同一个`inode`, ta们的地位完全等同, 无论删除硬链接双方的哪个, 另一个都会作为一个普通文件仍然存在.
 
-```console
+```log
 $ ln source.log target.log
 $ ll -i | grep log
 404684629 ----------  2 root root   19 Jan  7 18:11 source.log
@@ -128,7 +128,7 @@ $ ll -i | grep log
 
 那么`bind`的映射呢? 双方的目录, 能删吗? 会影响对方吗?
 
-```console
+```log
 $ mount --bind /tmp/source /tmp/target
 /tmp
 $ ll /tmp/target
@@ -147,7 +147,7 @@ rm: cannot remove ‘/tmp/target’: Device or resource busy
 
 不过反过来却是可以的
 
-```console
+```log
 $ rm -rf /tmp/target
 $ ls /tmp/source
 ls: cannot access /tmp/source: No such file or directory
@@ -155,14 +155,14 @@ ls: cannot access /tmp/source: No such file or directory
 
 **但是**, 删除源目录并不会删除`mount`挂载信息. 
 
-```console
+```log
 $ mount | grep target
 /dev/sda3 on /tmp/target type xfs (rw,relatime,attr2,inode64,noquota)
 ```
 
 这个关系还在, 这导致此时`target`目录映射了一个不存在源目录, 因此无法做任何变更.
 
-```console
+```log
 $ ll /tmp/target
 total 0
 /tmp/target
@@ -172,7 +172,7 @@ touch: cannot touch ‘/tmp/target/target.txt’: No such file or directory
 
 必须要对`target`先进行`umount`才行.
 
-```console
+```log
 $ umount /tmp/target/
 /tmp
 $ ll /tmp/target/

@@ -4,7 +4,7 @@
 
 比如在如下目录结构中, 要在所有`.html`文件的第一行添加`<!DOCTYPE>`.
 
-```console
+```log
 $ tree
 .
 ├── common

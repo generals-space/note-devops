@@ -9,7 +9,7 @@
 
 某天阿里云突然登录不上了.
 
-```console
+```log
 $ ssh -v root@xxx.40.66.85
 OpenSSH_8.1p1, LibreSSL 2.7.3
 debug1: Reading configuration data /Users/general/.ssh/config

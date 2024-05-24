@@ -52,7 +52,7 @@ superuser:my_admin
 
 完成后像 7.x 一样尝试修改`elastic`用户的密码, 结果不管怎样都无法成功, 报如下错误
 
-```console
+```log
 $ curl -u my_admin:123456 localhost:9200/_xpack/security/user
 {"error":{"root_cause":[{"type":"security_exception","reason":"unable to authenticate user [my_admin] for REST request [/_xpack/security/user]","header":{"WWW-Authenticate":"Basic realm=\"security\" charset=\"UTF-8\""}}],"type":"security_exception","reason":"unable to authenticate user [my_admin] for REST request [/_xpack/security/user]","header":{"WWW-Authenticate":"Basic realm=\"security\" charset=\"UTF-8\""}},"status":401}
 ```
@@ -85,7 +85,7 @@ xpack:
 
 后来我调整了一下 es 的日志级别, 调成 debug, 再使用`my_admin`登录的时候, 发现 es 有如下错误输出
 
-```console
+```log
 $ d logs -f 08elk-cluster-550-xpack_esc-master-0_1 | grep my_admin
 [2020-11-02T16:04:30,280][DEBUG][o.e.x.s.a.e.ReservedRealm] [esc-master-0] user [my_admin] not found in cache for realm [reserved], proceeding with normal authentication
 [2020-11-02T16:04:30,281][DEBUG][o.e.x.s.a.f.FileRealm    ] [esc-master-0] user [my_admin] not found in cache for realm [default_file], proceeding with normal authentication

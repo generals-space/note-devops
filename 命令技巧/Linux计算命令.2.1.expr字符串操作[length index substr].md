@@ -14,7 +14,7 @@ xpr命令字符串操作
 
 ## length 求长度
 
-```console
+```log
 $ a='123abc'
 $ expr length $a
 6
@@ -29,7 +29,7 @@ expr: syntax error
 
 ## index 查询/索引字符串
 
-```console
+```log
 $ x='abcdefg12345'
 $ y=cd
 $ expr index $x $y

@@ -17,7 +17,7 @@ bridge vlan delete dev vnet0 vid 1
 
 但是下面这句就出错了
 
-```console
+```log
 $ bridge vlan del dev br0 vid 1
 RTNETLINK answers: Operation not supported
 ```

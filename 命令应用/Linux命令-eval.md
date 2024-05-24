@@ -25,7 +25,7 @@ hello world
 
 如下
 
-```console
+```log
 ## eval是把'ls -al'当成命令执行的.
 $ eval 'ls -al'
 -rw-r--r--  1 root root         0 Dec  9 15:09 tmpfile
@@ -136,7 +136,7 @@ EOF
 
 如果直接执行`< 文件`, 什么也不会显示.
 
-```console
+```log
 $ cat requirements.txt
 requests==2.24.0
 $ < requirements.txt ## 这里什么也没有.
@@ -144,7 +144,7 @@ $ < requirements.txt ## 这里什么也没有.
 
 为了获取到这个文件的内容, 可以使用反引号或双小括号
 
-```console
+```log
 $ cnt=$(< requirements.txt)
 /tmp
 $ echo $cnt

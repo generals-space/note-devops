@@ -45,7 +45,7 @@ ip netns exec netns2 ip link set veth21 up
 
 `netns1`中`ping 10.1.1.2`, `netns2`中抓包如下
 
-```console
+```log
 $ tcpdump -nve -i veth21
 tcpdump: listening on veth21, link-type EN10MB (Ethernet), capture size 262144 bytes
 14:34:40.850978 da:5d:0b:47:12:27 > c2:24:af:08:82:15, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 11111, offset 0, flags [DF], proto ICMP (1), length 84)
@@ -67,7 +67,7 @@ ip addr add 10.1.1.1/24 dev veth11.100
 
 将IP地址从`veth11`转移到`veth11.100`会使路由记录变更, 之后的ping请求就会从`veth11.100`接口发出.
 
-```console
+```log
 ## 转移前
 $ ip route
 10.1.1.0/24 dev veth11 proto kernel scope link src 10.1.1.1
@@ -91,7 +91,7 @@ $ ip route
 
 `netns1`中再次`ping 10.1.1.2`, 此时是不通的, 在`netns2`中抓包显示如下
 
-```console
+```log
 $ tcpdump -nve -i veth21
 tcpdump: listening on veth21, link-type EN10MB (Ethernet), capture size 262144 bytes
 14:37:39.436320 da:5d:0b:47:12:27 > Broadcast, ethertype 802.1Q (0x8100), length 46: vlan 100, p 0, ethertype ARP, Ethernet (len 6), IPv4 (len 4), Request who-has 10.1.1.2 tell 10.1.1.1, length 28
@@ -106,7 +106,7 @@ tcpdump: listening on veth21, link-type EN10MB (Ethernet), capture size 262144 b
 
 从`netns2`中`ping 10.1.1.1`, 也ping不通, 在`netns1`接口上抓包显示如下
 
-```console
+```log
 $ tcpdump -nve -i veth11
 tcpdump: listening on veth11, link-type EN10MB (Ethernet), capture size 262144 bytes
 02:10:55.744054 c6:f8:f3:12:9c:3f > Broadcast, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Request who-has 10.1.1.1 tell 10.1.1.2, length 28
@@ -148,7 +148,7 @@ ip netns exec netns2 ip addr add 10.1.1.2/24 dev veth21.100
 
 在`netns2`中抓包显示如下
 
-```console
+```log
 $ tcpdump -nve -i veth21
 tcpdump: listening on veth21, link-type EN10MB (Ethernet), capture size 262144 bytes
 14:47:36.699011 da:5d:0b:47:12:27 > c2:24:af:08:82:15, ethertype 802.1Q (0x8100), length 102: vlan 100, p 0, ethertype IPv4, (tos 0x0, ttl 64, id 63742, offset 0, flags [DF], proto ICMP (1), length 84)
@@ -157,7 +157,7 @@ tcpdump: listening on veth21, link-type EN10MB (Ethernet), capture size 262144 b
     10.1.1.2 > 10.1.1.1: ICMP echo reply, id 24391, seq 1, length 64
 ```
 
-```console
+```log
 $ tcpdump -nve -i veth21.100
 tcpdump: listening on veth21.100, link-type EN10MB (Ethernet), capture size 262144 bytes
 14:48:29.714843 da:5d:0b:47:12:27 > c2:24:af:08:82:15, ethertype IPv4 (0x0800), length 98: (tos 0x0, ttl 64, id 30752, offset 0, flags [DF], proto ICMP (1), length 84)

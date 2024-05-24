@@ -4,7 +4,7 @@
 
 初始veth pair状态如下.
 
-```console
+```log
 [root@k8s-worker-7-17 ~]# ip link add type veth
 [root@k8s-worker-7-17 ~]# ip a
 1: lo: <LOOPBACK> mtu 65536 qdisc noop state DOWN qlen 1
@@ -19,7 +19,7 @@
 
 假设当前所在的netns为`test`, 我们将veth1设备放到另一个`netns1`中. 
 
-```console
+```log
 [root@k8s-worker-7-17 ~]# ip netns ls
 test
 netns1
@@ -32,7 +32,7 @@ netns1
 
 此时再查看原来的命名空间的设备列表.
 
-```console
+```log
 [root@k8s-worker-7-17 ~]# ip a
 1: lo: <LOOPBACK> mtu 65536 qdisc noop state DOWN qlen 1
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00

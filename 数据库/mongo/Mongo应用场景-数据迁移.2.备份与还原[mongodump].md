@@ -30,7 +30,7 @@ mongodump -h IP --port 端口 -u 用户名 -p 密码 -d 数据库 -o 文件存�
 
 ### 1.1 导出所有数据库
 
-```console
+```log
 [mongo@192-168-169-75 ~]$ mongodump  -h 127.0.0.1 -o ./mongodatas/
 2017-02-06T12:43:57.559+0000	writing log.HCLog to 
 ...
@@ -42,7 +42,7 @@ bs  cheat_history  ew4login  guilds  iap  log  upload_data  user_identify
 
 ### 1.2 导出指定数据库
 
-```console
+```log
 [mongo@192-168-169-75 ~]$ mongodump  -h 127.0.0.1  -d guilds  -o ./mongodatas/
 2017-02-06T12:43:57.568+0000	writing guilds.guild_data to
 2017-02-06T12:43:57.569+0000	done dumping guilds.guild_data (1 document)

@@ -10,7 +10,7 @@ etcdctl version: 3.2.24
 
 某天需要手动删除`etcd`中关于 kuber 中某个 Pod 的键, 从我的常用命令库中拷贝出如下命令, 先执行了下, 因为经常用, 所以了解不会有风险.
 
-```console
+```log
 $ ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key put /kube-scheduler-extender/kube-system/mysts/mysts-pod-0 "node-xxx"
 $ ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key get /kube-scheduler-extender/kube-system/mysts/mysts-pod-0 
 "node-xxx"
@@ -18,7 +18,7 @@ $ ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/etc/kuberne
 
 然后将光标移到前面, 把`put`改成`del`后直接就执行了.
 
-```console
+```log
 $ ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key del /kube-scheduler-extender/kube-system/mysts/mysts-pod-0 "node-xxx"
 3389
 ```

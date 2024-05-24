@@ -27,7 +27,7 @@ EOF
 
 我们希望这个脚本每输出一个数字, 就远程执行一次`date`命令, 所以理论上应该有10行输出. 但实际执行时输出如下, 只有两行.
 
-```console
+```log
 $ ./test.sh
 1
 Fri Sep  9 11:26:18 CST 2016
@@ -55,7 +55,7 @@ EOF
 
 然后再次执行`test.sh`
 
-```console
+```log
 $ ./test.sh
 1
 2
@@ -91,7 +91,7 @@ done < ./ip_list
 
 执行它
 
-```console
+```log
 $ ./test.sh
 192.168.1.1
 Fri Sep  9 11:33:31 CST 2016
@@ -111,7 +111,7 @@ ssh -n root@$IP 'date'
 
 再次执行
 
-```console
+```log
 $ ./test.sh
 192.168.1.1
 Fri Sep  9 11:33:46 CST 2016

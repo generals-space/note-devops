@@ -13,7 +13,7 @@
 
 另外, CentOS 8系统中, 修改后的`ethX`配置文件中的UUID不能变动, 否则会因为UUID与设备名称无法对应导致bond接口启动失败.
 
-```console
+```log
 $ nmcli.c
 NAME          UUID                                  TYPE      DEVICE
 docker0       96a63037-ce53-443e-930f-b0b6e4ea8dc0  bridge    docker0

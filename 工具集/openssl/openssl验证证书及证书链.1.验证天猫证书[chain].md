@@ -18,7 +18,7 @@
 
 ![](https://gitee.com/generals-space/gitimg/raw/master/35402934e1075c9050ae5e0c0c498e0c.png)
 
-```console
+```log
 $ ll
 total 20
 drwxr-xr-x  2 general general 4096 4月   9 09:03 ./
@@ -36,7 +36,7 @@ drwxr-xr-x 22 general general 4096 4月   5 13:52 ../
 
 首先直接验证3个证书
 
-```console
+```log
 $ openssl verify builtin.crt 
 builtin.crt: OK
 $ openssl verify global.crt 
@@ -50,7 +50,7 @@ error 20 at 0 depth lookup:unable to get local issuer certificate
 
 然后我们用根证书去验证2级证书, 通过`-CAfile`选项指定父级证书.
 
-```console
+```log
 $ openssl verify -CAfile builtin.crt global.crt 
 global.crt: OK
 ```
@@ -59,14 +59,14 @@ global.crt: OK
 
 现在用2级证书验证3级证书.
 
-```console
+```log
 $ openssl verify -CAfile global.crt tmall.crt 
 tmall.crt: OK
 ```
 
 ...没毛病, 不像参考文章1中所说需要合并根证书与2级证书才能通过验证, 不过还是要试一试.
 
-```console
+```log
 $ cat builtin.crt global.crt > bundle.crt
 $ openssl verify -CAfile bundle.crt tmall.crt 
 tmall.crt: OK

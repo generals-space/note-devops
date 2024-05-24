@@ -4,7 +4,7 @@
 
 为 veth31 添加 untagged 标记.
 
-```console
+```log
 $ bridge vlan add dev veth31 vid 1 untagged
 $ bridge vlan show
 port	vlan ids
@@ -17,7 +17,7 @@ mybr0	 1 PVID Egress Untagged
 
 数据包从 veth31 接口流出时, 已经不再带有 vlan tag 了.
 
-```console
+```log
 $ tcpdump -nve not port 22 -i veth31
 tcpdump: listening on veth31, link-type EN10MB (Ethernet), capture size 262144 bytes
 17:44:07.170793 42:2d:0b:0c:8b:9f > Broadcast, ethertype ARP (0x0806), length 42: Ethernet (len 6), IPv4 (len 4), Request who-has 10.1.1.3 tell 10.1.1.4, length 28

@@ -54,7 +54,7 @@ ip netns exec netns2 ip link set veth2.200 up
 
 在`netns2`中创建网桥, 查看其初始状态.
 
-```console
+```log
 $ ip netns exec netns2 ip link add mybr2 type bridge
 $ ip netns exec netns2 ip link set mybr2 up
 $ bridge vlan show
@@ -64,7 +64,7 @@ mybr2	 1 PVID Egress Untagged
 
 将`veth2.100`子接口接入网桥
 
-```console
+```log
 $ ip netns exec netns2 ip link set veth2.100 master mybr2
 $ bridge vlan show
 port	vlan ids
@@ -76,7 +76,7 @@ mybr2	 1 PVID Egress Untagged
 
 使用`bridge`命令删除`veth2.100`在网桥上的接口
 
-```console
+```log
 $ bridge vlan del dev veth2.100 vid 1
 $ bridge vlan show
 port	vlan ids
@@ -114,7 +114,7 @@ mybr2	 1 PVID Egress Untagged
 
 如下, 使用`bridge vlan add`前必须使用`ip link set ... master`将物理接口连接上, 否则会出错.
 
-```console
+```log
 $ bridge vlan add vid 100 dev veth2
 RTNETLINK answers: Operation not supported
 $ ip link set veth2 master mybr2

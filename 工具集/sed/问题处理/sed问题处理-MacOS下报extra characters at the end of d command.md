@@ -6,7 +6,7 @@
 
 ## 场景描述
 
-```console
+```log
 $ sed -i 's/127.0.0.1/mysql-svc/g' disconf-config/jdbc-mysql.properties
 sed: 1: "disconf-config/jdbc-mys ...": extra characters at the end of d command
 ```

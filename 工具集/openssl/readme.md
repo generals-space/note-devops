@@ -22,7 +22,7 @@ openssl命令行工具可以实现: 秘钥证书管理、对称加密和非对�
 
 关于openssl在命令行的使用方法, 可以使用`openssl --help`查看. 
 
-```console
+```log
 $ openssl --help
 openssl:Error: '--help' is an invalid command.
 

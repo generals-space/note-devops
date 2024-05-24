@@ -4,7 +4,7 @@
 
 1. [How can i get the name of the interface, its type and ip?](https://unix.stackexchange.com/questions/643926/how-can-i-get-the-name-of-the-interface-its-type-and-ip)
 
-```console
+```log
 $ ip -details address
 ## ip -d address
 1225: bond0: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000

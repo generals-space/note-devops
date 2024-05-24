@@ -20,7 +20,7 @@ ARP记录是有过期时间的, 但这并不是绝对的. 系统自动向局域�
 
 在linux下用`arp`命令可以得到如下
 
-```console
+```log
 $ arp
 Address                  HWtype  HWaddress           Flags Mask            Iface
 _gateway                 ether   a8:6b:7c:9b:10:f6   C                     ens160
@@ -32,7 +32,7 @@ k8s-master-02            ether   00:0c:29:fb:3d:ed   C                     ens16
 
 使用`ip neighbour`的结果如下
 
-```console
+```log
 $ ip neighbour
 192.168.0.1 dev ens160 lladdr a8:6b:7c:9b:10:f6 REACHABLE
 10.254.2.0 dev flannel.1 lladdr ee:95:c0:ba:b8:eb PERMANENT

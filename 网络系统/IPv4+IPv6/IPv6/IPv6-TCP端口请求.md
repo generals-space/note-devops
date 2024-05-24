@@ -16,7 +16,7 @@ nc可以同时监听 IPv4/IPv6 的端口, 不会冲突. 不过 IPv4 的全局地
 
 其他的工具, 像`telnet`, `curl`等, 用法也基本没差, 本质上都是交给内核协议栈去完成的事.
 
-```console
+```log
 $ ping www.google.com
 PING www.google.com(ord30s25-in-x04.1e100.net (2607:f8b0:4009:80e::2004)) 56 data bytes
 64 bytes from ord30s25-in-x04.1e100.net (2607:f8b0:4009:80e::2004): icmp_seq=1 ttl=42 time=16.9 ms
@@ -27,7 +27,7 @@ PING www.google.com(ord30s25-in-x04.1e100.net (2607:f8b0:4009:80e::2004)) 56 dat
 rtt min/avg/max/mdev = 16.886/16.933/16.980/0.047 ms
 ```
 
-```console
+```log
 $ telnet 2607:f8b0:4009:80e::2004 80
 Trying 2607:f8b0:4009:80e::2004...
 Connected to 2607:f8b0:4009:80e::2004.
@@ -36,7 +36,7 @@ Escape character is '^]'.
 
 不过 curl 有点问题
 
-```console
+```log
 $ curl https://2607:f8b0:4009:811::2004:443
 curl: (3) IPv6 numerical address used in URL without brackets
 ```

@@ -54,7 +54,7 @@ apparmor_parser /etc/apparmor.d/nginx
 
 然后使用`apparmor_status`查看.
 
-```console
+```log
 $ apparmor_status
 apparmor module is loaded.
 31 profiles are loaded.

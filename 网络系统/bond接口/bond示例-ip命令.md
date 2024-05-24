@@ -1,6 +1,6 @@
 # bond示例-ip命令
 
-```console
+```log
 ip link add bond0 type bond
 ## mode指定数值或是预设字符串应该都是可以的.
 ## ip link set bond0 type bond miimon 100 mode 1

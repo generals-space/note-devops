@@ -11,7 +11,7 @@ echo $1 $2 $3
 echo "$1" "$2" "$3"
 ```
 
-```console
+```log
 # bash bash.sh 1 '' 3
 1 3
 1  3

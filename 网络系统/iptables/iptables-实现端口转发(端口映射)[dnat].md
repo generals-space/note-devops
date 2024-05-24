@@ -12,7 +12,7 @@ B: 后端实际服务器, 开放端口80
 
 ## 开启Linux的数据转发
 
-```console
+```log
 $ sysctl -a | grep ip_forward
 net.ipv4.ip_forward = 0
 ```

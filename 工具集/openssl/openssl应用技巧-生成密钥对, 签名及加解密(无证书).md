@@ -60,14 +60,14 @@ openssl pkeyutl -sign -in test.txt -inkey private.key -out test.sig
 
 用公钥验证签名
 
-```console
+```log
 $ openssl pkeyutl -verify -in test.txt -sigfile test.sig -pubin -inkey public.key 
 Signature Verified Successfully
 ```
 
 用公钥恢复签名文件的内容
 
-```console
+```log
 $ openssl pkeyutl -verifyrecover -in test.sig -pubin -inkey public.key 
 1234
 ```
@@ -82,7 +82,7 @@ openssl pkeyutl -encrypt -in test.txt -pubin -inkey public.key -out test.enc
 
 私钥解密文件
 
-```console
+```log
 $ openssl pkeyutl -decrypt -in test.enc -inkey private.key -out test.dec
 $ cat test.dec 
 1234
@@ -90,7 +90,7 @@ $ cat test.dec
 
 后来我又尝试着用了下之前`pkcs#8`格式的私钥去解密, 还成功了...
 
-```console
+```log
 $ openssl pkeyutl -decrypt -in test.enc -inkey pkcs8_pri.key -out test.dec
 $ cat test.dec 
 1234

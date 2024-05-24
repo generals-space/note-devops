@@ -21,7 +21,7 @@ systemctl start openvswitch
 systemctl enable openvswitch
 ```
 
-```console
+```log
 $ ovs-vsctl add-br ovs-br0
 $ ip -d addr
 6: ovs-system: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000

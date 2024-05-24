@@ -46,7 +46,7 @@
 
 另外, `ps`的`-o`还可以指定输出结果在第一行的显示的列名, 如下
 
-```console
+```log
 ## 查看init进程的cpu和内存状况
 $ ps -o pid,%cpu=abc,%mem=123 -p 1
    PID  abc  123
@@ -55,7 +55,7 @@ $ ps -o pid,%cpu=abc,%mem=123 -p 1
 
 不过这种自定义有时好像也不是那么好使
 
-```console
+```log
 ## 偏移得有点多...
 $ ps -o pid=jinchenghao,%cpu=abc,%mem -p 1
 jinchenghao,%cpu=abc,%mem

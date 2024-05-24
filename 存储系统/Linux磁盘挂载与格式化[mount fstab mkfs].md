@@ -93,7 +93,7 @@ Syncing disks.
 
 再次使用 "fdisk -l"这个命令来查看会发现出现了`/dev/sdb1`(说明已经完成了分区工作)
 
-```console
+```log
 $ fdisk -l
 
 Disk /dev/sda: 85.9 GB, 85899345920 bytes
@@ -124,7 +124,7 @@ Disk identifier: 0x4fe05028
 
 对新建的分区进行格式化: 格式化成ext4的文件系统即可
 
-```console
+```log
 $ mkfs -t ext4 /dev/sdb1
 mke2fs 1.41.12 (17-May-2010)
 Filesystem label=
@@ -156,7 +156,7 @@ This filesystem will be automatically checked every 33 mounts or
 
 在挂载之前使用`df -h`查看系统所有可用分区
 
-```console
+```log
 $ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/sda3        75G  6.4G   65G  10% /
@@ -180,7 +180,7 @@ tmpfs           238M  4.0K  238M   1% /dev/shm
 
 挂载后, 再次用`df -h`查看
 
-```console
+```log
 $ mount /dev/sdb1 /media
 $ df -h
 Filesystem      Size  Used Avail Use% Mounted on

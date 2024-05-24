@@ -32,7 +32,7 @@ iptables -A OUTPUT -d 192.168.1.29 -m tcp -p tcp --dport 81 -j DROP
 
 当 192.168.1.29:81 断开时，haproxy 能快速地检测到后端宕机，并修改状态：
 
-```console
+```log
 root@i-hv6jj9ay:~# /usr/local/bin/lb-collect 'show status'
 lbb-0vo2fiec|UP
 lbb-811tmjow|UP

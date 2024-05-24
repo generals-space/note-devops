@@ -34,7 +34,7 @@ linux可以给自己颁发证书, 用到的工具是`openssl`命令, 需要事�
 
 执行第一条指令会提示输入密码, 生成的文件是**服务器的私钥.key文件**, 密码是为了加密该私钥. 不输入会提示错误...还不让你退出, 倒是没有字符类型及个数的限制. **记得要保存好这个密码, 有时启动服务器是需要它的.**
 
-```console
+```log
 $ openssl genrsa -des3 -out server.key 1024
 Generating RSA private key, 1024 bit long modulus
 ................................++++++
@@ -48,7 +48,7 @@ Verifying - Enter pass phrase for server.key:
 
 第二条指令会提示输入第一条你输入的密码, 这一步生成的是`csr(Certificate Signing Request)`文件, 可以将它看成是你的信息文件(就是我们的**成绩单**), 将它提交给CA证书机构时就可以根据这里面的信息为你的站点证书签名. **注意: 其他的信息无所谓, 但Common Name必须填写, 否则无法建立ssl链接, 它的值是你的顶级域名(或localhost).**
 
-```console
+```log
 $ openssl req -new -key server.key -out server.csr
 Enter pass phrase for registry.sky-mobi.com.key:                       ## 这里输入密码
 Country Name (2 letter code) [XX]:
@@ -67,7 +67,7 @@ An optional company name []:                            ## 可不写
 
 #### 2.1.3 为server.csr签名, 生成server.crt证书文件
 
-```console
+```log
 $ openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt
 Signature ok
 subject=/C=XX/L=Default City/O=Default Company Ltd/CN=generals.space
@@ -114,7 +114,7 @@ server {
 
 这样每次nginx在(重新)启动时会提示输入key私钥的密码.
 
-```console
+```log
 $ nginx -s reload
 Enter PEM pass phrase:
 ```

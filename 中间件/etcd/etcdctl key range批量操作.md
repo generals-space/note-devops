@@ -25,7 +25,7 @@ etcdctl put foo3 bar3   # OK
 
 单键查询
 
-```console
+```log
 [root@k8s-master-01 ~]# etcdctl get foo1
 foo1
 bar1

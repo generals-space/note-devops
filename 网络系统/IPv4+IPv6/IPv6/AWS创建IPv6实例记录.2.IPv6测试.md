@@ -13,7 +13,7 @@
 
 首先 ping 谷歌是肯定可以的, 且默认解析出 IPv6 的地址来.
 
-```console
+```log
 $ ping www.google.com
 PING www.google.com(ord38s18-in-x04.1e100.net (2607:f8b0:4009:804::2004)) 56 data bytes
 64 bytes from ord38s18-in-x04.1e100.net (2607:f8b0:4009:804::2004): icmp_seq=1 ttl=42 time=16.9 ms
@@ -26,7 +26,7 @@ rtt min/avg/max/mdev = 16.864/16.876/16.888/0.012 ms
 
 直接 ping IPv6 的地址也可以 ping 通.
 
-```console
+```log
 $ ping 2607:f8b0:4009:804::2004
 PING 2607:f8b0:4009:804::2004(2607:f8b0:4009:804::2004) 56 data bytes
 64 bytes from 2607:f8b0:4009:804::2004: icmp_seq=1 ttl=42 time=16.9 ms
@@ -39,7 +39,7 @@ rtt min/avg/max/mdev = 16.916/16.942/16.969/0.132 ms
 
 在墙内虽然 ping 不通, 但会解析出 IPv4 的地址.
 
-```console
+```log
 $  ping www.google.com
 PING www.google.com (208.43.237.140) 56(84) bytes of data.
 ^C
@@ -54,7 +54,7 @@ PING www.google.com (208.43.237.140) 56(84) bytes of data.
 
 但是我在 AWS 的主机上 ping 这个地址返回的仍然是 IPv4 的结果, 指定 ping 的协议类型为`-6`还会返回错误.
 
-```console
+```log
 $ ping ipv6.baidu.com
 PING www.wshifen.com (183.232.231.173) 56(84) bytes of data.
 64 bytes from 183.232.231.173 (183.232.231.173): icmp_seq=4 ttl=35 time=214 ms
@@ -86,7 +86,7 @@ ta还提供了 IPv4/IPv6 两个单栈部署的地址: [IPv4 only](http://ip4.me/
 
 同时在AWS主机上, ping [IPv4/IPv6双栈]和[IPv6单栈]的结果如下.
 
-```console
+```log
 ## 这是双栈地址
 $ ping ip6.me
 PING ip6.me(8210.0000.0000.0000.4800.2083.0d0f.7062.ip6.static.sl-reverse.com (2607:f0d0:3802:84::128)) 56 data bytes

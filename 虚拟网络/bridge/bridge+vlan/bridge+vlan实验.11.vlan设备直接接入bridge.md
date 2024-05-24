@@ -45,7 +45,7 @@
 
 先记录一下原始的`vlan`配置.
 
-```console
+```log
 $ bridge vlan show
 port	vlan ids
 veth32	 1 PVID Egress Untagged
@@ -78,7 +78,7 @@ mybr0	 1 PVID Egress Untagged
 
 **veth31**
 
-```console
+```log
 $ tcpdump -nve -i veth31
 05:19:43.350913 8e:d9:b6:70:d3:82 > Broadcast, ethertype 802.1Q (0x8100), length 50: vlan 100, p 0, ethertype 802.1Q, vlan 100, p 0, ethertype ARP, Ethernet (len 6), IPv4 (len 4), Request who-has 10.1.1.3 tell 10.1.1.4, length 28
 ```
@@ -98,7 +98,7 @@ bridge vlan add dev veth32 vid 200 pvid
 
 此时`vlan`配置如下
 
-```console
+```log
 $ bridge vlan show
 port	vlan ids
 veth32	 200 PVID
@@ -111,14 +111,14 @@ mybr0	 1 PVID Egress Untagged
 
 **veth31.100**
 
-```console
+```log
 $ tcpdump -nve -i veth31.100
 05:28:08.309281 8e:d9:b6:70:d3:82 > Broadcast, ethertype 802.1Q (0x8100), length 46: vlan 200, p 0, ethertype ARP, Ethernet (len 6), IPv4 (len 4), Request who-has 10.1.1.3 tell 10.1.1.4, length 28
 ```
 
 **veth31**
 
-```console
+```log
 $ tcpdump -nve -i veth31
 05:28:13.311851 8e:d9:b6:70:d3:82 > Broadcast, ethertype 802.1Q (0x8100), length 50: vlan 100, p 0, ethertype 802.1Q, vlan 200, p 0, ethertype ARP, Ethernet (len 6), IPv4 (len 4), Request who-has 10.1.1.3 tell 10.1.1.4, length 28
 ```
@@ -136,7 +136,7 @@ bridge vlan add dev veth31.100 vid 200 untagged
 
 修改后的vlan配置为
 
-```console
+```log
 $ bridge vlan show
 port	vlan ids
 veth32	 200 PVID

@@ -11,7 +11,7 @@
 
 以`/`为根目录, 使用`mkdir`创建一个目录`/dir1`, 然后使用`set`创建一个kv对`/dir1/key1`-> `val1`, 那么使用`ls`查看目录结构时, 就会发现`key1`这个键位于`/dir1`这个目录下.
 
-```console
+```log
 ## 初始根目录为空, ls -r表示递归显示目录中的内容
 $ etcdctl ls -r 
 ## 创建dir1目录
@@ -36,7 +36,7 @@ $ etcdctl ls -r
 
 需要注意的是, 不管是dir还是key, 在etcd中的存储都是有序的. 继续上面的实验
 
-```console
+```log
 $ etcdctl mkdir /dir0
 $ etcdctl mkdir /dir1/key0 val0
 $ etcdctl ls -r

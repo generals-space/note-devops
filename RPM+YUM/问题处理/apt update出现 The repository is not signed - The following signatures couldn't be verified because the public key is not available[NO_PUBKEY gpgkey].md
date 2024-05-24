@@ -13,7 +13,7 @@ ubuntu: 20.04
 
 但在按照参考文章1中部署操作, 出现如下问题
 
-```console
+```log
 $ echo 'deb http://deb.debian.org/debian buster-backports main' > /etc/apt/sources.list.d/backports.list
 $ apt update
 Get:1 https://mirrors.aliyun.com/docker-ce/linux/ubuntu focal InRelease [57.7 kB]

@@ -5,14 +5,14 @@
 
 ## 错误方法
 
-```console
+```log
 $ ipvsadm -nl
 Try `ipvsadm -h' or 'ipvsadm --help' for more information.
 ```
 
 ## 正确方法
 
-```console
+```log
 $ ipvsadm -ln
 IP Virtual Server version 1.2.1 (size=4096)
 Prot LocalAddress:Port Scheduler Flags

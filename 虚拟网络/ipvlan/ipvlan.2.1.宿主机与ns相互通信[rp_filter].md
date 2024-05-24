@@ -126,7 +126,7 @@ ip r add 172.16.91.102 dev ipvlan0
 2. 在ns01和ns02内部, 仍然无法ping通父级接口`172.16.91.14`;
 3. 在ns01和ns02内部, 可以ping通过vm02上的`ipvlan0`设备.
 
-```console
+```log
 $ ip netns exec ns01 ping 192.168.1.1
 PING 192.168.1.1 (192.168.1.1) 56(84) bytes of data.
 64 bytes from 192.168.1.1: icmp_seq=1 ttl=64 time=0.063 ms
@@ -140,7 +140,7 @@ PING 192.168.1.1 (192.168.1.1) 56(84) bytes of data.
 
 参考文章3提到过需要修改宿主机父接口的`rp_filter`配置为0或2, 我的宿主机默认值为1.
 
-```console
+```log
 $ cat /proc/sys/net/ipv4/conf/ens34/rp_filter
 1
 ```

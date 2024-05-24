@@ -91,7 +91,7 @@ ip netns exec ns03 ip link set dev mybr0 type bridge vlan_filtering 1
 
 此时bridge中的vlan配置如下
 
-```console
+```log
 $ bridge vlan show
 port	vlan ids
 veth31	 1 PVID Egress Untagged

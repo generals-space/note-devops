@@ -6,7 +6,7 @@
 
 把一个 bridge master 到另一个 bridge 时可能会出现这个问题.
 
-```console
+```log
 $ ip link add br0 type bridge
 $ ip link add br1 type bridge
 $ ip link set br0 master br1

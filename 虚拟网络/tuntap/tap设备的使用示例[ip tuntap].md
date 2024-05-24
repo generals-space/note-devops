@@ -1,7 +1,7 @@
 
 先创建tap网络设备`tap0`.
 
-```console
+```log
 $ ip tuntap add dev tap0 mod tap
 $ ip addr ls
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN qlen 1

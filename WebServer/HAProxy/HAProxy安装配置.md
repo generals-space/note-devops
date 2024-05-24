@@ -27,7 +27,7 @@ yum install -y pcre-devel openssl-devel
 
 HAProxy的源码编译没有`configure`的过程, 源码目录下直接就有`Makefile`文件, 一些配置项是通过在使用`make`命令时设置的.
 
-```console
+```log
 tar -zxf haproxy-1.6.8.tar.gz
 cd haproxy-1.6.8
 ## 这里指定了安装目录, 开启pcre及ssl支持. 更多配置项可以参考源码包内的`README`文件

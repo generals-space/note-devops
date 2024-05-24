@@ -45,7 +45,7 @@ curl -u elastic:123456 -H 'Content-Type: application/json' es:9200/_xpack/securi
 
 如果尝试修改一个不存在的用户的密码, 就会报错.
 
-```console
+```log
 $ curl -u elastic:123456 -H 'Content-Type: application/json' es:9200/_xpack/security/user/xxxxxx/_password -d '{"password": "123456"}'
 {"error":{"root_cause":[{"type":"validation_exception","reason":"Validation Failed: 1: user must exist in order to change password;"}],"type":"validation_exception","reason":"
 Validation Failed: 1: user must exist in order to change password;"},"status":400}
@@ -61,7 +61,7 @@ es在 setup 初期, 所有的内置账号都有一个"bootstrap password", 但es
 
 如果我通过环境变量修改了`elastic`的密码, 那么在调用这个工具的时候会得到如下报错.
 
-```console
+```log
 $ ./elasticsearch-setup-passwords interactive
 
 Failed to authenticate user 'elastic' against http://10.254.1.54:9200/_security/_authenticate?pretty

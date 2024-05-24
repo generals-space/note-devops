@@ -1,6 +1,6 @@
 # sed问题处理-invalid usage of line address 0
 
-```console
+```log
 $ sed -n '0,3p' ./result 
 sed: -e expression #1, char 4: invalid usage of line address 0
 ...

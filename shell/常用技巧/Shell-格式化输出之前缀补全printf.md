@@ -10,7 +10,7 @@
 
 宽度与对齐
 
-```console
+```log
 ## 指定宽度, 用空格补全
 [root@k8s-worker-7-17 ~]# printf '%5d\n' 123
   123

@@ -13,7 +13,7 @@ $ echo $str | sed 's/\ /+/g' | bc
 
 有时数字之间可能不只一个空格, `echo`会出错
 
-```console
+```log
 ## 两个空格时...
 $ str='123 45  6'
 ## 这样的结果传到bc中会出错的
@@ -25,7 +25,7 @@ $ echo "${str// /+}"
 
 1. 用两次`echo`命令, `echo`默认会将字符串中出现的空格都缩减成一个.
 
-```console
+```log
 $ str='123 45   6'
 $ echo $str
 123 45 6
@@ -36,7 +36,7 @@ $ echo "${str// /+}" | bc
 
 2. `sed`匹配多个连续空格
 
-```console
+```log
 $ echo $str | sed -r 's/( )+/+/g' | bc
 174
 ```

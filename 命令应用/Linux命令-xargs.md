@@ -71,7 +71,7 @@ hello kitty.gz  hello world.gz
 
 - `-a` 文件名: 从文件中读入内容作为输入, 同管道输入没什么区别.
 
-```console
+```log
 $ cat test 
 #!/bin/sh
 echo "hello world/n"

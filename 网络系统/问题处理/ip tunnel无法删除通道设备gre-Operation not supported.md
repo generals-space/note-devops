@@ -6,7 +6,7 @@
 
 手动创建了1个`gre`设备, 然后就出现了3个名字里带`gre`的接口...
 
-```console
+```log
 $ ip tunnel add tun_gre0 mode gre local 10.10.1.1
 $ ip a
 11: gre0@NONE: <NOARP> mtu 1476 qdisc noop state DOWN group default qlen 1000

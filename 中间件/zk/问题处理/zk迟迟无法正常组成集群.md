@@ -6,7 +6,7 @@ zk: 3.4.9*3, kube环境容器化部署
 
 3个节点都已启动, 配置文件没有问题, 网络也没有问题, 进入容器后, 相互之间都可以telnet通彼此的端口, 但是`bin/zkCli.sh`无法进入交互式命令行.
 
-```console
+```log
 [root@test-baicy-7-0 zookeeper-3.4.9]# ./bin/zkCli.sh
 Connecting to localhost:2181
 ...省略

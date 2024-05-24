@@ -9,7 +9,7 @@
 
 每次登录bash, 而且每次输入命令终端都会有如下输出(命令其实是正常执行的)
 
-```console
+```log
 -bash: __vte_prompt_command: command not found
 ```
 
@@ -23,7 +23,7 @@ docker 下启动`CentOS7`原生容器正常, 安装了阿里云的epel源之后�
 
 在容器的 `/etc`目录下搜索`PROMPT_COMMAND`与`__vte_prompt_command`字符串, 有如下结果
 
-```console
+```log
 ...
 /etc/bashrc: PROMPT_COMMAND="__vte_prompt_command"
 ...

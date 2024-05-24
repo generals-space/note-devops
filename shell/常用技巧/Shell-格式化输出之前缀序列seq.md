@@ -14,7 +14,7 @@
 
 ...but好像不支持`%d`哦, 输出整型需要使用`%g`, wtf
 
-```console
+```log
 [root@k8s-worker-7-17 ~]# seq -f '%3d' 3
 seq: 格式"%3d" 中包含未知%d 指令
 [root@k8s-worker-7-17 ~]# seq -f '%3g' 3

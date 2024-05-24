@@ -67,7 +67,7 @@ mkdir /mnt/disk1/disk2
 mount /demo/disk2.img /mnt/disk1/disk2
 ```
 
-```console
+```log
 $ ll /mnt/disk1/disk2
 total 12
 drwx------ 2 root root 12288 Jan 19 16:07 lost+found
@@ -111,7 +111,7 @@ mount /demo/disk4.img /mnt/disk3/disk4
 
 现在再看看效果
 
-```console
+```log
 $ ll /mnt/disk3/disk4/
 total 12
 drwx------ 2 root root 12288 Jan 19 16:31 lost+found
@@ -154,7 +154,7 @@ mount /demo/disk6.img /mnt/disk5/disk6
 
 现在再看看效果
 
-```console
+```log
 $ ll /mnt/disk5/disk6/
 total 12
 drwx------ 2 root root 12288 Jan 19 18:06 lost+found
@@ -178,7 +178,7 @@ mount /demo/disk7.img /mnt/bind3/disk7
 
 再看一下.
 
-```console
+```log
 $ ll /mnt/bind3/disk7/
 total 12
 drwx------ 2 root root 12288 Jan 19 18:08 lost+found
@@ -213,7 +213,7 @@ mkdir /mnt/iso1/iso2
 mount /demo/2.iso /mnt/iso1/iso2
 ```
 
-```console
+```log
 $ mkdir /mnt/iso1/iso2
 mkdir: cannot create directory ‘/mnt/iso1/iso2’: Read-only file system
 $ cd /mnt/iso1

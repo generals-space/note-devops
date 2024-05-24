@@ -54,7 +54,7 @@ yes
 
 不过**单中括号的注意点双中括号也需要留心**, 除了`[[`, `]]`左右要有空格, **操作符左右也要有空格**, 否则得到的结果不正确.
 
-```console
+```log
 ## 这是错误的
 $ if [[ 1==0 ]]; then echo yes; fi
 yes
@@ -64,7 +64,7 @@ $ if [[ 1 == 0 ]]; then echo yes; fi
 
 ### 变量比较实例
 
-```console
+```log
 $ if [[ 1 == 1 ]]; then echo yes; else echo no; fi
 yes
 $ a='abc'

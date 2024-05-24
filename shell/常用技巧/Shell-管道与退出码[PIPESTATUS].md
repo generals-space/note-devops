@@ -65,7 +65,7 @@ adb.1 $@ | grep -v 'WARNING: linker: libset.so: unused DT entry'
 
 `echo "1" | grep 2`这样的命令的返回码是`grep 2`的结果, 比如
 
-```console
+```log
 $ echo 123 | grep -v 123
 $ echo $?
 1

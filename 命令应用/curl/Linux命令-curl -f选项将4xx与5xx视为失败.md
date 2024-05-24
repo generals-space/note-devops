@@ -15,7 +15,7 @@
 
 第一种最简单, 使用`-f`/`--fail`选项, ta会直接把4xx, 5xx的响应码都视作错误, exit退出码指定为22.
 
-```console
+```log
 $ curl -f localhost:9090
 ok
 $ curl -f localhost:9090

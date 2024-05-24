@@ -69,7 +69,7 @@ done
 
 比如
 
-```console
+```log
 $ ./test1.sh -a abc now -c 123
 初始参数列表: -a abc now -c 123
 解析后的参数列表: -a abc -c 123 -- now

@@ -9,7 +9,7 @@
 
 在windows下创建一个空文件, 就输入一个回车然后保存, 传到linxu系统中, 按照如下方式检测.
 
-```console
+```log
 ## 这个回车也算是1行
 $ wc -l test
 1 ./test
@@ -23,7 +23,7 @@ $ cat ./test.sh | od -b
 
 在linux下把这个空行删除, 重新键入一个回车, 再次执行上面的操作.
 
-```console
+```log
 $ wc -l test.sh 
 1 test.sh
 $ cat ./test.sh | od -b

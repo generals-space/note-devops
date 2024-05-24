@@ -22,7 +22,7 @@ virsh -c qemu:///system list
 
 参考文章1中说初次安装, 需要重启一下服务器, 否则会报错, 我这里没看到, 直接就成功了.
 
-```console
+```log
 $ virsh -c qemu:///system list
  Id    Name                           State
 ----------------------------------------------------
@@ -37,7 +37,7 @@ Formatting '/mnt/hgfs/share/kvm01.disk', fmt=qcow2 size=16106127360 encryption=o
 
 > 虽然这里指定了15G, 但并不是立即分配15G.
 
-```console
+```log
 $ virt-install --virt-type kvm --name kvm01 --boot hd,cdrom,menu=on --memory 512,maxmemory=1024 --vcpus 1 --os-variant=rhel7 --cdrom /mnt/hgfs/share/CentOS-7-x86_64-Minimal-2009.iso --disk path=/mnt/hgfs/share/kvm01.disk,size=4,format=qcow2 --network network=default --graphics vnc,listen=0.0.0.0
 WARNING  Graphics requested but DISPLAY is not set. Not running virt-viewer.
 WARNING  No console to launch for the guest, defaulting to --wait -1

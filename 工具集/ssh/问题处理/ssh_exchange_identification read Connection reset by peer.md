@@ -1,6 +1,6 @@
 # ssh_exchange_identification read Connection reset by peer
 
-```console
+```log
 $ ssh 用户名@ip地址
 ssh_exchange_identification: read: Connection reset by peer
 ```

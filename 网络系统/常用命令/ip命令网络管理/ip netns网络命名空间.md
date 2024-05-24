@@ -13,7 +13,7 @@
 
 需要知道是, 每通过`ip netns add xxx`创建的ns会出现在`/var/run/netns`目录下.
 
-```console
+```log
 [root@k8s-worker-7-17 ~]# ip netns add red
 [root@k8s-worker-7-17 ~]# ip netns add green
 [root@k8s-worker-7-17 ~]# cd /var/run/netns/

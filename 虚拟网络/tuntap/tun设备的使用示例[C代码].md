@@ -29,7 +29,7 @@ gcc -o tun tun.c
 
 得到可执行文件`tun`, 运行
 
-```console
+```log
 $ ./tun
 Open tun/tap device: tun0 for reading...
 ```

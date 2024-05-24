@@ -10,7 +10,7 @@ ip netns exec ns03 ip link set dev mybr0 type bridge vlan_filtering 1
 
 在`ns03`中执行如下命令, 修改 veth31 接口的 vlan tag
 
-```console
+```log
 $ bridge vlan del dev veth31 vid 1
 $ bridge vlan add dev veth31 vid 100
 $ bridge vlan show

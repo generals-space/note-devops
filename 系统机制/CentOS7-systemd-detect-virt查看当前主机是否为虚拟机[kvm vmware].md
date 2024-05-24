@@ -6,7 +6,7 @@
 
 系统版本: centos7
 
-```console
+```log
 $ systemd-detect-virt
 kvm
 ```
