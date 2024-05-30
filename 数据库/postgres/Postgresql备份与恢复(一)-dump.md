@@ -3,7 +3,6 @@
 参考文章
 
 1. [PostgreSql备份和恢复](http://toplchx.iteye.com/blog/2093821)
-
 2. [PostgreSQL pg_dump&psql 数据的备份与恢复](https://www.cnblogs.com/chjbbs/p/6480687.html)
 
 有三种不同的备份方法: 

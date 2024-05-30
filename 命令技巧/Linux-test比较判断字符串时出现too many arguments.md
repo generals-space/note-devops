@@ -34,5 +34,4 @@ $ if [ -z $abc ]; then echo empty; fi
 $ abc='123 456'
 $ if [ -z "$abc" ]; then echo empty; fi
 # 无输出
-
 ```

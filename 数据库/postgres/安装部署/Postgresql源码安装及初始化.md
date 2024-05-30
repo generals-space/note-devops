@@ -9,25 +9,25 @@
 安装依赖包
 
 ```
-$ yum install gcc readline-devel zlib-devel
+yum install gcc readline-devel zlib-devel
 ```
 
 配置选项
 
 ```
-$ ./configure --prefix=/opt/pgsql9.5.9
+./configure --prefix=/opt/pgsql9.5.9
 ```
 
 编译安装
 
 ```
-$ make && make install 
+make && make install 
 ```
 
 编译安装成功后, 接下来要做的就是创建一个普通用户, 因为**默认超级用户（root）不能启动postgresql**, 所以需要创建一个普通用户来启动数据库, 执行以下命令创建用户
 
 ```
-$ useradd postgres
+useradd postgres
 ```
 
 我们要用这个用户初始化数据目录, 配置文件等. 首先创建环境变量配置, 初始化数据目录要用的.
@@ -55,7 +55,7 @@ export MANPATH=$PGHOME/share/man:$MANPATH
 
 `unix_socket_directory`或`unix_socket_directories`这个是定义本地连接`.sock`文件的路径的, 默认是`/tmp`, 源码安装时需要将其修改成'.', 否则psql连接时会报如下错误.
 
-```
+```log
 $ psql 
 psql: could not connect to server: No such file or directory
 	Is the server running locally and accepting

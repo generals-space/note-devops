@@ -14,7 +14,7 @@ $ initdb -D data
 
 然后启动postgresql服务.
 
-```
+```log
 Success. You can now start the database server using:
 
     postgres -D /var/lib/pgsql/data
@@ -31,7 +31,7 @@ or
 
 默认pg只允许本机访问, 如果需要打开外网监听, 需要修改`pg_hba.conf`, 通过yum安装的pg, 这个文件在`/var/lib/pgsql/data`目录下.
 
-```
+```log
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
 
 # "local" is for Unix domain socket connections only

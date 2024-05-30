@@ -12,7 +12,7 @@
 
 以新建用户`dbuser`和数据库`exampledb`为例. 
 
-```
+```bash
 ## 以系统用户身份登录同名数据库用户是不需要密码的
 $ su - postgres
 ## 使用psql命令登录PostgreSQL控制台
@@ -29,7 +29,7 @@ postgres=# GRANT ALL PRIVILEGES ON DATABASE exampledb to dbuser;
 
 添加新用户和新数据库, 除了在PostgreSQL控制台内, 还可以在shell命令行下完成. 这是因为PostgreSQL提供了命令行工具`createuser`和`createdb`. 还是以新建用户`dbuser`和数据库`exampledb`为例. 
 
-```
+```bash
 $ su - postgres
 ## 创建数据库用户dbuser, 并指定其为超级用户. 
 $ createuser --superuser dbuser
@@ -46,9 +46,13 @@ $ createdb -O dbuser exampledb
 添加新用户和新数据库以后, 就要以新用户的名义登录数据库, 这时使用的是`psql`命令. 
 
 ```
-## 参数含义：-U指定用户, -d指定数据库, -h指定服务器, -p指定端口. 
 psql -U dbuser -d exampledb -h 127.0.0.1 -p 5432
 ```
+
+- -U: 用户
+- -d: 数据库
+- -h: 服务器IP
+- -p: 端口
 
 输入上面命令以后, 系统会提示输入dbuser用户的密码. 输入正确, 就可以登录控制台了. 
 
