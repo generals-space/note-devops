@@ -12,7 +12,7 @@
 
 `zoo.cfg`中
 
-```
+```ini
 clientPort=2181
 server.0=zk-ha-test-busi-kafka-0.zk-ha-test-busi-kafka-svc.zjjpt-zk.svc.cs-hua.hpc:2888:3888
 ```

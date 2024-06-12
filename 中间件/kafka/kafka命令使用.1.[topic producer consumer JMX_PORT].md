@@ -19,19 +19,19 @@ bin/kafka-topics.sh --create --zookeeper $ZK_ADDR --replication-factor 1 --parti
 
 查看已经存在的 topic 列表
 
-```
+```bash
 bin/kafka-topics.sh --list --zookeeper $ZK_ADDR
 ```
 
 删除 topic
 
-```
+```bash
 bin/kafka-topics.sh --delete --zookeeper $ZK_ADDR --topic test
 ```
 
 topic 详情
 
-```
+```bash
 bin/kafka-topics.sh --describe --zookeeper $ZK_ADDR --topic test
 ```
 
@@ -39,7 +39,7 @@ bin/kafka-topics.sh --describe --zookeeper $ZK_ADDR --topic test
 
 生产
 
-```
+```bash
 bin/kafka-console-producer.sh --broker-list 127.0.0.1:9092 --topic test
 ```
 
@@ -47,7 +47,7 @@ bin/kafka-console-producer.sh --broker-list 127.0.0.1:9092 --topic test
 
 消费
 
-```
+```bash
 bin/kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic test --from-beginning
 ```
 
@@ -55,7 +55,7 @@ bin/kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic test --f
 
 如果在调用`kafka-topics.sh`脚本时, 出现如下错误
 
-```
+```log
 Error: Exception thrown by the agent : java.rmi.server.ExportException: Port already in use: 9988; nested exception is:
         java.net.BindException: Address already in use (Bind failed)
 ```

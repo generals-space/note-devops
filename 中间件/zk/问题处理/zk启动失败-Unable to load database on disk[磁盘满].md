@@ -9,7 +9,7 @@
 
 Zookeeper所在节点磁盘满了，导致当前节点Zookeeper宕机，然后当释放磁盘后，启动Zookeeper时显示Zookeeper无法启动，报错信息如下：
 
-```
+```log
 2020-09-03 20:03:30,999 ERROR org.apache.zookeeper.server.quorum.QuorumPeer: Unable to load database on disk
 java.io.EOFException
 ...
@@ -28,7 +28,7 @@ Caused by: java.io.EOFException
 
 备份 version-2目录，清空Zookeeper目录下的version-2，然后重启Zookeeper生效；
 
-```
+```log
 [root@datanode07 ~]# cd /var/lib/zookeeper/
 [root@datanode07 zookeeper]# cp -r version-2 version-2-bak
 [root@datanode07 zookeeper]#

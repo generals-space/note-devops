@@ -10,7 +10,7 @@
 
 查看日志, 显示
 
-```
+```log
 [20671] 12 Jan 15:48:02.369 * Connecting to MASTER 172.16.1.100:6379 [20671] 12 Jan 15:48:02.369 # Unable to connect to MASTER: Permission denied
 ```
 

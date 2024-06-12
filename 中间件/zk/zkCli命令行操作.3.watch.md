@@ -32,7 +32,7 @@ zk: 3.4.10
 
 所以能触发`ls`与`ls2`的回调行为的, 是`create`和`delete`操作.
 
-```
+```log
 [zk: localhost:2181(CONNECTED) 3] ls /node watch
 /node
 cZxid = 0x200004e37
@@ -52,7 +52,7 @@ WatchedEvent state:SyncConnected type:NodeChildrenChanged path:/node
 
 所以能引发`get`与`stat`的回调行为的, 是`set`更新操作
 
-```
+```log
 [zk: localhost:2181(CONNECTED) 3] get /node watch
 /node
 cZxid = 0x200004e37
@@ -68,7 +68,7 @@ WatchedEvent state:SyncConnected type:NodeDataChanged path:/node
 
 有一种事件, 是`ls/ls2`与`get/stat`都会监听到的, 那就是节点删除, 且是目标节点被删除, 而非其子节点的删除.
 
-```
+```log
 [zk: localhost:2181(CONNECTED) 3] get /node watch
 /node
 cZxid = 0x200004e37

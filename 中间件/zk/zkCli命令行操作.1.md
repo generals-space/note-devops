@@ -9,7 +9,7 @@ zk: 3.4.10
 
 zk启动后, 就可以使用`bin/zkCli.sh`进入交互式终端进行操作了.
 
-```
+```bash
 ./bin/zkCli.sh -server 127.0.0.1:2181
 ```
 

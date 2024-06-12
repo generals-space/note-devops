@@ -30,7 +30,7 @@ Error contacting service. It is probably not running
 
 使用`jps`可以看到zk进程
 
-```
+```log
 $ jps
 26 QuorumPeerMain
 120300 Jps
@@ -48,7 +48,7 @@ STAT=`"$JAVA" "-Dzookeeper.log.dir=${ZOO_LOG_DIR}" "-Dzookeeper.root.logger=${ZO
 
 将上述语句的`2> /dev/null`以及后面的管道过滤语句移除, 查看`srvr`指令的输出, 得到如下
 
-```
+```log
 Exception in thread "main" java.lang.reflect.InvocationTargetException
     at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
     at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -109,7 +109,7 @@ dataDir:/data/zk-ha-test-busi-kafka-0
 
 这样导致在`zkServer.sh`中在执行`status`子命令时, 从`zoo.cfg`中解析`clientPort`变量会有问题.
 
-```
+```bash
 clientPort=`$GREP "^[[:space:]]*clientPort[^[:alpha:]]" "$ZOOCFG" | sed -e 's/.*=//'`
 ```
 

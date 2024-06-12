@@ -39,7 +39,7 @@ Exception in thread "main" org.apache.zookeeper.KeeperException$ConnectionLossEx
 
 查看pod-0的日志如下
 
-```
+```log
 serverlog || 2021-11-09 17:19:34,347 || test-baicy-7 || test-baicy-7-0 || INFO || [myid:0] [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@192] - Accepted socket connection from /127.0.0.1:54564
 serverlog || 2021-11-09 17:19:34,354 || test-baicy-7 || test-baicy-7-0 || INFO || [myid:0] [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@928] - Client attempting to establish new session at /127.0.0.1:54564
 serverlog || 2021-11-09 17:19:34,360 || test-baicy-7 || test-baicy-7-0 || INFO || [myid:0] [CommitProcessor:0:ZooKeeperServer@673] - Established session 0x7d03ef84ff0001 with negotiated timeout 30000 for client /127.0.0.1:54564
@@ -62,4 +62,3 @@ serverlog || 2021-11-09 17:19:42,169 || test-baicy-7 || test-baicy-7-0 || INFO |
 当该zk集群正常启动后, 再把原来的kafka集群启动起来, kafka竟然能正常运行了...
 
 仅提供一个思路, 记录一下.
-
