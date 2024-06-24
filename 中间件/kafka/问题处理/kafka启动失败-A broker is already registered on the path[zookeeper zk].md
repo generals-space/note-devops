@@ -4,7 +4,7 @@
 
 3节点的kafka集群, 其中一个节点发生了重启, 但是启动失败, 日志中有如下异常.
 
-```
+```log
 [2021-12-18 12:19:55,347] FATAL Fatal error during KafkaServerStartable startup. Prepare to shutdown (kafka.server.KafkaServerStartable)
 java.lang.RuntimeException: A broker is already registered on the path /brokers/ids/1. This probably indicates that you either have configured a brokerid that is already in use, or else you have shutdown this broker and restarted it faster than the zookeeper timeout so it appears to be re-registering.
         at kafka.utils.ZkUtils.registerBrokerInZk(ZkUtils.scala:393)

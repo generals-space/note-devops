@@ -18,7 +18,7 @@ $ ip addr ls
 
 为其设置IP
 
-```
+```log
 $ ip addr add 10.18.0.1/24 dev tap0
 $ ip addr ls
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN qlen 1
@@ -39,7 +39,7 @@ $ ip addr ls
 
 启动此设备, 启动后会自动添加到其相应网段的路由.
 
-```
+```log
 $ ip addr add 10.18.0.2/24 dev tap0
 $ ip route ls
 default via 192.168.7.1 dev ens32 proto static metric 100

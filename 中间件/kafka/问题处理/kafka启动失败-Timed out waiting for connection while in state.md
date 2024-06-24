@@ -12,7 +12,7 @@
 
 kafka在启动时连接zk超时, 报如下错误.
 
-```
+```log
 [2021-09-09 08:58:53,452] INFO Initiating client connection, connectString=192.168.128.101:2181 sessionTimeout=6000 watcher=kafka.zookeeper.ZooKeeperClient$ZooKeeperClientWatcher$@61df66b6 (org.apache.zookeeper.ZooKeeper)
 [2021-09-09 08:58:53,505] INFO [ZooKeeperClient Kafka server] Waiting until connected. (kafka.zookeeper.ZooKeeperClient)
 [2021-09-09 08:58:59,508] INFO [ZooKeeperClient Kafka server] Closing. (kafka.zookeeper.ZooKeeperClient)
@@ -44,7 +44,7 @@ kafka.zookeeper.ZooKeeperClientTimeoutException: Timed out waiting for connectio
 
 这是zk的日志
 
-```
+```log
 2021-09-08 12:14:21,718 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@192] - Accepted socket connection from /10.254.0.19:54942
 2021-09-08 12:14:21,719 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@928] - Client attempting to establish new session at /10.254.0.19:54942
 2021-09-08 12:14:21,722 [myid:] - INFO  [SyncThread:0:ZooKeeperServer@673] - Established session 0x17bc54523570017 with negotiated timeout 10000 for client /10.254.0.19:54942

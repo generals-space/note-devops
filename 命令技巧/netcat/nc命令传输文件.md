@@ -5,15 +5,15 @@
 远程主机(监听端口任意, 不过客户端需要指定, 与其保持相同):
 
 ```bash
-nc -l 4567 > /tmp/cache.tar.gz
+nc -l 4567 < /tmp/cache.tar.gz
 ```
 
 本地主机:
 
 ```bash
-nc 远程主机IP 4567 < redis.tar.gz
+nc 远程主机IP 4567 > redis.tar.gz
 ```
 
-传输完成之后双方自动退出.
+传输完成之后双方自动退出.???
 
 > 关于`nc`, 貌似nc启动的服务端只能允许单个客户端连接(不管是tcp还是udp类型的).
