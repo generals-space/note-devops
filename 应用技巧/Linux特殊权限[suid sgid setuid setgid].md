@@ -17,7 +17,7 @@
 
 `root`用户与普通用户都可以通过`passwd`命令修改自己的密码, 我们知道, Linux的密码都是保存在`/etc/passwd`和`/etc/shadow`文件中, 而这两个文件只有`root`才有权限修改.
 
-```
+```log
 $ ll /etc/passwd /etc/shadow
 -rw-r--r-- 1 root root 1301 5月   1 2020 /etc/passwd
 ---------- 1 root root  869 8月  11 2020 /etc/shadow

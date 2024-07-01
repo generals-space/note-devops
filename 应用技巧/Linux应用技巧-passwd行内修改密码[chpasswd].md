@@ -1,4 +1,4 @@
-# Linux应用技巧-passwd命令行修改密码
+# Linux应用技巧-passwd行内修改密码
 
 参考文章
 
@@ -12,6 +12,6 @@ echo "new_password" | passwd --stdin root
 
 Ubuntu
 
-```
+```bash
 echo "root:new_password" | chpasswd
 ```
