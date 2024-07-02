@@ -53,9 +53,7 @@
 
 虚拟网卡, 网桥bridge, 虚拟IP, NAT的区别
 
-vlan, vxlan, macvlan.
-
-NIC: Network Interface Card 网络接口卡, 即网卡, 一般指物理网卡.<???>
+NIC: Network Interface Card 网络接口卡, 即网卡, 一般指物理网卡.
 
 虚拟IP: eth0:0, eth0:1 这种eth0和mac地址都是相同的, 本质上还是同一块网卡, 这将限制很多二层的操作.
 
@@ -63,19 +61,15 @@ NIC: Network Interface Card 网络接口卡, 即网卡, 一般指物理网卡.<?
 
 但是linux提供的bridge与硬件交换机不同的是, ta可以拥有IP地址(不过其实现在有很多三层交换机了, 也可以拥有IP地址...)
 
-Veth 设备成对存在, 相当于连接 Bridge 的网线...but这种设备tm也可以有ip, 拥有IP地址的端可以当作物理网卡使用(kuber中就使用`veth`的一端放在Pod中当作`eth0`).
+Veth 设备成对存在, 相当于连接 Bridge 的网线...but这种设备tm也可以有ip, 拥有IP地址的端可以当作物理网卡使用(kube中就使用`veth`的一端放在Pod中当作`eth0`).
 
-`net.ipv4.ip_forward` 设置为 1 也相当于 node1 同时充当了一个路由器（路由器的实质就是一个具有多个网卡的机器, 因为它的多网卡同时具有这些不同网段的 IP 地址, 所以它能将一个网络的流量路由转发到另一个网络）. 
+`net.ipv4.ip_forward`设置为 1 也相当于 node1 同时充当了一个路由器（路由器的实质就是一个具有多个网卡的机器, 因为它的多网卡同时具有这些不同网段的 IP 地址, 所以它能将一个网络的流量路由转发到另一个网络）. 
 
 TAP...就叫TAP, 不是简写, 模拟第二层数据链路层设备, 操作的是Ethernet frames帧. 用于创建bridge网桥.
 
 TUN则是tunnel, 模拟第三层网络层设备, 操作IP数据包. 用于路由.
 
 > TAP/TUN貌似是编程接口, 用于用户空间的程序向内核网络栈收发数据??? 这是ta们与bridge和iptable的区别吗??? ...不对啊, ip命令也可以创建tap/tun设备的啊.
-
-------
-
-overlay/underlay的概念基本清楚, 但是具体的网络方案还不太明白究竟是哪一种. 比如vlan应该是underlay, vxlan应该是overlay了吧? 另外, calico使用的bgp协议, host gateway网络也属于overlay吧? 所有基于隧道技术的模型应该都是overlay网络吧?
 
 ## FAQ
 

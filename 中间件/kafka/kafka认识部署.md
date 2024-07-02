@@ -9,6 +9,6 @@ kafka 依赖 zk, 且一个zk实例(或是集群)只能对一个kafka集群提供
 
 `kafka/config/server.properties`中, `broker.id`字段全局唯一, 每个kafka实例都不能相同, 否则启动会报错.
 
-```
+```log
 ERROR Error while creating ephemeral at /brokers/ids/1, node already exists
 ```

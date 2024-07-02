@@ -4,7 +4,7 @@
 
 [解决centos7 开机/etc/rc.local 不执行的问题](http://www.jb51.net/article/108874.htm)
 
-最近发现centos7 的/etc/rc.local不会开机执行, 于是认真看了下/etc/rc.local文件内容的就发现了问题的原因了
+最近发现centos7的`/etc/rc.local`不会开机执行, 于是认真看了下`/etc/rc.local`文件内容的就发现了问题的原因了
 
 ```bash
 #!/bin/bash
@@ -34,7 +34,7 @@
 
 于是我有确认了下`/etc/rc.local`的权限
 
-```
+```log
 [root@localhost ~]# ll /etc/rc.local
 lrwxrwxrwx. 1 root root 13 8月 12 06:09 /etc/rc.local -> rc.d/rc.local
 [root@localhost ~]# ll /etc/rc.d/rc.local
