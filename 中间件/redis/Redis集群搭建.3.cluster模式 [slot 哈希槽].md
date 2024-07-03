@@ -34,7 +34,7 @@ redis-trib create --replicas 1 \
 
 但是在写入数据的时候可能会出现如下错误
 
-```
+```log
 127.0.0.1:6379> keys *
 (empty list or set)
 127.0.0.1:6379> set key1 val1
@@ -43,7 +43,7 @@ redis-trib create --replicas 1 \
 
 ...好吧, 在写入操作时需要启动cluster模式, 在`redis-cli`命令中加上`-c`选项才行.
 
-```
+```log
 127.0.0.1:6379> set key1 val1
 -> Redirected to slot [9189] located at 10.254.2.10:6379
 OK
@@ -55,7 +55,7 @@ OK
 
 但是, 进入任意实例的命令行, 执行`keys *`命令可能获取不到全部值, 但是使用`get key1`却可以被重定向然后得到目标值.
 
-```
+```log
 127.0.0.1:6379> keys *
 (empty list or set)
 127.0.0.1:6379> get key1
