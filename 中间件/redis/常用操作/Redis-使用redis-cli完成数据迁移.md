@@ -21,7 +21,7 @@ redis-cli > move key1 2
 `move`命令无法批量执行, 所以要依靠shell脚本. 如下示例中, 将1库中的所有数据移动到2库中.
 
 ```
-$ redis-cli -n 1 keys '*' | xargs -i redis-cli -n 1 move {} 2
+redis-cli -n 1 keys '*' | xargs -i redis-cli -n 1 move {} 2
 ```
 
 > 还有一个`smove`命令, 可以拷贝字典对象中的一个键, 记一下.

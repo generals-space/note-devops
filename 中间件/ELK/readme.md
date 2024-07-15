@@ -10,5 +10,3 @@
     - 参考文章2中提供的数据集有几十兆, 如果用原生json进行上传, 对服务器是极大的压力.
 4. [分布式之elk日志架构的演进](https://mp.weixin.qq.com/s?__biz=MzU0OTE4MzYzMw==&mid=2247485508&idx=1&sn=44bbea9dd059a0cb48f34790682fdddf)
     - 架构演进, 值得一看
-
-es 其实可以看作一个数据库, logstash 与 kibana 是ta的两个客户端, 只不过 logstash 用于写, 而 kibana 用于读.

@@ -11,7 +11,9 @@
 
 ###
 
+```
 redis-cli [-a 密码] --cluster del-node host:port nodeid
+```
 
 也可以从集群中移除节点, 而且只需要执行一次, 不需要在每个节点上执行.
 
@@ -23,7 +25,9 @@ redis-cli [-a 密码] --cluster del-node host:port nodeid
 
 ###
 
+```
 redis-cli [-a 密码] --cluster add-node newhost:port oldhost:port
+```
 
 > 注意 newhost 与 oldhost 的参数顺序
 
@@ -35,7 +39,9 @@ redis-cli [-a 密码] --cluster add-node newhost:port oldhost:port
 
 使用 add-node 添加新节点后, 并没有分配 slot, 如果想要将其他 master 节点上的 slot 平均分到所有 master 上, 可以使用如下命令.
 
+```
 redis-cli [-a 密码] --cluster rebalance host:port --cluster-use-empty-masters
+```
 
 如果是出于某种原因导致集群中
 

@@ -10,7 +10,7 @@ databases 16
 
 `redis-cli`下可以通过下面的命令来切换到不同的数据库
 
-```
+```log
 redis 127.0.0.1:6379> select 2
 OK
 redis 127.0.0.1:6379[2]>

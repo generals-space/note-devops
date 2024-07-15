@@ -11,7 +11,7 @@
 4. [when elasticsearch x-pack is enabled head can't connnect](https://github.com/mobz/elasticsearch-head/issues/304)
     - `boroborome`的回答真是救了命了...
 
-其实 head 只是一个过滤产品, 貌似 6.x 之后的 kibana 就可以实现更高级更美观的监控管理功能, head 也就随之没落了.
+其实 head 只是一个过渡产品, 貌似 6.x 之后的 kibana 就可以实现更高级更美观的监控管理功能, head 也就随之没落了.
 
 head 的部署就不说了, 没什么特殊的.
 

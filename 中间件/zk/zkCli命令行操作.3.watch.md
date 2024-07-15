@@ -79,4 +79,3 @@ WATCHER::
 
 WatchedEvent state:SyncConnected type:NodeDeleted path:/node
 ```
-

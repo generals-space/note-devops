@@ -22,7 +22,7 @@ redis-cli -a 12345678 --cluster create --cluster-yes --cluster-replicas 1 \
 
 但是卡在下面这个地方不动了
 
-```
+```log
 >>> Nodes configuration updated
 >>> Assign a different config epoch to each node
 >>> Sending CLUSTER MEET messages to join the cluster
@@ -40,7 +40,7 @@ Waiting for the cluster to join
 
 另外, 虽然使用上面的 redis-cli 命令可以组建起集群, 但是可能会出现如下情况
 
-```
+```log
 root@6e768c66b989:/data# redis-cli -c -h 47.92.209.167 -p 6380
 47.92.209.167:6380> auth 12345678
 OK

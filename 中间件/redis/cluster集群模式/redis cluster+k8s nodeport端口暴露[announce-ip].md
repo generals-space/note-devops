@@ -45,7 +45,7 @@ set key01 value01
 
 参考文章1中提到了如下3个配置.
 
-```
+```log
 cluster-announce-ip 192.168.30.4
 cluster-announce-port 30679
 cluster-announce-bus-port 31679

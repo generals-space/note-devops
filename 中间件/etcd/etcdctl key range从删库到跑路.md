@@ -25,7 +25,7 @@ $ ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/etc/kuberne
 
 打印结果是3389, 感觉有点疑惑, 但没太在意.
 
-结果在 kuber 集群中尝试获取一下 Pod 资源, 发现`No resources found.`, 抚平了下心绪, 发现所有资源都被删除了, 整个集群都毁了, 顿时风中凌乱...
+结果在 kube 集群中尝试获取一下 Pod 资源, 发现`No resources found.`, 抚平了下心绪, 发现所有资源都被删除了, 整个集群都毁了, 顿时风中凌乱...
 
 又查询了下etcd(etcd数据被清空, 但是核心进程都还在的, docker容器也还在的, 只是数据关系没有了.), 发现还有数据, 并不是完全被清空, 但基本也没什么用了.
 

@@ -17,7 +17,7 @@ redis: v6.2.12
 
 `reshard`指令, 将某个 master 节点上的 slot 转移到另一个 master 节点.
 
-```
+```log
 redis-cli --cluster reshard %s:%d --cluster-from %s --cluster-to %s --cluster-slots %d --cluster-yes --cluster-timeout 1500 --cluster-pipeline 100 --cluster-replace
 ```
 

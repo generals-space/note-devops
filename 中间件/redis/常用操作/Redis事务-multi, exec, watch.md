@@ -26,7 +26,7 @@ Redis 事务可以一次执行多个命令, 并且带有以下几个重要的保
 
 示例如下
 
-```
+```log
 redis 127.0.0.1:6379> MULTI
 OK
 redis 127.0.0.1:6379> INCR user_id
@@ -54,7 +54,7 @@ redis 127.0.0.1:6379> EXEC
 
 ### 2.1 监视key, 且事务成功执行
 
-```
+```log
 redis 127.0.0.1:6379> WATCH lock lock_times
 OK
 redis 127.0.0.1:6379> MULTI
@@ -70,7 +70,7 @@ redis 127.0.0.1:6379> EXEC
 
 ### 2.2 监视key, 且事务被打断
 
-```
+```log
 redis 127.0.0.1:6379> WATCH lock lock_times
 OK
 redis 127.0.0.1:6379> MULTI

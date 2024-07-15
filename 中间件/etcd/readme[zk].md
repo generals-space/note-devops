@@ -8,8 +8,3 @@
     - etcdctl各子命令的使用示例
 4. [etcd：从应用场景到实现原理的全方位解读](https://www.infoq.cn/article/etcd-interpretation-application-scenario-implement-principle/)
 5. [CoreOS 实战：剖析 etcd](https://www.infoq.cn/article/coreos-analyse-etcd/)
-6. [ZooKeeper 并不适合做注册中心](https://mp.weixin.qq.com/s?__biz=MzA4Nzc4MjI4MQ==&mid=2652403307&idx=1&sn=a684658419bba38e1c92f09ebec776d9&chksm=8bd8f08dbcaf799bee0adf6ecc392ae503d9a8724a77099e2738d0de13bc1297f8b9dc12700d&token=584405718&lang=zh_CN&scene=21#wechat_redirect)
-
-
-> etcd是一个golang编写的分布式、高可用的一致性键值存储系统，用于提供可靠的分布式键值(key-value)存储、配置共享和服务发现等功能。
-
