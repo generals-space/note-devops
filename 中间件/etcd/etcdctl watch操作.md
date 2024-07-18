@@ -14,6 +14,8 @@ etcdctl watch '/registry/statefulsets/default/test-sts'
 
 watch 操作可以监听任意 key, 即使这个 key 不存在也不会报错.
 
+watch 机制支持 watch 某个固定的 key，也支持一个范围 (前缀机制)
+
 默认不会在初始时获取全量数据, 只会获取增量数据, 这一点要与 client-go 的 reflector 实现区分开.
 
 watch 选项

@@ -25,7 +25,7 @@
 
 有一个建立好的ES集群, 访问`/_cat/nodes`接口有如下输出
 
-```
+```log
 192.168.34.33  3 12 7 1.10 2.60 2.54 mi - es-0119-01-master-2
 192.168.34.36  4 51 5 0.63 0.72 0.87 mi - es-0119-01-master-0
 192.168.34.20  7 59 5 0.43 1.08 1.45 di - es-0119-01-data-1
@@ -40,7 +40,7 @@
 
 在master-1重启到完成的过程中, 查看master-2的日志, 有如下典型的输出.
 
-```
+```log
 [2022-01-20T12:26:33,264][WARN ][o.e.c.NodeConnectionsService] [es-0119-01-master-2] failed to connect to node {es-0119-01-master-1}{EErKdnU4R5eTM8kcdIe9zw}{QGX9mVsiSWODEc9n18pYuw}{192.168.34.68}{192.168.34.68:9311}{ml.enabled=true} (tried [1] times)
 org.elasticsearch.transport.ConnectTransportException: [es-0119-01-master-1][192.168.34.68:9311] connect_timeout[30s]
         at java.lang.Thread.run(Thread.java:748) [?:1.8.0_232]
@@ -100,5 +100,3 @@ Caused by: java.net.ConnectException: Connection refused
 **为什么是4.5s?**
 
 因为3轮ping是在独立线程中执行的, 第1个线程delay 0秒(立即执行), 第2个线程delay 1.5s执行, 第3个线程delay 3s执行. 第1个线程ping超时并不会影响后续线程的ping操作, 所以最多是 (3/2) * 3 = 4.5s
-
-## 
