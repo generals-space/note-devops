@@ -5,6 +5,7 @@
 1. [一致性哈希和哈希槽](https://www.jianshu.com/p/6ad87a1f070e)
     - 一致性哈希, 数据倾斜
 2. [进阶的Redis之哈希分片原理与集群实战](https://zackku.com/redis-cluster/)
+    - 参考文章1的源文章
 3. [一致性哈希和哈希槽对比](https://www.jianshu.com/p/4163916a2a8a)
 4. [redis哈希槽和一致性哈希](http://www.lichenming.cn/topic/5dfb485176ffa1d157913cdf)
 
