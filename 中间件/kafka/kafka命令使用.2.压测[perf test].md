@@ -8,7 +8,7 @@ kafka: 2.12-2.3.1
 
 ## 生产
 
-```
+```log
 ./bin/kafka-producer-perf-test.sh --topic test --num-records 100000 --record-size 1000 --throughput 2000 --producer-props bootstrap.servers=127.0.0.1:9092
 ```
 
@@ -23,7 +23,7 @@ kafka: 2.12-2.3.1
 
 ## 消费
 
-```
+```log
 ./bin/kafka-consumer-perf-test.sh --broker-list 127.0.0.1:9092 --topic test --fetch-size 1048576 --messages 100000 --threads 1
 ```
 

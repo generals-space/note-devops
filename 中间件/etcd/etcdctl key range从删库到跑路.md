@@ -6,9 +6,9 @@
 2. [官方仓库readme etcd-io/etcd/etcdctl](https://github.com/etcd-io/etcd/tree/master/etcdctl)
 3. [官方文档 etcd3 API](https://etcd.io/docs/v3.3.12/learning/api/)
 
-etcdctl version: 3.2.24
+etcd: 3.2.24
 
-某天需要手动删除`etcd`中关于 kuber 中某个 Pod 的键, 从我的常用命令库中拷贝出如下命令, 先执行了下, 因为经常用, 所以了解不会有风险.
+某天需要手动删除`etcd`中关于 kube 中某个 Pod 的键, 从我的常用命令库中拷贝出如下命令, 先执行了下, 因为经常用, 所以了解不会有风险.
 
 ```log
 $ ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key put /kube-scheduler-extender/kube-system/mysts/mysts-pod-0 "node-xxx"

@@ -1,0 +1,20 @@
+[Unit]
+Description=Etcd Server
+After=network.target
+After=network-online.target
+Wants=network-online.target
+Documentation=https://github.com/coreos
+
+[Service]
+Type=notify
+## 指定etcd的工作目录和数据目录为/var/lib/etcd，需要在启动服务前创建这个目录
+WorkingDirectory=/var/lib/etcd
+ExecStart=/usr/local/bin/etcd --config-file /etc/etcd/etcd.yaml
+
+Restart=on-failure
+RestartSec=5
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+

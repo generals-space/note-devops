@@ -1,0 +1,33 @@
+## Human-readable name易于识别的名称
+name: k8s-master-43-101
+
+## 客户端(etcdctl, curl等)的访问地址
+listen-client-urls: https://172.16.43.101:2379,http://127.0.0.1:2379
+advertise-client-urls: https://172.16.43.101:2379
+## 与客户端通信可接受的公私钥
+client-transport-security:
+  cert-file: /etc/etcd/ssl/etcd.pem
+  key-file: /etc/etcd/ssl/etcd-key.pem
+  trusted-ca-file: /etc/etcd/ssl/ca.pem
+
+## 与其他节点通信的地址
+listen-peer-urls: https://172.16.43.101:2380
+initial-advertise-peer-urls: https://172.16.43.101:2380
+## peer间通信使用的公私钥
+peer-transport-security:
+  ## 对应命令行选项 --peer-cert-file
+  cert-file: /etc/etcd/ssl/etcd.pem
+  ## 对应命令行选项 --peer-key-file
+  key-file: /etc/etcd/ssl/etcd-key.pem
+  ## 对应命令行选项 --peer-trusted-ca-file
+  trusted-ca-file: /etc/etcd/ssl/ca.pem
+
+## 可选值有new与existing.
+## 值为new时表示初始化集群, 此时`name`字段的值必须位于在`initial-cluster`列表中
+initial-cluster-state: new
+## 集群初始化时各节点统一的token, 各节点的配置相同, 防止多个集群时发生混乱.
+initial-cluster-token: etcd-cluster-0
+## 集群初始化时各节点成员列表, 注意格式.
+initial-cluster: k8s-master-43-101=https://172.16.43.101:2380,k8s-master-43-102=https://172.16.43.102:2380,k8s-master-43-103=https://172.16.43.103:2380
+
+data-dir: /var/lib/etcd
