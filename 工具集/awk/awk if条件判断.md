@@ -12,7 +12,7 @@ awk '{if(条件){执行的动作}}' 目标文件
 
 以如下文件为例(`last -n 5`命令输出)
 
-```
+```log
 root        pts/1        172.16.91.1      Tue Aug 31 18:33   still logged in
 root        pts/1        172.16.91.1      Mon Aug 30 11:41 - 19:30  (07:48)
 general     pts/4        172.16.91.1      Mon Aug 30 11:41 - 19:30  (07:48)

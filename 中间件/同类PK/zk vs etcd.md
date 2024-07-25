@@ -8,6 +8,14 @@
     - zookeeper 既然这么多问题，他咋不改呢？
 2. [走马观花云原生技术（4）：强一致性分布式存储etcd](https://cloud.tencent.com/developer/article/2168077)
     - etcd是CP实现，它保证一致性与分区容错性，一定程度上牺牲了可用性。
+3. [Kubernetes 为什么选择ETCD做存储？](https://juejin.cn/post/7341669201010130981)
+    - 为什么用 ETCD 作为存储
+    - 为什么不用 Mysql 和 Postgres SQL 这种关系型数据库？
+        - 因为 Kubernetes 不需要做复杂查询，它们致力于优化的方向并用不到。
+    - 那既然 kv 存储的数据为什么Redis 不行？
+        - Redis是一直高可用的存储，它更多保证的是最终一致性，但是在集群整体状态的一致性上它没办法做保证。
+4. [为什么k8s选择etcd](https://devops.gitlab.cn/archives/28626)
+    - Consul在服务发现和健康检查方面表现出色，但在一致性和可靠性方面略逊一筹。
 
 CAP模型: Consistency(一致性), Availability(可用性), Partition Tolerance(分区容错性)
 
