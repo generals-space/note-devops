@@ -15,6 +15,8 @@ $ clamscan -r --bell -i 扫描的目录 -l 扫描结果存放文件
 
 `--remove`参数可以直接删除病毒文件.
 
+> 脚本文件不会报毒, 需要用其他方案.
+
 ## 2. 更新
 
 常规更新软件包
@@ -25,7 +27,7 @@ $ yum update clamav
 
 然后要更新`clamav`的病毒库. 这要用到clamav的`freshclam`命令, 直接执行即可.
 
-```
+```log
 $ freshclam 
 ClamAV update process started at Tue Feb  6 10:09:30 2018
 WARNING: Your ClamAV installation is OUTDATED!
