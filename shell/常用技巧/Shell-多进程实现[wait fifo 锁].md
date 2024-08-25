@@ -1,7 +1,5 @@
 # Shell脚本技巧-多进程实践
 
-<!tags!>: <!shell!> <!多进程!>
-
 参考文章
 
 1. [用fifo来处理linux shell下的多进程并发](https://my.oschina.net/sanpeterguo/blog/133304)

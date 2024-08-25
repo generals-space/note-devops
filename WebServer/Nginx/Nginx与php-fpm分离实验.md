@@ -70,7 +70,7 @@ Access denied
 
 查看nginx的错误日志, 有如下输出
 
-```
+```log
 2016/07/03 08:56:47 [error] 36#0: *1 FastCGI sent in stderr: "Access to the script '/var/www/html/img.jpg' has been denied (see security.limit_extensions)" while reading response header from upstream, client: 127.0.0.1, server: localhost, request: "GET /img.jpg HTTP/1.1", upstream: "fastcgi://172.17.0.2:9000", host: "localhost"
 ```
 

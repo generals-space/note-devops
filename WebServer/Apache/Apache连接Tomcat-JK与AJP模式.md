@@ -26,7 +26,7 @@ JK 的配置最关键的有三个文件, 分别是
 
 其中第2,3个配置文件名都可以自定义. 下面是一个典型的 httpd.conf 对 JK 的配置
 
-```
+```conf
 # (httpd.conf)
 # 加载 mod_jk 模块
 LoadModule jk_module modules/mod_jk.so
@@ -43,7 +43,7 @@ JkLogLevel warn
 
 接下来我们在 Apache 的 conf 目录下新建两个文件分别是 workers.properties, uriworkermap.properties. 这两个文件的内容大概如下
 
-```
+```ini
 #
 # workers.properties
 #
@@ -78,7 +78,7 @@ worker.status.type=status
 
 接下来便是 URI 的映射配置了, 我们需要指定哪些链接是由 Tomcat 处理的, 哪些是由 Apache 直接处理的, 看看下面这个文件你就能明白其中配置的意义
 
-```
+```ini
 /*=DLOG4J
 /jkstatus=status
 
@@ -115,13 +115,9 @@ BalancerMember ajp://server3:8080/
 采用 proxy 的连接方式, 需要在 Apache 上加载所需的模块, `mod_proxy`相关的模块有
 
 - `mod_proxy.so`
-
 - `mod_proxy_connect.so`
-
 - `mod_proxy_http.so`
-
 - `mod_proxy_ftp.so`
-
 - `mod_proxy_ajp.so`
 
 其中`mod_proxy_ajp.so`只在Apache 2.2.x 中才有. 

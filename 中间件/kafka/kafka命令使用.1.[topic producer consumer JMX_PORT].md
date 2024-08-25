@@ -54,7 +54,7 @@ bin/kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic test --f
 ## FAQ
 
 如果在调用`kafka-topics.sh`脚本时, 出现如下错误
-
+ 
 ```log
 Error: Exception thrown by the agent : java.rmi.server.ExportException: Port already in use: 9988; nested exception is:
         java.net.BindException: Address already in use (Bind failed)

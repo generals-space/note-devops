@@ -13,7 +13,7 @@ apache默认监听80端口, 当多个域名都同时指向这个服务器时, �
 
 在不修改`conf/httpd.ini`的情况下, 在`conf.d`目录添加`vhosts.conf`文件, 内容如下
 
-```
+```xml
 <VirtualHost *:80>
     ServerName www.generals.com
     ## 这里注意必须是目标工程的顶层目录, 这里随便建了个新目录

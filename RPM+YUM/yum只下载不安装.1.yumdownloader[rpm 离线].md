@@ -34,12 +34,12 @@ Loading mirror speeds from cached hostfile
 --> Finished Dependency Resolution
 ...
 Delta RPMs disabled because /usr/bin/applydeltarpm not installed.
-(1/24): PyYAML-3.10-11.el7.x86_64.rpm                                                                                            | 153 kB  00:00:00     
-(2/24): dracut-config-rescue-033-502.el7.x86_64.rpm                                                                              |  55 kB  00:00:00     
+(1/24): PyYAML-3.10-11.el7.x86_64.rpm                         | 153 kB  00:00:00
+(2/24): dracut-config-rescue-033-502.el7.x86_64.rpm           |  55 kB  00:00:00
 ...
 $ ls
-dracut-033-502.el7.x86_64.rpm                python2-crypto-2.6.1-15.el7.x86_64.rpm    PyYAML-3.10-11.el7.x86_64.rpm
-openpgm-5.2.122-2.el7.x86_64.rpm             python-zmq-14.3.1-1.el7.x86_64.rpm        zeromq3-3.2.5-1.el7.x86_64.rpm
+dracut-033-502.el7.x86_64.rpm       python2-crypto-2.6.1-15.el7.x86_64.rpm    PyYAML-3.10-11.el7.x86_64.rpm
+openpgm-5.2.122-2.el7.x86_64.rpm    python-zmq-14.3.1-1.el7.x86_64.rpm        zeromq3-3.2.5-1.el7.x86_64.rpm
 ...
 ```
 
