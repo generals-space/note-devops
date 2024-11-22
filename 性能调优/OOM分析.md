@@ -20,7 +20,7 @@
 
 ## 2. 
 
-```
+```log
 Jun  4 17:19:10 iZ23tpcto8eZ kernel: [ pid ]   uid  tgid total_vm      rss nr_ptes swapents oom_score_adj name
 Jun  4 17:19:10 iZ23tpcto8eZ kernel: [ 5424]  1000  5424 36913689  1537770   66407 
 ...

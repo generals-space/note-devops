@@ -28,7 +28,7 @@ yum install rpmdevtools -y
 rpmdev-setuptree
 ```
 
-```
+```log
 [root@localhost rpmbuild]# cd /root/rpmbuild/
 [root@localhost rpmbuild]# tree
 .
@@ -45,17 +45,17 @@ rpmdev-setuptree
 
 |  目录名   |                         说明                          | macros中的宏名 |
 | :-------: | :---------------------------------------------------: | -------------- |
-|   BUILD   |                 编译rpm包的临时目录}                  | %_builddir     |
-| BUILDROOT |             编译后生成的软件临时安装目录}             | %_buildrootdir |
-|   RPMS    |           最终生成的可安装rpm包的所在目录}            | %_rpmdir       |
-|  SOURCES  |            所有源代码和补丁文件的存放目录}            | %_sourcedir    |
-|   SPECS   |               存放SPEC文件的目录}(重要)               | %_specdir      |
-|   SRPMS   | 软件最终的rpm源码格式存放路径}暂时忽略掉，别挂在心上) | %_srcrpmdir    |
+|   BUILD   |                 编译rpm包的临时目录                  | %_builddir     |
+| BUILDROOT |             编译后生成的软件临时安装目录             | %_buildrootdir |
+|   RPMS    |           最终生成的可安装rpm包的所在目录            | %_rpmdir       |
+|  SOURCES  |            所有源代码和补丁文件的存放目录            | %_sourcedir    |
+|   SPECS   |               存放SPEC文件的目录(重要)               | %_specdir      |
+|   SRPMS   | 软件最终的rpm源码格式存放路径(暂时忽略掉，别挂在心上) | %_srcrpmdir    |
 
 `_topdir`就是我们的工作目录.
 
-```
- rpmbuild --showrc | grep topdir 
+```log
+$ rpmbuild --showrc | grep topdir 
 -14: _builddir	%{_topdir}/BUILD
 -14: _buildrootdir	%{_topdir}/BUILDROOT
 -14: _rpmdir	%{_topdir}/RPMS

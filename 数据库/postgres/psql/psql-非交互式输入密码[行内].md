@@ -8,7 +8,7 @@
 
 想达到的目的就像下面这样, 可以在脚本写命令, 而不是进入交互式命令行. 其实psql这样做的意义不大, 主要还是在shell脚本里使用`pg_dump`更常用.
 
-```
+```log
 ~ # psql -h 172.16.0.33 -p 6543 -U azure -d azureiotpcs -c 'select id, name from rules;';
               id               |         name          
 -------------------------------+-----------------------
@@ -24,7 +24,7 @@ psql中并没有指定密码的字段, 但是有两种方法可以实现.
 
 `PGPASSWORD`是 PostgreSQL 系统环境变量，在客户端设置这后，那么在客户端连接远端数据库时，将优先使用这个密码。
 
-```
+```log
 $ export PGPASSWORD=123456
 $ psql -h 192.168.8.22 -p 5432 -U postgresql -d my_tbl
 psql (9.3.2)

@@ -17,7 +17,7 @@ lsof -n | grep delete
 
 输出结果如下
 
-```
+```log
 root@hua-dlzx1-a0203-gyt:[/root]lsof -n | grep delete
 gssproxy    1288         root  txt   REG  253,0      133736  218243639 /usr/sbin/gssproxy (deleted)
 gssproxy    1288   1322  root  txt   REG  253,0      133736  218243639 /usr/sbin/gssproxy (deleted)
