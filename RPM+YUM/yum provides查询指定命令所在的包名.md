@@ -11,8 +11,8 @@ yum provides *bin/less
 
 > 注意: 本地未安装的(即任何`bin`目录都不存在的)命令也可以使用这种方法查找到所在包.
 
-```
-[root@k8s-master-01 manifests]# yum provides *bin/ifconfig
+```log
+$ yum provides *bin/ifconfig
 已加载插件：fastestmirror
 Repository epel is listed more than once in the configuration
 Repository epel-debuginfo is listed more than once in the configuration

@@ -1,76 +1,76 @@
 site: https://command-not-found.com/
 yum:
-    iproute:
-        - ss
-        - ip
-        - tc(流量控制器TC(Traffic Control))
-    iputils:
-        - ping
-    net-tools:
-        - ifconfig
-        - netstat
-        - arp
-        - route
-    bridge-utils:
-        - brctl
-    bind-utils:
-        - dig
-        - nslookup
-    mlocate:
-        - updatedb
-        - locate
-    expect:
-        - mkpasswd(生成随机密码)
-    crontabs:
-        - crontab
-    man-pages: man手册中bash命令, 系统调用的内容信息(不包括man命令本身, man命令需要事先安装)
-    p7zip:
-        - 7za(7z格式解压命令)
-    unrar:
-        - https://www.rarlab.com/rar/rarlinux-x64-5.5.0.tar.gz
-        - 拷贝二进制文件到PATH即可
-    redhat-lsb:
-        - lsb_release (查看centos发行版信息)
-    coreutils:
-        - nohup
-    util-linux:
-        - more
-        - pivot_root
-    sysstat:
-        - iostat
-    bind-utils:
-        - dig
-    automake:
-        - aclocal
-    promisc:
-        - pstree
-    genisoimage:
-        - mkisofs
-    yum-utils:
-        - yumdownloader
-    lrzsz:
-    - rz
-    - sz
+  iproute:
+  - ss
+  - ip
+  - tc(流量控制器TC(Traffic Control))
+  iputils:
+  - ping
+  net-tools:
+  - ifconfig
+  - netstat
+  - arp
+  - route
+  bridge-utils:
+  - brctl
+  bind-utils:
+  - dig
+  - nslookup
+  mlocate:
+  - updatedb
+  - locate
+  expect:
+  - mkpasswd(生成随机密码)
+  crontabs:
+  - crontab
+  man-pages: man手册中bash命令, 系统调用的内容信息(不包括man命令本身, man命令需要事先安装)
+  p7zip:
+  - 7za(7z格式解压命令)
+  unrar:
+  - https://www.rarlab.com/rar/rarlinux-x64-5.5.0.tar.gz
+  - 拷贝二进制文件到PATH即可
+  redhat-lsb:
+  - lsb_release (查看centos发行版信息)
+  coreutils:
+  - nohup
+  util-linux:
+  - more
+  - pivot_root
+  sysstat:
+  - iostat
+  bind-utils:
+  - dig
+  automake:
+  - aclocal
+  promisc:
+  - pstree
+  genisoimage:
+  - mkisofs
+  yum-utils:
+  - yumdownloader
+  lrzsz:
+  - rz
+  - sz
 apt:
-    xz-utils:
-        - xz(解压命令)
-    dnsutils:
-        - dig
-    inetutils-ping:
-        - ping
-    net-tools:
-        - ifconfig
-        - netstat
-        - arp
-        - route
-    iproute2:
-        - ip
-        - ss
-        - tc
-    zlib1g:
-        - zlib
-        - zlib1g-dev
-    software-properties-common:
-        - apt-add-repository
-    psmisc:
-        - pstree
+  xz-utils:
+  - xz(解压命令)
+  dnsutils:
+  - dig
+  inetutils-ping:
+  - ping
+  net-tools:
+  - ifconfig
+  - netstat
+  - arp
+  - route
+  iproute2:
+  - ip
+  - ss
+  - tc
+  zlib1g:
+  - zlib
+  - zlib1g-dev
+  software-properties-common:
+  - apt-add-repository
+  psmisc:
+  - pstree
