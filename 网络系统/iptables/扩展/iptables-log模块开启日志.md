@@ -18,7 +18,7 @@ iptables -I INPUT -p tcp -m tcp --dport 22 -j LOG --log-prefix 'SSH Connection: 
 
 日志默认将会输出到`/var/log/messages`文件中. 格式如下
 
-```
+```log
 Jun 29 08:14:20 localhost kernel: SSH Connection: IN=eno16777736 OUT= MAC=00:0c:29:7b:d7:f2:00:50:56:c0:00:08:08:00 SRC=172.32.100.1 DST=172.32.100.100 LEN=40 TOS=0x00 PREC=0x00 TTL=128 ID=6069 DF PROTO=TCP SPT=50998 DPT=22 WINDOW=259 RES=0x00 ACK URGP=0
 ```
 
@@ -85,12 +85,13 @@ local5.*                                                /var/log/iptables.log
 
 ### 
 
-```
-[root@localhost ~]# iptables -I INPUT  -p tcp -m tcp ! --dport 22 -j LOG --log-prefix 'Catching'
-[root@localhost ~]# iptables -nL
+```log
+$ iptables -I INPUT  -p tcp -m tcp ! --dport 22 -j LOG --log-prefix 'Catching'
+$ iptables -nL
 Chain INPUT (policy ACCEPT)
 target     prot opt source               destination         
 LOG        tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:!22 LOG flags 0 level 4 prefix "Catching"
 ```
 
 > 非22端口用叹号`!`
+

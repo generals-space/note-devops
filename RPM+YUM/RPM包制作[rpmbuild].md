@@ -71,20 +71,12 @@ $ rpmbuild --showrc | grep topdir
 rpmdev-newspec -o salt-20161105.spec
 ```
 
-这条命令会在当前目录下创建`salt-20161105.spec`文件. 建议放在`~/rpmbuild/`根目录下, 因为`rpmbuild`的默认搜索路径就在`~/rpmbuild`, 这样可以不写绝对路径.
+这条命令会在当前目录下创建`salt-20161105.spec`文件. 建议放在`~/rpmbuild/`目录下, 因为`rpmbuild`的默认搜索路径就在`~/rpmbuild`, 这样可以不写绝对路径.
 
 ## rpmbuild选项
 
 使用方法
 
 ```
-$ rpm 选项 .spec文件
+rpm 选项 .spec文件
 ```
-
-- `-ba`: 既生成src.rpm又生成二进制rpm 
-- `-bs`: 只生成src的rpm 
-- `-bb`: 只生二进制的rpm 
-- `-bp`: 执行到pre 
-- `-bc`: 执行到 build段 
-- `-bi`: 执行install段 
-- `-bl`: 检测有文件没包含 

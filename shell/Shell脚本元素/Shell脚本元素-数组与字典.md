@@ -18,13 +18,13 @@ bash支持一维数组（不支持多维数组），并且没有限定数组的�
 
 例如：
 
-```
+```bash
 array_name=(value0 value1 value2 value3)
 ```
 
 或者
 
-```
+```bash
 array_name=(
 value0
 value1
@@ -51,13 +51,13 @@ array_name[2]=value2
 
 例如：
 
-```
+```bash
 valuen=${array_name[2]}
 ```
 
 举个例子：
 
-```
+```bash
 #!/bin/sh
 NAME[0]="Zara"
 NAME[1]="Qadir"
@@ -70,7 +70,7 @@ echo "Second Index: ${NAME[1]}"
 
 运行脚本，输出：
 
-```
+```bash
 $./test.sh
 First Index: Zara
 Second Index: Qadir
@@ -78,14 +78,14 @@ Second Index: Qadir
 
 使用`@`或`*`可以获取数组中的所有元素，例如：
 
-```
+```bash
 ${array_name[*]}
 ${array_name[@]}
 ```
 
 举个例子：
 
-```
+```bash
 #!/bin/sh
 NAME[0]="Zara"
 NAME[1]="Qadir"
@@ -98,7 +98,7 @@ echo "Second Method: ${NAME[@]}"
 
 运行脚本，输出：
 
-```
+```bash
 $./test.sh
 First Method: Zara Qadir Mahnaz Ayan Daisy
 Second Method: Zara Qadir Mahnaz Ayan Daisy
@@ -108,7 +108,7 @@ Second Method: Zara Qadir Mahnaz Ayan Daisy
 
 获取数组长度的方法与获取字符串长度的方法相同，例如：
 
-```
+```bash
 # 取得数组元素的个数
 length=${#array_name[@]}
 # 或者
@@ -121,7 +121,7 @@ lengthn=${#array_name[n]}
 
 使用索引直接定义数组时, 可以跳跃定义
 
-```
+```bash
 ## 不定义array[1]的值
 array[0]=value0
 array[2]=value2
@@ -135,7 +135,7 @@ array[2]=value2
 
 ### 2.1 定义和取值
 
-```
+```bash
 #必须先声明
 $ declare -A dic
 $ dic=([key1]='value1' [key2]='value2' [key3]='value3')
@@ -153,7 +153,7 @@ $ echo ${#dic[*]}
 
 正确
 
-```
+```bash
 $ declare -A dic
 $ dic=(
 > [key1]='val1'
@@ -165,7 +165,7 @@ val1
 
 错误, 不使用`declare`声明的定义不会提示错误, 但取值都是空的.
 
-```
+```bash
 $ abc=(
 [key1]='val1'
 [key2]='val2'
@@ -177,7 +177,7 @@ $ echo ${abc['key2']}
 
 也可以先声明多个, 再依次定义
 
-```
+```bash
 $ declare -A dic1 dic2
 $ dic1=([key1]='val1' [key2]='val2')
 $ dic2=([key1]='value1' [key2]='value2')
@@ -195,7 +195,7 @@ value2
 
 `${#dic[*]}`: 获取字典长度, `${#dic[@]}`可以达到同样的效果.
 
-```
+```bash
 $ declare -A dic
 $ dic=([key1]='value1' [key2]='value2' [key3]='value3')
 ## 遍历
@@ -222,7 +222,7 @@ $ echo ${#dic[*]}
 
 延用上面的示例
 
-```
+```bash
 $ echo ${dic[*]:0:2}
 value3 value2
 ```
