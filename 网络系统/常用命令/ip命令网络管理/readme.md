@@ -1,5 +1,15 @@
 参考文章
 
+关于路由, 准确的说, 系统中存在的与路由相关的术语有两种, 一种是**路由规则**, 一种是**路由表**. 
+
+按照[Linux 路由和多网卡网关的路由出口设置](http://www.cnblogs.com/fengyc/p/6533112.html)中所说
+
+> 路由规则指定当数据包满足规则时, 应转交到哪个路由表; 路由表根据数据包的信息, 选择下一跳.
+
+所以通过route命令查看的叫做路由规则而不是真正的路由表, 使用`ip rule`查看的才是路由表.
+
+------
+
 路由是根据一定选择确定数据包流向的, 那这种选择与路由表条目中的顺序有关吗?
 
 `ip link help`可以查看不同设备类型共有的选项参数, 但有很多选项是各类型独有的, 比如bridge类型的vlan过滤.
@@ -8,7 +18,7 @@
 
 以`bridge`类型为例.
 
-```
+```log
 [root@k8s-worker-7-17 ~]# ip link add type bridge help
 Usage: ... bridge [ forward_delay FORWARD_DELAY ]
                   [ hello_time HELLO_TIME ]
@@ -44,4 +54,3 @@ ip link set br0 vlan vlan_filtering 1
 `ip -s link|addr`: 可以显示更详细的内容(一般是各接口设备收发或是出错的数据包数量汇总信息)
 
 `ip -d link`: 可以打印出vlan设备的id信息.
-

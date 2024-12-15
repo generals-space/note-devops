@@ -54,6 +54,4 @@ SLAVE=yes
 在bond接口配置文件中
 
 - `ONBOOT`可以代替开机启动的`ifenslave bond0 eth0 eth1`命令.
-
 - `BONDING_OPTS`可以代替`module`加载配置文件中的`options bond0 miimon=100 mode=1`.
-

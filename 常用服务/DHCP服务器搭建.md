@@ -18,7 +18,7 @@ CentOS默认没有安装`dhcp`这个软件, 需要手动yum安装, 不过有`dhc
 
 最小配置
 
-```shell
+```conf
 # dhcpd.conf
 
 ## 默认失效时间
@@ -41,7 +41,7 @@ subnet 172.64.100.0 netmask 255.255.255.0 {
 
 这个文件是在当DHCP服务器不只有一个网卡的时候才需要配置, 给两个来自不同网卡的网段分配IP, 会乱掉的. 目的是让DHCP服务对来自指定网卡的请求分配IP
 
-```shell
+```conf
 DHCPDARGS="eth0"
 ```
 
@@ -53,20 +53,20 @@ DHCP配置好后, 用`sudo service dhcpd start`启动失败, 但是用`sudo dhcp
 
 DHCP的日志文件在`/var/log/messages`, 其中报错有
 
-```shell
+```log
 dhcphost dhcpd: Can\'t chown new lease file: Operation not permitted
 ```
 
 原因是多了一个配置要修改(CentOS6.5中也有这种情况), 编辑 `/etc/rc.d/init.d/dhcpd` 文件, 将其中的
 
-```shell
+```conf
 user=dhcpd
 group=dhcpd
 ```
 
 改为
 
-```shell
+```conf
 user=root
 group=root
 ```

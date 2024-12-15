@@ -33,7 +33,7 @@ Error: near "column": syntax error
 
 那么如何重命名列名? 那就新增一个列, 然后把源列的数据拷贝到新列...
 
-```
+```sql
 sqlite> alter table book_chapters add column order_num bigint;
 sqlite> .sche book_chapters
 CREATE TABLE "book_chapters" ("id" integer primary key autoincrement,"created_at" datetime,"updated_at" datetime,"book_id" bigint,"order" bigint,"title" varchar(100),"summary" varchar(200),"enable" bool , order_num bigint);

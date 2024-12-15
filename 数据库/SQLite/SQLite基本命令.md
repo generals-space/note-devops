@@ -17,7 +17,7 @@ sqlite太过轻量, 与其他数据库系统相比, 我觉得它更像一个能�
 sqlite创建一个数据库的方法就是创建一个文件.
 
 ```
-$ sqlite3 数据库名
+sqlite3 数据库名
 ```
 
 然后就可以对此数据库进行增删改查等操作了.
@@ -26,7 +26,7 @@ $ sqlite3 数据库名
 
 在sqlite命令行中, 提供了一些类似于pg的`\`反斜线简洁命令, 被称为sqlite的**点命令**, 因为这些命令都是以点号`.`开头的. 执行`.help`即可查阅.
 
-```
+```log
 [root@localhost ~]# sqlite3 
 SQLite version 3.7.17 2013-05-20 00:56:22
 Enter ".help" for instructions
@@ -55,7 +55,7 @@ sqlite> .help
 
 默认select查询不会打印column名称, 我们需要`.header on`打开这个设置
 
-```
+```sql
 sqlite> .header on
 sqlite> select * from auth_permission limit 1;
 id|content_type_id|codename|name
@@ -66,7 +66,7 @@ id|content_type_id|codename|name
 
 `.schema`语句的输出有些详细, 连建表语句都输出来了...
 
-```
+```sql
 sqlite> .schema auth_permission
 CREATE TABLE "auth_permission" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "content_type_id" integer NOT NULL REFERENCES "django_content_type" ("id"), "codename" varchar(100) NOT NULL, "name" varchar(255) NOT NULL);
 CREATE UNIQUE INDEX "auth_permission_content_type_id_codename_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");

@@ -4,7 +4,7 @@
 
 KVM是Linux内核模块, 如果需要安装KVM虚拟机, 则需要将KVM模块编译进内核. 因为这次的系统平台是Fedora, 默认将KVM以模块的形式添加入内核, 所以就没有再执行内核编译. 查看内核的KVM模块方法:
 
-```
+```log
 [root@localhost ISO]# lsmod | grep 'kvm'
 kvm_intel             159744  3
 kvm                   495616  1 kvm_intel
@@ -22,7 +22,7 @@ git clone git://kernel.org/pub/scm/virt/kvm/qemu-kvm.git
 
 ####　2.1.1 第一次出现这个错误
 
-```
+```log
 [root@localhost qemu-kvm]# ./configure 
 
 Error: zlib check failed
@@ -37,14 +37,14 @@ Make sure to have the zlib libs and headers installed.
 
 #### 2.1.2 但是又出现新问题
 
-```
+```log
 [root@localhost qemu-kvm]# ./configure 
 glib-2.12 required to compile QEMU
 ```
 
 这个问题百度上有解决方案, 就是glib2包缺失造成的. 保险起见, 将开发包也装上
 
-```
+```log
 [root@localhost general]# dnf install glib2 glib2-devel
 ```
 
@@ -54,8 +54,7 @@ glib-2.12 required to compile QEMU
 
 直接执行make, 却又出现错误:
 
-```
-...
+```log
 ...
 In file included from ./qemu-common.h:6:0,
 from block/qcow2-snapshot.c:25:
@@ -63,7 +62,6 @@ block/qcow2-snapshot.c: In function ‘qcow2_write_snapshots’:
 ./compiler.h:36:23: error: typedef ‘qemu_build_bug_on__250’ locally defined but not used [-Werror=unused-local-typedefs]
 typedef char cat2(qemu_build_bug_on__,__LINE__)[(x)?-1:1];
 ^
-...
 ...
 cc1: all warnings being treated as errors
 /home/general/Documents/qemu-kvm/qemu-kvm/rules.mak:18: recipe for target 'block/qcow2-snapshot.o' failed
@@ -94,7 +92,7 @@ make install没有遇到问题, 而且速度很快.
 
 使用Linux下的`dd`命令, `of`选项的参数是目标文件的名称, count选项的参数为硬盘大小, 10G对于ubuntu来说足够了
 
-```
+```log
 [general@localhost kvm1]$ dd if=/dev/zero of=ubuntu.img bs=1M count=10240
 10240+0 records in
 10240+0 records out
@@ -113,7 +111,7 @@ make install没有遇到问题, 而且速度很快.
 
 -cdrom是分配给该虚拟机的光盘介质, 选择目标ISO文件即可;
 
-```
+```log
 [general@localhost kvm1]$ qemu-system-x86_64 -m 2048 -smp 1 -boot order=cd -hda ./ubuntu.img -cdrom 目标ISO路径/ubuntu-15.04-desktop-amd64.iso 
 VNC server running on `127.0.0.1:5900'
 ```
