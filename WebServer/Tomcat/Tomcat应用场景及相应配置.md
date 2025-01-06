@@ -24,15 +24,10 @@ host{
 ```
 
 - server可以看作对应于nginx命令本身, 它是tomcat实例配置, 负责tomcat进程的启动与关闭;
-
 - service可以看作nginx.conf中的`server`, 可以设置监听端口与工程执行程序;
-
 - connector可以看作nginx.conf中`server`块下的`listen`字段, 主要起监听端口的作用;
-
 - engine有点像nginx.conf中`server`块下的`location`中的`fastcgi_proxy`与`proxy_proxy`. 不过nginx本身无法执行程序, tomcat则不需要, 它本身有但也只有javaWeb的执行引擎, 所以几乎不需要再进行配置;
-
 - host则可以看作nginx.conf中`http`块下的`root`字段, 注意不是`server`中的`root`, 因为host只指定网站工程目录的路径, 不需要像nginx那样为每个`location`单独写路由;
-
 - context就有点像nginx.conf中`server`块下的`root`字段了. 可以看作javaWeb工程实例配置, 指定工程目录的存放路径与访问路径, 工程目录存放路径可以以`host`字段为基准做相对路径, 也可以脱离host指定的根路径另外指定绝对路径;
 
 ## 1. Tomcat监听多个端口
