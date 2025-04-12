@@ -68,7 +68,7 @@ vncserver :1 -geometry 1920x1080 -depth 24
 
 `vncserver --help`中一般不会有直接方式指定端口, 比如
 
-```
+```bash
 root@e32a946a4618:~/.vnc# vncserver --help
 VNC4 server
 

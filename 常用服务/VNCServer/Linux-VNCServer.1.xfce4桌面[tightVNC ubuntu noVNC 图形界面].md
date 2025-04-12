@@ -89,7 +89,7 @@ root      1197     1  0 21:11 pts/0    00:00:00 Xtightvnc :1 -desktop X -auth /r
 
 查看服务端日志如下
 
-```
+```log
 root@383656098b9e:/usr/local/noVNC# ./utils/launch.sh --vnc localhost:5901 --listen 5037
 Warning: could not find self.pem
 Using installed websockify at /usr/bin/websockify
