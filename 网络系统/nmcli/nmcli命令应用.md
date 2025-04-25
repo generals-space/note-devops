@@ -9,8 +9,6 @@
 3. [CentOS 7 下网络管理之命令行工具nmcli](https://www.jianshu.com/p/5d5560e9e26a)
     - connection对象可设置的属性列表: `nmcli c show 连接名称`
 
-md刚刚差不多学会ip命令, CentOS 8又把network服务移除了...
-
 重命名 connection 对象
 
 ```log
@@ -41,7 +39,7 @@ nmcli c reload (重启所有接口)
 
 设置静态IP并导出网络配置(如果已经存在, 则在执行如下命令时会实时修改该文件)
 
-```
+```bash
 nmcli con mod ens33 ipv4.addresses 192.168.0.201/24
 nmcli con mod ens33 ipv4.gateway 192.168.0.1
 nmcli con mod ens33 ipv4.dns 192.168.0.1
