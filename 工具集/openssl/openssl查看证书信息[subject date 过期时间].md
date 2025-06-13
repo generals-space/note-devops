@@ -5,7 +5,7 @@
 1. [openssl查看证书信息](https://blog.51cto.com/wemux/5564119)
 
 ```
-openssl x509 -in server.crt -noout -subject -issuer -dates
+openssl x509 -noout -subject -issuer -dates -in server.crt 
 ```
 
 可以通过`​openssl x509 --help 2>&1 | grep print`获取所有可查看的信息.
